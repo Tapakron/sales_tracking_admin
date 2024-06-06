@@ -5,9 +5,19 @@
         <div class="page-title d-flex flex-column align-items-start justify-content-center flex-wrap me-lg-20 py-3 py-lg-0 me-3">
             <!--begin::Heading-->
             <h1 class="d-flex flex-column text-dark fw-bold my-1">
-                <span class="text-white fs-1">แดชบอร์ด</span>
-                <a href="#" class=" fs-6 fw-normal pt-2">ยินดีต้อนรับ SME THAI SOFTWARE</a>
+                <span class="text-white fs-1">{{ getPageName($pageDetails) }}</span>
+                @if ($pageDetails["page_lv"] == "1")
+                    <a href="#" class=" fs-6 fw-normal pt-2">ยินดีต้อนรับ SME THAI SOFTWARE</a>
+                @endif
             </h1>
+            @if ($pageDetails["page_lv"] != "1")
+                <ul class="breadcrumb breadcrumb-line fw-semibold fs-7 my-1">
+                    <li class="breadcrumb-item text-gray-600">
+                        <a href="{{ url($pageDetails["page_url_1"]) }}" class="text-gray-600 text-hover-primary">{{ $pageDetails["page_name_th_1"] }}</a>
+                    </li>
+                    <li class="breadcrumb-item text-gray-600">{{ getPageNameDesc($pageDetails) }}</li>
+                </ul>
+            @endif            
             <!--end::Heading-->
         </div>
         <!--end::Page title=-->

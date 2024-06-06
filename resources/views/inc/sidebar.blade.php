@@ -1,8 +1,8 @@
 <div id="kt_aside" class="aside" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="auto" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_toggle">
     <!--begin::Logo-->
     <div class="aside-logo flex-column-auto pt-10 pt-lg-20" id="kt_aside_logo">
-        <a href="../../demo9/dist/index.html">
-            <img alt="Logo" src="assets/media/logos/demo9.svg" class="h-40px" />
+        <a href="{{ url("/dashboard") }}">
+            <img alt="Logo" src="{{ asset("assets/media/logos/demo9.svg") }}" class="h-40px" />
         </a>
     </div>
     <!--end::Logo-->
@@ -12,7 +12,7 @@
         <div id="kt_aside_menu_wrapper" class="w-100 hover-scroll-y scroll-ms d-flex" data-kt-scroll="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer" data-kt-scroll-wrappers="#kt_aside, #kt_aside_menu" data-kt-scroll-offset="0">
             <div id="kt_aside_menu" class="menu menu-column menu-title-gray-600 menu-state-primary menu-state-icon-primary menu-state-bullet-primary menu-icon-gray-400 menu-arrow-gray-400 fw-semibold fs-6 my-auto" data-kt-menu="true">
                 <!--begin:Menu item-->
-                <a class="menu-item py-2" href="../../demo9/dist/index.html"  data-kt-menu-placement="right-start" data-bs-toggle="tooltip" data-bs-placement="right" title="แดชบอร์ด">
+                <a class="menu-item py-2" href="{{ url("/dashboard") }}"  data-kt-menu-placement="right-start" data-bs-toggle="tooltip" data-bs-placement="right" title="แดชบอร์ด">
                     <!--begin:Menu link-->
                     <span class="menu-link menu-center">
                         <span class="menu-icon me-0 bg-light-primary">
@@ -26,7 +26,7 @@
                 </a>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <a class="menu-item py-2" href="../../demo9/dist/apps/ecommerce/catalog/add-product.html"  data-kt-menu-placement="right-start" data-bs-toggle="tooltip" data-bs-placement="right" title="เพิ่มลูกค้า">
+                <a class="menu-item py-2" href="{{ url("/ecommerce/product/add") }}"  data-kt-menu-placement="right-start" data-bs-toggle="tooltip" data-bs-placement="right" title="เพิ่มลูกค้า">
                     <!--begin:Menu link-->
                     <span class="menu-link menu-center">
                         <span class="menu-icon me-0 bg-light-primary">
@@ -41,7 +41,7 @@
                 </a>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <a class="menu-item py-2" href="../../demo9/dist/apps/ecommerce/catalog/add-sales.html"  data-kt-menu-placement="right-start" data-bs-toggle="tooltip" data-bs-placement="right" title="เพิ่ม Sales">
+                <a class="menu-item py-2" href="{{ url("/ecommerce/sales/add") }}"  data-kt-menu-placement="right-start" data-bs-toggle="tooltip" data-bs-placement="right" title="เพิ่ม Sales">
                     <!--begin:Menu link-->
                     <span class="menu-link menu-center">
                         <span class="menu-icon me-0 bg-light-primary">

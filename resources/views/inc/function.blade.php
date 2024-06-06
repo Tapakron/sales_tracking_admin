@@ -1,6 +1,26 @@
 {{-- Functions --}}
 @php
 
+function getPageName($pageDetails) {
+    if ($pageDetails["page_lv"] == "2") {
+        $pageName = $pageDetails["page_name_th_2"];
+    }else if ($pageDetails["page_lv"] == "3") {
+        $pageName = $pageDetails["page_name_th_3"];
+    }else{
+        $pageName = $pageDetails["page_name_th_1"];
+    }
+    return $pageName;
+}
+function getPageNameDesc($pageDetails) {
+    if ($pageDetails["page_lv"] == "2") {
+        $pageDesc = $pageDetails["page_desc_2"];
+    }else if ($pageDetails["page_lv"] == "3") {
+        $pageDesc = $pageDetails["page_desc_3"];
+    }else{
+        $pageDesc = $pageDetails["page_desc_1"];
+    }
+    return $pageDesc;
+}
 
 // Function to get the client IP address
 function get_client_ip() {

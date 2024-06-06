@@ -4,8 +4,12 @@
 @endsection
 
 @section('content')
+{{-- !------------------------------------------------------- --}}
 
+{{-- !------------------------------------------------------- --}}
+@endsection
 
+@section('modal-content')
 @endsection
 
 @section('js-content')
