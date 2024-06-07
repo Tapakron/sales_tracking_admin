@@ -11,13 +11,17 @@ function getPageName($pageDetails) {
     }
     return $pageName;
 }
-function getPageNameDesc($pageDetails) {
-    if ($pageDetails["page_lv"] == "2") {
+function getPageNameDesc2($pageDetails) {
+    $pageDesc = "";
+    if ($pageDetails["page_desc_2"] != "") {
         $pageDesc = $pageDetails["page_desc_2"];
-    }else if ($pageDetails["page_lv"] == "3") {
+    }
+    return $pageDesc;
+}
+function getPageNameDesc3($pageDetails) {
+    $pageDesc = "";
+    if ($pageDetails["page_desc_3"] != "") {
         $pageDesc = $pageDetails["page_desc_3"];
-    }else{
-        $pageDesc = $pageDetails["page_desc_1"];
     }
     return $pageDesc;
 }

@@ -15,7 +15,16 @@
                     <li class="breadcrumb-item text-gray-600">
                         <a href="{{ url($pageDetails["page_url_1"]) }}" class="text-gray-600 text-hover-primary">{{ $pageDetails["page_name_th_1"] }}</a>
                     </li>
-                    <li class="breadcrumb-item text-gray-600">{{ getPageNameDesc($pageDetails) }}</li>
+                    @if ($pageDetails["page_lv"] == "2")
+                        <li class="breadcrumb-item text-gray-400">{{ getPageNameDesc2($pageDetails) }}</li>
+                    @endif
+                    @if ($pageDetails["page_lv"] == "3")
+                    <li class="breadcrumb-item text-gray-600">
+                    <a href="{{ url($pageDetails["page_url_2"]) }}" class="text-gray-600 text-hover-primary">{{ $pageDetails["page_name_th_2"] }}</a>
+                    </li>
+                        {{-- <li class="breadcrumb-item text-gray-600">{{ getPageNameDesc2($pageDetails) }}</li> --}}
+                        <li class="breadcrumb-item text-gray-400">{{ getPageNameDesc3($pageDetails) }}</li>
+                    @endif
                 </ul>
             @endif            
             <!--end::Heading-->
@@ -290,7 +299,7 @@
                             <div class="menu-content d-flex align-items-center px-3">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-50px me-5">
-                                    <img alt="Logo" src="assets/media/avatars/sme.png" />
+                                    <img alt="Logo" src="{{ asset("assets/media/avatars/sme.png") }}" />
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Username-->
@@ -309,7 +318,7 @@
                         <!--end::Menu separator-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
-                            <a href="../../demo9/dist/apps/ecommerce/customers/details.html" class="menu-link px-5">ข้อมูลบริษัท</a>
+                            <a href="{{ url("/customers/details") }}" class="menu-link px-5">ข้อมูลบริษัท</a>
                         </div>
                         <!--end::Menu item-->
                         

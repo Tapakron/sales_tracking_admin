@@ -70,7 +70,7 @@
                 <!--begin::Card-->
                 <div class="card card-stretch">
                     <!--begin::Link-->
-                    <a href="../../demo9/dist/apps/ecommerce/sales/details.html" class="btn btn-flex btn-text-gray-800 btn-icon-gray-400 btn-active-color-primary bg-body flex-column justfiy-content-start align-items-start text-start w-100 p-10">
+                    <a href="{{ url("/sales/details") }}" class="btn btn-flex btn-text-gray-800 btn-icon-gray-400 btn-active-color-primary bg-body flex-column justfiy-content-start align-items-start text-start w-100 p-10">
                         <i class="ki-duotone ki-wallet fs-2tx mb-5 ms-n1">
                             <span class="path1"></span>
                             <span class="path2"></span>
@@ -108,7 +108,7 @@
                 <!--begin::Card-->
                 <div class="card card-stretch">
                     <!--begin::Link-->
-                    <a href="../../demo9/dist/apps/support-center/tickets/list.html" class="btn btn-flex btn-text-gray-800 btn-icon-gray-400 btn-active-color-primary bg-body flex-column justfiy-content-start align-items-start text-start w-100 p-10">
+                    <a href="{{ url("/supportCenter/tickets/view") }}" class="btn btn-flex btn-text-gray-800 btn-icon-gray-400 btn-active-color-primary bg-body flex-column justfiy-content-start align-items-start text-start w-100 p-10">
                         <i class="ki-duotone ki-note-2 fs-2tx mb-5 ms-n1">
                             <span class="path1"></span>
                             <span class="path2"></span>
@@ -2182,7 +2182,7 @@
                                 <tr>
                                     <!--begin::Item-->
                                     <td>
-                                        <a href="../../demo9/dist/apps/user-management/users/view.html" class="text-dark text-hover-primary">Max Smith</a>
+                                        <a href="{{ url("/management/users/view") }}" class="text-dark text-hover-primary">Max Smith</a>
                                     </td>
                                     <!--end::Item-->
                                     <!--begin::Product ID-->
@@ -2198,7 +2198,7 @@
                                 <tr>
                                     <!--begin::Item-->
                                     <td>
-                                        <a href="../../demo9/dist/apps/user-management/users/view.html" class="text-dark text-hover-primary">Melody Macy</a>
+                                        <a href="{{ url("/management/users/view") }}" class="text-dark text-hover-primary">Melody Macy</a>
                                     </td>
                                     <!--end::Item-->
                                     <!--begin::Product ID-->
@@ -2214,7 +2214,7 @@
                                 <tr>
                                     <!--begin::Item-->
                                     <td>
-                                        <a href="../../demo9/dist/apps/user-management/users/view.html" class="text-dark text-hover-primary">Emma Smith</a>
+                                        <a href="{{ url("/management/users/view") }}" class="text-dark text-hover-primary">Emma Smith</a>
                                     </td>
                                     <!--end::Item-->
                                     <!--begin::Product ID-->
@@ -2230,7 +2230,7 @@
                                 <tr>
                                     <!--begin::Item-->
                                     <td>
-                                        <a href="../../demo9/dist/apps/user-management/users/view.html" class="text-dark text-hover-primary">Max Smith</a>
+                                        <a href="{{ url("/management/users/view") }}" class="text-dark text-hover-primary">Max Smith</a>
                                     </td>
                                     <!--end::Item-->
                                     <!--begin::Product ID-->
@@ -2246,7 +2246,7 @@
                                 <tr>
                                     <!--begin::Item-->
                                     <td>
-                                        <a href="../../demo9/dist/apps/user-management/users/view.html" class="text-dark text-hover-primary">Melody Macy</a>
+                                        <a href="{{ url("/management/users/view") }}" class="text-dark text-hover-primary">Melody Macy</a>
                                     </td>
                                     <!--end::Item-->
                                     <!--begin::Product ID-->
@@ -2262,7 +2262,7 @@
                                 <tr>
                                     <!--begin::Item-->
                                     <td>
-                                        <a href="../../demo9/dist/apps/user-management/users/view.html" class="text-dark text-hover-primary">Emma Smith</a>
+                                        <a href="{{ url("/management/users/view") }}" class="text-dark text-hover-primary">Emma Smith</a>
                                     </td>
                                     <!--end::Item-->
                                     <!--begin::Product ID-->
@@ -2278,7 +2278,7 @@
                                 <tr>
                                     <!--begin::Item-->
                                     <td>
-                                        <a href="../../demo9/dist/apps/user-management/users/view.html" class="text-dark text-hover-primary">Max Smith</a>
+                                        <a href="{{ url("/management/users/view") }}" class="text-dark text-hover-primary">Max Smith</a>
                                     </td>
                                     <!--end::Item-->
                                     <!--begin::Product ID-->
@@ -2294,7 +2294,7 @@
                                 <tr>
                                     <!--begin::Item-->
                                     <td>
-                                        <a href="../../demo9/dist/apps/user-management/users/view.html" class="text-dark text-hover-primary">Melody Macy</a>
+                                        <a href="{{ url("/management/users/view") }}" class="text-dark text-hover-primary">Melody Macy</a>
                                     </td>
                                     <!--end::Item-->
                                     <!--begin::Product ID-->
@@ -2310,7 +2310,7 @@
                                 <tr>
                                     <!--begin::Item-->
                                     <td>
-                                        <a href="../../demo9/dist/apps/user-management/users/view.html" class="text-dark text-hover-primary">Emma Smith</a>
+                                        <a href="{{ url("/management/users/view") }}" class="text-dark text-hover-primary">Emma Smith</a>
                                     </td>
                                     <!--end::Item-->
                                     <!--begin::Product ID-->
@@ -2326,7 +2326,7 @@
                                 <tr>
                                     <!--begin::Item-->
                                     <td>
-                                        <a href="../../demo9/dist/apps/user-management/users/view.html" class="text-dark text-hover-primary">Max Smith</a>
+                                        <a href="{{ url("/management/users/view") }}" class="text-dark text-hover-primary">Max Smith</a>
                                     </td>
                                     <!--end::Item-->
                                     <!--begin::Product ID-->
@@ -2437,7 +2437,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-40px me-3">
-                                                            <img src="assets/media/avatars/300-1.jpg" class="" alt="" />
+                                                             class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="#" class="text-dark fw-bold text-hover-primary mb-1 fs-6">Brooklyn Simmons</a>
@@ -2628,7 +2628,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-40px me-3">
-                                                            <img src="assets/media/avatars/300-1.jpg" class="" alt="" />
+                                                            <img src="{{ asset("assets/media/avatars/300-1.jpg") }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="#" class="text-dark fw-bold text-hover-primary mb-1 fs-6">Brooklyn Simmons</a>

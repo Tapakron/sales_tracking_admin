@@ -67,7 +67,7 @@
 								<a href="#" class="d-flex align-items-center p-3 rounded bg-state-light bg-state-opacity-50 mb-1">
 									<!--begin::Avatar-->
 									<div class="symbol symbol-35px symbol-circle me-5">
-										<img alt="Pic" src="assets/media/avatars/300-6.jpg" />
+										<img alt="Pic" src="{{ asset("assets/media/avatars/300-6.jpg") }}" />
 									</div>
 									<!--end::Avatar-->
 									<!--begin::Info-->
@@ -97,7 +97,7 @@
 								<a href="#" class="d-flex align-items-center p-3 rounded bg-state-light bg-state-opacity-50 mb-1">
 									<!--begin::Avatar-->
 									<div class="symbol symbol-35px symbol-circle me-5">
-										<img alt="Pic" src="assets/media/avatars/300-1.jpg" />
+										<img alt="Pic" src="{{ asset("assets/media/avatars/300-1.jpg") }}" />
 									</div>
 									<!--end::Avatar-->
 									<!--begin::Info-->
@@ -112,7 +112,7 @@
 								<a href="#" class="d-flex align-items-center p-3 rounded bg-state-light bg-state-opacity-50 mb-1">
 									<!--begin::Avatar-->
 									<div class="symbol symbol-35px symbol-circle me-5">
-										<img alt="Pic" src="assets/media/avatars/300-5.jpg" />
+										<img alt="Pic" src="{{ asset("assets/media/avatars/300-5.jpg") }}" />
 									</div>
 									<!--end::Avatar-->
 									<!--begin::Info-->
@@ -127,7 +127,7 @@
 								<a href="#" class="d-flex align-items-center p-3 rounded bg-state-light bg-state-opacity-50 mb-1">
 									<!--begin::Avatar-->
 									<div class="symbol symbol-35px symbol-circle me-5">
-										<img alt="Pic" src="assets/media/avatars/300-25.jpg" />
+										<img alt="Pic" src="{{ asset("assets/media/avatars/300-25.jpg") }}" />
 									</div>
 									<!--end::Avatar-->
 									<!--begin::Info-->
@@ -157,7 +157,7 @@
 										<!--end::Checkbox-->
 										<!--begin::Avatar-->
 										<div class="symbol symbol-35px symbol-circle">
-											<img alt="Pic" src="assets/media/avatars/300-6.jpg" />
+											<img alt="Pic" src="{{ asset("assets/media/avatars/300-6.jpg") }}" />
 										</div>
 										<!--end::Avatar-->
 										<!--begin::Details-->
@@ -229,7 +229,7 @@
 										<!--end::Checkbox-->
 										<!--begin::Avatar-->
 										<div class="symbol symbol-35px symbol-circle">
-											<img alt="Pic" src="assets/media/avatars/300-1.jpg" />
+											<img alt="Pic" src="{{ asset("assets/media/avatars/300-1.jpg") }}" />
 										</div>
 										<!--end::Avatar-->
 										<!--begin::Details-->
@@ -265,7 +265,7 @@
 										<!--end::Checkbox-->
 										<!--begin::Avatar-->
 										<div class="symbol symbol-35px symbol-circle">
-											<img alt="Pic" src="assets/media/avatars/300-5.jpg" />
+											<img alt="Pic" src="{{ asset("assets/media/avatars/300-5.jpg") }}" />
 										</div>
 										<!--end::Avatar-->
 										<!--begin::Details-->
@@ -301,7 +301,7 @@
 										<!--end::Checkbox-->
 										<!--begin::Avatar-->
 										<div class="symbol symbol-35px symbol-circle">
-											<img alt="Pic" src="assets/media/avatars/300-25.jpg" />
+											<img alt="Pic" src="{{ asset("assets/media/avatars/300-25.jpg") }}" />
 										</div>
 										<!--end::Avatar-->
 										<!--begin::Details-->
