@@ -205,7 +205,7 @@
 
                         <td class="text-center">22/04/2024</td>
                         <td class="text-center">
-                            <a href="../../demo9/dist/apps/invoices/view/invoice-1.html" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
+                            <a href="{{ url("/invoices/view") }}" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
                                 <i class="ki-duotone ki-magnifier fs-2 ms-0">
                                     <span class="path1"></span>
                                     <span class="path2"></span>
@@ -234,7 +234,7 @@
 
                         <td class="text-center">10/05/2024</td>
                         <td class="text-center">
-                            <a href="../../demo9/dist/apps/invoices/view/invoice-1.html" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
+                            <a href="{{ url("/invoices/view") }}" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
                                 <i class="ki-duotone ki-magnifier fs-2 ms-0">
                                     <span class="path1"></span>
                                     <span class="path2"></span>
@@ -262,7 +262,7 @@
 
                         <td class="text-center">22/04/2024</td>
                         <td class="text-center">
-                            <a href="../../demo9/dist/apps/invoices/view/invoice-1.html" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
+                            <a href="{{ url("/invoices/view") }}" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
                                 <i class="ki-duotone ki-magnifier fs-2 ms-0">
                                     <span class="path1"></span>
                                     <span class="path2"></span>
@@ -291,7 +291,7 @@
 
                         <td class="text-center">10/05/2024</td>
                         <td class="text-center">
-                            <a href="../../demo9/dist/apps/invoices/view/invoice-1.html" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
+                            <a href="{{ url("/invoices/view") }}" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
                                 <i class="ki-duotone ki-magnifier fs-2 ms-0">
                                     <span class="path1"></span>
                                     <span class="path2"></span>
@@ -320,7 +320,7 @@
 
                         <td class="text-center">22/04/2024</td>
                         <td class="text-center">
-                            <a href="../../demo9/dist/apps/invoices/view/invoice-1.html" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
+                            <a href="{{ url("/invoices/view") }}" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
                                 <i class="ki-duotone ki-magnifier fs-2 ms-0">
                                     <span class="path1"></span>
                                     <span class="path2"></span>
@@ -349,7 +349,7 @@
 
                         <td class="text-center">10/05/2024</td>
                         <td class="text-center">
-                            <a href="../../demo9/dist/apps/invoices/view/invoice-1.html" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
+                            <a href="{{ url("/invoices/view") }}" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
                                 <i class="ki-duotone ki-magnifier fs-2 ms-0">
                                     <span class="path1"></span>
                                     <span class="path2"></span>
@@ -378,7 +378,7 @@
 
                         <td class="text-center">22/04/2024</td>
                         <td class="text-center">
-                            <a href="../../demo9/dist/apps/invoices/view/invoice-1.html" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
+                            <a href="{{ url("/invoices/view") }}" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
                                 <i class="ki-duotone ki-magnifier fs-2 ms-0">
                                     <span class="path1"></span>
                                     <span class="path2"></span>
@@ -407,7 +407,7 @@
 
                         <td class="text-center">10/05/2024</td>
                         <td class="text-center">
-                            <a href="../../demo9/dist/apps/invoices/view/invoice-1.html" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
+                            <a href="{{ url("/invoices/view") }}" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
                                 <i class="ki-duotone ki-magnifier fs-2 ms-0">
                                     <span class="path1"></span>
                                     <span class="path2"></span>
@@ -436,7 +436,7 @@
 
                         <td class="text-center">22/04/2024</td>
                         <td class="text-center">
-                            <a href="../../demo9/dist/apps/invoices/view/invoice-1.html" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
+                            <a href="{{ url("/invoices/view") }}" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
                                 <i class="ki-duotone ki-magnifier fs-2 ms-0">
                                     <span class="path1"></span>
                                     <span class="path2"></span>
@@ -465,7 +465,7 @@
 
                         <td class="text-center">10/05/2024</td>
                         <td class="text-center">
-                            <a href="../../demo9/dist/apps/invoices/view/invoice-1.html" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
+                            <a href="{{ url("/invoices/view") }}" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
                                 <i class="ki-duotone ki-magnifier fs-2 ms-0">
                                     <span class="path1"></span>
                                     <span class="path2"></span>
@@ -494,7 +494,7 @@
 
                         <td class="text-center">22/04/2024</td>
                         <td class="text-center">
-                            <a href="../../demo9/dist/apps/invoices/view/invoice-1.html" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
+                            <a href="{{ url("/invoices/view") }}" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
                                 <i class="ki-duotone ki-magnifier fs-2 ms-0">
                                     <span class="path1"></span>
                                     <span class="path2"></span>
