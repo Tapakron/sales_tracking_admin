@@ -6,7 +6,9 @@ use App\Helpers\JsonResult;
 use App\Services\AuthService\AuthService;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -74,6 +76,18 @@ class AuthController extends Controller
                     break;
             }
             // return JsonResult::success($result['data'], $result['message']);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    function logout(Request $request)
+    {
+        try {
+            Cookie::queue(Cookie::forget('username'));
+            Cookie::queue(Cookie::forget('password'));
+            Session::flush();
+            Auth::logout();
+            return JsonResult::success();
         } catch (\Throwable $th) {
             throw $th;
         }

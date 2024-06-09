@@ -12,7 +12,7 @@
         <div id="kt_aside_menu_wrapper" class="w-100 hover-scroll-y scroll-ms d-flex" data-kt-scroll="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer" data-kt-scroll-wrappers="#kt_aside, #kt_aside_menu" data-kt-scroll-offset="0">
             <div id="kt_aside_menu" class="menu menu-column menu-title-gray-600 menu-state-primary menu-state-icon-primary menu-state-bullet-primary menu-icon-gray-400 menu-arrow-gray-400 fw-semibold fs-6 my-auto" data-kt-menu="true">
                 <!--begin:Menu item-->
-                <a class="menu-item py-2" href="{{ url("/dashboard") }}"  data-kt-menu-placement="right-start" data-bs-toggle="tooltip" data-bs-placement="right" title="แดชบอร์ด">
+                <a class="menu-item py-2" href="{{ url("/dashboard") }}" data-kt-menu-placement="right-start" data-bs-toggle="tooltip" data-bs-placement="right" title="แดชบอร์ด">
                     <!--begin:Menu link-->
                     <span class="menu-link menu-center">
                         <span class="menu-icon me-0 bg-light-primary">
@@ -22,11 +22,11 @@
                             </i>
                         </span>
                     </span>
-                <!--end:Menu link-->
+                    <!--end:Menu link-->
                 </a>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <a class="menu-item py-2" href="{{ url("/ecommerce/product/add") }}"  data-kt-menu-placement="right-start" data-bs-toggle="tooltip" data-bs-placement="right" title="เพิ่มลูกค้า">
+                <a class="menu-item py-2" href="{{ url("/ecommerce/product/add") }}" data-kt-menu-placement="right-start" data-bs-toggle="tooltip" data-bs-placement="right" title="เพิ่มลูกค้า">
                     <!--begin:Menu link-->
                     <span class="menu-link menu-center">
                         <span class="menu-icon me-0 bg-light-primary">
@@ -37,11 +37,11 @@
                             </i>
                         </span>
                     </span>
-                <!--end:Menu link-->
+                    <!--end:Menu link-->
                 </a>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <a class="menu-item py-2" href="{{ url("/ecommerce/sales/add") }}"  data-kt-menu-placement="right-start" data-bs-toggle="tooltip" data-bs-placement="right" title="เพิ่ม Sales">
+                <a class="menu-item py-2" href="{{ url("/ecommerce/sales/add") }}" data-kt-menu-placement="right-start" data-bs-toggle="tooltip" data-bs-placement="right" title="เพิ่ม Sales">
                     <!--begin:Menu link-->
                     <span class="menu-link menu-center">
                         <span class="menu-icon me-0 bg-light-primary">
@@ -51,7 +51,7 @@
                             </i>
                         </span>
                     </span>
-                <!--end:Menu link-->
+                    <!--end:Menu link-->
                 </a>
                 <!--end:Menu item-->
             </div>
@@ -62,7 +62,7 @@
     <!--begin::Footer-->
     <div class="aside-footer flex-column-auto pb-5 pb-lg-10" id="kt_aside_footer">
         <!--begin::Menu-->
-        <a class="menu-item py-2" href="../../demo9/dist/authentication/layouts/overlay/sign-in.html"  data-kt-menu-placement="right-start" data-bs-toggle="tooltip" data-bs-placement="right" title="ออกจากระบบ">
+        <a class="menu-item py-2" onclick="handlelogout(this,1)" data-kt-menu-placement="right-start" data-bs-toggle="tooltip" data-bs-placement="right" title="ออกจากระบบ">
             <!--begin:Menu link-->
             <span class="menu-link menu-center">
                 <span class="menu-icon me-0">
@@ -72,7 +72,7 @@
                     </i>
                 </span>
             </span>
-        <!--end:Menu link-->
+            <!--end:Menu link-->
         </a>
         <!--end::Menu-->
     </div>

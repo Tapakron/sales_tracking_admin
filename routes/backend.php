@@ -23,7 +23,10 @@ use App\Http\Controllers\DataMasterController\DropdownMasterController;
 // Route::post('/backend/admin/sales/create', [SalesController::class, 'create']);
 //'middleware' => 'auth',
 Route::group(['prefix' => 'backend'], function () {
+    //! ล็อคอินใช้งาน
     Route::post('/login', [AuthController::class, 'login']);
+    //! ล็อคเอาท์
+    Route::post('/logout', [AuthController::class, 'logout']);
     //todo admin
     Route::group(['prefix' => 'admin'], function () {
         // Route::post('/update', [CustomerController::class, 'update']);

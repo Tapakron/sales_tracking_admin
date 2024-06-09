@@ -30,7 +30,7 @@ Route::get('/login', function () {
         'page_name_th_3' => '',
         'page_url_3' => '',
     ];
-    return view('pages.login')->with($data);
+    return view('login')->with($data);
 });
 
 Route::group(['middleware' => 'auth'], function () {

@@ -333,7 +333,7 @@
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
-                            <a href="../../demo9/dist/authentication/layouts/corporate/sign-in.html" class="menu-link px-5">ออกจากระบบ</a>
+                            <a onclick="handlelogout(this,1)" class="menu-link px-5">ออกจากระบบ</a>
                         </div>
                         <!--end::Menu item-->
                     </div>
