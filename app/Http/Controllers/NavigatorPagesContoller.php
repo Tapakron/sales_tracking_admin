@@ -139,8 +139,9 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '',
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
+            'province' => (array)ProvinceService::fetch(),
         ];
-        $data['province'] = ProvinceService::fetch();
+        // $data['province'] = ProvinceService::fetch();
         return view('pages.ecommerce.add-sales')->with($data);
     }
     public function customersDetails()
@@ -160,8 +161,9 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '',
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
+            'province' => (array)ProvinceService::fetch(),
         ];
-        $data['province'] = ProvinceService::fetch();
+        // $data['province'] = ProvinceService::fetch();
         return view('pages.customers.details')->with($data);
     }
     public function salesDetails()

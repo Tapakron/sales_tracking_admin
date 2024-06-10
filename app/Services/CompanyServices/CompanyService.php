@@ -12,8 +12,8 @@ class CompanyService
     {
         try {
             $data = CompanyModel::fetchById($company_id);
-            $t = GlobalFunc::formatAddress($data);
-            return $data;
+            $result = GlobalFunc::formatAddress($data);
+            return $result;
         } catch (\Throwable $th) {
             throw $th;
         }
