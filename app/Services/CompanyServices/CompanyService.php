@@ -5,15 +5,31 @@ namespace App\Services\CompanyServices;
 use App\Helpers\GlobalFunc;
 use App\Helpers\JsonResult;
 use App\Models\CompanyModels\CompanyModel;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyService
 {
     public static function update($body)
     {
         try {
+            $user = Auth::user();
             $company_id = $body['company_id'];
+            unset($body['company_id']);
+            $body = [
+                'updated_by' => $user->id,
+                'updated_at' => Carbon::now(),
+
+            ];
             $result = CompanyModel::update($company_id, $body);
-            return $result;
+            if ($result == false) {;
+                $rs['message'] = "บันทึกข้อมูลผิดพลาด";
+                $rs['success'] = $result;
+                return $rs;
+            }
+            $rs['message'] = "บันทึกข้อมูลสำเร็จ";
+            $rs['success'] = $result;
+            return $rs;
         } catch (\Throwable $th) {
             throw $th;
         }
