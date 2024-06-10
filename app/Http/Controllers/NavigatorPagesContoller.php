@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\DataMasterService\productService;
 use App\Services\DataMasterService\ProvinceService;
 
 use Illuminate\Http\Request;
@@ -118,7 +119,8 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '',
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
-            'province' => (array)ProvinceService::fetch(),
+            'province' => json_decode(ProvinceService::fetch(), true),
+            'product' => json_decode(productService::fetch(), true),
         ];
         return view('pages.ecommerce.add-product')->with($data);
     }
@@ -139,7 +141,7 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '',
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
-            'province' => (array)ProvinceService::fetch(),
+            'province' => json_decode(ProvinceService::fetch(), true),
         ];
         // $data['province'] = ProvinceService::fetch();
         return view('pages.ecommerce.add-sales')->with($data);
@@ -161,7 +163,7 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '',
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
-            'province' => ProvinceService::fetch(),
+            'province' => json_decode(ProvinceService::fetch(), true),
         ];
         // $data['province'] = ProvinceService::fetch();
         return view('pages.customers.details')->with($data);
