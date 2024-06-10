@@ -77,6 +77,22 @@ class NewsService
             throw $th;
         }
     }
+    public static function fetch($body)
+    {
+        try {
+            $user = Auth::user();
+            $fliters = [
+                'company_id' => $user->company_id,
+                'title' => $body['title'],
+                'date_start' => $body['date_start'],
+                'date_end' => $body['date_end'],
+            ];
+            $data = NewsModel::fetch($fliters);
+            return $data;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
     public static function fetchById($news_id) //!
     {
         try {

@@ -56,7 +56,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
             Route::post('/update', [NewsController::class, 'update']);
             // Route::post('/search', [CustomerController::class, 'search']);
             Route::get('/delete', [NewsController::class, 'delete']);
-            // Route::get('/fetch', [CustomerController::class, 'fetch']);
+            Route::get('/fetch', [NewsController::class, 'fetch']);
             Route::get('/fetch/{id}', [NewsController::class, 'fetchById']);
         });
         // Route::group(['prefix' => 'master'], function () {

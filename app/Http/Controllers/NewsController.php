@@ -149,6 +149,19 @@ class NewsController extends Controller
         }
         return JsonResult::success(null, $result['message']);
     }
+    public static function fetch(Request $request)
+    {
+        try {
+            $body = $request->all();
+            $result = NewsService::fetch($body);
+            if (!$result) {
+                return JsonResult::errors(null, 'ไม่พบข้อมูล');
+            }
+            return JsonResult::success($result);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
     public static function fetchById($news_id)
     {
         try {
