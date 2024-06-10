@@ -1,5 +1,5 @@
 @php
-    //dd($pageDetails['province']);
+    //dd($pageDetails);
 @endphp
 @extends('layouts.app')
 
