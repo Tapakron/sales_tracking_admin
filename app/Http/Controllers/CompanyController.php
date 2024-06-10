@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class CompanyController extends Controller
 {
-    public function update(Request $request)
+    public function updateProfile(Request $request)
     {
         $body = $request->all();
         $rules = array(
@@ -48,6 +48,15 @@ class CompanyController extends Controller
             $result['message'] = $str;
             return JsonResult::errors($result['data'], $result['message']);
         }
+        $result = CompanyService::update($body);
+        if (!$result['success']) {
+            return JsonResult::errors(null, $result['message']);
+        }
+        return JsonResult::success(null, $result['message']);
+    }
+    public function updateAddress(Request $request)
+    {
+        $body = $request->all();
         $result = CompanyService::update($body);
         if (!$result['success']) {
             return JsonResult::errors(null, $result['message']);
