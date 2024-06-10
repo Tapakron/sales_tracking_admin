@@ -248,282 +248,81 @@
                     <!--end::Card-->
                     <!--begin::Card-->
                     <div class="card pt-4 mb-6 mb-xl-9">
-                        <!--begin::Card header-->
-                        <div class="card-header border-0">
-                            <!--begin::Card title-->
-                            <div class="card-title">
-                                <h2>ที่ตั้ง</h2>
-                            </div>
-                            <!--end::Card title-->
-                            <!--begin::Card toolbar-->
-                            <div class="card-toolbar">
-                                <a href="#" class="btn btn-sm btn-flex btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_address">
-                                    <i class="ki-duotone ki-plus-square fs-3">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                        <span class="path3"></span>
-                                    </i>เพิ่มที่ตั้ง</a>
-                            </div>
-                            <!--end::Card toolbar-->
-                        </div>
-                        <!--end::Card header-->
-                        <!--begin::Card body-->
-                        <div id="kt_ecommerce_customer_addresses" class="card-body pt-0 pb-5">
-                            <div class="accordion accordion-icon-toggle" id="kt_ecommerce_customer_addresses_accordion">
-                                <!--begin::Addresses-->
-                                <!--begin::Address-->
-                                <div class="py-0">
-                                    <!--begin::Header-->
-                                    <div class="py-3 d-flex flex-stack flex-wrap">
-                                        <!--begin::Toggle-->
-                                        <div class="accordion-header d-flex align-items-center collapsible collapsed rotate" data-bs-toggle="collapse" href="#kt_ecommerce_customer_addresses_1" role="button" aria-expanded="false" aria-controls="kt_customer_view_payment_method_1">
-                                            <!--begin::Arrow-->
-                                            <div class="accordion-icon me-3">
-                                                <i class="ki-duotone ki-right fs-4"></i>
-                                            </div>
-                                            <!--end::Arrow-->
-                                            <!--begin::Summary-->
-                                            <div class="me-3">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="fs-4 fw-bold">Home</div>
-                                                    <div class="badge badge-light-primary ms-5">Default Address</div>
-                                                </div>
-                                                <div class="text-muted">101 Collin Street</div>
-                                            </div>
-                                            <!--end::Summary-->
-                                        </div>
-                                        <!--end::Toggle-->
-                                        <!--begin::Toolbar-->
-                                        <div class="d-flex my-3 ms-9">
-                                            <!--begin::Edit-->
-                                            <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_update_address">
-                                                <span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit">
-                                                    <i class="ki-duotone ki-pencil fs-3">
+                        <div id="kt_ecommerce_customer_addresses" class="card-body pt-4 pb-5">
+                            <form class="form" action="#" id="kt_ecommerce_customer_profile">
+                                <div class="fv-row mb-7">
+                                    <label class="fs-6 fw-semibold mb-2 required">ที่อยู่</label>
+                                    <input type="text" class="form-control form-control-solid" placeholder="" name="name" value="SME THAI SOFTWARE" />
+                                </div>
+                                <div class="row row-cols-1 row-cols-md-3">
+                                    <div class="col">
+                                        <div class="fv-row mb-7">
+                                            <label class="fs-6 fw-semibold mb-2">
+                                                <span class="required">Country</span>
+                                                <span class="ms-1" data-bs-toggle="tooltip" title="Country of origination">
+                                                    <i class="ki-duotone ki-information fs-7">
                                                         <span class="path1"></span>
                                                         <span class="path2"></span>
+                                                        <span class="path3"></span>
                                                     </i>
                                                 </span>
-                                            </a>
-                                            <!--end::Edit-->
-                                            <!--begin::Delete-->
-                                            <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="tooltip" title="Delete" data-kt-customer-payment-method="delete">
-                                                <i class="ki-duotone ki-trash fs-3">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                    <span class="path4"></span>
-                                                    <span class="path5"></span>
-                                                </i>
-                                            </a>
-                                            <!--end::Delete-->
-                                            <!--begin::More-->
-                                            <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-bs-toggle="tooltip" title="More Options" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                                <i class="ki-duotone ki-setting-3 fs-3">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                    <span class="path4"></span>
-                                                    <span class="path5"></span>
-                                                </i>
-                                            </a>
-                                            <!--begin::Menu-->
-                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true">
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="#" class="menu-link px-3" data-kt-payment-mehtod-action="set_as_default">Set as default address</a>
-                                                </div>
-                                                <!--end::Menu item-->
-                                            </div>
-                                            <!--end::Menu-->
-                                            <!--end::More-->
+                                            </label>
+                                            <select name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Select a Country..." data-dropdown-parent="#kt_modal_add_address" class="form-select form-select-solid fw-bold">
+                                                <option value="">Select a Country...</option>
+                                                <option value="AF">Afghanistan</option>
+                                                <option value="AX">Aland Islands</option>
+                                            </select>
                                         </div>
-                                        <!--end::Toolbar-->
                                     </div>
-                                    <!--end::Header-->
-                                    <!--begin::Body-->
-                                    <div id="kt_ecommerce_customer_addresses_1" class="collapse fs-6 ps-9" data-bs-parent="#kt_ecommerce_customer_addresses_accordion">
-                                        <!--begin::Details-->
-                                        <div class="d-flex flex-column pb-5">
-                                            <div class="fw-bold text-gray-600">Max Smith</div>
-                                            <div class="text-muted">101 Collin Street,
-                                                <br />Melbourne, VIC 3000,
-                                                <br />Australia
-                                            </div>
-                                        </div>
-                                        <!--end::Details-->
-                                    </div>
-                                    <!--end::Body-->
-                                </div>
-                                <!--end::Address-->
-                                <!--begin::Address-->
-                                <div class="py-0">
-                                    <!--begin::Header-->
-                                    <div class="py-3 d-flex flex-stack flex-wrap">
-                                        <!--begin::Toggle-->
-                                        <div class="accordion-header d-flex align-items-center collapsible collapsed rotate" data-bs-toggle="collapse" href="#kt_ecommerce_customer_addresses_2" role="button" aria-expanded="false" aria-controls="kt_customer_view_payment_method_2">
-                                            <!--begin::Arrow-->
-                                            <div class="accordion-icon me-3">
-                                                <i class="ki-duotone ki-right fs-4"></i>
-                                            </div>
-                                            <!--end::Arrow-->
-                                            <!--begin::Summary-->
-                                            <div class="me-3">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="fs-4 fw-bold">Work</div>
-                                                </div>
-                                                <div class="text-muted">54 Spring Street</div>
-                                            </div>
-                                            <!--end::Summary-->
-                                        </div>
-                                        <!--end::Toggle-->
-                                        <!--begin::Toolbar-->
-                                        <div class="d-flex my-3 ms-9">
-                                            <!--begin::Edit-->
-                                            <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_update_address">
-                                                <span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit">
-                                                    <i class="ki-duotone ki-pencil fs-3">
+                                    <div class="col">
+                                        <div class="fv-row mb-7">
+                                            <label class="fs-6 fw-semibold mb-2">
+                                                <span class="required">Country</span>
+                                                <span class="ms-1" data-bs-toggle="tooltip" title="Country of origination">
+                                                    <i class="ki-duotone ki-information fs-7">
                                                         <span class="path1"></span>
                                                         <span class="path2"></span>
+                                                        <span class="path3"></span>
                                                     </i>
                                                 </span>
-                                            </a>
-                                            <!--end::Edit-->
-                                            <!--begin::Delete-->
-                                            <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="tooltip" title="Delete" data-kt-customer-payment-method="delete">
-                                                <i class="ki-duotone ki-trash fs-3">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                    <span class="path4"></span>
-                                                    <span class="path5"></span>
-                                                </i>
-                                            </a>
-                                            <!--end::Delete-->
-                                            <!--begin::More-->
-                                            <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-bs-toggle="tooltip" title="More Options" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                                <i class="ki-duotone ki-setting-3 fs-3">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                    <span class="path4"></span>
-                                                    <span class="path5"></span>
-                                                </i>
-                                            </a>
-                                            <!--begin::Menu-->
-                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true">
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="#" class="menu-link px-3" data-kt-payment-mehtod-action="set_as_default">Set as default address</a>
-                                                </div>
-                                                <!--end::Menu item-->
-                                            </div>
-                                            <!--end::Menu-->
-                                            <!--end::More-->
+                                            </label>
+                                            <select name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Select a Country..." data-dropdown-parent="#kt_modal_add_address" class="form-select form-select-solid fw-bold">
+                                                <option value="">Select a Country...</option>
+                                                <option value="AF">Afghanistan</option>
+                                                <option value="AX">Aland Islands</option>
+                                            </select>
                                         </div>
-                                        <!--end::Toolbar-->
                                     </div>
-                                    <!--end::Header-->
-                                    <!--begin::Body-->
-                                    <div id="kt_ecommerce_customer_addresses_2" class="collapse fs-6 ps-9" data-bs-parent="#kt_ecommerce_customer_addresses_accordion">
-                                        <!--begin::Details-->
-                                        <div class="d-flex flex-column pb-5">
-                                            <div class="fw-bold text-gray-600">Max Smith</div>
-                                            <div class="text-muted">54 Spring Street,
-                                                <br />Melbourne, VIC 3000,
-                                                <br />Australia
-                                            </div>
-                                        </div>
-                                        <!--end::Details-->
-                                    </div>
-                                    <!--end::Body-->
-                                </div>
-                                <!--end::Address-->
-                                <!--begin::Address-->
-                                <div class="py-0">
-                                    <!--begin::Header-->
-                                    <div class="py-3 d-flex flex-stack flex-wrap">
-                                        <!--begin::Toggle-->
-                                        <div class="accordion-header d-flex align-items-center collapsible collapsed rotate" data-bs-toggle="collapse" href="#kt_ecommerce_customer_addresses_3" role="button" aria-expanded="false" aria-controls="kt_customer_view_payment_method_3">
-                                            <!--begin::Arrow-->
-                                            <div class="accordion-icon me-3">
-                                                <i class="ki-duotone ki-right fs-4"></i>
-                                            </div>
-                                            <!--end::Arrow-->
-                                            <!--begin::Summary-->
-                                            <div class="me-3">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="fs-4 fw-bold">Family</div>
-                                                </div>
-                                                <div class="text-muted">1521 Broadway</div>
-                                            </div>
-                                            <!--end::Summary-->
-                                        </div>
-                                        <!--end::Toggle-->
-                                        <!--begin::Toolbar-->
-                                        <div class="d-flex my-3 ms-9">
-                                            <!--begin::Edit-->
-                                            <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_update_address">
-                                                <span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit">
-                                                    <i class="ki-duotone ki-pencil fs-3">
+                                    <div class="col">
+                                        <div class="fv-row mb-7">
+                                            <label class="fs-6 fw-semibold mb-2">
+                                                <span class="required">Country</span>
+                                                <span class="ms-1" data-bs-toggle="tooltip" title="Country of origination">
+                                                    <i class="ki-duotone ki-information fs-7">
                                                         <span class="path1"></span>
                                                         <span class="path2"></span>
+                                                        <span class="path3"></span>
                                                     </i>
                                                 </span>
-                                            </a>
-                                            <!--end::Edit-->
-                                            <!--begin::Delete-->
-                                            <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="tooltip" title="Delete" data-kt-customer-payment-method="delete">
-                                                <i class="ki-duotone ki-trash fs-3">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                    <span class="path4"></span>
-                                                    <span class="path5"></span>
-                                                </i>
-                                            </a>
-                                            <!--end::Delete-->
-                                            <!--begin::More-->
-                                            <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-bs-toggle="tooltip" title="More Options" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                                <i class="ki-duotone ki-setting-3 fs-3">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                    <span class="path4"></span>
-                                                    <span class="path5"></span>
-                                                </i>
-                                            </a>
-                                            <!--begin::Menu-->
-                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true">
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="#" class="menu-link px-3" data-kt-payment-mehtod-action="set_as_default">Set as default address</a>
-                                                </div>
-                                                <!--end::Menu item-->
-                                            </div>
-                                            <!--end::Menu-->
-                                            <!--end::More-->
+                                            </label>
+                                            <select name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Select a Country..." data-dropdown-parent="#kt_modal_add_address" class="form-select form-select-solid fw-bold">
+                                                <option value="">Select a Country...</option>
+                                                <option value="AF">Afghanistan</option>
+                                                <option value="AX">Aland Islands</option>
+                                            </select>
                                         </div>
-                                        <!--end::Toolbar-->
                                     </div>
-                                    <!--end::Header-->
-                                    <!--begin::Body-->
-                                    <div id="kt_ecommerce_customer_addresses_3" class="collapse fs-6 ps-9" data-bs-parent="#kt_ecommerce_customer_addresses_accordion">
-                                        <!--begin::Details-->
-                                        <div class="d-flex flex-column pb-5">
-                                            <div class="fw-bold text-gray-600">Francis Mitcham</div>
-                                            <div class="text-muted">1521 Broadway,
-                                                <br />New York,
-                                                <br />Melbourne, NY 10036,
-                                                <br />United States
-                                            </div>
-                                        </div>
-                                        <!--end::Details-->
-                                    </div>
-                                    <!--end::Body-->
                                 </div>
-                                <!--end::Address-->
-                                <!--end::Addresses-->
-                            </div>
+                                <div class="d-flex justify-content-end">
+                                    <!--begin::Button-->
+                                    <button type="submit" id="kt_ecommerce_customer_profile_submit" class="btn btn-light-primary">
+                                        <span class="indicator-label">อัปเดท</span>
+                                        <span class="indicator-progress">รอสักครู่...
+                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                    </button>
+                                    <!--end::Button-->
+                                </div>
+                            </form>
                         </div>
                         <!--end::Card body-->
                     </div>
