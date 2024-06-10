@@ -118,8 +118,8 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '',
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
+            'province' => (array)ProvinceService::fetch(),
         ];
-        $data['province'] = ProvinceService::fetch();
         return view('pages.ecommerce.add-product')->with($data);
     }
     public function ecommerceSalesAdd()
