@@ -29,7 +29,7 @@ Route::group(['prefix' => 'backend'], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     //todo admin
     Route::group(['prefix' => 'admin'], function () {
-        // Route::post('/update', [CustomerController::class, 'update']);
+        Route::post('/update', [CustomerController::class, 'update']);
         //todo sales
         Route::group(['prefix' => 'sales'], function () {
             Route::post('/create', [SalesController::class, 'create']);
@@ -87,7 +87,7 @@ Route::group(['prefix' => 'backend'], function () {
 //'middleware' => 'auth', 
 //todo มาสเตอร์
 Route::group(['prefix' => 'api',], function () {
-    Route::group(['prefix' => 'datacenter'], function () {
+    Route::group(['prefix' => 'datamaster'], function () {
         //todo มาสเตอร์ อำเภอ
         Route::get('/amphure/fetch/{id}', [DropdownMasterController::class, 'fetchAmphureById']);
         //todo มาสเตอร์ ตำบล
