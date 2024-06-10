@@ -48,7 +48,6 @@ class CompanyController extends Controller
             $result['message'] = $str;
             return JsonResult::errors($result['data'], $result['message']);
         }
-        $body = $request->all();
         $result = CompanyService::update($body);
         if (!$result['success']) {
             return JsonResult::errors(null, $result['message']);

@@ -16,6 +16,8 @@ class CompanyService
             $user = Auth::user();
             $company_id = $body['company_id'];
             unset($body['company_id']);
+            unset($body['remove_img']);
+            unset($body['cancel_img']);
             $body = [
                 'updated_by' => $user->id,
                 'updated_at' => Carbon::now(),
