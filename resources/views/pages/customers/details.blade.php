@@ -1,3 +1,6 @@
+@php
+    //dd($pageDetails['province']);
+@endphp
 @extends('layouts.app')
 
 @section('css-content')
