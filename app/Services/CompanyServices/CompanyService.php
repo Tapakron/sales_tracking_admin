@@ -19,16 +19,15 @@ class CompanyService
             $body = [
                 'updated_by' => $user->id,
                 'updated_at' => Carbon::now(),
-
             ];
-            $result = CompanyModel::update($company_id, $body);
-            if ($result == false) {;
+            $rsCreate = CompanyModel::update($company_id, $body);
+            if ($rsCreate == false) {;
                 $rs['message'] = "บันทึกข้อมูลผิดพลาด";
-                $rs['success'] = $result;
+                $rs['success'] = $rsCreate;
                 return $rs;
             }
             $rs['message'] = "บันทึกข้อมูลสำเร็จ";
-            $rs['success'] = $result;
+            $rs['success'] = $rsCreate;
             return $rs;
         } catch (\Throwable $th) {
             throw $th;
