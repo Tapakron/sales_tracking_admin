@@ -1,5 +1,5 @@
 @php
-    //dd($pageDetails);
+    //dd($pageDetails["company_profile"]);
 @endphp
 @extends('layouts.app')
 
@@ -143,41 +143,27 @@
                                                     <span class="path1"></span>
                                                     <span class="path2"></span>
                                                 </i>
-                                                <!--begin::Inputs-->
-                                                <input type="file" name="avatar" id="" accept=".png, .jpg, .jpeg" />
+                                                <input type="file" name="avatar" id="company_img" accept=".png, .jpg, .jpeg" />
                                                 <input type="hidden" name="avatar_remove" />
-                                                <!--end::Inputs-->
                                             </label>
-                                            <!--end::Edit-->
-                                            <!--begin::Cancel-->
                                             <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
                                                 <i class="ki-duotone ki-cross fs-2">
                                                     <span class="path1"></span>
                                                     <span class="path2"></span>
                                                 </i>
                                             </span>
-                                            <!--end::Cancel-->
-                                            <!--begin::Remove-->
                                             <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
                                                 <i class="ki-duotone ki-cross fs-2">
                                                     <span class="path1"></span>
                                                     <span class="path2"></span>
                                                 </i>
                                             </span>
-                                            <!--end::Remove-->
                                         </div>
-                                        <!--end::Image input-->
                                     </div>
-                                    <!--end::Image input wrapper-->
                                 </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
                                 <div class="fv-row mb-7">
-                                    <!--begin::Label-->
                                     <label class="fs-6 fw-semibold mb-2 required">ชื่อบริษัท</label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid" placeholder="" name="name" value="SME THAI SOFTWARE" />
+                                    <input type="text" class="form-control form-control-solid" placeholder="" id="company_name" name="company_name" value="{{ $pageDetails["company_profile"]["company_name"] }}" />
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
@@ -200,7 +186,7 @@
                                             </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="email" class="form-control form-control-solid" placeholder="" name="gen_email" value="smethaisoftware@gmail.com" />
+                                            <input type="email" class="form-control form-control-solid" placeholder="" id="company_email" name="company_email" value="{{ $pageDetails["company_profile"]["company_email"] }}" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -223,7 +209,7 @@
                                             </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="email" class="form-control form-control-solid" placeholder="" name="bill_email" value="X XXXX XXX XX XX X" />
+                                            <input type="email" class="form-control form-control-solid" placeholder="" id="citizen_id" name="citizen_id" value="" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
