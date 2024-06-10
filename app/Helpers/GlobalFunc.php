@@ -51,7 +51,7 @@ class GlobalFunc
             $adress = $data->village_no ? $data->village_no : "";
             $adress = $data->alley ? $data->alley : "";
             $adress = $data->road ? $data->road : "";
-            $adress .= $tambol->id ? "แขวง" . $tambol->name_th : "";
+            $adress .=  $tambol->id ? "แขวง" . $tambol->name_th : "";
             $adress .= $amphure->id ? " " . $amphure->name_th : "";
             $adress .= $province->id ? " " . $province->name_th : "";
             $adress .= $tambol->id ? " " . $tambol->zip_code : "";
@@ -66,9 +66,11 @@ class GlobalFunc
             $adress .= $province->id ? " จ." . $province->name_th : "";
             $adress .= $tambol->id ? " " . $tambol->zip_code : "";
         }
+
         $data->province_name = $province->id ? $province->name_th : "";
         $data->amphure_name = $amphure->id ? $amphure->name_th : "";
         $data->tambol_name = $tambol->id ? $tambol->name_th : "";
+        $data->address_text = $adress;
         return $data;
     }
 }
