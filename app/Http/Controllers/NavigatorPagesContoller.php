@@ -5,11 +5,27 @@ namespace App\Http\Controllers;
 use App\Services\DataMasterService\ProvinceService;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NavigatorPagesContoller extends Controller
 {
+    public $user = null;
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+
+            if (Auth::check()) {
+                $this->user = Auth::user();
+                $this->user->user_profile =  (array)$this->user->fetchProfileById();
+                $this->user->company_profile =  (array)$this->user->fetchCompanyById();
+                // $this->user->select_programs =  null;
+            }
+            return $next($request);
+        });
+    }
     public function dashboard()
     {
+        $user = Auth::user();
         $data['pageDetails'] = [
             'page_lv' => '1',
             'page_name_en_1' => 'dashboard',
@@ -22,6 +38,9 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_3' => '',
             'page_url_3' => '',
         ];
+        $data['province'] = ProvinceService::fetch();
+        $data['company_profile'] = ProvinceService::fetch($user->company_id);
+        dd($data);
         return view('pages.dashboard')->with($data);
     }
     public function dashboardProjects()
