@@ -23,7 +23,7 @@
                         </div>
                         <!--end::Avatar-->
                         <!--begin::Name-->
-                        <a href="#" class="fs-3 text-gray-800 text-hover-primary fw-bold mb-1">SME THAI SOFTWARE</a>
+                        <a href="#" class="fs-3 text-gray-800 text-hover-primary fw-bold mb-1">{{ $pageDetails['company_profile']['company_name'] }}</a>
                         <!--end::Name-->
                         <!--begin::Email-->
                         <!-- <a href="#" class="fs-5 fw-semibold text-muted text-hover-primary mb-6"></a> -->
@@ -43,23 +43,23 @@
                     <div class="pb-5 fs-6">
                         <!--begin::Details item-->
                         <div class="fw-bold mt-5">รหัสบริษัท</div>
-                        <div class="text-gray-600">ID-45453423</div>
+                        <div class="text-gray-600">{{ $pageDetails['company_profile']['sys_customer_code'] }}</div>
                         <!--begin::Details item-->
                         <!--begin::Details item-->
                         <div class="fw-bold mt-5">Email</div>
                         <div class="text-gray-600">
-                            <a href="#" class="text-gray-600 text-hover-primary">smethaisoftware@gmail.com</a>
+                            <a href="#" class="text-gray-600 text-hover-primary">{{ $pageDetails['company_profile']['company_email'] }}</a>
                         </div>
                         <!--begin::Details item-->
                         <!--begin::Details item-->
                         <div class="fw-bold mt-5">เลขผู้เสียภาษีอากร</div>
-                        <div class="text-gray-600">X XXXX XXX XX XX X</div>
+                        <div class="text-gray-600">{{ $pageDetails['company_profile']['citizen_id'] }}</div>
                         <!--begin::Details item-->
                         <!--begin::Details item-->
                         <div class="fw-bold mt-5">ที่ตั้ง</div>
-                        <div class="text-gray-600">101 Collin Street,
-                            <br />Melbourne 3000 VIC
-                            <br />Australia
+                        <div class="text-gray-600">{{ $pageDetails['company_profile']['address_text'] }}
+                            <!-- <br />Melbourne 3000 VIC
+                            <br />Australia -->
                         </div>
                         <!--begin::Details item-->
                     </div>

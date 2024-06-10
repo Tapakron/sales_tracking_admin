@@ -38,24 +38,25 @@ class GlobalFunc
         $imagePath = public_path("assets/images/news");
         return $imagePath;
     }
-    public static function formatAddress($data)
+    public static function setProfileCompany($data)
     {
         $province = ProvinceModel::fetchById($data->province_id);
         $amphure = AmphureModel::fetchById($data->amphure_id);
         $tambol = TambolModel::fetchById($data->tambol_id);
-
-        if (isset($data->province_id_1) && $data->province_id_1 == '1') {
+        $adress = 'ไม่พบข้อมูล';
+        // dd($province, $amphure, $tambol,$data);
+        if (isset($data->province_id) && $data->province_id == '1') {
             $adress = $data->address ? $data->address : "";
-            // $adress .=  "แขวง" . $data->join_tambol_id_1 ? $data->join_tambol_id_1->name_th : "";
-            // $adress .= " " . $data->join_amphure_id_1 ? $data->join_amphure_id_1->name_th : "";
-            // $adress .= " " . $data->join_province_id_1 ? $data->join_province_id_1->name_th : "";
-            // $adress .= " " . $data->join_tambol_id_1 ? $data->join_tambol_id_1->zip_code : "";
-        } else {
+            $adress .=  $tambol->id ? "แขวง" . $tambol->name_th : "";
+            $adress .= $amphure->id ? " " . $amphure->name_th : "";
+            $adress .= $province->id ? " " . $province->name_th : "";
+            $adress .= $tambol->id ? " " . $tambol->zip_code : "";
+        } elseif (isset($data->province_id) && $data->province_id != '1') {
             $adress = $data->address ? $data->address : " ";
-            // $adress .= " ต." . $data->join_tambol_id_1 ? $data->join_tambol_id_1->name_th  : "";
-            // $adress .= " อ." . $data->join_amphure_id_1 ? $data->join_amphure_id_1->name_th  : "";
-            // $adress .= " จ." . $data->join_province_id_1 ? $data->join_province_id_1->name_th : "";
-            // $adress .= " " . $data->join_tambol_id_1 ? $data->join_tambol_id_1->zip_code : "";
+            $adress .= $tambol->id ? " ต." . $tambol->name_th : "";
+            $adress .= $amphure->id ? " อ." . $amphure->name_th : "";
+            $adress .= $province->id ? " จ." . $province->name_th : "";
+            $adress .= $tambol->id ? " " . $tambol->zip_code : "";
         }
         $data->address_text = $adress;
         return $data;

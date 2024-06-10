@@ -12,7 +12,7 @@ class CompanyService
     {
         try {
             $data = CompanyModel::fetchById($company_id);
-            $result = GlobalFunc::formatAddress($data);
+            $result = GlobalFunc::setProfileCompany($data);
             return $result;
         } catch (\Throwable $th) {
             throw $th;
