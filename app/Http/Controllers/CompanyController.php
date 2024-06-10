@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\JsonResult;
+use App\Services\CompanyServices\CompanyService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -12,24 +13,12 @@ class CompanyController extends Controller
     {
         $body = $request->all();
         $rules = array(
-            'job_type_id' => 'required',
-            'job_group_id' => 'required',
-            'job_quota' => 'required',
-            'job_salary_min' => 'required|integer',
-            'job_salary_max' => 'required|integer',
-            'job_detail' => 'required',
-            'job_qualification' => 'required',
+            'company_name' => 'required',
+            'Email' => 'required',
         );
         $messages = array(
-            'job_type_id.required' => 'ไม่ได้เลือกข้อมูลงาน!',
-            'job_group_id.required' => 'ไม่ได้เลือกข้อมูลกลุ่มงาน!',
-            'job_quota.required' => 'กรุณาใส่จำนวนอัตราจ้างที่ต้องการ!',
-            'job_salary_min.required' => 'กรุณาใส่จำนวนเงินเดือนต่ำสุด!',
-            'job_salary_min.integer' => 'กรุณากรอกเฉาะตัวเลข!',
-            'job_salary_max.required' => 'กรุณาใส่จำนวนเงินเดือนมากสุด!',
-            'job_salary_max.integer' => 'กรุณากรอกเฉาะตัวเลข!',
-            'job_detail.required' => 'กรุณากรอกรายละเอียดการปฏิบัติงาน!',
-            'job_qualification.required' => 'กรุณากรอกรายละเอียดคุณสมบัติผู้สมัครงาน!'
+            'company_name.required' => 'กรุณากรอกข้อมูล!',
+            'Email.required' => 'กรุณากรอกข้อมูล!',
         );
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
@@ -60,7 +49,7 @@ class CompanyController extends Controller
             return JsonResult::errors($result['data'], $result['message']);
         }
         $body = $request->all();
-        // $result = ThaiWorkCompanyService::updateWork($body);
+        $result = CompanyService::update($body);
         if (!$result['success']) {
             return JsonResult::errors(null, $result['message']);
         }

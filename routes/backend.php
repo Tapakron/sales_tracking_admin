@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\DataMasterController\DropdownMasterController;
 
@@ -29,10 +30,10 @@ Route::group(['prefix' => 'backend'], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     //todo admin
     Route::group(['prefix' => 'admin'], function () {
-        Route::post('/update', [CustomerController::class, 'update']);
+        Route::post('/update', [CompanyController::class, 'update']);
         //todo sales
         Route::group(['prefix' => 'sales'], function () {
-            Route::post('/create', [SalesController::class, 'create']);
+            Route::post('/ห', [SalesController::class, 'create']);
             Route::post('/update', [SalesController::class, 'update']);
             Route::get('/delete', [SalesController::class, 'delete']);
             // Route::get('/fetch', [CustomerController::class, 'fetch']);
