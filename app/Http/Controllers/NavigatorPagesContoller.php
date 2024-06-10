@@ -16,16 +16,15 @@ class NavigatorPagesContoller extends Controller
 
             if (Auth::check()) {
                 $this->user = Auth::user();
-                $this->user->user_profile =  (array)$this->user->fetchProfileById();
-                $this->user->company_profile =  (array)$this->user->fetchCompanyById();
-                // $this->user->select_programs =  null;
+                $this->user->user_profile = (array)$this->user->fetchProfileById();
+                $this->user->company_profile = (array)$this->user->fetchCompanyById();
+                // $this->user->select_programs = null;
             }
             return $next($request);
         });
     }
     public function dashboard()
     {
-        $user = Auth::user();
         $data['pageDetails'] = [
             'page_lv' => '1',
             'page_name_en_1' => 'dashboard',
@@ -37,10 +36,9 @@ class NavigatorPagesContoller extends Controller
             'page_name_en_3' => '',
             'page_name_th_3' => '',
             'page_url_3' => '',
+            'company_profile' => (array)$this->user->company_profile,
         ];
-        $data['province'] = ProvinceService::fetch();
-        $data['company_profile'] = ProvinceService::fetch($user->company_id);
-        dd($data);
+        // dd($data);
         return view('pages.dashboard')->with($data);
     }
     public function dashboardProjects()
@@ -59,6 +57,7 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_3' => '',
             'page_url_3' => '',
             'page_desc_3' => '',
+            'company_profile' => (array)$this->user->company_profile,
         ];
         return view('pages.dashboard')->with($data);
     }
@@ -78,6 +77,7 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_3' => '',
             'page_url_3' => '',
             'page_desc_3' => '',
+            'company_profile' => (array)$this->user->company_profile,
         ];
         return view('pages.contacts.getting-started')->with($data);
     }
@@ -97,6 +97,7 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_3' => '',
             'page_url_3' => '',
             'page_desc_3' => '',
+            'company_profile' => (array)$this->user->company_profile,
         ];
         return view('pages.contacts.view')->with($data);
     }
@@ -116,6 +117,7 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_3' => '',
             'page_url_3' => '',
             'page_desc_3' => '',
+            'company_profile' => (array)$this->user->company_profile,
         ];
         $data['province'] = ProvinceService::fetch();
         return view('pages.ecommerce.add-product')->with($data);
@@ -136,6 +138,7 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_3' => '',
             'page_url_3' => '',
             'page_desc_3' => '',
+            'company_profile' => (array)$this->user->company_profile,
         ];
         $data['province'] = ProvinceService::fetch();
         return view('pages.ecommerce.add-sales')->with($data);
@@ -156,6 +159,7 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_3' => '',
             'page_url_3' => '',
             'page_desc_3' => '',
+            'company_profile' => (array)$this->user->company_profile,
         ];
         $data['province'] = ProvinceService::fetch();
         return view('pages.customers.details')->with($data);
@@ -176,6 +180,7 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_3' => '',
             'page_url_3' => '',
             'page_desc_3' => '',
+            'company_profile' => (array)$this->user->company_profile,
         ];
         return view('pages.sales.details')->with($data);
     }
@@ -195,6 +200,7 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_3' => '',
             'page_url_3' => '',
             'page_desc_3' => '',
+            'company_profile' => (array)$this->user->company_profile,
         ];
         return view('pages.sales.listing')->with($data);
     }
@@ -214,6 +220,7 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_3' => 'รายละเอียดการบันทึก',
             'page_url_3' => '/invoices/view',
             'page_desc_3' => 'รายละเอียดการบันทึก',
+            'company_profile' => (array)$this->user->company_profile,
         ];
         return view('pages.invoices.view')->with($data);
     }
@@ -233,6 +240,7 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_3' => 'รายละเอียดการชำระเงิน',
             'page_url_3' => '/invoices/create',
             'page_desc_3' => 'รายละเอียดการชำระเงิน',
+            'company_profile' => (array)$this->user->company_profile,
         ];
         return view('pages.invoices.create')->with($data);
     }
@@ -252,6 +260,7 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_3' => 'ข้อมูลลูกค้า',
             'page_url_3' => '/projects',
             'page_desc_3' => 'รายละเอียดลูกค้า',
+            'company_profile' => (array)$this->user->company_profile,
         ];
         return view('pages.projects.project')->with($data);
     }
@@ -271,6 +280,7 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_3' => '',
             'page_url_3' => '',
             'page_desc_3' => '',
+            'company_profile' => (array)$this->user->company_profile,
         ];
         return view('pages.subscriptions.add')->with($data);
     }
@@ -290,6 +300,7 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_3' => '',
             'page_url_3' => '',
             'page_desc_3' => '',
+            'company_profile' => (array)$this->user->company_profile,
         ];
         return view('pages.support-center.tickets.list')->with($data);
     }
@@ -309,6 +320,7 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_3' => 'ข่าวสาร',
             'page_url_3' => '/supportCenter/tickets/view',
             'page_desc_3' => 'รายละเอียด',
+            'company_profile' => (array)$this->user->company_profile,
         ];
         return view('pages.support-center.tickets.view')->with($data);
     }
@@ -328,6 +340,7 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_3' => '',
             'page_url_3' => '',
             'page_desc_3' => '',
+            'company_profile' => (array)$this->user->company_profile,
         ];
         return view('pages.management.users.list')->with($data);
     }
@@ -347,6 +360,7 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_3' => 'จัดการ Sales',
             'page_url_3' => '/management/users/import',
             'page_desc_3' => 'นำเข้าข้อมูล',
+            'company_profile' => (array)$this->user->company_profile,
         ];
         return view('pages.management.users.import')->with($data);
     }
@@ -366,6 +380,7 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_3' => 'ข้อมูลเซลส์',
             'page_url_3' => '/management/users/view',
             'page_desc_3' => 'รายละเอียดเซลส์',
+            'company_profile' => (array)$this->user->company_profile,
         ];
         return view('pages.management.users.view')->with($data);
     }

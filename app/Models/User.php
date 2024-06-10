@@ -62,7 +62,7 @@ class User extends Authenticatable
     }
     public function fetchCompanyById()
     {
-        return CompanyService::fetchById($this->id);
+        return CompanyService::fetchById($this->company_id);
     }
     public function fetchProfileById()
     {
