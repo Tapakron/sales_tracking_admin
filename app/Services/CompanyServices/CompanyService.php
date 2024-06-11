@@ -14,7 +14,7 @@ class CompanyService
     {
         try {
             $user = Auth::user();
-            $company_id = $body['company_id'];
+            $company_id = $user->company_id;
             unset($body['company_id']);
             unset($body['remove_img']);
             unset($body['cancel_img']);
