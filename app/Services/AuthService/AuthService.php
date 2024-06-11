@@ -118,11 +118,6 @@ class AuthService
             $rs['message'] = "เปลี่ยนรหัสผ่านสำเร็จ";
             $rs['success'] = $rsCreate;
             return $rs;
-            // $result['data'] = $user;
-            // $result['message'] = 'เปลี่ยนรหัสผ่านสำเร็จ';
-            // $result['message_ex'] = "Successfully";
-            // $result['success'] = true;
-            // return $result;
         } catch (\Throwable $th) {
             throw $th;
         }
