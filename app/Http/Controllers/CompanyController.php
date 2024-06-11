@@ -14,11 +14,11 @@ class CompanyController extends Controller
         $body = $request->all();
         $rules = array(
             'company_name' => 'required',
-            'company_Email' => 'required',
+            'company_email' => 'required',
         );
         $messages = array(
             'company_name.required' => 'กรุณากรอกข้อมูล!',
-            'company_Email.required' => 'กรุณากรอกข้อมูล!',
+            'company_email.required' => 'กรุณากรอกข้อมูล!',
         );
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
