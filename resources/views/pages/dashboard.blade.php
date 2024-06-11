@@ -2499,7 +2499,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-40px me-3">
-                                                            <img src="assets/media/avatars/300-12.jpg" class="" alt="" />
+                                                            <img src="{{ asset("assets/media/avatars/300-12.jpg") }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="#" class="text-dark fw-bold text-hover-primary mb-1 fs-6">Esther Howard</a>
@@ -2561,7 +2561,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-40px me-3">
-                                                            <img src="assets/media/avatars/300-13.jpg" class="" alt="" />
+                                                            <img src="{{ asset("assets/media/avatars/300-13.jpg") }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="#" class="text-dark fw-bold text-hover-primary mb-1 fs-6">Marvin McKinney</a>
@@ -2688,7 +2688,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-40px me-3">
-                                                            <img src="assets/media/avatars/300-12.jpg" class="" alt="" />
+                                                            <img src="{{ asset("assets/media/avatars/300-12.jpg") }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="#" class="text-dark fw-bold text-hover-primary mb-1 fs-6">Esther Howard</a>
@@ -2748,7 +2748,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-40px me-3">
-                                                            <img src="assets/media/avatars/300-13.jpg" class="" alt="" />
+                                                            <img src="{{ asset("assets/media/avatars/300-13.jpg") }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="#" class="text-dark fw-bold text-hover-primary mb-1 fs-6">Marvin McKinney</a>

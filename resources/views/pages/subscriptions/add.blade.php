@@ -349,7 +349,7 @@
                                     <div class="d-flex align-items-center p-3 rounded-3 border-hover border border-dashed border-gray-300 cursor-pointer mb-1" data-kt-search-element="customer">
                                         <!--begin::Avatar-->
                                         <div class="symbol symbol-35px symbol-circle me-5">
-                                            <img alt="Pic" src="{{ url("assets/media/avatars/300-9.jpg") }}" />
+                                            <img alt="Pic" src="{{ url("{{ asset("assets/media/avatars/300-9.jpg") }}") }}" />
                                         </div>
                                         <!--end::Avatar-->
                                         <!--begin::Info-->
@@ -394,7 +394,7 @@
                                     <div class="d-flex align-items-center p-3 rounded-3 border-hover border border-dashed border-gray-300 cursor-pointer mb-1" data-kt-search-element="customer">
                                         <!--begin::Avatar-->
                                         <div class="symbol symbol-35px symbol-circle me-5">
-                                            <img alt="Pic" src="{{ url("assets/media/avatars/300-23.jpg") }}" />
+                                            <img alt="Pic" src="{{ url("{{ asset("assets/media/avatars/300-23.jpg") }}") }}" />
                                         </div>
                                         <!--end::Avatar-->
                                         <!--begin::Info-->

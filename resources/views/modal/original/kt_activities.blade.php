@@ -209,7 +209,7 @@
 									<!--end::Info-->
 									<!--begin::User-->
 									<div class="symbol symbol-circle symbol-25px" data-bs-toggle="tooltip" data-bs-boundary="window" data-bs-placement="top" title="Jan Hummer">
-										<img src="assets/media/avatars/300-23.jpg" alt="img" />
+										<img src="{{ asset("assets/media/avatars/300-23.jpg") }}" alt="img" />
 									</div>
 									<!--end::User-->
 								</div>
