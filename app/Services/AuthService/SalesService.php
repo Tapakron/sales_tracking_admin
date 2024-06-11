@@ -7,6 +7,7 @@ use App\Helpers\JsonResult;
 use App\Models\SysUsers;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class SalesService
 {
@@ -21,6 +22,8 @@ class SalesService
                 'sme_id' => $user->sme_id,
                 'company_id' => $user->company_id,
                 'sys_customer_code' => $user->sys_customer_code,
+                'password' => Hash::make(trim($body['username'])),
+                'user_level' => 3,
                 'is_active' => true,
                 'is_delete' => false,
                 'created_by' => $user->id,

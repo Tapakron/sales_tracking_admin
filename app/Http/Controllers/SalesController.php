@@ -18,6 +18,7 @@ class SalesController extends Controller
         $body = $request->all();
         $user = Auth::user();
         $user_id = GlobalFunc::getNewId();
+        $body['id'] = $user_id;
         $rules = array(
             'name' => 'required',
             'username' => 'required',
@@ -63,7 +64,7 @@ class SalesController extends Controller
         }
         //!------------------------------อัพโหลดรูปภาพ----------------------------------------------
         $uploadImg = GlobalFunc::uploadImg($request, $user, $user_id, 'user_img', "user"); //! request จากหน้าบ้าน,ข้อมูล user, id ไปใส่ชื่อไฟล์ , ตัวแปร , ชื่อไฟล์จะเก็บรูป
-        if ($body['remove_img'] == '1' && $uploadImg == null) {
+        if ($uploadImg == null) {
             $body['user_img'] = null;
         } else {
             if ($uploadImg != null) {
