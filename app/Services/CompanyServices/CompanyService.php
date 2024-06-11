@@ -13,6 +13,7 @@ class CompanyService
     public static function update($body)
     {
         try {
+            // dd($body);
             $user = Auth::user();
             $company_id = $user->company_id;
             unset($body['company_id']);

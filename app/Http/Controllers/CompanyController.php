@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\GlobalFunc;
 use App\Helpers\JsonResult;
 use App\Services\CompanyServices\CompanyService;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ class CompanyController extends Controller
     public function updateProfile(Request $request)
     {
         $body = $request->all();
+        $user = Auth::user();
         $rules = array(
             'company_name' => 'required',
             'company_email' => 'required',
@@ -47,6 +49,13 @@ class CompanyController extends Controller
             $result['success'] = false;
             $result['message'] = $str;
             return JsonResult::errors($result['data'], $result['message']);
+        }
+        //!------------------------------อัพโหลดรูปภาพ----------------------------------------------
+        $uploadImg = GlobalFunc::uploadImg($request, $user, $user->company_id, "company_img", "company"); //! request จากหน้าบ้าน,ข้อมูล user, id ไปใส่ชื่อไฟล์ , ตัวแปร , ชื่อไฟล์จะเก็บรูป
+        if ($uploadImg != null) {
+            $body['company_img'] = array_key_exists('company_img', $uploadImg) ? $uploadImg["company_img"] : NULL;
+        } else {
+            unset($body["company_img"]);
         }
         $result = CompanyService::update($body);
         if (!$result['success']) {
