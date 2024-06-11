@@ -14,7 +14,14 @@ class AmphureModel
         return DB::connection('datamaster')->table(self::TABLE)
             ->get();
     }
-    public static function fetchById($province_id)
+    public static function fetchById($amphures_id)
+    {
+        return DB::connection('datamaster')->table(self::TABLE)
+            ->where(self::PK, $amphures_id)
+            ->where('is_delete', 0)
+            ->first();
+    }
+    public static function fetchAmphureById($province_id)
     {
         return DB::connection('datamaster')->table(self::TABLE)
             ->where('province_id', $province_id)

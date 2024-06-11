@@ -7,8 +7,8 @@ use App\Models\DataMasterModel\AmphureModel;
 
 class AmphureService
 {
-    public static function fetchById($province_id)
+    public static function fetchAmphureById($province_id)
     {
-        return AmphureModel::fetchById($province_id);
+        return AmphureModel::fetchAmphureById($province_id);
     }
 }
