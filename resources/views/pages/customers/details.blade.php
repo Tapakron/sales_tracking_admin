@@ -1,5 +1,5 @@
 @php
-    //dd($pageDetails);
+    //dd($pageDetails["company_profile"]);
 @endphp
 @extends('layouts.app')
 
@@ -59,7 +59,7 @@
                         <div class="fw-bold mt-5">ที่ตั้ง</div>
                         <div class="text-gray-600">{{ $pageDetails['company_profile']['address_text'] }}
                             <!-- <br />Melbourne 3000 VIC
-                                <br />Australia -->
+                                                <br />Australia -->
                         </div>
                         <!--begin::Details item-->
                     </div>
@@ -104,19 +104,13 @@
                         <!--begin::Card body-->
                         <div class="card-body pt-0 pb-5">
                             <!--begin::Form-->
-                            <form class="form" action="#" id="kt_ecommerce_customer_profile">
+                            <form class="form" action="#" id="frm_company_profile_1">
+
                                 <!--begin::Input group-->
                                 <div class="mb-7">
                                     <!--begin::Label-->
                                     <label class="fs-6 fw-semibold mb-2">
                                         <span>รูปบริษัท</span>
-                                        <span class="ms-1" data-bs-toggle="tooltip" title="Allowed file types: png, jpg, jpeg.">
-                                            <i class="ki-duotone ki-information fs-7">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                                <span class="path3"></span>
-                                            </i>
-                                        </span>
                                     </label>
                                     <!--end::Label-->
                                     <!--begin::Image input wrapper-->
@@ -143,41 +137,27 @@
                                                     <span class="path1"></span>
                                                     <span class="path2"></span>
                                                 </i>
-                                                <!--begin::Inputs-->
-                                                <input type="file" name="avatar" id="" accept=".png, .jpg, .jpeg" />
+                                                <input type="file" name="company_img" id="company_img" accept=".png, .jpg, .jpeg" />
                                                 <input type="hidden" name="avatar_remove" />
-                                                <!--end::Inputs-->
                                             </label>
-                                            <!--end::Edit-->
-                                            <!--begin::Cancel-->
                                             <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
                                                 <i class="ki-duotone ki-cross fs-2">
                                                     <span class="path1"></span>
                                                     <span class="path2"></span>
                                                 </i>
                                             </span>
-                                            <!--end::Cancel-->
-                                            <!--begin::Remove-->
                                             <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
                                                 <i class="ki-duotone ki-cross fs-2">
                                                     <span class="path1"></span>
                                                     <span class="path2"></span>
                                                 </i>
                                             </span>
-                                            <!--end::Remove-->
                                         </div>
-                                        <!--end::Image input-->
                                     </div>
-                                    <!--end::Image input wrapper-->
                                 </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
                                 <div class="fv-row mb-7">
-                                    <!--begin::Label-->
                                     <label class="fs-6 fw-semibold mb-2 required">ชื่อบริษัท</label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid" placeholder="" name="name" value="SME THAI SOFTWARE" />
+                                    <input type="text" class="form-control" placeholder="" id="company_name" name="company_name" value="{{ $pageDetails['company_profile']['company_name'] }}" />
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
@@ -190,17 +170,10 @@
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-semibold mb-2">
                                                 <span class="required">Email</span>
-                                                <span class="ms-1" data-bs-toggle="tooltip" title="Email address must be active">
-                                                    <i class="ki-duotone ki-information fs-7">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                        <span class="path3"></span>
-                                                    </i>
-                                                </span>
                                             </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="email" class="form-control form-control-solid" placeholder="" name="gen_email" value="smethaisoftware@gmail.com" />
+                                            <input type="email" class="form-control" placeholder="" id="company_email" name="company_email" value="{{ $pageDetails['company_profile']['company_email'] }}" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -210,21 +183,10 @@
                                     <div class="col">
                                         <!--begin::Input group-->
                                         <div class="fv-row mb-7">
-                                            <!--begin::Label-->
                                             <label class="fs-6 fw-semibold mb-2">
                                                 <span>เลขผู้เสียภาษีอากร</span>
-                                                <span class="ms-1" data-bs-toggle="tooltip" title="Email address must be active">
-                                                    <i class="ki-duotone ki-information fs-7">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                        <span class="path3"></span>
-                                                    </i>
-                                                </span>
                                             </label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="email" class="form-control form-control-solid" placeholder="" name="bill_email" value="X XXXX XXX XX XX X" />
-                                            <!--end::Input-->
+                                            <input type="email" class="form-control" placeholder="" id="citizen_id" name="citizen_id" value="" />
                                         </div>
                                         <!--end::Input group-->
                                     </div>
@@ -233,7 +195,7 @@
                                 <!--end::Row-->
                                 <div class="d-flex justify-content-end">
                                     <!--begin::Button-->
-                                    <button type="submit" id="kt_ecommerce_customer_profile_submit" class="btn btn-light-primary">
+                                    <button type="submit" id="frm_company_profile_1_submit" class="btn btn-light-primary">
                                         <span class="indicator-label">อัปเดท</span>
                                         <span class="indicator-progress">รอสักครู่...
                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -249,146 +211,69 @@
                     <!--begin::Card-->
                     <div class="card pt-4 mb-6 mb-xl-9">
                         <div id="kt_ecommerce_customer_addresses" class="card-body pt-4 pb-5">
-                            <form class="form" action="#" id="kt_ecommerce_customer_profile">
-                                <div class="mb-2 fv-row">
-                                    <!--begin::Tax-->
-                                    <div class="d-flex flex-wrap gap-5">
-                                        <!--begin::Input group-->
-                                        <div class="fv-row w-100 flex-md-root mb-2">
-                                            <!--begin::Label-->
-                                            <label class="form-label">ที่อยู่</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" class="form-control mb-2" value="" />
-                                            <!--end::Input-->
-                                        </div>
-                                        <!--end::Input group-->
-
-                                        <!--begin::Input group-->
-                                        <div class="fv-row w-100 flex-md-root mb-2">
-                                            <!--begin::Label-->
-                                            <label class="form-label">หมู่บ้าน/อาคาร</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" class="form-control mb-2" value="" />
-                                            <!--end::Input-->
-                                        </div>
-                                        <!--end::Input group-->
-
-                                        <!--begin::Input group-->
-                                        <div class="fv-row w-100 flex-md-root mb-2">
-                                            <!--begin::Label-->
-                                            <label class="form-label">หมู่ที่</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" class="form-control mb-2" value="" />
-                                            <!--end::Input-->
-                                        </div>
-                                        <!--end::Input group-->
-
+                            <form class="form" action="#" id="frm_company_profile_2">
+                                <div class="row mb-5">
+                                    <div class="col-md-12 fv-row">
+                                        <label class="required form-label">ที่อยู่</label>
+                                        <input type="text" class="form-control mb-2" id="address" name="address" value="{{ $pageDetails['company_profile']['address'] }}" />
                                     </div>
-                                    <!--end:Tax-->
                                 </div>
-                                <!--end::Input group-->
-
-                                <!--begin::Input group-->
-                                <div class="mb-2 fv-row">
-                                    <!--begin::Tax-->
-                                    <div class="d-flex flex-wrap gap-5">
-                                        <!--begin::Input group-->
-                                        <div class="fv-row w-100 flex-md-root mb-2">
-                                            <!--begin::Label-->
-                                            <label class="form-label">ตรอก/ซอย</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" class="form-control mb-2" value="" />
-                                            <!--end::Input-->
-                                        </div>
-                                        <!--end::Input group-->
-
-                                        <!--begin::Input group-->
-                                        <div class="fv-row w-100 flex-md-root mb-2">
-                                            <!--begin::Label-->
-                                            <label class="form-label">ถนน</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" class="form-control mb-2" value="" />
-                                            <!--end::Input-->
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="fv-row w-100 flex-md-root mb-2">
-                                            <!--begin::Label-->
-                                            <label class="form-label">จังหวัด</label>
-                                            <!--end::Label-->
-                                            <!--begin::Select2-->
-                                            <select class="form-select mb-2" data-control="select2" data-hide-search="true" data-placeholder="- เลือก -" id="pv">
-                                                <option></option>
-                                                @foreach ($pageDetails['province'] as $item)
-                                                    <option id="{{ $item["id"] }}">{{ $item["name_th"] }}</option>
-                                                @endforeach
-                                            </select>
-                                            <!--end::Select2-->
-                                        </div>
-                                        <!--end::Input group-->
+                                <div class="row mb-5">
+                                    <div class="col-md-3 fv-row">
+                                        <label class="form-label">หมู่บ้าน/อาคาร</label>
+                                        <input type="text" class="form-control mb-2" id="village_building" name="village_building" value="{{ $pageDetails['company_profile']['village_building'] }}" />
                                     </div>
-                                    <!--end:Tax-->
+                                    <div class="col-md-3 fv-row">
+                                        <label class="form-label">หมู่ที่</label>
+                                        <input type="text" class="form-control mb-2" id="village_no" name="village_no" value="{{ $pageDetails['company_profile']['village_no'] }}" />
+                                    </div>
+                                    <div class="col-md-3 fv-row">
+                                        <label class="form-label">ตรอก/ซอย</label>
+                                        <input type="text" class="form-control mb-2" id="alley" name="alley" value="{{ $pageDetails['company_profile']['alley'] }}" />
+                                    </div>
+                                    <div class="col-md-3 fv-row">
+                                        <label class="form-label">ถนน</label>
+                                        <input type="text" class="form-control mb-2" id="road" name="road" value="{{ $pageDetails['company_profile']['road'] }}" />
+                                    </div>
                                 </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
-                                <div class="mb-2 fv-row">
-                                    <!--begin::Tax-->
-                                    <div class="d-flex flex-wrap gap-5">
-                                        <!--begin::Input group-->
-                                        <div class="fv-row w-100 flex-md-root mb-2">
-                                            <!--begin::Label-->
-                                            <label class="form-label">อำเภอ</label>
-                                            <!--end::Label-->
-                                            <!--begin::Select2-->
-                                            <select class="form-select mb-2" data-control="select2" data-hide-search="true" data-placeholder="- เลือก -" id="District">
-                                                <option></option>
-                                                @foreach ($pageDetails['province'] as $item)
-                                                    <option id="{{ $item["id"] }}">{{ $item["name_th"] }}</option>
-                                                @endforeach
-                                            </select>
-                                            <!--end::Select2-->
-                                        </div>
-                                        <!--end::Input group-->
-
-                                        <!--begin::Input group-->
-                                        <div class="fv-row w-100 flex-md-root mb-2">
-                                            <!--begin::Label-->
-                                            <label class="form-label">ตำบล</label>
-                                            <!--end::Label-->
-                                            <!--begin::Select2-->
-                                            <select class="form-select mb-2" data-control="select2" data-hide-search="true" data-placeholder="- เลือก -" id="Subdistrict">
-                                                <option></option>
-                                                <option value="0">ตำบล</option>
-                                                <option value="1">ตำบล</option>
-                                                <option value="2">ตำบล</option>
-                                                <option value="3">ตำบล</option>
-                                            </select>
-                                            <!--end::Select2-->
-
-                                        </div>
-                                        <!--end::Input group-->
-
-                                        <!--begin::Input group-->
-                                        <div class="fv-row w-100 flex-md-root mb-2">
-                                            <!--begin::Label-->
-                                            <label class="form-label">รหัสไปรษณีย์</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" class="form-control mb-2" value="" />
-                                            <!--end::Input-->
-                                        </div>
-                                        <!--end::Input group-->
+                                <div class="row mb-5">
+                                    <div class="col-md-3 fv-row">
+                                        <label class="form-label required">จังหวัด</label>
+                                        <select class="form-select mb-2" id="province_id" name="province_id" data-control="select2" data-hide-search="true" data-placeholder="- เลือก -">
+                                            <option></option>
+                                            @foreach ($pageDetails['province'] as $item)
+                                                <option value="{{ $item['id'] }}" {{ $pageDetails['company_profile']['province_id'] == $item['id'] ? "selected" : "" }}>{{ $item['name_th'] }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                    <!--end:Tax-->
+                                    <div class="col-md-3 fv-row">
+                                        <label class="form-label required">อำเภอ</label>
+                                        <select class="form-select mb-2" id="amphure_id" name="amphure_id" data-control="select2" data-hide-search="true" data-placeholder="- เลือก -" disabled>
+                                            @if ($pageDetails['company_profile']['amphure_id'] != "")
+                                                <option value="{{ $pageDetails['company_profile']['amphure_id'] }}">{{ $pageDetails['company_profile']['amphure_name'] }}</option>
+                                            @else
+                                                <option></option>
+                                            @endif
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 fv-row">
+                                        <label class="form-label required">ตำบล</label>
+                                        <select class="form-select mb-2" id="tambol_id" name="tambol_id" data-control="select2" data-hide-search="true" data-placeholder="- เลือก -" disabled>
+                                            @if ($pageDetails['company_profile']['tambol_id'] != "")
+                                                <option value="{{ $pageDetails['company_profile']['tambol_id'] }}">{{ $pageDetails['company_profile']['tambol_name'] }}</option>
+                                            @else
+                                                <option></option>
+                                            @endif
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 fv-row">
+                                        <label class="form-label">รหัสไปรษณีย์</label>
+                                        <input type="text" class="form-control mb-2" id="postal_code" name="postal_code" value="{{ $pageDetails['company_profile']['postal_code'] }}" disabled/>
+                                    </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
                                     <!--begin::Button-->
-                                    <button type="submit" id="kt_ecommerce_customer_profile_submit" class="btn btn-light-primary">
+                                    <button type="submit" id="frm_company_profile_2_submit" class="btn btn-light-primary">
                                         <span class="indicator-label">อัปเดท</span>
                                         <span class="indicator-progress">รอสักครู่...
                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -455,110 +340,111 @@
 @endsection
 
 @section('modal-content')
-<div class="modal fade" id="kt_modal_update_password" tabindex="-1" aria-hidden="true">
-    <!--begin::Modal dialog-->
-    <div class="modal-dialog modal-dialog-centered mw-650px">
-        <!--begin::Modal content-->
-        <div class="modal-content">
-            <!--begin::Modal header-->
-            <div class="modal-header">
-                <!--begin::Modal title-->
-                <h2 class="fw-bold">Update Password</h2>
-                <!--end::Modal title-->
-                <!--begin::Close-->
-                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
-                    <i class="ki-duotone ki-cross fs-1">
-                        <span class="path1"></span>
-                        <span class="path2"></span>
-                    </i>
+    <div class="modal fade" id="kt_modal_update_password" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header">
+                    <!--begin::Modal title-->
+                    <h2 class="fw-bold">Update Password</h2>
+                    <!--end::Modal title-->
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                        <i class="ki-duotone ki-cross fs-1">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                    </div>
+                    <!--end::Close-->
                 </div>
-                <!--end::Close-->
-            </div>
-            <!--end::Modal header-->
-            <!--begin::Modal body-->
-            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                <!--begin::Form-->
-                <form id="kt_modal_update_password_form" class="form" action="#">
-                    <!--begin::Input group=-->
-                    <div class="fv-row mb-10">
-                        <label class="required form-label fs-6 mb-2">Current Password</label>
-                        <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="current_password" autocomplete="off" />
-                    </div>
-                    <!--end::Input group=-->
-                    <!--begin::Input group-->
-                    <div class="mb-10 fv-row" data-kt-password-meter="true">
-                        <!--begin::Wrapper-->
-                        <div class="mb-1">
-                            <!--begin::Label-->
-                            <label class="form-label fw-semibold fs-6 mb-2">New Password</label>
-                            <!--end::Label-->
-                            <!--begin::Input wrapper-->
-                            <div class="position-relative mb-3">
-                                <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="new_password" autocomplete="off" />
-                                <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
-                                    <i class="ki-duotone ki-eye-slash fs-1">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                        <span class="path3"></span>
-                                        <span class="path4"></span>
-                                    </i>
-                                    <i class="ki-duotone ki-eye d-none fs-1">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                        <span class="path3"></span>
-                                    </i>
-                                </span>
-                            </div>
-                            <!--end::Input wrapper-->
-                            <!--begin::Meter-->
-                            <div class="d-flex align-items-center mb-3" data-kt-password-meter-control="highlight">
-                                <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                                <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                                <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                                <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px"></div>
-                            </div>
-                            <!--end::Meter-->
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                    <!--begin::Form-->
+                    <form id="kt_modal_update_password_form" class="form" action="#">
+                        <!--begin::Input group=-->
+                        <div class="fv-row mb-10">
+                            <label class="required form-label fs-6 mb-2">Current Password</label>
+                            <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="current_password" autocomplete="off" />
                         </div>
-                        <!--end::Wrapper-->
-                        <!--begin::Hint-->
-                        <div class="text-muted">Use 8 or more characters with a mix of letters, numbers & symbols.</div>
-                        <!--end::Hint-->
-                    </div>
-                    <!--end::Input group=-->
-                    <!--begin::Input group=-->
-                    <div class="fv-row mb-10">
-                        <label class="form-label fw-semibold fs-6 mb-2">Confirm New Password</label>
-                        <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="confirm_password" autocomplete="off" />
-                    </div>
-                    <!--end::Input group=-->
-                    <!--begin::Actions-->
-                    <div class="text-center pt-15">
-                        <button type="reset" class="btn btn-light me-3" data-kt-users-modal-action="cancel">Discard</button>
-                        <button type="submit" class="btn btn-primary" data-kt-users-modal-action="submit">
-                            <span class="indicator-label">Submit</span>
-                            <span class="indicator-progress">Please wait...
-                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                        </button>
-                    </div>
-                    <!--end::Actions-->
-                </form>
-                <!--end::Form-->
+                        <!--end::Input group=-->
+                        <!--begin::Input group-->
+                        <div class="mb-10 fv-row" data-kt-password-meter="true">
+                            <!--begin::Wrapper-->
+                            <div class="mb-1">
+                                <!--begin::Label-->
+                                <label class="form-label fw-semibold fs-6 mb-2">New Password</label>
+                                <!--end::Label-->
+                                <!--begin::Input wrapper-->
+                                <div class="position-relative mb-3">
+                                    <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="new_password" autocomplete="off" />
+                                    <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
+                                        <i class="ki-duotone ki-eye-slash fs-1">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                            <span class="path3"></span>
+                                            <span class="path4"></span>
+                                        </i>
+                                        <i class="ki-duotone ki-eye d-none fs-1">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                            <span class="path3"></span>
+                                        </i>
+                                    </span>
+                                </div>
+                                <!--end::Input wrapper-->
+                                <!--begin::Meter-->
+                                <div class="d-flex align-items-center mb-3" data-kt-password-meter-control="highlight">
+                                    <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
+                                    <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
+                                    <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
+                                    <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px"></div>
+                                </div>
+                                <!--end::Meter-->
+                            </div>
+                            <!--end::Wrapper-->
+                            <!--begin::Hint-->
+                            <div class="text-muted">Use 8 or more characters with a mix of letters, numbers & symbols.</div>
+                            <!--end::Hint-->
+                        </div>
+                        <!--end::Input group=-->
+                        <!--begin::Input group=-->
+                        <div class="fv-row mb-10">
+                            <label class="form-label fw-semibold fs-6 mb-2">Confirm New Password</label>
+                            <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="confirm_password" autocomplete="off" />
+                        </div>
+                        <!--end::Input group=-->
+                        <!--begin::Actions-->
+                        <div class="text-center pt-15">
+                            <button type="reset" class="btn btn-light me-3" data-kt-users-modal-action="cancel">Discard</button>
+                            <button type="submit" class="btn btn-primary" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">Submit</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                        <!--end::Actions-->
+                    </form>
+                    <!--end::Form-->
+                </div>
+                <!--end::Modal body-->
             </div>
-            <!--end::Modal body-->
+            <!--end::Modal content-->
         </div>
-        <!--end::Modal content-->
+        <!--end::Modal dialog-->
     </div>
-    <!--end::Modal dialog-->
-</div>
 @endsection
 
 @section('js-content')
     <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/details/transaction-history.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/details/add-auth-app.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/details/add-address.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/details/add-one-time-password.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/details/update-password.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/details/update-phone.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/details/update-address.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/details/update-profile.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/details/add-auth-app.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/details/add-address.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/details/add-one-time-password.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/details/update-password.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/details/update-phone.js') }}"></script>1 --}}
+    {{-- <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/details/update-address.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/details/update-profile.js') }}"></script> --}}
+    <script src="{{ asset('assets/js-external/company-profile.js') }}"></script>
 @endsection

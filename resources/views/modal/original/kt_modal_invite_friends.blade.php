@@ -31,7 +31,7 @@
                 <!--end::Heading-->
                 <!--begin::Google Contacts Invite-->
                 <div class="btn btn-light-primary fw-bold w-100 mb-8">
-                    <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg" class="h-20px me-3" />Invite Gmail Contacts
+                    <img alt="Logo" src="{{ asset("assets/media/svg/brand-logos/google-icon.svg") }}" class="h-20px me-3" />Invite Gmail Contacts
                 </div>
                 <!--end::Google Contacts Invite-->
                 <!--begin::Separator-->
@@ -223,7 +223,7 @@
                             <div class="d-flex align-items-center">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-35px symbol-circle">
-                                    <img alt="Pic" src="assets/media/avatars/300-9.jpg" />
+                                    <img alt="Pic" src="{{ asset("assets/media/avatars/300-9.jpg") }}" />
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Details-->
@@ -307,7 +307,7 @@
                             <div class="d-flex align-items-center">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-35px symbol-circle">
-                                    <img alt="Pic" src="assets/media/avatars/300-23.jpg" />
+                                    <img alt="Pic" src="{{ asset("assets/media/avatars/300-23.jpg") }}" />
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Details-->
@@ -363,7 +363,7 @@
                             <div class="d-flex align-items-center">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-35px symbol-circle">
-                                    <img alt="Pic" src="assets/media/avatars/300-12.jpg" />
+                                    <img alt="Pic" src="{{ asset("assets/media/avatars/300-12.jpg") }}" />
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Details-->
@@ -419,7 +419,7 @@
                             <div class="d-flex align-items-center">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-35px symbol-circle">
-                                    <img alt="Pic" src="assets/media/avatars/300-13.jpg" />
+                                    <img alt="Pic" src="{{ asset("assets/media/avatars/300-13.jpg") }}" />
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Details-->
@@ -475,7 +475,7 @@
                             <div class="d-flex align-items-center">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-35px symbol-circle">
-                                    <img alt="Pic" src="assets/media/avatars/300-21.jpg" />
+                                    <img alt="Pic" src="{{ asset("assets/media/avatars/300-21.jpg") }}" />
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Details-->
@@ -503,7 +503,7 @@
                             <div class="d-flex align-items-center">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-35px symbol-circle">
-                                    <img alt="Pic" src="assets/media/avatars/300-13.jpg" />
+                                    <img alt="Pic" src="{{ asset("assets/media/avatars/300-13.jpg") }}" />
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Details-->

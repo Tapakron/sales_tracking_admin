@@ -373,7 +373,7 @@
 										<!--end::Checkbox-->
 										<!--begin::Avatar-->
 										<div class="symbol symbol-35px symbol-circle">
-											<img alt="Pic" src="assets/media/avatars/300-9.jpg" />
+											<img alt="Pic" src="{{ asset("assets/media/avatars/300-9.jpg") }}" />
 										</div>
 										<!--end::Avatar-->
 										<!--begin::Details-->
@@ -481,7 +481,7 @@
 										<!--end::Checkbox-->
 										<!--begin::Avatar-->
 										<div class="symbol symbol-35px symbol-circle">
-											<img alt="Pic" src="assets/media/avatars/300-23.jpg" />
+											<img alt="Pic" src="{{ asset("assets/media/avatars/300-23.jpg") }}" />
 										</div>
 										<!--end::Avatar-->
 										<!--begin::Details-->
@@ -553,7 +553,7 @@
 										<!--end::Checkbox-->
 										<!--begin::Avatar-->
 										<div class="symbol symbol-35px symbol-circle">
-											<img alt="Pic" src="assets/media/avatars/300-12.jpg" />
+											<img alt="Pic" src="{{ asset("assets/media/avatars/300-12.jpg") }}" />
 										</div>
 										<!--end::Avatar-->
 										<!--begin::Details-->
@@ -625,7 +625,7 @@
 										<!--end::Checkbox-->
 										<!--begin::Avatar-->
 										<div class="symbol symbol-35px symbol-circle">
-											<img alt="Pic" src="assets/media/avatars/300-13.jpg" />
+											<img alt="Pic" src="{{ asset("assets/media/avatars/300-13.jpg") }}" />
 										</div>
 										<!--end::Avatar-->
 										<!--begin::Details-->
@@ -697,7 +697,7 @@
 										<!--end::Checkbox-->
 										<!--begin::Avatar-->
 										<div class="symbol symbol-35px symbol-circle">
-											<img alt="Pic" src="assets/media/avatars/300-21.jpg" />
+											<img alt="Pic" src="{{ asset("assets/media/avatars/300-21.jpg") }}" />
 										</div>
 										<!--end::Avatar-->
 										<!--begin::Details-->
@@ -775,7 +775,7 @@
 							<!--end::Message-->
 							<!--begin::Illustration-->
 							<div class="text-center px-5">
-								<img src="assets/media/illustrations/sigma-1/1.png" alt="" class="w-100 h-200px h-sm-325px" />
+								<img src="{{ asset("assets/media/illustrations/sigma-1/1.png") }}" alt="" class="w-100 h-200px h-sm-325px" />
 							</div>
 							<!--end::Illustration-->
 						</div>
