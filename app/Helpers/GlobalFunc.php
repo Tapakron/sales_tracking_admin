@@ -5,9 +5,14 @@ namespace App\Helpers;
 use App\Models\DataMasterModel\AmphureModel;
 use App\Models\DataMasterModel\ProvinceModel;
 use App\Models\DataMasterModel\TambolModel;
+use Illuminate\Support\Facades\DB;
 
 class GlobalFunc
 {
+    public static function getNewId()
+    {
+        return DB::select('select NEWID() as uuid')[0]->uuid;
+    }
     public static function path_image_customer()
     {
         $imagePath = public_path("assets/images/customer");
@@ -33,9 +38,9 @@ class GlobalFunc
         $imagePath = public_path("assets/images/receipt");
         return $imagePath;
     }
-    public static function path_image_news()
+    public static function path_image_news($sys_customer_code)
     {
-        $imagePath = public_path("assets/images/news");
+        $imagePath = "/assets/images/" . $sys_customer_code . "/news/";
         return $imagePath;
     }
     public static function setProfileCompany($data)

@@ -3,8 +3,11 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\DataMasterController\DropdownMasterController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\TargetSalesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,20 +25,23 @@ use App\Http\Controllers\DataMasterController\DropdownMasterController;
 // Route::post('/account/create', [AuthController::class, 'create']);
 // Route::post('/backend/admin/sales/create', [SalesController::class, 'create']);
 //'middleware' => 'auth',
-Route::group(['prefix' => 'backend'], function () {
+Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
     //! ล็อคอินใช้งาน
     Route::post('/login', [AuthController::class, 'login']);
+    //! เป้ายอดขาย
+    Route::post('/targetsales/create', [TargetSalesController::class, 'create']);
     //! ล็อคเอาท์
     Route::post('/logout', [AuthController::class, 'logout']);
     //todo admin
     Route::group(['prefix' => 'admin'], function () {
-        Route::post('/update', [CustomerController::class, 'update']);
+        Route::post('/update_profile', [CompanyController::class, 'updateProfile']);
+        Route::post('/update_address', [CompanyController::class, 'updateAddress']);
         //todo sales
         Route::group(['prefix' => 'sales'], function () {
             Route::post('/create', [SalesController::class, 'create']);
             Route::post('/update', [SalesController::class, 'update']);
-            Route::get('/delete', [SalesController::class, 'delete']);
-            // Route::get('/fetch', [CustomerController::class, 'fetch']);
+            Route::get('/delete/{id}', [SalesController::class, 'delete']);
+            Route::get('/fetch', [SalesController::class, 'fetch']);
             // Route::get('/fetchbyid/{id}', [CustomerController::class, 'fetchById']);
         });
         Route::group(['prefix' => 'customers'], function () {
@@ -47,16 +53,16 @@ Route::group(['prefix' => 'backend'], function () {
             // Route::get('/recordsales/{id}', [CustomerController::class, 'recordSalesById']);
         });
         Route::group(['prefix' => 'news'], function () {
-            // Route::post('/create', [CustomerController::class, 'create']);
-            // Route::post('/update', [CustomerController::class, 'update']);
+            Route::post('/create', [NewsController::class, 'create']);
+            Route::post('/update', [NewsController::class, 'update']);
             // Route::post('/search', [CustomerController::class, 'search']);
-            // Route::get('/delete', [CustomerController::class, 'delete']);
-            // Route::get('/fetch', [CustomerController::class, 'fetch']);
-            // Route::get('/fetchbyid/{id}', [CustomerController::class, 'fetchById']);
+            Route::get('/delete/{id}', [NewsController::class, 'delete']);
+            Route::get('/fetch', [NewsController::class, 'fetch']);
+            Route::get('/fetch/{id}', [NewsController::class, 'fetchById']);
         });
-        Route::group(['prefix' => 'master'], function () {
-            // Route::post('/targetsales/create', [CustomerController::class, 'create']);
-        });
+        // Route::group(['prefix' => 'master'], function () {
+        // Route::post('/targetsales/create', [CustomerController::class, 'create']);
+        // });
     });
     //!----------------------------------------------------------------------------------
     Route::group(['middleware' => 'auth', 'prefix' => 'users'], function () {
