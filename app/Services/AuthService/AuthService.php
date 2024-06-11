@@ -4,6 +4,7 @@ namespace App\Services\AuthService;
 
 use App\Helpers\JsonResult;
 use App\Models\SysloginModel;
+use App\Models\SysUsers;
 use App\Models\User;
 
 use Illuminate\Support\Facades\DB;
@@ -109,7 +110,7 @@ class AuthService
                 return $result;
             }
             $data['new_password'] = Hash::make(trim($body['new_password']));
-            $rsCreate = SysloginModel::update($user->id, $data);
+            $rsCreate = SysUsers::update($user->id, $data);
             if ($rsCreate == false) {;
                 $rs['message'] = "เปลี่ยนรหัสผ่านไม่สำเร็จ";
                 $rs['success'] = $rsCreate;
