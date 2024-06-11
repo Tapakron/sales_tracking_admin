@@ -6,7 +6,7 @@ use App\Helpers\JsonResult;
 use App\Models\SysloginModel;
 use App\Models\SysUsers;
 use App\Models\User;
-
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -103,19 +103,25 @@ class AuthService
             $user = Auth::user();
             $currentpassword = trim($body['old_password']);
             $passwordHash = $user->password;
+            // dd($currentpassword,$passwordHash);
             if (Hash::check($currentpassword, $passwordHash) == false) {
-                $result['message'] = 'รหัสผ่านไม่ถูกต้อง';
-                $result['message_ex'] = "";
-                $result['success'] = false;
-                return $result;
+                $rs['message'] = 'รหัสผ่านไม่ถูกต้อง';
+                $rs['message_ex'] = "";
+                $rs['success'] = false;
+                return $rs;
             }
-            $data['new_password'] = Hash::make(trim($body['new_password']));
+            $data = [
+                'password' => Hash::make(trim($body['new_password'])),
+                'updated_at' => Carbon::now(),
+                'updated_by' => $user->id
+            ];
             $rsCreate = SysUsers::update($user->id, $data);
             if ($rsCreate == false) {;
                 $rs['message'] = "เปลี่ยนรหัสผ่านไม่สำเร็จ";
                 $rs['success'] = $rsCreate;
                 return $rs;
             }
+            $rs['data'] = $user;
             $rs['message'] = "เปลี่ยนรหัสผ่านสำเร็จ";
             $rs['success'] = $rsCreate;
             return $rs;
