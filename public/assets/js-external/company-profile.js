@@ -198,15 +198,15 @@ var ComapanyProfileForm2 = function () {
     }
 }();
 var UpdatePassword = function () {
-    const t = document.getElementById("kt_modal_update_password"),
-        e = t.querySelector("#kt_modal_update_password_form"),
+    const t = document.getElementById("modal_update_password"),
+        e = t.querySelector("#modal_update_password_form"),
         n = new bootstrap.Modal(t);
     return {
         init: function () {
             (() => {
                 var o = FormValidation.formValidation(e, {
                     fields: {
-                        current_password: {
+                        old_password: {
                             validators: {
                                 notEmpty: {
                                     message: "ระบุรหัสผ่านเดิม"
@@ -226,7 +226,7 @@ var UpdatePassword = function () {
                                 }
                             }
                         },
-                        confirm_password: {
+                        comfirm_password: {
                             validators: {
                                 notEmpty: {
                                     message: "ยืนยันรหัสผ่านใหม่"
@@ -248,24 +248,59 @@ var UpdatePassword = function () {
                             eleValidClass: ""
                         })
                     }
-                });
-                
+                });t.querySelector('[data-kt-users-modal-action="cancel"]').addEventListener("click", (t => {
+                    t.preventDefault()
+                    e.reset(); n.hide();
+                }));
                 const a = t.querySelector('[data-kt-users-modal-action="submit"]');
                 a.addEventListener("click", (function (t) {
                     t.preventDefault(), o && o.validate().then((function (t) {
-                        console.log("validated!"), "Valid" == t && (a.setAttribute("data-kt-indicator", "on"), a.disabled = !0, setTimeout((function () {
-                            a.removeAttribute("data-kt-indicator"), a.disabled = !1, Swal.fire({
-                                text: "Form has been successfully submitted!",
-                                icon: "success",
+                        if ("Valid" == t) {
+                            
+                            Swal.fire({
+                                text: "บันทึกข้อมูล! โปรดกดปุ่มบันทึกอีกครั้ง",
+                                icon: "info",
                                 buttonsStyling: !1,
-                                confirmButtonText: "Ok, got it!",
+                                showCancelButton: !0,
+                                confirmButtonText: "บันทึก",
+                                cancelButtonText: "ยกเลิก",
                                 customClass: {
-                                    confirmButton: "btn btn-primary"
+                                    confirmButton: "btn btn-primary",
+                                    cancelButton: "btn btn-active-light"
                                 }
-                            }).then((function (t) {
-                                t.isConfirmed && n.hide()
+                            }).then((function (n) {
+                                if (n.isConfirmed) {
+                                    a.removeAttribute("data-kt-indicator");
+                                    a.disabled = !1;
+
+                                    let frmData = {
+                                        old_password: $('#old_password').val(),
+                                        new_password: $('#new_password').val(),
+                                    }
+
+                                    $.ajax({
+                                        url: '/backend/changepassword',
+                                        type: 'POST',
+                                        data: frmData,
+                                        success: function (response) {
+                                            if (response.success) {
+                                                toastr.success('บันทึกข้อมูลสำเร็จ');
+                                            } else {
+                                                toastr.warning(response.message);
+                                            }
+                                            e.reset(); n.hide();
+                                        },
+                                        error: function () {
+
+                                        }
+                                    });
+                                }else{
+                                   
+                                }
                             }))
-                        }), 2e3))
+                        } else {
+                            // t.isConfirmed && n.hide()
+                        }
                     }))
                 }))
             })()

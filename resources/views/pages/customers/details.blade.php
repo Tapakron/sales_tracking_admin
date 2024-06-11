@@ -312,7 +312,7 @@
                                             <td>รหัสผ่าน</td>
                                             <td>******</td>
                                             <td class="text-end">
-                                                <button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_update_password">
+                                                <button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#modal_update_password">
                                                     <i class="ki-duotone ki-pencil fs-3">
                                                         <span class="path1"></span>
                                                         <span class="path2"></span>
@@ -340,7 +340,7 @@
 @endsection
 
 @section('modal-content')
-    <div class="modal fade" id="kt_modal_update_password" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="modal_update_password" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-650px">
             <!--begin::Modal content-->
@@ -365,11 +365,11 @@
                 <!--begin::Modal body-->
                 <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                     <!--begin::Form-->
-                    <form id="kt_modal_update_password_form" class="form" action="#">
+                    <form id="modal_update_password_form" class="form" action="#">
                         <!--begin::Input group=-->
                         <div class="fv-row mb-10">
                             <label class="required form-label fs-6 mb-2">รหัสผ่านปัจจุบัน</label>
-                            <input class="form-control form-control-lg" type="password" placeholder="" name="current_password" autocomplete="off" />
+                            <input class="form-control form-control-lg" type="password" placeholder="" id="old_password" name="old_password" autocomplete="off" />
                         </div>
                         <!--end::Input group=-->
                         <!--begin::Input group-->
@@ -381,7 +381,7 @@
                                 <!--end::Label-->
                                 <!--begin::Input wrapper-->
                                 <div class="position-relative mb-3">
-                                    <input class="form-control form-control-lg" type="password" placeholder="" name="new_password" autocomplete="off" />
+                                    <input class="form-control form-control-lg" type="password" placeholder="" id="new_password" name="new_password" autocomplete="off" />
                                     <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
                                         <i class="ki-duotone ki-eye-slash fs-1">
                                             <span class="path1"></span>
@@ -415,7 +415,7 @@
                         <!--begin::Input group=-->
                         <div class="fv-row mb-10">
                             <label class="required form-label fw-semibold fs-6 mb-2">ยืนยันรหัสผ่านใหม่</label>
-                            <input class="form-control form-control-lg" type="password" placeholder="" name="confirm_password" autocomplete="off" />
+                            <input class="form-control form-control-lg" type="password" placeholder="" id="comfirm_password" name="comfirm_password" autocomplete="off" />
                         </div>
                         <!--end::Input group=-->
                         <!--begin::Actions-->
