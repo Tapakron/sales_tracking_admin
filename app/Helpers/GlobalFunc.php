@@ -88,20 +88,20 @@ class GlobalFunc
         // dd($data);
         if (isset($data->province_id) && $data->province_id == '1') {
             $adress = $data->address ? $data->address : "";
-            $adress .= $data->village_building ? $data->village_building : "";
-            $adress .= $data->village_no ? $data->village_no : "";
-            $adress .= $data->alley ? $data->alley : "";
-            $adress .= $data->road ? $data->road : "";
-            $adress .=  $tambol->id ? "แขวง" . $tambol->name_th : "";
+            $adress .= $data->village_building ? " " . $data->village_building : "";
+            $adress .= $data->village_no ? " " . $data->village_no : "";
+            $adress .= $data->alley ? " " . $data->alley : "";
+            $adress .= $data->road ? " " . $data->road : "";
+            $adress .= $tambol->id ? "แขวง" . $tambol->name_th : "";
             $adress .= $amphure->id ? " " . $amphure->name_th : "";
             $adress .= $province->id ? " " . $province->name_th : "";
             $adress .= $tambol->id ? " " . $tambol->zip_code : "";
         } elseif (isset($data->province_id) && $data->province_id != '1') {
             $adress = $data->address ? $data->address : " ";
-            $adress .= $data->village_building ? $data->village_building : "";
-            $adress .= $data->village_no ? $data->village_no : "";
-            $adress .= $data->road ? $data->road : "";
-            $adress .= $data->alley ? $data->alley : "";
+            $adress .= $data->village_building ? " " . $data->village_building : "";
+            $adress .= $data->village_no ? " " . $data->village_no : "";
+            $adress .= $data->road ? " " . $data->road : "";
+            $adress .= $data->alley ? " " . $data->alley : "";
             $adress .= $tambol->id ? " ต." . $tambol->name_th : "";
             $adress .= $amphure->id ? " อ." . $amphure->name_th : "";
             $adress .= $province->id ? " จ." . $province->name_th : "";
