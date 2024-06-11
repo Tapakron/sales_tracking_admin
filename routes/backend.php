@@ -28,6 +28,7 @@ use App\Http\Controllers\TargetSalesController;
 //! ล็อคอินใช้งาน
 Route::post('/backend/login', [AuthController::class, 'login']);
 Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
+    Route::post('/changepassword', [AuthController::class, 'changePassword']);
     //! เป้ายอดขาย
     Route::post('/targetsales/create', [TargetSalesController::class, 'create']);
     Route::get('/targetsales/fetch', [TargetSalesController::class, 'fetch']);

@@ -80,6 +80,53 @@ class AuthController extends Controller
             throw $th;
         }
     }
+    function changePassword(Request $request)
+    {
+        $body = $request->all();
+        $rules = array(
+            'new_password' => 'required|min:6',
+            'comfirm_password' => 'required|min:6',
+        );
+        $messages = array(
+            'new_password.required' => 'กรุณากรอกข้อมูล!',
+            'new_password.min' => 'กรอกรหัสผ่าน 6 ตัวขึ้นไป!',
+            'comfirm_password.required' => 'กรุณากรอกข้อมูล!',
+            'comfirm_password.min' => 'กรอกรหัสผ่าน 6 ตัวขึ้นไป!',
+        );
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            $errors = $validator->errors()->toArray();
+            $message = array();
+            $str = "";
+            foreach ($errors as $key => $items) {
+                foreach ($items as $key => $item) {
+                    $str = $key + 1;
+                    $str .= ".";
+                    $str .= $item;
+                    array_push($message, $str);
+                }
+            }
+            $str = "";
+            foreach ($message as $key => $item) {
+                if ($key == 0) {
+                    $str =   ($key + 1) . "." . explode(".", $item)[1];
+                    $str .=   "\n ";
+                } else {
+                    $str .=   ($key + 1) . "." . explode(".", $item)[1];
+                    $str .=   "\n";
+                }
+            }
+            $result['data'] = null;
+            $result['success'] = false;
+            $result['message'] = $str;
+            return JsonResult::errors($result['data'], $result['message']);
+        }
+        $result = AuthService::changePassword($body);
+        if ($result['success'] == false) {
+            return JsonResult::errors(null, $result['message']);
+        }
+        return JsonResult::success($result['data'], $result['message']);
+    }
     function logout(Request $request)
     {
         try {

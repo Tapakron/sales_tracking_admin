@@ -76,22 +76,46 @@ class AuthService
             //         default:
             //             break;
             //     }
-                // $data_sys_login = [
-                //     'last_login' => DB::raw('getdate()'),
-                // ];
-                // $rsCreateUser = SysloginModel::update($credential_user->id, $data_sys_login);
-                // DB::commit();
+            // $data_sys_login = [
+            //     'last_login' => DB::raw('getdate()'),
+            // ];
+            // $rsCreateUser = SysloginModel::update($credential_user->id, $data_sys_login);
+            // DB::commit();
 
-                // if ($rsCreateUser == false) {
-                //     DB::rollBack();
-                //     $result['message'] = 'ลงทะเบียนโปรไฟล์ผู้ใช้งานไม่สำเร็จ';
-                //     $result['success'] = false;
-                //     $result['result']  = $rsCreateUser;
-                //     return $result;
-                // }
-
-                // return $result;
+            // if ($rsCreateUser == false) {
+            //     DB::rollBack();
+            //     $result['message'] = 'ลงทะเบียนโปรไฟล์ผู้ใช้งานไม่สำเร็จ';
+            //     $result['success'] = false;
+            //     $result['result']  = $rsCreateUser;
+            //     return $result;
             // }
+
+            // return $result;
+            // }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    public static function changePassword($body)
+    {
+        try {
+            $user = Auth::user();
+            $currentpassword = trim($body['currentpassword']);
+            $passwordHash = $user->password;
+            if (Hash::check($currentpassword, $passwordHash) == false) {
+                $result['message'] = 'รหัสผ่านไม่ถูกต้อง';
+                $result['message_ex'] = "";
+                $result['success'] = false;
+                return $result;
+            }
+            $data['password'] = Hash::make(trim($body['password']));
+            $rsCreateUser = SysloginModel::update($user->id, $data);
+
+            $result['data'] = $user;
+            $result['message'] = 'เปลี่ยนรหัสผ่านสำเร็จ';
+            $result['message_ex'] = "Successfully";
+            $result['success'] = true;
+            return $result;
         } catch (\Throwable $th) {
             throw $th;
         }
