@@ -85,13 +85,10 @@ class AuthController extends Controller
         $body = $request->all();
         $rules = array(
             'new_password' => 'required|min:6',
-            'comfirm_password' => 'required|min:6',
         );
         $messages = array(
             'new_password.required' => 'กรุณากรอกข้อมูล!',
             'new_password.min' => 'กรอกรหัสผ่าน 6 ตัวขึ้นไป!',
-            'comfirm_password.required' => 'กรุณากรอกข้อมูล!',
-            'comfirm_password.min' => 'กรอกรหัสผ่าน 6 ตัวขึ้นไป!',
         );
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
