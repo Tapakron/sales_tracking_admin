@@ -13,12 +13,13 @@ class CompanyService
     public static function update($body)
     {
         try {
+            // dd($body);
             $user = Auth::user();
             $company_id = $user->company_id;
             unset($body['company_id']);
             unset($body['remove_img']);
             unset($body['cancel_img']);
-            $body = [
+            $body += [
                 'updated_by' => $user->id,
                 'updated_at' => Carbon::now(),
             ];
