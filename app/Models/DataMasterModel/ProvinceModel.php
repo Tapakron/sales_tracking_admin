@@ -12,6 +12,7 @@ class ProvinceModel
     public static function fetch()
     {
         return DB::connection('datamaster')->table(self::TABLE)
+            ->orderBy('name_th', 'asc')
             ->get();
     }
     public static function fetchById($province_id)
