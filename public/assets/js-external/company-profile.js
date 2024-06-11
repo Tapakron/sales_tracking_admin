@@ -38,6 +38,8 @@ var ComapanyProfileForm1 = function () {
                                 icon: "info",
                                 buttonsStyling: !1,
                                 showCancelButton: !0,
+                                allowEscapeKey: false,
+                                allowOutsideClick: false,
                                 confirmButtonText: "บันทึก",
                                 cancelButtonText: "ยกเลิก",
                                 customClass: {
@@ -121,8 +123,7 @@ var ComapanyProfileForm2 = function () {
                                     message: "โปรดระบุ อำเภอ"
                                 }
                             }
-                        }
-                        ,
+                        },
                         tambol_id: {
                             validators: {
                                 notEmpty: {
@@ -147,6 +148,8 @@ var ComapanyProfileForm2 = function () {
                                 icon: "info",
                                 buttonsStyling: !1,
                                 showCancelButton: !0,
+                                allowEscapeKey: false,
+                                allowOutsideClick: false,
                                 confirmButtonText: "บันทึก",
                                 cancelButtonText: "ยกเลิก",
                                 customClass: {
@@ -248,28 +251,34 @@ var UpdatePassword = function () {
                             eleValidClass: ""
                         })
                     }
-                });t.querySelector('[data-kt-users-modal-action="cancel"]').addEventListener("click", (t => {
+                });
+                t.querySelector('[data-kt-users-modal-action="cancel"]').addEventListener("click", (t => {
                     t.preventDefault()
-                    e.reset(); n.hide();
+                    e.reset();
+                    n.hide();
                 }));
                 const a = t.querySelector('[data-kt-users-modal-action="submit"]');
                 a.addEventListener("click", (function (t) {
                     t.preventDefault(), o && o.validate().then((function (t) {
                         if ("Valid" == t) {
-                            
+                            a.setAttribute("data-kt-indicator", "on");
+                            a.disabled = !0;
                             Swal.fire({
                                 text: "บันทึกข้อมูล! โปรดกดปุ่มบันทึกอีกครั้ง",
                                 icon: "info",
                                 buttonsStyling: !1,
                                 showCancelButton: !0,
+                                allowEscapeKey: false,
+                                allowOutsideClick: false,
                                 confirmButtonText: "บันทึก",
                                 cancelButtonText: "ยกเลิก",
                                 customClass: {
                                     confirmButton: "btn btn-primary",
                                     cancelButton: "btn btn-active-light"
                                 }
-                            }).then((function (n) {
-                                if (n.isConfirmed) {
+                            }).then((function (v) {
+
+                                if (v.isConfirmed) {
                                     a.removeAttribute("data-kt-indicator");
                                     a.disabled = !1;
 
@@ -288,14 +297,16 @@ var UpdatePassword = function () {
                                             } else {
                                                 toastr.warning(response.message);
                                             }
-                                            e.reset(); n.hide();
+                                            console.log(t);
+                                            e.reset();
+                                            n.hide();
                                         },
                                         error: function () {
 
                                         }
                                     });
-                                }else{
-                                   
+                                } else {
+                                    a.removeAttribute("data-kt-indicator"); a.disabled = !1;
                                 }
                             }))
                         } else {
@@ -311,81 +322,81 @@ KTUtil.onDOMContentLoaded((function () {
     ComapanyProfileForm1.init()
     ComapanyProfileForm2.init()
     UpdatePassword.init()
-    $('#province_id').change(function(event) {
-		if ($('#province_id').val() != "") {
-			var province_id = $('#province_id').val();
-			$.ajax({
-				type: "get",
-				url: "/api/datamaster/amphure/fetch/"+province_id,
-				// data: {province_id:province_id},
-				success: function(res) {
-					if(res.success){
-						$('#amphure_id').prop('disabled',false);
-						$('#tambol_id').prop('disabled',false);
-						$('#postal_code').prop('disabled',false);
-						document.getElementById('amphure_id').options.length = 0;
-						let results = [];
-						// results.push({
-						// 	id:"",
-						// 	text:"โปรดระบุ"
-						// })
-						res.data.forEach(function(item){
+    $('#province_id').change(function (event) {
+        if ($('#province_id').val() != "") {
+            var province_id = $('#province_id').val();
+            $.ajax({
+                type: "get",
+                url: "/api/datamaster/amphure/fetch/" + province_id,
+                // data: {province_id:province_id},
+                success: function (res) {
+                    if (res.success) {
+                        $('#amphure_id').prop('disabled', false);
+                        $('#tambol_id').prop('disabled', false);
+                        $('#postal_code').prop('disabled', false);
+                        document.getElementById('amphure_id').options.length = 0;
+                        let results = [];
+                        // results.push({
+                        // 	id:"",
+                        // 	text:"โปรดระบุ"
+                        // })
+                        res.data.forEach(function (item) {
                             console.log(item);
-							results.push({
-								id: item.id,
-								text: item.name_th,
-								item:item
-							})
-						})
-						$("#amphure_id").select2({
-							data:results
-						}).trigger('change');
-					}
-				}
-			});
-		}else{
-			$('#postal_code').val("");
-			document.getElementById('amphure_id').options.length = 0;
-			var $amphure_id = $("<option></option>").val("").text("โปรดระบุ")
-			$("#amphure_id").append($amphure_id).trigger('change');
-		}
-	});
-    $('#amphure_id').change(function(event) {
-		if ($('#amphure_id').val() != "") {
-			var amphure_id = $('#amphure_id').val();
-			$.ajax({
-				type: "get",
-				url: "/api/datamaster/tambol/fetch/"+amphure_id,
-				// data: {amphure_id:amphure_id},
-				success: function(res) {
-					if(res.success){
-						document.getElementById('tambol_id').options.length = 0;
-						let	results = $.map(res.data, function(item) {
-							return {
-								id: item.id,
-								text: item.name_th,
-								item:item
-							}
-						})
-						$("#tambol_id").select2({
-							data:results
-						})
-						.on('select2:select',function(e){
-							if(e.params.data.item.zip_code && e.params.data.item.zip_code !="0"){
-								$('#postal_code').val(e.params.data.item.zip_code);
-							}else{
-								$('#postal_code').val("");
-							}
-						})
-						.trigger('change');
-						$('#postal_code').val(results[0]['item']['zip_code'])
-					}
-				}
-			});
-		}else{
-			document.getElementById('tambol_id').options.length = 0;
-			var $tambol_id = $("<option></option>").val("").text("โปรดระบุ")
-			$("#tambol_id").append($tambol_id).trigger('change');
-		}
-	});
+                            results.push({
+                                id: item.id,
+                                text: item.name_th,
+                                item: item
+                            })
+                        })
+                        $("#amphure_id").select2({
+                            data: results
+                        }).trigger('change');
+                    }
+                }
+            });
+        } else {
+            $('#postal_code').val("");
+            document.getElementById('amphure_id').options.length = 0;
+            var $amphure_id = $("<option></option>").val("").text("โปรดระบุ")
+            $("#amphure_id").append($amphure_id).trigger('change');
+        }
+    });
+    $('#amphure_id').change(function (event) {
+        if ($('#amphure_id').val() != "") {
+            var amphure_id = $('#amphure_id').val();
+            $.ajax({
+                type: "get",
+                url: "/api/datamaster/tambol/fetch/" + amphure_id,
+                // data: {amphure_id:amphure_id},
+                success: function (res) {
+                    if (res.success) {
+                        document.getElementById('tambol_id').options.length = 0;
+                        let results = $.map(res.data, function (item) {
+                            return {
+                                id: item.id,
+                                text: item.name_th,
+                                item: item
+                            }
+                        })
+                        $("#tambol_id").select2({
+                                data: results
+                            })
+                            .on('select2:select', function (e) {
+                                if (e.params.data.item.zip_code && e.params.data.item.zip_code != "0") {
+                                    $('#postal_code').val(e.params.data.item.zip_code);
+                                } else {
+                                    $('#postal_code').val("");
+                                }
+                            })
+                            .trigger('change');
+                        $('#postal_code').val(results[0]['item']['zip_code'])
+                    }
+                }
+            });
+        } else {
+            document.getElementById('tambol_id').options.length = 0;
+            var $tambol_id = $("<option></option>").val("").text("โปรดระบุ")
+            $("#tambol_id").append($tambol_id).trigger('change');
+        }
+    });
 }));

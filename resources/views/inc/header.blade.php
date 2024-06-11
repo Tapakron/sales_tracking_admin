@@ -6,27 +6,27 @@
             <!--begin::Heading-->
             <h1 class="d-flex flex-column text-dark fw-bold my-1">
                 <span class="text-white fs-1">{{ getPageName($pageDetails) }}</span>
-                @if ($pageDetails["page_lv"] == "1")
+                @if ($pageDetails['page_lv'] == '1')
                     <a href="#" class=" fs-6 fw-normal pt-2">ยินดีต้อนรับ SME THAI SOFTWARE</a>
                 @endif
             </h1>
-            @if ($pageDetails["page_lv"] != "1")
+            @if ($pageDetails['page_lv'] != '1')
                 <ul class="breadcrumb breadcrumb-line fw-semibold fs-7 my-1">
                     <li class="breadcrumb-item text-gray-600">
-                        <a href="{{ url($pageDetails["page_url_1"]) }}" class="text-gray-600 text-hover-primary">{{ $pageDetails["page_name_th_1"] }}</a>
+                        <a href="{{ url($pageDetails['page_url_1']) }}" class="text-gray-600 text-hover-primary">{{ $pageDetails['page_name_th_1'] }}</a>
                     </li>
-                    @if ($pageDetails["page_lv"] == "2")
+                    @if ($pageDetails['page_lv'] == '2')
                         <li class="breadcrumb-item text-gray-400">{{ getPageNameDesc2($pageDetails) }}</li>
                     @endif
-                    @if ($pageDetails["page_lv"] == "3")
-                    <li class="breadcrumb-item text-gray-600">
-                    <a href="{{ url($pageDetails["page_url_2"]) }}" class="text-gray-600 text-hover-primary">{{ $pageDetails["page_name_th_2"] }}</a>
-                    </li>
+                    @if ($pageDetails['page_lv'] == '3')
+                        <li class="breadcrumb-item text-gray-600">
+                            <a href="{{ url($pageDetails['page_url_2']) }}" class="text-gray-600 text-hover-primary">{{ $pageDetails['page_name_th_2'] }}</a>
+                        </li>
                         {{-- <li class="breadcrumb-item text-gray-600">{{ getPageNameDesc2($pageDetails) }}</li> --}}
                         <li class="breadcrumb-item text-gray-400">{{ getPageNameDesc3($pageDetails) }}</li>
                     @endif
                 </ul>
-            @endif            
+            @endif
             <!--end::Heading-->
         </div>
         <!--end::Page title=-->
@@ -50,7 +50,8 @@
                         <div class="d-flex flex-column bgi-no-repeat rounded-top" style="background-image:url('assets/media/misc/menu-header-bg.jpg')">
                             <!--begin::Title-->
                             <h3 class="text-white fw-semibold px-9 mt-10 mb-6">แจ้งเตือน
-                            <span class="fs-8 opacity-75 ps-3">24 รายการ</span></h3>
+                                <span class="fs-8 opacity-75 ps-3">24 รายการ</span>
+                            </h3>
                             <!--end::Title-->
                         </div>
                         <!--end::Heading-->
@@ -269,10 +270,10 @@
                                 <!--begin::View more-->
                                 <div class="py-3 text-center border-top">
                                     <a href="../../demo9/dist/pages/user-profile/activity.html" class="btn btn-color-gray-600 btn-active-color-primary">ดูทั้งหมด
-                                    <i class="ki-duotone ki-arrow-right fs-5">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                    </i></a>
+                                        <i class="ki-duotone ki-arrow-right fs-5">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i></a>
                                 </div>
                                 <!--end::View more-->
                             </div>
@@ -299,15 +300,31 @@
                             <div class="menu-content d-flex align-items-center px-3">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-50px me-5">
-                                    <img alt="Logo" src="{{ asset("assets/media/avatars/sme.png") }}" />
+                                    @if ($pageDetails['company_profile']['company_img'] != '')
+                                        <img alt="Logo" src="{{ asset($pageDetails['company_profile']['company_img']) }}" />
+                                    @else
+                                        <img alt="Logo" src="{{ asset('assets/media/avatars/sme.png') }}" />
+                                    @endif
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Username-->
                                 <div class="d-flex flex-column">
-                                    <div class="fw-bold d-flex align-items-center fs-5">SME THAI SOFTWARE
-                                    <!-- <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span> -->
-                                </div>
-                                    <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">smethaisoftware@gmail.com</a>
+                                    <div class="fw-bold d-flex align-items-center fs-5">
+                                        @if ($pageDetails['company_profile']['company_name'] != '')
+                                            {{ $pageDetails['company_profile']['company_name'] }}
+                                        @else
+                                            SME THAI SOFTWARE
+                                        @endif
+
+                                        <!-- <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span> -->
+                                    </div>
+                                    <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">
+                                        @if ($pageDetails['company_profile']['company_email'] != '')
+                                            {{ $pageDetails['company_profile']['company_email'] }}
+                                        @else
+                                            smethaisoftware@gmail.com
+                                        @endif
+                                    </a>
                                 </div>
                                 <!--end::Username-->
                             </div>
@@ -318,14 +335,14 @@
                         <!--end::Menu separator-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
-                            <a href="{{ url("/customers/details") }}" class="menu-link px-5">ข้อมูลบริษัท</a>
+                            <a href="{{ url('/customers/details') }}" class="menu-link px-5">ข้อมูลบริษัท</a>
                         </div>
                         <!--end::Menu item-->
-                        
+
                         <!--begin::Menu separator-->
                         <div class="separator my-2"></div>
                         <!--end::Menu separator-->
-                        
+
                         <!--begin::Menu item-->
                         <!-- <div class="menu-item px-5 my-1">
                             <a href="../../demo9/dist/account/settings.html" class="menu-link px-5">Account Settings</a>
