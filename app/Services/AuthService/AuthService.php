@@ -110,6 +110,12 @@ class AuthService
                 $rs['success'] = false;
                 return $rs;
             }
+            if (trim($body['old_password']) == trim($body['new_password'])) {
+                $rs['message'] = 'รหัสผ่านเก่าและใหม่เหมือนกัน';
+                $rs['message_ex'] = "";
+                $rs['success'] = false;
+                return $rs;
+            }
             $data = [
                 'password' => Hash::make(trim($body['new_password'])),
                 'updated_at' => Carbon::now(),
