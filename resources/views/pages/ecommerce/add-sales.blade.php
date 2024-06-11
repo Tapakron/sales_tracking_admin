@@ -5,7 +5,7 @@
 
 @section('content')
 {{-- !------------------------------------------------------- --}}
-<form id="kt_ecommerce_add_product_form" class="form d-flex flex-column flex-lg-row" data-kt-redirect="../../demo9/dist/apps/ecommerce/catalog/products.html">
+<form id="frm_sale_profile" class="form d-flex flex-column flex-lg-row" data-kt-redirect="../../demo9/dist/apps/ecommerce/catalog/products.html">
     <!--begin::Aside column-->
     <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
         <!--begin::Thumbnail settings-->
@@ -36,7 +36,7 @@
                             <span class="path2"></span>
                         </i>
                         <!--begin::Inputs-->
-                        <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
+                        <input type="file" id="user_img" name="user_img" accept=".png, .jpg, .jpeg" />
                         <input type="hidden" name="avatar_remove" />
                         <!--end::Inputs-->
                     </label>
@@ -110,7 +110,7 @@
                                         <label class="required form-label">ชื่อ-นามสกุล</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control mb-2" value="" />
+                                        <input type="text" class="form-control mb-2" id="name" name="name" value="" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -121,7 +121,7 @@
                                         <label class="required form-label">รหัส Sales</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control mb-2" value="FSO0001" />
+                                        <input type="text" class="form-control mb-2" id="username" name="username" value="FSO0001" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -131,7 +131,7 @@
                                         <label class="form-label">เลขบัตรประชาชน</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control mb-2" value="" />
+                                        <input type="text" class="form-control mb-2" id="citizen_id" name="citizen_id" value="" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -148,14 +148,14 @@
                                     <!--begin::Input group-->
                                     <div class="fv-row w-100 flex-md-root mb-2">
                                         <!--begin::Label-->
-                                        <label class="form-label">ระดับ Sales</label>
+                                        <label class="form-label required">ระดับ Sales</label>
                                         <!--end::Label-->
                                         <!--begin::Select2-->
-                                        <select class="form-select mb-2" data-control="select2" data-hide-search="true" data-placeholder="- เลือก -">
+                                        <select class="form-select mb-2" id="sales_level" name="sales_level" data-control="select2" data-hide-search="false" data-placeholder="- เลือก -">
                                             <option></option>
-                                            <option value="01">Basic</option>
-                                            <option value="02">Golds</option>
-                                            <option value="03">Premium</option>
+                                            <option value="1">Basic</option>
+                                            <option value="2">Golds</option>
+                                            <option value="3">Premium</option>
                                         </select>
                                         <!--end::Select2-->
                                         <!--begin::Description-->
@@ -169,7 +169,7 @@
                                         <label class="required form-label">เบอร์โทร</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control mb-2" value="" />
+                                        <input type="text" class="form-control mb-2" id="tel" name="tel" value="" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -179,7 +179,7 @@
                                         <label class="form-label">Email</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control mb-2" value="" />
+                                        <input type="text" class="form-control mb-2" id="email" name="email" value="" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -219,7 +219,7 @@
                                         <label class="form-label">ที่อยู่</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control mb-2" value="" />
+                                        <input type="text" class="form-control mb-2" id="address" name="address" value="" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -230,7 +230,7 @@
                                         <label class="form-label">หมู่บ้าน/อาคาร</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control mb-2" value="" />
+                                        <input type="text" class="form-control mb-2" id="village_building" name="village_building" value="" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -241,7 +241,7 @@
                                         <label class="form-label">หมู่ที่</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control mb-2" value="" />
+                                        <input type="text" class="form-control mb-2" id="village_no" name="village_no" value="" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -261,7 +261,7 @@
                                         <label class="form-label">ตรอก/ซอย</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control mb-2" value="" />
+                                        <input type="text" class="form-control mb-2" id="alley" name="alley" value="" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -272,7 +272,7 @@
                                         <label class="form-label">ถนน</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control mb-2" value="" />
+                                        <input type="text" class="form-control mb-2" id="road" name="road" value="" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -282,12 +282,11 @@
                                         <label class="form-label">จังหวัด</label>
                                         <!--end::Label-->
                                         <!--begin::Select2-->
-                                        <select class="form-select mb-2" data-control="select2" data-hide-search="true" data-placeholder="- เลือก -" id="pv">
+                                        <select class="form-select mb-2" id="province_id" name="province_id" data-control="select2" data-hide-search="false" data-placeholder="- เลือก -">
                                             <option></option>
-                                            <option value="0">กรุงเทพมหานคร</option>
-                                            <option value="1">นครปฐม</option>
-                                            <option value="2">นนทบุุรี</option>
-                                            <option value="3">สมุทรปราการ</option>
+                                            @foreach ($pageDetails['province'] as $item)
+                                                <option value="{{ $item['id'] }}">{{ $item['name_th'] }}</option>
+                                            @endforeach
                                         </select>
                                         <!--end::Select2-->
                                     </div>
@@ -306,12 +305,13 @@
                                         <label class="form-label">อำเภอ</label>
                                         <!--end::Label-->
                                         <!--begin::Select2-->
-                                        <select class="form-select mb-2" data-control="select2" data-hide-search="true" data-placeholder="- เลือก -" id="District">
+                                        <select class="form-select mb-2" id="amphure_id" name="amphure_id" data-control="select2" data-hide-search="false" data-placeholder="- เลือก -" disabled>
                                             <option></option>
-                                            <option value="0">อำเภอ</option>
-                                            <option value="1">อำเภอ</option>
-                                            <option value="2">อำเภอ</option>
-                                            <option value="3">อำเภอ</option>
+                                            @if ($pageDetails['company_profile']['amphure_id'] != '')
+                                                <option value="{{ $pageDetails['company_profile']['amphure_id'] }}">{{ $pageDetails['company_profile']['amphure_name'] }}</option>
+                                            @else
+                                                <option></option>
+                                            @endif
                                         </select>
                                         <!--end::Select2-->
                                     </div>
@@ -323,12 +323,13 @@
                                         <label class="form-label">ตำบล</label>
                                         <!--end::Label-->
                                         <!--begin::Select2-->
-                                        <select class="form-select mb-2" data-control="select2" data-hide-search="true" data-placeholder="- เลือก -" id="Subdistrict">
+                                        <select class="form-select mb-2" id="tambol_id" name="tambol_id" data-control="select2" data-hide-search="false" data-placeholder="- เลือก -" disabled>
                                             <option></option>
-                                            <option value="0">ตำบล</option>
-                                            <option value="1">ตำบล</option>
-                                            <option value="2">ตำบล</option>
-                                            <option value="3">ตำบล</option>
+                                            @if ($pageDetails['company_profile']['tambol_id'] != '')
+                                                <option value="{{ $pageDetails['company_profile']['tambol_id'] }}">{{ $pageDetails['company_profile']['tambol_name'] }}</option>
+                                            @else
+                                                <option></option>
+                                            @endif
                                         </select>
                                         <!--end::Select2-->
 
@@ -341,7 +342,7 @@
                                         <label class="form-label">รหัสไปรษณีย์</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control mb-2" value="" />
+                                        <input type="text" class="form-control mb-2" id="postal_code" name="postal_code" value="" disabled/>
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -363,7 +364,7 @@
             <a href="../../demo9/dist/apps/ecommerce/catalog/products.html" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">ยกเลิก</a>
             <!--end::Button-->
             <!--begin::Button-->
-            <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
+            <button type="submit" id="frm_sale_profile_submit" class="btn btn-primary">
                 <span class="indicator-label">บันทึก</span>
                 <span class="indicator-progress">รอสักครู่...
                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -380,4 +381,5 @@
 @endsection
 
 @section('js-content')
+<script src="{{ asset('assets/js-external/sale-profile.js') }}"></script>
 @endsection
