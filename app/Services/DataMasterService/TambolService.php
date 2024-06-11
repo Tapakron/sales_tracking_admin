@@ -7,8 +7,8 @@ use App\Models\DataMasterModel\TambolModel;
 
 class TambolService
 {
-    public static function fetchById($amphure_id)
+    public static function fetchTambolById($amphure_id)
     {
-        return TambolModel::fetchById($amphure_id);
+        return TambolModel::fetchTambolById($amphure_id);
     }
 }

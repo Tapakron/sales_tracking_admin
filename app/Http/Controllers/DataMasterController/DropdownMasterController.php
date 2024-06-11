@@ -13,12 +13,12 @@ class DropdownMasterController extends Controller
 {
     public static function fetchAmphureById($province_id)
     {
-        $data = AmphureService::fetchById($province_id)->toArray();
+        $data = AmphureService::fetchAmphureById($province_id)->toArray();
         return JsonResult::success($data);
     }
     public static function fetchTambolById($amphure_id)
     {
-        $data = TambolService::fetchById($amphure_id)->toArray();
+        $data = TambolService::fetchTambolById($amphure_id)->toArray();
         return JsonResult::success($data);
     }
 }

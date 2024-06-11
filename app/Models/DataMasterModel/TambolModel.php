@@ -14,7 +14,14 @@ class TambolModel
         return DB::connection('datamaster')->table(self::TABLE)
             ->get();
     }
-    public static function fetchById($amphure_id)
+    public static function fetchById($tambol_id)
+    {
+        return DB::connection('datamaster')->table(self::TABLE)
+            ->where(self::PK, $tambol_id)
+            ->where('is_delete', 0)
+            ->first();
+    }
+    public static function fetchTambolById($amphure_id)
     {
         return DB::connection('datamaster')->table(self::TABLE)
             ->where(self::PK, $amphure_id)
