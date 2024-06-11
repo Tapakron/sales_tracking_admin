@@ -100,7 +100,7 @@ class AuthService
     {
         try {
             $user = Auth::user();
-            $currentpassword = trim($body['currentpassword']);
+            $currentpassword = trim($body['old_password']);
             $passwordHash = $user->password;
             if (Hash::check($currentpassword, $passwordHash) == false) {
                 $result['message'] = 'รหัสผ่านไม่ถูกต้อง';
@@ -108,14 +108,21 @@ class AuthService
                 $result['success'] = false;
                 return $result;
             }
-            $data['password'] = Hash::make(trim($body['password']));
-            $rsCreateUser = SysloginModel::update($user->id, $data);
-
-            $result['data'] = $user;
-            $result['message'] = 'เปลี่ยนรหัสผ่านสำเร็จ';
-            $result['message_ex'] = "Successfully";
-            $result['success'] = true;
-            return $result;
+            $data['new_password'] = Hash::make(trim($body['new_password']));
+            $rsCreate = SysloginModel::update($user->id, $data);
+            if ($rsCreate == false) {;
+                $rs['message'] = "เปลี่ยนรหัสผ่านไม่สำเร็จ";
+                $rs['success'] = $rsCreate;
+                return $rs;
+            }
+            $rs['message'] = "เปลี่ยนรหัสผ่านสำเร็จ";
+            $rs['success'] = $rsCreate;
+            return $rs;
+            // $result['data'] = $user;
+            // $result['message'] = 'เปลี่ยนรหัสผ่านสำเร็จ';
+            // $result['message_ex'] = "Successfully";
+            // $result['success'] = true;
+            // return $result;
         } catch (\Throwable $th) {
             throw $th;
         }
