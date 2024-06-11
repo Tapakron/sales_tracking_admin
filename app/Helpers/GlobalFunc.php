@@ -45,10 +45,11 @@ class GlobalFunc
     //     $imagePath = "/assets/images/" . $sys_customer_code . "/news/";
     //     return $imagePath;
     // }
-    public static function path_image($sys_customer_code)
+    public static function path_image($sys_customer_code, $location)
     {
-        $imagePath = "/assets/images/" . $sys_customer_code . "/";
-        return $imagePath;
+        $imagePathStorage = public_path("assets/images/" . $sys_customer_code . "/" . $location . "/");
+        $imagePathDB = "/assets/images/" . $sys_customer_code . "/" . $location . "/";
+        return [$imagePathStorage, $imagePathDB];
     }
     public static function uploadImg($request, $user, $id, $type, $location)
     {
@@ -58,16 +59,16 @@ class GlobalFunc
                 $image = $request->file($type);
 
                 if ($image) {
-                    $id = $user->id;
-                    $imagePath = self::path_image($user->sys_customer_code . $location);
-
+                    // $id = $user->id;
+                    list($imagePathStorage, $imagePathDB) = self::path_image($user->sys_customer_code, $location);
                     // Delete existing image
-                    File::delete($imagePath . $id);
+                    File::delete($imagePathStorage . $id);
 
                     // Move the new image and update profile_img field
                     $new_img_name = $id . '.' . $image->getClientOriginalExtension();
-                    $image->move($imagePath, $new_img_name);
-                    $body[$type] = $new_img_name;
+                    $image->move($imagePathStorage, $new_img_name);
+                    $body[$type] = $imagePathDB . $new_img_name;
+                    // dd($imagePathStorage, $body[$type], '77788');
                 }
             } else {
                 // If no image provided, remove profile_img field
