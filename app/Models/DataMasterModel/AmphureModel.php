@@ -26,6 +26,6 @@ class AmphureModel
         return DB::connection('datamaster')->table(self::TABLE)
             ->where('province_id', $province_id)
             ->where('is_delete', 0)
-            ->first();
+            ->get();
     }
 }
