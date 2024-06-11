@@ -197,11 +197,86 @@ var ComapanyProfileForm2 = function () {
         }
     }
 }();
+var UpdatePassword = function () {
+    const t = document.getElementById("kt_modal_update_password"),
+        e = t.querySelector("#kt_modal_update_password_form"),
+        n = new bootstrap.Modal(t);
+    return {
+        init: function () {
+            (() => {
+                var o = FormValidation.formValidation(e, {
+                    fields: {
+                        current_password: {
+                            validators: {
+                                notEmpty: {
+                                    message: "ระบุรหัสผ่านเดิม"
+                                }
+                            }
+                        },
+                        new_password: {
+                            validators: {
+                                notEmpty: {
+                                    message: "ระบุรหัสผ่านใหม่"
+                                },
+                                callback: {
+                                    message: "Please enter valid password",
+                                    callback: function (t) {
+                                        if (t.value.length > 0) return validatePassword()
+                                    }
+                                }
+                            }
+                        },
+                        confirm_password: {
+                            validators: {
+                                notEmpty: {
+                                    message: "ยืนยันรหัสผ่านใหม่"
+                                },
+                                identical: {
+                                    compare: function () {
+                                        return e.querySelector('[name="new_password"]').value
+                                    },
+                                    message: "รหัสผ่านใหม่ไม่ตรงกัน!"
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        trigger: new FormValidation.plugins.Trigger,
+                        bootstrap: new FormValidation.plugins.Bootstrap5({
+                            rowSelector: ".fv-row",
+                            eleInvalidClass: "",
+                            eleValidClass: ""
+                        })
+                    }
+                });
+                
+                const a = t.querySelector('[data-kt-users-modal-action="submit"]');
+                a.addEventListener("click", (function (t) {
+                    t.preventDefault(), o && o.validate().then((function (t) {
+                        console.log("validated!"), "Valid" == t && (a.setAttribute("data-kt-indicator", "on"), a.disabled = !0, setTimeout((function () {
+                            a.removeAttribute("data-kt-indicator"), a.disabled = !1, Swal.fire({
+                                text: "Form has been successfully submitted!",
+                                icon: "success",
+                                buttonsStyling: !1,
+                                confirmButtonText: "Ok, got it!",
+                                customClass: {
+                                    confirmButton: "btn btn-primary"
+                                }
+                            }).then((function (t) {
+                                t.isConfirmed && n.hide()
+                            }))
+                        }), 2e3))
+                    }))
+                }))
+            })()
+        }
+    }
+}();
 KTUtil.onDOMContentLoaded((function () {
     ComapanyProfileForm1.init()
     ComapanyProfileForm2.init()
+    UpdatePassword.init()
     $('#province_id').change(function(event) {
-        console.log($('#province_id').val());
 		if ($('#province_id').val() != "") {
 			var province_id = $('#province_id').val();
 			$.ajax({
