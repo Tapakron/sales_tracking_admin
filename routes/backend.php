@@ -25,9 +25,9 @@ use App\Http\Controllers\TargetSalesController;
 // Route::post('/account/create', [AuthController::class, 'create']);
 // Route::post('/backend/admin/sales/create', [SalesController::class, 'create']);
 //'middleware' => 'auth',
+//! ล็อคอินใช้งาน
+Route::post('/backend/login', [AuthController::class, 'login']);
 Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
-    //! ล็อคอินใช้งาน
-    Route::post('/login', [AuthController::class, 'login']);
     //! เป้ายอดขาย
     Route::post('/targetsales/create', [TargetSalesController::class, 'create']);
     //! ล็อคเอาท์

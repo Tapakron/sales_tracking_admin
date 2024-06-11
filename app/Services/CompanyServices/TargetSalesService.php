@@ -15,6 +15,10 @@ class TargetSalesService
         try {
             DB::beginTransaction();
             $user = Auth::user();
+            $commission_id = $body['commission_id'];
+            // if(is_null($commission_id)){
+
+            // }
             $rsCreate = TargetSalesModel::create($body);
             if ($rsCreate == false) {
                 $rs['message'] = "บันทึกข้อมูลผิดพลาด";
