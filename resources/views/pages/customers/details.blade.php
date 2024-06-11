@@ -59,7 +59,7 @@
                         <div class="fw-bold mt-5">ที่ตั้ง</div>
                         <div class="text-gray-600">{{ $pageDetails['company_profile']['address_text'] }}
                             <!-- <br />Melbourne 3000 VIC
-                                                <br />Australia -->
+                                                    <br />Australia -->
                         </div>
                         <!--begin::Details item-->
                     </div>
@@ -239,17 +239,17 @@
                                 <div class="row mb-5">
                                     <div class="col-md-3 fv-row">
                                         <label class="form-label required">จังหวัด</label>
-                                        <select class="form-select mb-2" id="province_id" name="province_id" data-control="select2" data-hide-search="true" data-placeholder="- เลือก -">
+                                        <select class="form-select mb-2" id="province_id" name="province_id" data-control="select2" data-hide-search="false" data-placeholder="- เลือก -">
                                             <option></option>
                                             @foreach ($pageDetails['province'] as $item)
-                                                <option value="{{ $item['id'] }}" {{ $pageDetails['company_profile']['province_id'] == $item['id'] ? "selected" : "" }}>{{ $item['name_th'] }}</option>
+                                                <option value="{{ $item['id'] }}" {{ $pageDetails['company_profile']['province_id'] == $item['id'] ? 'selected' : '' }}>{{ $item['name_th'] }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="col-md-3 fv-row">
                                         <label class="form-label required">อำเภอ</label>
-                                        <select class="form-select mb-2" id="amphure_id" name="amphure_id" data-control="select2" data-hide-search="true" data-placeholder="- เลือก -" disabled>
-                                            @if ($pageDetails['company_profile']['amphure_id'] != "")
+                                        <select class="form-select mb-2" id="amphure_id" name="amphure_id" data-control="select2" data-hide-search="false" data-placeholder="- เลือก -" disabled>
+                                            @if ($pageDetails['company_profile']['amphure_id'] != '')
                                                 <option value="{{ $pageDetails['company_profile']['amphure_id'] }}">{{ $pageDetails['company_profile']['amphure_name'] }}</option>
                                             @else
                                                 <option></option>
@@ -258,8 +258,8 @@
                                     </div>
                                     <div class="col-md-3 fv-row">
                                         <label class="form-label required">ตำบล</label>
-                                        <select class="form-select mb-2" id="tambol_id" name="tambol_id" data-control="select2" data-hide-search="true" data-placeholder="- เลือก -" disabled>
-                                            @if ($pageDetails['company_profile']['tambol_id'] != "")
+                                        <select class="form-select mb-2" id="tambol_id" name="tambol_id" data-control="select2" data-hide-search="false" data-placeholder="- เลือก -" disabled>
+                                            @if ($pageDetails['company_profile']['tambol_id'] != '')
                                                 <option value="{{ $pageDetails['company_profile']['tambol_id'] }}">{{ $pageDetails['company_profile']['tambol_name'] }}</option>
                                             @else
                                                 <option></option>
@@ -268,7 +268,7 @@
                                     </div>
                                     <div class="col-md-3 fv-row">
                                         <label class="form-label">รหัสไปรษณีย์</label>
-                                        <input type="text" class="form-control mb-2" id="postal_code" name="postal_code" value="{{ $pageDetails['company_profile']['postal_code'] }}" disabled/>
+                                        <input type="text" class="form-control mb-2" id="postal_code" name="postal_code" value="{{ $pageDetails['company_profile']['postal_code'] }}" disabled />
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
@@ -309,7 +309,7 @@
                                     <!--begin::Table body-->
                                     <tbody class="fs-6 fw-semibold text-gray-600">
                                         <tr>
-                                            <td>Password</td>
+                                            <td>รหัสผ่าน</td>
                                             <td>******</td>
                                             <td class="text-end">
                                                 <button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_update_password">
@@ -351,12 +351,14 @@
                     <h2 class="fw-bold">Update Password</h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
-                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close" data-bs-dismiss="modal" aria-label="Close">
                         <i class="ki-duotone ki-cross fs-1">
                             <span class="path1"></span>
                             <span class="path2"></span>
                         </i>
                     </div>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+
                     <!--end::Close-->
                 </div>
                 <!--end::Modal header-->
@@ -366,8 +368,8 @@
                     <form id="kt_modal_update_password_form" class="form" action="#">
                         <!--begin::Input group=-->
                         <div class="fv-row mb-10">
-                            <label class="required form-label fs-6 mb-2">Current Password</label>
-                            <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="current_password" autocomplete="off" />
+                            <label class="required form-label fs-6 mb-2">รหัสผ่านปัจจุบัน</label>
+                            <input class="form-control form-control-lg" type="password" placeholder="" name="current_password" autocomplete="off" />
                         </div>
                         <!--end::Input group=-->
                         <!--begin::Input group-->
@@ -375,11 +377,11 @@
                             <!--begin::Wrapper-->
                             <div class="mb-1">
                                 <!--begin::Label-->
-                                <label class="form-label fw-semibold fs-6 mb-2">New Password</label>
+                                <label class="required form-label fw-semibold fs-6 mb-2">รหัสผ่านใหม่</label>
                                 <!--end::Label-->
                                 <!--begin::Input wrapper-->
                                 <div class="position-relative mb-3">
-                                    <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="new_password" autocomplete="off" />
+                                    <input class="form-control form-control-lg" type="password" placeholder="" name="new_password" autocomplete="off" />
                                     <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
                                         <i class="ki-duotone ki-eye-slash fs-1">
                                             <span class="path1"></span>
@@ -412,15 +414,15 @@
                         <!--end::Input group=-->
                         <!--begin::Input group=-->
                         <div class="fv-row mb-10">
-                            <label class="form-label fw-semibold fs-6 mb-2">Confirm New Password</label>
-                            <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="confirm_password" autocomplete="off" />
+                            <label class="required form-label fw-semibold fs-6 mb-2">ยืนยันรหัสผ่านใหม่</label>
+                            <input class="form-control form-control-lg" type="password" placeholder="" name="confirm_password" autocomplete="off" />
                         </div>
                         <!--end::Input group=-->
                         <!--begin::Actions-->
                         <div class="text-center pt-15">
-                            <button type="reset" class="btn btn-light me-3" data-kt-users-modal-action="cancel">Discard</button>
+                            <button type="reset" class="btn btn-light me-3" data-kt-users-modal-action="cancel">ยกเลิก</button>
                             <button type="submit" class="btn btn-primary" data-kt-users-modal-action="submit">
-                                <span class="indicator-label">Submit</span>
+                                <span class="indicator-label">ยืนยัน</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
