@@ -2,6 +2,7 @@
 
 namespace App\Models\CompanyModels;
 
+use App\Helpers\GlobalFunc;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +14,7 @@ class NewsService
         try {
             $user = Auth::user();
             $body = [
+                'news_id' => GlobalFunc::getNewId(),
                 'is_delete' => false,
                 'created_at' => Carbon::now(),
                 'created_by' => $user->id

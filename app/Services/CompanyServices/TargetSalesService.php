@@ -5,6 +5,7 @@ namespace App\Services\CompanyServices;
 use App\Helpers\JsonResult;
 use App\Models\CompanyModels\TargetSalesDetailsModel;
 use App\Models\CompanyModels\TargetSalesModel;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -40,6 +41,41 @@ class TargetSalesService
             return $rs;
         } catch (\Throwable $th) {
             DB::rollBack();
+            throw $th;
+        }
+    }
+    public static function delete($id)
+    {
+        try {
+            $user = Auth::user();
+            $body = [
+                'is_delete' => true,
+                'deleted_at' => Carbon::now(),
+                'deleted_by' => $user->id
+            ];
+            $rsDelete = TargetSalesDetailsModel::update($id, $body);
+            if ($rsDelete == false) {
+                $rs['message'] = "แก้ไขข้อมูลผิดพลาด";
+                $rs['success'] = $rsDelete;
+                return $rs;
+            }
+            $rs['message'] = "แก้ไขข้อมูลสำเร็จ";
+            $rs['success'] = $rsDelete;
+            return $rs;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    public static function fetch()
+    {
+        try {
+            $user = Auth::user();
+            $fliters = [
+                'company_id' => $user->company_id,
+            ];
+            $data = TargetSalesDetailsModel::fetch($fliters);
+            return $data;
+        } catch (\Throwable $th) {
             throw $th;
         }
     }

@@ -30,6 +30,8 @@ Route::post('/backend/login', [AuthController::class, 'login']);
 Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
     //! เป้ายอดขาย
     Route::post('/targetsales/create', [TargetSalesController::class, 'create']);
+    Route::get('/targetsales/fetch', [TargetSalesController::class, 'fetch']);
+    Route::get('/targetsales/delete/{id}', [TargetSalesController::class, 'fetch']);
     //! ล็อคเอาท์
     Route::post('/logout', [AuthController::class, 'logout']);
     //todo admin

@@ -6,6 +6,7 @@ use App\Models\DataMasterModel\AmphureModel;
 use App\Models\DataMasterModel\ProvinceModel;
 use App\Models\DataMasterModel\TambolModel;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class GlobalFunc
 {
@@ -13,35 +14,69 @@ class GlobalFunc
     {
         return DB::select('select NEWID() as uuid')[0]->uuid;
     }
-    public static function path_image_customer()
+    // public static function path_image_customer()
+    // {
+    //     $imagePath = public_path("assets/images/customer");
+    //     return $imagePath;
+    // }
+    // public static function path_image_sales($sys_customer_code)
+    // {
+    //     $imagePath = "/assets/images/" . $sys_customer_code . "/user/";
+    //     // $imagePath = public_path("assets/images/sales");
+    //     return $imagePath;
+    // }
+    // public static function path_image_admin()
+    // {
+    //     $imagePath = public_path("assets/images/admin");
+    //     return $imagePath;
+    // }
+    // public static function path_image_payment()
+    // {
+    //     $imagePath = public_path("assets/images/payment");
+    //     return $imagePath;
+    // }
+    // public static function path_image_receipt()
+    // {
+    //     $imagePath = public_path("assets/images/receipt");
+    //     return $imagePath;
+    // }
+    // public static function path_image_news($sys_customer_code)
+    // {
+    //     $imagePath = "/assets/images/" . $sys_customer_code . "/news/";
+    //     return $imagePath;
+    // }
+    public static function path_image($sys_customer_code)
     {
-        $imagePath = public_path("assets/images/customer");
+        $imagePath = "/assets/images/" . $sys_customer_code . "/";
         return $imagePath;
     }
-    public static function path_image_sales()
+    public static function uploadImg($request, $user, $id, $type, $location)
     {
-        $imagePath = public_path("assets/images/sales");
-        return $imagePath;
-    }
-    public static function path_image_admin()
-    {
-        $imagePath = public_path("assets/images/admin");
-        return $imagePath;
-    }
-    public static function path_image_payment()
-    {
-        $imagePath = public_path("assets/images/payment");
-        return $imagePath;
-    }
-    public static function path_image_receipt()
-    {
-        $imagePath = public_path("assets/images/receipt");
-        return $imagePath;
-    }
-    public static function path_image_news($sys_customer_code)
-    {
-        $imagePath = "/assets/images/" . $sys_customer_code . "/news/";
-        return $imagePath;
+        try {
+            $body = array();
+            if ($request->hasFile($type)) {
+                $image = $request->file($type);
+
+                if ($image) {
+                    $id = $user->id;
+                    $imagePath = self::path_image($user->sys_customer_code . $location);
+
+                    // Delete existing image
+                    File::delete($imagePath . $id);
+
+                    // Move the new image and update profile_img field
+                    $new_img_name = $id . '.' . $image->getClientOriginalExtension();
+                    $image->move($imagePath, $new_img_name);
+                    $body[$type] = $new_img_name;
+                }
+            } else {
+                // If no image provided, remove profile_img field
+                unset($body[$type]);
+            }
+            return $body;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
     public static function setProfileCompany($data)
     {
