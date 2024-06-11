@@ -19,7 +19,12 @@
                     <div class="d-flex flex-center flex-column mb-5">
                         <!--begin::Avatar-->
                         <div class="symbol symbol-150px symbol-circle mb-7">
-                            <img src="{{ asset('assets/media/avatars/sme.png') }}" alt="image" />
+                            @if ($pageDetails['company_profile']['company_img'] != '')
+                                <img src="{{ asset($pageDetails['company_profile']['company_img']) }}" alt="image" />
+                            @else
+                                <img src="{{ asset('assets/media/avatars/sme.png') }}" alt="image" />
+                            @endif
+
                         </div>
                         <!--end::Avatar-->
                         <!--begin::Name-->
@@ -59,7 +64,7 @@
                         <div class="fw-bold mt-5">ที่ตั้ง</div>
                         <div class="text-gray-600">{{ $pageDetails['company_profile']['address_text'] }}
                             <!-- <br />Melbourne 3000 VIC
-                                                    <br />Australia -->
+                                                            <br />Australia -->
                         </div>
                         <!--begin::Details item-->
                     </div>
@@ -129,7 +134,12 @@
                                         <!--begin::Image input-->
                                         <div class="image-input image-input-outline image-input-placeholder" data-kt-image-input="true">
                                             <!--begin::Preview existing avatar-->
-                                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ asset('assets/media/avatars/sme.png') }})"></div>
+                                            @if ($pageDetails['company_profile']['company_img'] != '')
+                                                <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ asset($pageDetails['company_profile']['company_img']) }})"></div>
+                                            @else
+                                                <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ asset('assets/media/avatars/sme.png') }})"></div>
+                                            @endif
+
                                             <!--end::Preview existing avatar-->
                                             <!--begin::Edit-->
                                             <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
