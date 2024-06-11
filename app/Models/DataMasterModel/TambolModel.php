@@ -26,6 +26,6 @@ class TambolModel
         return DB::connection('datamaster')->table(self::TABLE)
             ->where(self::PK, $amphure_id)
             ->where('is_delete', 0)
-            ->first();
+            ->get();
     }
 }
