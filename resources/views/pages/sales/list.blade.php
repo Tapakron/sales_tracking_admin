@@ -17,16 +17,14 @@
                         <span class="path2"></span>
                     </i>
                     <input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-13 me-5" placeholder="ค้นหา" />
-                    <div class="w-100 mw-150px">
-                        <!--begin::Select2-->
+                    {{-- <div class="w-100 mw-150px">
                         <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="- เลือก -">
                             <option></option>
                             <option value="all" selected>ทั้งหมด</option>
                             <option value="bk">บุคคล</option>
                             <option value="nc">นายช่าง</option>
                         </select>
-                        <!--end::Select2-->
-                    </div>
+                    </div> --}}
                 </div>
                 <!--end::Search-->
             </div>
@@ -35,18 +33,14 @@
             <div class="card-toolbar">
                 <!--begin::Toolbar-->
                 <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-                    <!--begin::Import-->
-                    <a href="{{ url("/management/users/import") }}">
+                    {{-- <a href="{{ url("/management/users/import") }}">
                         <button type="button" class="btn btn-light-primary me-3">
                             <i class="ki-duotone ki-exit-up fs-2">
                                 <span class="path1"></span>
                                 <span class="path2"></span>
                             </i>นำเข้าข้อมูล
                         </button>
-                    </a>
-                    <!--end::Import-->
-
-                    <!--begin::Add user-->
+                    </a> --}}
                     <a href="{{ url("/sales/add") }}">
                         <button type="button" class="btn btn-primary">
                             <i class="ki-duotone ki-plus fs-2"></i>เพิ่มพนักงาน
@@ -258,7 +252,8 @@
 @endsection
 
 @section('js-content')
-    <script src="{{ asset('assets/js/custom/apps/user-management/users/list/table.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/user-management/users/list/export-users.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/user-management/users/list/add.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/custom/apps/user-management/users/list/table.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/js/custom/apps/user-management/users/list/export-users.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/js/custom/apps/user-management/users/list/add.js') }}"></script> --}}
+    <script src="{{ asset('assets/js-external/sales-list.js') }}"></script>
 @endsection
