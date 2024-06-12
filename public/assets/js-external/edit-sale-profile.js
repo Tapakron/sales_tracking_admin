@@ -66,7 +66,7 @@ var SaleProfileForm1 = function () {
                                     btn.disabled = !0;
                                     let formData = new FormData();
                                     let frmData = {
-                                        user_id : $('#frm_sale_profile').data("userid"),
+                                        id : $('#frm_sale_profile').data("userid"),
                                         user_img: $('#user_img').prop('files')[0],
                                         name : $('#name').val(),
                                         username : $('#username').val(),
