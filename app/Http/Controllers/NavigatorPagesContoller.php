@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\AuthService\SalesService;
 use App\Services\DataMasterService\productService;
 use App\Services\DataMasterService\ProvinceService;
 
@@ -343,7 +344,9 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '',
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
+            'sales' => json_decode(SalesService::fetch(), true),
         ];
+        dd($data['pageDetails']);
         return view('pages.sales.list')->with($data);
     }
     public function salesImport()
