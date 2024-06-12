@@ -56,7 +56,7 @@ class SalesService
     {
         try {
             $user = Auth::user();
-            $user_id = $body['user_id'];
+            $user_id = $body['id'];
             unset($body['new_id']);
             unset($body['company_id']);
             unset($body['remove_img']);
