@@ -19,4 +19,11 @@ class CustomerModel
             ->where(self::PK, $id)
             ->update($data);
     }
+    public static function fetch($company_id)
+    {
+        return DB::table(self::TABLE)
+            ->where('company_id', $company_id)
+            ->where('is_delete', 0)
+            ->get();
+    }
 }

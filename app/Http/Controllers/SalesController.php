@@ -50,11 +50,11 @@ class SalesController extends Controller
             $str = "";
             foreach ($message as $key => $item) {
                 if ($key == 0) {
-                    $str =   ($key + 1) . "." . explode(".", $item)[1];
-                    $str .=   "\n ";
+                    $str = ($key + 1) . "." . explode(".", $item)[1];
+                    $str .= "\n ";
                 } else {
-                    $str .=   ($key + 1) . "." . explode(".", $item)[1];
-                    $str .=   "\n";
+                    $str .= ($key + 1) . "." . explode(".", $item)[1];
+                    $str .= "\n";
                 }
             }
             $result['data'] = null;

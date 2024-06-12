@@ -52,8 +52,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
         Route::group(['prefix' => 'customers'], function () {
             Route::post('/create', [CustomerController::class, 'create']);
             // Route::post('/update', [CustomerController::class, 'update']);
-            // Route::get('/delete', [CustomerController::class, 'delete']);
-            // Route::get('/fetch', [CustomerController::class, 'fetch']);
+            Route::get('/delete/{id}', [CustomerController::class, 'delete']);
+            Route::get('/fetch', [CustomerController::class, 'fetch']);
             // Route::get('/fetchbyid/{id}', [CustomerController::class, 'fetchById']);
             // Route::get('/recordsales/{id}', [CustomerController::class, 'recordSalesById']);
         });

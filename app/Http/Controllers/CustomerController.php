@@ -50,11 +50,11 @@ class CustomerController extends Controller
             $str = "";
             foreach ($message as $key => $item) {
                 if ($key == 0) {
-                    $str =   ($key + 1) . "." . explode(".", $item)[1];
-                    $str .=   "\n ";
+                    $str = ($key + 1) . "." . explode(".", $item)[1];
+                    $str .= "\n ";
                 } else {
-                    $str .=   ($key + 1) . "." . explode(".", $item)[1];
-                    $str .=   "\n";
+                    $str .= ($key + 1) . "." . explode(".", $item)[1];
+                    $str .= "\n";
                 }
             }
             $result['data'] = null;
@@ -74,5 +74,21 @@ class CustomerController extends Controller
             return JsonResult::errors(null, $result['message']);
         }
         return JsonResult::success(null, $result['message']);
+    }
+    public function delete($customer_id)
+    {
+        $result = CustomerService::delete($customer_id);
+        if (!$result['success']) {
+            return JsonResult::errors(null, $result['message']);
+        }
+        return JsonResult::success(null, $result['message']);
+    }
+    public static function fetch()
+    {
+        $result = CustomerService::fetch();
+        if (!$result) {
+            return JsonResult::errors(null, 'ไม่พบข้อมูล');
+        }
+        return JsonResult::success($result);
     }
 }
