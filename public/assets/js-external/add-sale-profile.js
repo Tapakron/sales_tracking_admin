@@ -100,6 +100,9 @@ var SaleProfileForm1 = function () {
                                         success: function (response) {
                                             if (response.success) {
                                                 toastr.success('บันทึกข้อมูลสำเร็จ');
+                                                setTimeout(() => {
+                                                    window.location.reload();
+                                                }, 1000);
                                             } else {
                                                 toastr.warning('บันทึกข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
                                             }

@@ -381,5 +381,5 @@
 @endsection
 
 @section('js-content')
-<script src="{{ asset('assets/js-external/sale-profile.js') }}"></script>
+<script src="{{ asset('assets/js-external/add-sale-profile.js') }}"></script>
 @endsection
