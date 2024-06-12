@@ -89,13 +89,14 @@
                 <!--begin::Card body-->
                 <div class="card-body pt-0">
                     <!--begin::Input group-->
-                    <!--begin::Select2-->            
-                    <div class="fv-row w-100 flex-md-root mb-2">        
-                    <select class="form-select mb-2" id="favorite_product" name="favorite_product" data-control="select2" data-hide-search="false" data-placeholder="- เลือก -"  data-allow-clear="true" multiple="multiple">
-                        <option></option>
-                        <option value="bk">บุคคล</option>
-                        <option value="nc">นายช่าง</option>
-                    </select>
+                    <!--begin::Select2-->
+                    <div class="fv-row w-100 flex-md-root mb-2">
+                        <select class="form-select mb-2" id="favorite_product" name="favorite_product" data-control="select2" data-hide-search="false" data-placeholder="- เลือก -" data-allow-clear="true" multiple="multiple">
+                            <option></option>
+                            @foreach ($pageDetails['product'] as $item)
+                                <option value="{{ $item['product_id'] }}">{{ $item['product_name_th'] }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <!--end::Select2-->
                     <!--end::Input group-->
@@ -229,10 +230,9 @@
                                             <!--begin::Select2-->
                                             <select class="form-select mb-2" id="sales_in_charge" name="sales_in_charge" data-control="select2" data-hide-search="false" data-placeholder="- เลือก -">
                                                 <option></option>
-                                                <option value="01">นายสุกิจ จิตตดิ</option>
-                                                <option value="02">นายสุกิจ จิตตดิ</option>
-                                                <option value="03">นายสุกิจ จิตตดิ</option>
-                                                <option value="04">นายสุกิจ จิตตดิ</option>
+                                                @foreach ($pageDetails['sales'] as $item)
+                                                    <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                                                @endforeach
                                             </select>
                                             <!--end::Select2-->
                                             <!--begin::Description-->
