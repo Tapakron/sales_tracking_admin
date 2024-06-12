@@ -1499,7 +1499,7 @@
                                             <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                                 <a href="{{ url("/projects") }}">
                                                     <div class="symbol-label">
-                                                        <img src="{{ asset("{{ asset("assets/media/avatars/300-21.jpg") }}") }}" alt="Ethan Wilder" class="w-100" />
+                                                        <img alt="Pic" src="{{ asset("assets/media/avatars/300-21.jpg") }}" alt="Ethan Wilder" class="w-100"/>
                                                     </div>
                                                 </a>
                                             </div>
@@ -1629,7 +1629,7 @@
                                             <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                                 <a href="{{ url("/projects") }}">
                                                     <div class="symbol-label">
-                                                        <img src="{{ asset("{{ asset("assets/media/avatars/300-21.jpg") }}") }}" alt="Ethan Wilder" class="w-100" />
+                                                        <img alt="Pic" src="{{ asset("assets/media/avatars/300-21.jpg") }}" alt="Ethan Wilder" class="w-100"/>
                                                     </div>
                                                 </a>
                                             </div>
@@ -1825,7 +1825,7 @@
                                             <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                                 <a href="{{ url("/projects") }}">
                                                     <div class="symbol-label">
-                                                        <img src="{{ asset("{{ asset("assets/media/avatars/300-13.jpg") }}") }}" alt="John Miller" class="w-100" />
+                                                        <img src="{{ asset("assets/media/avatars/300-13.jpg") }}" alt="John Miller" class="w-100" />
                                                     </div>
                                                 </a>
                                             </div>
@@ -2085,7 +2085,7 @@
                                             <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                                 <a href="{{ url("/projects") }}">
                                                     <div class="symbol-label">
-                                                        <img src="{{ asset("{{ asset("assets/media/avatars/300-9.jpg") }}") }}" alt="Francis Mitcham" class="w-100" />
+                                                        <img src="{{ asset("assets/media/avatars/300-9.jpg") }}" alt="Francis Mitcham" class="w-100" />
                                                     </div>
                                                 </a>
                                             </div>

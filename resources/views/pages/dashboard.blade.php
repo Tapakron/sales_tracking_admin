@@ -14,7 +14,7 @@
                 <!--begin::Card-->
                 <div class="card card-stretch">
                     <!--begin::Link-->
-                    <a href="{{ url("/sales/listing") }}" class="btn btn-flex btn-text-gray-800 btn-icon-gray-400 btn-active-color-primary bg-body flex-column justfiy-content-start align-items-start text-start w-100 p-10">
+                    <a href="{{ url("/customers/listing") }}" class="btn btn-flex btn-text-gray-800 btn-icon-gray-400 btn-active-color-primary bg-body flex-column justfiy-content-start align-items-start text-start w-100 p-10">
                         <i class="ki-duotone ki-address-book fs-2tx mb-5 ms-n1">
                             <span class="path1"></span>
                             <span class="path2"></span>
@@ -50,7 +50,7 @@
                 <!--begin::Card-->
                 <div class="card card-stretch">
                     <!--begin::Link-->
-                    <a href="{{ url("/management/users/list") }}" class="btn btn-flex btn-text-gray-800 btn-icon-gray-400 btn-active-color-primary bg-body flex-column justfiy-content-start align-items-start text-start w-100 p-10">
+                    <a href="{{ url("/sales/list") }}" class="btn btn-flex btn-text-gray-800 btn-icon-gray-400 btn-active-color-primary bg-body flex-column justfiy-content-start align-items-start text-start w-100 p-10">
                         <i class="ki-duotone ki-profile-user fs-2tx mb-5 ms-n1">
                             <span class="path1"></span>
                             <span class="path2"></span>
@@ -70,7 +70,7 @@
                 <!--begin::Card-->
                 <div class="card card-stretch">
                     <!--begin::Link-->
-                    <a href="{{ url("/sales/details") }}" class="btn btn-flex btn-text-gray-800 btn-icon-gray-400 btn-active-color-primary bg-body flex-column justfiy-content-start align-items-start text-start w-100 p-10">
+                    <a href="{{ url("/invoices/invoices") }}" class="btn btn-flex btn-text-gray-800 btn-icon-gray-400 btn-active-color-primary bg-body flex-column justfiy-content-start align-items-start text-start w-100 p-10">
                         <i class="ki-duotone ki-wallet fs-2tx mb-5 ms-n1">
                             <span class="path1"></span>
                             <span class="path2"></span>
@@ -2373,7 +2373,7 @@
                         <!--end::Title-->
                         <!--begin::Toolbar-->
                         <!-- <div class="card-toolbar">
-                            <a href="../../demo23/dist/apps/ecommerce/sales/listing.html" class="btn btn-sm btn-light">ดูทั้งหมด</a>
+                            <a href="../../demo23/dist/apps/ecommerce/customers/listing.html" class="btn btn-sm btn-light">ดูทั้งหมด</a>
                         </div> -->
                         <!--end::Toolbar-->
                     </div>

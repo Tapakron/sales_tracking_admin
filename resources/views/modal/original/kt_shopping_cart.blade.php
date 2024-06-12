@@ -28,7 +28,7 @@
 				<div class="d-flex flex-column me-3">
 					<!--begin::Section-->
 					<div class="mb-3">
-						<a href="{{ url("/sales/details") }}" class="text-gray-800 text-hover-primary fs-4 fw-bold">Iblender</a>
+						<a href="{{ url("/invoices/invoices") }}" class="text-gray-800 text-hover-primary fs-4 fw-bold">Iblender</a>
 						<span class="text-gray-400 fw-semibold d-block">The best kitchen gadget in 2022</span>
 					</div>
 					<!--end::Section-->
@@ -63,7 +63,7 @@
 				<div class="d-flex flex-column me-3">
 					<!--begin::Section-->
 					<div class="mb-3">
-						<a href="{{ url("/sales/details") }}" class="text-gray-800 text-hover-primary fs-4 fw-bold">SmartCleaner</a>
+						<a href="{{ url("/invoices/invoices") }}" class="text-gray-800 text-hover-primary fs-4 fw-bold">SmartCleaner</a>
 						<span class="text-gray-400 fw-semibold d-block">Smart tool for cooking</span>
 					</div>
 					<!--end::Section-->
@@ -98,7 +98,7 @@
 				<div class="d-flex flex-column me-3">
 					<!--begin::Section-->
 					<div class="mb-3">
-						<a href="{{ url("/sales/details") }}" class="text-gray-800 text-hover-primary fs-4 fw-bold">CameraMaxr</a>
+						<a href="{{ url("/invoices/invoices") }}" class="text-gray-800 text-hover-primary fs-4 fw-bold">CameraMaxr</a>
 						<span class="text-gray-400 fw-semibold d-block">Professional camera for edge</span>
 					</div>
 					<!--end::Section-->
@@ -133,7 +133,7 @@
 				<div class="d-flex flex-column me-3">
 					<!--begin::Section-->
 					<div class="mb-3">
-						<a href="{{ url("/sales/details") }}" class="text-gray-800 text-hover-primary fs-4 fw-bold">$D Printer</a>
+						<a href="{{ url("/invoices/invoices") }}" class="text-gray-800 text-hover-primary fs-4 fw-bold">$D Printer</a>
 						<span class="text-gray-400 fw-semibold d-block">Manfactoring unique objekts</span>
 					</div>
 					<!--end::Section-->
@@ -168,7 +168,7 @@
 				<div class="d-flex flex-column me-3">
 					<!--begin::Section-->
 					<div class="mb-3">
-						<a href="{{ url("/sales/details") }}" class="text-gray-800 text-hover-primary fs-4 fw-bold">MotionWire</a>
+						<a href="{{ url("/invoices/invoices") }}" class="text-gray-800 text-hover-primary fs-4 fw-bold">MotionWire</a>
 						<span class="text-gray-400 fw-semibold d-block">Perfect animation tool</span>
 					</div>
 					<!--end::Section-->
@@ -203,7 +203,7 @@
 				<div class="d-flex flex-column me-3">
 					<!--begin::Section-->
 					<div class="mb-3">
-						<a href="{{ url("/sales/details") }}" class="text-gray-800 text-hover-primary fs-4 fw-bold">Samsung</a>
+						<a href="{{ url("/invoices/invoices") }}" class="text-gray-800 text-hover-primary fs-4 fw-bold">Samsung</a>
 						<span class="text-gray-400 fw-semibold d-block">Profile info,Timeline etc</span>
 					</div>
 					<!--end::Section-->
@@ -238,7 +238,7 @@
 				<div class="d-flex flex-column me-3">
 					<!--begin::Section-->
 					<div class="mb-3">
-						<a href="{{ url("/sales/details") }}" class="text-gray-800 text-hover-primary fs-4 fw-bold">$D Printer</a>
+						<a href="{{ url("/invoices/invoices") }}" class="text-gray-800 text-hover-primary fs-4 fw-bold">$D Printer</a>
 						<span class="text-gray-400 fw-semibold d-block">Manfactoring unique objekts</span>
 					</div>
 					<!--end::Section-->
