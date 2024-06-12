@@ -164,6 +164,7 @@ class NavigatorPagesContoller extends Controller
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
             'province' => json_decode(ProvinceService::fetch(), true),
+            'sale_profile' => (array)SalesService::fetchById($user_id),
         ];
         return view('pages.sales.edit')->with($data);
     }

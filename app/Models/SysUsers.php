@@ -31,7 +31,7 @@ class SysUsers
     {
         return DB::table(self::TABLE)
             ->where(self::PK, $user_id)
-            ->get();
+            ->first();
     }
     public static function checkUserName($username)
     {
