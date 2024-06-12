@@ -24,6 +24,7 @@ class SysUsers
         return DB::table(self::TABLE)
             ->where('company_id', $company_id)
             ->where('user_level', 3)
+            ->where('is_delete', 0)
             ->get();
     }
     public static function checkUserName($username)
