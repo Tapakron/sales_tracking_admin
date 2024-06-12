@@ -27,6 +27,12 @@ class SysUsers
             ->where('is_delete', 0)
             ->get();
     }
+    public static function fetchById($user_id)
+    {
+        return DB::table(self::TABLE)
+            ->where(self::PK, $user_id)
+            ->get();
+    }
     public static function checkUserName($username)
     {
         return DB::table(self::TABLE)

@@ -145,17 +145,20 @@ class SalesController extends Controller
         }
         return JsonResult::success(null, $result['message']);
     }
-    public static function fetch(Request $request)
+    public static function fetch()
     {
-        try {
-            $body = $request->all();
-            $result = SalesService::fetch($body);
-            if (!$result) {
-                return JsonResult::errors(null, 'ไม่พบข้อมูล');
-            }
-            return JsonResult::success($result);
-        } catch (\Throwable $th) {
-            throw $th;
+        $result = SalesService::fetch();
+        if (!$result) {
+            return JsonResult::errors(null, 'ไม่พบข้อมูล');
         }
+        return JsonResult::success($result);
+    }
+    public static function fetchById($user_id)
+    {
+        $result = SalesService::fetchById($user_id);
+        if (!$result) {
+            return JsonResult::errors(null, 'ไม่พบข้อมูล');
+        }
+        return JsonResult::success($result);
     }
 }

@@ -110,4 +110,13 @@ class SalesService
             throw $th;
         }
     }
+    public static function fetchById($user_id)
+    {
+        try {
+            $data = SysUsers::fetchById($user_id);
+            return $data;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }
