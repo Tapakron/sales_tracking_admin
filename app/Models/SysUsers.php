@@ -37,6 +37,6 @@ class SysUsers
     {
         return DB::table(self::TABLE)
             ->where('username', $username)
-            ->get();
+            ->first();
     }
 }

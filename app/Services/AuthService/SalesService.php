@@ -20,6 +20,7 @@ class SalesService
             unset($body['cancel_img']);
             $username = $body['username'];
             $rsCheck = SysUsers::checkUserName($username);
+            // dd(is_null($rsCheck), empty($rsCheck), isset($rsCheck), $rsCheck);
             if (is_null($rsCheck) == true) {
                 $body += [
                     'sme_id' => $user->sme_id,
@@ -42,7 +43,7 @@ class SalesService
                 $rs['success'] = $rsCreate;
                 return $rs;
             } else {
-                $rs['message'] = "รหัส Sales" . $username . " นี้ซ้ำ";
+                $rs['message'] = "รหัส Sales " . $username . " นี้ซ้ำ";
                 $rs['success'] = false;
                 return $rs;
             }
