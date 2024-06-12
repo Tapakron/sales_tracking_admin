@@ -78,7 +78,7 @@
                         <i class="ki-duotone ki-down fs-3"></i>
                     </span></div>
                     <span data-bs-toggle="tooltip" data-bs-trigger="hover" title="แก้ไขข้อมูลเซลส์">
-                        <a href="../../demo9/dist/apps/ecommerce/catalog/add-product.html" class="btn btn-sm btn-light-primary">แก้ไข</a>
+                        <a href="{{ url("/sales/add") }}" class="btn btn-sm btn-light-primary">แก้ไข</a>
                     </span>
                 </div>
                 <!--end::Details toggle-->
@@ -1472,7 +1472,7 @@
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="../../demo9/dist/apps/ecommerce/catalog/add-product.html" class="menu-link px-3">แก้ไข</a>
+                                                <a href="{{ url("/sales/add") }}" class="menu-link px-3">แก้ไข</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
@@ -1537,7 +1537,7 @@
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="../../demo9/dist/apps/ecommerce/catalog/add-product.html" class="menu-link px-3">แก้ไข</a>
+                                                <a href="{{ url("/sales/add") }}" class="menu-link px-3">แก้ไข</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
@@ -1602,7 +1602,7 @@
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="../../demo9/dist/apps/ecommerce/catalog/add-product.html" class="menu-link px-3">แก้ไข</a>
+                                                <a href="{{ url("/sales/add") }}" class="menu-link px-3">แก้ไข</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
@@ -1670,7 +1670,7 @@
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="../../demo9/dist/apps/ecommerce/catalog/add-product.html" class="menu-link px-3">แก้ไข</a>
+                                                <a href="{{ url("/sales/add") }}" class="menu-link px-3">แก้ไข</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
@@ -1735,7 +1735,7 @@
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="../../demo9/dist/apps/ecommerce/catalog/add-product.html" class="menu-link px-3">แก้ไข</a>
+                                                <a href="{{ url("/sales/add") }}" class="menu-link px-3">แก้ไข</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
@@ -1798,7 +1798,7 @@
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="../../demo9/dist/apps/ecommerce/catalog/add-product.html" class="menu-link px-3">แก้ไข</a>
+                                                <a href="{{ url("/sales/add") }}" class="menu-link px-3">แก้ไข</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
@@ -1863,7 +1863,7 @@
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="../../demo9/dist/apps/ecommerce/catalog/add-product.html" class="menu-link px-3">แก้ไข</a>
+                                                <a href="{{ url("/sales/add") }}" class="menu-link px-3">แก้ไข</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
@@ -1928,7 +1928,7 @@
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="../../demo9/dist/apps/ecommerce/catalog/add-product.html" class="menu-link px-3">แก้ไข</a>
+                                                <a href="{{ url("/sales/add") }}" class="menu-link px-3">แก้ไข</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
@@ -1993,7 +1993,7 @@
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="../../demo9/dist/apps/ecommerce/catalog/add-product.html" class="menu-link px-3">แก้ไข</a>
+                                                <a href="{{ url("/sales/add") }}" class="menu-link px-3">แก้ไข</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
@@ -2058,7 +2058,7 @@
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="../../demo9/dist/apps/ecommerce/catalog/add-product.html" class="menu-link px-3">แก้ไข</a>
+                                                <a href="{{ url("/sales/add") }}" class="menu-link px-3">แก้ไข</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
@@ -2126,7 +2126,7 @@
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="../../demo9/dist/apps/ecommerce/catalog/add-product.html" class="menu-link px-3">แก้ไข</a>
+                                                <a href="{{ url("/sales/add") }}" class="menu-link px-3">แก้ไข</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->

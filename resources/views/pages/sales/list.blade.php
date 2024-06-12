@@ -104,6 +104,7 @@
                                         $level = 'Silver';
                                         break;
                                 }
+                                $editUrl = "/sales/edit/".$item['id'];
                             @endphp
                             <tr>
                                 <td>
@@ -138,7 +139,7 @@
                                             <a href="{{ url('/management/users/view') }}" class="menu-link px-3">ดู</a>
                                         </div>
                                         <div class="menu-item px-3">
-                                            <a href="../../demo9/dist/apps/ecommerce/catalog/add-product.html" class="menu-link px-3">แก้ไข</a>
+                                            <a href="{{ $editUrl }}" class="menu-link px-3">แก้ไข</a>
                                         </div>
                                         <div class="menu-item px-3">
                                             <a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">ลบ</a>
