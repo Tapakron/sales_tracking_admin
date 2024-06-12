@@ -36,7 +36,7 @@
                     <!--end::Details-->
                     <!--begin::Actions-->
                     <div class="d-flex mb-4">
-                        <a href="../../demo9/dist/apps/ecommerce/catalog/add-product.html" class="btn btn-sm btn-bg-light btn-active-color-primary me-3">แก้ไขข้อมูล</a>
+                        <a href="{{ url("/sales/add") }}" class="btn btn-sm btn-bg-light btn-active-color-primary me-3">แก้ไขข้อมูล</a>
                         <!-- <a href="../../demo9/dist/apps/projects/project-save-data.html" class="btn btn-sm btn-primary me-3">บันทึกการติดต่อ</a> -->
                     </div>
                     <!--end::Actions-->
