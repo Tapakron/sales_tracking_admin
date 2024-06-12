@@ -50,11 +50,11 @@ class SalesController extends Controller
             $str = "";
             foreach ($message as $key => $item) {
                 if ($key == 0) {
-                    $str =   ($key + 1) . "." . explode(".", $item)[1];
-                    $str .=   "\n ";
+                    $str = ($key + 1) . "." . explode(".", $item)[1];
+                    $str .= "\n ";
                 } else {
-                    $str .=   ($key + 1) . "." . explode(".", $item)[1];
-                    $str .=   "\n";
+                    $str .= ($key + 1) . "." . explode(".", $item)[1];
+                    $str .= "\n";
                 }
             }
             $result['data'] = null;
@@ -127,17 +127,21 @@ class SalesController extends Controller
             return JsonResult::errors($result['data'], $result['message']);
         }
         //!------------------------------อัพโหลดรูปภาพ----------------------------------------------
-
         $uploadImg = GlobalFunc::uploadImg($request, $user, $body['id'], 'user_img', 'user'); //! request จากหน้าบ้าน,ข้อมูล user, id ไปใส่ชื่อไฟล์ , ตัวแปร , ชื่อไฟล์จะเก็บรูป
-        if ($uploadImg == null) {
-            $body['user_img'] = null;
+        if ($uploadImg != null) {
+            $body['user_img'] = array_key_exists('user_img', $uploadImg) ? $uploadImg["user_img"] : NULL;
         } else {
-            if ($uploadImg != null) {
-                $body['user_img'] = array_key_exists('user_img', $uploadImg) ? $uploadImg["user_img"] : NULL;
-            } else {
-                unset($body["user_img"]);
-            }
+            unset($body["user_img"]);
         }
+        // if ($uploadImg == null) {
+        //     $body['user_img'] = null;
+        // } else {
+        //     if ($uploadImg != null) {
+        //         $body['user_img'] = array_key_exists('user_img', $uploadImg) ? $uploadImg["user_img"] : NULL;
+        //     } else {
+        //         unset($body["user_img"]);
+        //     }
+        // }
         $result = SalesService::update($body);
         if (!$result['success']) {
             return JsonResult::errors(null, $result['message']);
