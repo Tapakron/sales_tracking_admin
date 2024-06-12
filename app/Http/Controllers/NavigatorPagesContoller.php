@@ -346,7 +346,6 @@ class NavigatorPagesContoller extends Controller
             'company_profile' => (array)$this->user->company_profile,
             'sales' => json_decode(SalesService::fetch(), true),
         ];
-        dd($data['pageDetails']);
         return view('pages.sales.list')->with($data);
     }
     public function salesImport()
