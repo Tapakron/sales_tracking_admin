@@ -102,7 +102,7 @@ class NavigatorPagesContoller extends Controller
         ];
         return view('pages.contacts.view')->with($data);
     }
-    public function ecommerceProductAdd()
+    public function customersAdd()
     {
         $data['pageDetails'] = [
             'page_lv' => '2',
@@ -110,9 +110,9 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_1' => 'แดชบอร์ด',
             'page_url_1' => '/dashboard',
             'page_desc_1' => '',
-            'page_name_en_2' => 'ecommerce-product-add',
+            'page_name_en_2' => 'customers-add',
             'page_name_th_2' => 'เพิ่มข้อมูลลูกค้า',
-            'page_url_2' => '/ecommerce/product/add',
+            'page_url_2' => '/customers/add',
             'page_desc_2' => 'เพิ่มข้อมูล',
             'page_name_en_3' => '',
             'page_name_th_3' => '',
@@ -122,9 +122,9 @@ class NavigatorPagesContoller extends Controller
             'province' => json_decode(ProvinceService::fetch(), true),
             'product' => json_decode(productService::fetch(), true),
         ];
-        return view('pages.ecommerce.add-product')->with($data);
+        return view('pages.customers.add')->with($data);
     }
-    public function ecommerceSalesAdd()
+    public function salesAdd()
     {
         $data['pageDetails'] = [
             'page_lv' => '2',
@@ -134,7 +134,7 @@ class NavigatorPagesContoller extends Controller
             'page_desc_1' => '',
             'page_name_en_2' => 'ecommerce-sales-add',
             'page_name_th_2' => 'เพิ่มข้อมูลพนักงาน',
-            'page_url_2' => '/ecommerce/sales/add',
+            'page_url_2' => '/sales/add',
             'page_desc_2' => 'เพิ่มข้อมูล',
             'page_name_en_3' => '',
             'page_name_th_3' => '',
@@ -143,7 +143,7 @@ class NavigatorPagesContoller extends Controller
             'company_profile' => (array)$this->user->company_profile,
             'province' => json_decode(ProvinceService::fetch(), true),
         ];
-        return view('pages.ecommerce.add-sales')->with($data);
+        return view('pages.sales.add')->with($data);
     }
     public function customersDetails()
     {
@@ -166,7 +166,7 @@ class NavigatorPagesContoller extends Controller
         ];
         return view('pages.customers.details')->with($data);
     }
-    public function salesDetails()
+    public function invoices()
     {
         $data['pageDetails'] = [
             'page_lv' => '2',
@@ -174,9 +174,9 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_1' => 'แดชบอร์ด',
             'page_url_1' => '/dashboard',
             'page_desc_1' => '',
-            'page_name_en_2' => 'sales-details',
+            'page_name_en_2' => 'invoices',
             'page_name_th_2' => 'บันทึกการชำระเงิน',
-            'page_url_2' => '/sales/details',
+            'page_url_2' => '/invoices',
             'page_desc_2' => 'ชำระเงิน',
             'page_name_en_3' => '',
             'page_name_th_3' => '',
@@ -184,9 +184,9 @@ class NavigatorPagesContoller extends Controller
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
         ];
-        return view('pages.sales.details')->with($data);
+        return view('pages.invoices.invoices')->with($data);
     }
-    public function salesListing()
+    public function customersListing()
     {
         $data['pageDetails'] = [
             'page_lv' => '2',
@@ -194,9 +194,9 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_1' => 'แดชบอร์ด',
             'page_url_1' => '/dashboard',
             'page_desc_1' => '',
-            'page_name_en_2' => 'sales-listing',
+            'page_name_en_2' => 'customers-listing',
             'page_name_th_2' => 'ข้อมูลลูกค้า',
-            'page_url_2' => '/sales/listing',
+            'page_url_2' => '/customers/listing',
             'page_desc_2' => 'ลูกค้าที่รับผิดชอบ',
             'page_name_en_3' => '',
             'page_name_th_3' => '',
@@ -204,7 +204,7 @@ class NavigatorPagesContoller extends Controller
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
         ];
-        return view('pages.sales.listing')->with($data);
+        return view('pages.customers.listing')->with($data);
     }
     public function invoicesView()
     {
@@ -236,7 +236,7 @@ class NavigatorPagesContoller extends Controller
             'page_desc_1' => '',
             'page_name_en_2' => 'sales-details',
             'page_name_th_2' => 'บันทึกการชำระเงิน',
-            'page_url_2' => '/sales/details',
+            'page_url_2' => '/invoices',
             'page_desc_2' => 'ชำระเงิน',
             'page_name_en_3' => 'invoices-create',
             'page_name_th_3' => 'รายละเอียดการชำระเงิน',
@@ -256,7 +256,7 @@ class NavigatorPagesContoller extends Controller
             'page_desc_1' => '',
             'page_name_en_2' => 'sales-listing',
             'page_name_th_2' => 'ข้อมูลลูกค้า',
-            'page_url_2' => '/sales/listing',
+            'page_url_2' => '/customers/listing',
             'page_desc_2' => 'ลูกค้าที่รับผิดชอบ',
             'page_name_en_3' => 'projects',
             'page_name_th_3' => 'ข้อมูลลูกค้า',
@@ -326,7 +326,7 @@ class NavigatorPagesContoller extends Controller
         ];
         return view('pages.support-center.tickets.view')->with($data);
     }
-    public function managementUsersList()
+    public function salesList()
     {
         $data['pageDetails'] = [
             'page_lv' => '2',
@@ -334,9 +334,9 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_1' => 'แดชบอร์ด',
             'page_url_1' => '/dashboard',
             'page_desc_1' => '',
-            'page_name_en_2' => 'management-users-list',
+            'page_name_en_2' => 'sales-list',
             'page_name_th_2' => 'จัดการข้อมูลเซลส์',
-            'page_url_2' => '/management/users/list',
+            'page_url_2' => '/sales/list',
             'page_desc_2' => 'รายการเซลส์',
             'page_name_en_3' => '',
             'page_name_th_3' => '',
@@ -344,9 +344,9 @@ class NavigatorPagesContoller extends Controller
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
         ];
-        return view('pages.management.users.list')->with($data);
+        return view('pages.sales.list')->with($data);
     }
-    public function managementUsersImport()
+    public function salesImport()
     {
         $data['pageDetails'] = [
             'page_lv' => '3',
@@ -356,7 +356,7 @@ class NavigatorPagesContoller extends Controller
             'page_desc_1' => '',
             'page_name_en_2' => 'management-users-list',
             'page_name_th_2' => 'จัดการข้อมูลเซลส์',
-            'page_url_2' => '/management/users/list',
+            'page_url_2' => '/sales/list',
             'page_desc_2' => 'รายการเซลส์',
             'page_name_en_3' => 'management-users-import',
             'page_name_th_3' => 'จัดการ Sales',
@@ -376,7 +376,7 @@ class NavigatorPagesContoller extends Controller
             'page_desc_1' => '',
             'page_name_en_2' => 'management-users-list',
             'page_name_th_2' => 'จัดการข้อมูลเซลส์',
-            'page_url_2' => '/management/users/list',
+            'page_url_2' => '/sales/list',
             'page_desc_2' => 'รายการเซลส์',
             'page_name_en_3' => 'management-users-view',
             'page_name_th_3' => 'ข้อมูลเซลส์',

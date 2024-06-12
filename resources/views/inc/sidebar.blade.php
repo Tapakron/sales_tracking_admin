@@ -26,7 +26,7 @@
                 </a>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <a class="menu-item py-2" href="{{ url("/ecommerce/product/add") }}" data-kt-menu-placement="right-start" data-bs-toggle="tooltip" data-bs-placement="right" title="เพิ่มลูกค้า">
+                <a class="menu-item py-2" href="{{ url("/customers/add") }}" data-kt-menu-placement="right-start" data-bs-toggle="tooltip" data-bs-placement="right" title="เพิ่มลูกค้า">
                     <!--begin:Menu link-->
                     <span class="menu-link menu-center">
                         <span class="menu-icon me-0 bg-light-primary">
@@ -41,7 +41,7 @@
                 </a>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <a class="menu-item py-2" href="{{ url("/ecommerce/sales/add") }}" data-kt-menu-placement="right-start" data-bs-toggle="tooltip" data-bs-placement="right" title="เพิ่ม Sales">
+                <a class="menu-item py-2" href="{{ url("/sales/add") }}" data-kt-menu-placement="right-start" data-bs-toggle="tooltip" data-bs-placement="right" title="เพิ่ม Sales">
                     <!--begin:Menu link-->
                     <span class="menu-link menu-center">
                         <span class="menu-icon me-0 bg-light-primary">

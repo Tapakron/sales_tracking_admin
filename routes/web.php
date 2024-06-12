@@ -44,23 +44,22 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/view', [NavigatorPagesContoller::class, 'contactsView']);
     });
 
-    // ! ecommerce
-    Route::group(['prefix' => 'ecommerce'], function () {
-        Route::get('/product/add', [NavigatorPagesContoller::class, 'ecommerceProductAdd']);
-        Route::get('/sales/add', [NavigatorPagesContoller::class, 'ecommerceSalesAdd']);
-    });
 
     // ! customers
     Route::get('/customers/details', [NavigatorPagesContoller::class, 'customersDetails']);
+    Route::get('/customers/add', [NavigatorPagesContoller::class, 'customersAdd']);
+    Route::get('/customers/listing', [NavigatorPagesContoller::class, 'customersListing']);
 
     // ! sales
     Route::group(['prefix' => 'sales'], function () {
-        Route::get('/details', [NavigatorPagesContoller::class, 'salesDetails']);
-        Route::get('/listing', [NavigatorPagesContoller::class, 'salesListing']);
+        Route::get('/add', [NavigatorPagesContoller::class, 'salesAdd']);
+        
+        Route::get('/list', [NavigatorPagesContoller::class, 'salesList']);
     });
 
     // ! invoices
     Route::group(['prefix' => 'invoices'], function () {
+        Route::get('/invoices', [NavigatorPagesContoller::class, 'invoices']);
         Route::get('/view', [NavigatorPagesContoller::class, 'invoicesView']);
         Route::get('/create', [NavigatorPagesContoller::class, 'invoicesCreate']);
     });
@@ -79,7 +78,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // ! user-management
     Route::group(['prefix' => 'management'], function () {
-        Route::get('/users/list', [NavigatorPagesContoller::class, 'managementUsersList']);
+        
         Route::get('/users/import', [NavigatorPagesContoller::class, 'managementUsersImport']);
         Route::get('/users/view', [NavigatorPagesContoller::class, 'managementUsersView']);
     });

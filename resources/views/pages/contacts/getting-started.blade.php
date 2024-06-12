@@ -169,7 +169,7 @@
                         <div class="d-flex align-items-center">
                             <!--begin::Avatar-->
                             <div class="symbol symbol-40px symbol-circle">
-                                <img alt="Pic" src="{{ asset("{{ asset("assets/media/avatars/300-9.jpg") }}") }}" />
+                                <img alt="Pic" src="{{ asset("assets/media/avatars/300-9.jpg") }}" />
                             </div>
                             <!--end::Avatar-->
                             <!--begin::Details-->
@@ -235,7 +235,7 @@
                         <div class="d-flex align-items-center">
                             <!--begin::Avatar-->
                             <div class="symbol symbol-40px symbol-circle">
-                                <img alt="Pic" src="{{ asset("{{ asset("assets/media/avatars/300-23.jpg") }}") }}" />
+                                <img alt="Pic" src="{{ asset("assets/media/avatars/300-23.jpg") }}" />
                             </div>
                             <!--end::Avatar-->
                             <!--begin::Details-->
@@ -280,7 +280,7 @@
                         <div class="d-flex align-items-center">
                             <!--begin::Avatar-->
                             <div class="symbol symbol-40px symbol-circle">
-                                <img alt="Pic" src="{{ asset("{{ asset("assets/media/avatars/300-12.jpg") }}") }}" />
+                                <img alt="Pic" src="{{ asset("assets/media/avatars/300-12.jpg") }}" />
                             </div>
                             <!--end::Avatar-->
                             <!--begin::Details-->
@@ -324,7 +324,7 @@
                         <div class="d-flex align-items-center">
                             <!--begin::Avatar-->
                             <div class="symbol symbol-40px symbol-circle">
-                                <img alt="Pic" src="{{ asset("{{ asset("assets/media/avatars/300-13.jpg") }}") }}" />
+                                <img alt="Pic" src="{{ asset("assets/media/avatars/300-13.jpg") }}" />
                                 <div class="symbol-badge bg-success start-100 top-100 border-4 h-15px w-15px ms-n2 mt-n2"></div>
                             </div>
                             <!--end::Avatar-->
@@ -369,7 +369,7 @@
                         <div class="d-flex align-items-center">
                             <!--begin::Avatar-->
                             <div class="symbol symbol-40px symbol-circle">
-                                <img alt="Pic" src="{{ asset("{{ asset("assets/media/avatars/300-21.jpg") }}") }}" />
+                                <img alt="Pic" src="{{ asset("assets/media/avatars/300-21.jpg") }}" />
                                 <div class="symbol-badge bg-success start-100 top-100 border-4 h-15px w-15px ms-n2 mt-n2"></div>
                             </div>
                             <!--end::Avatar-->
