@@ -59,8 +59,6 @@ class SalesService
             $user_id = $body['id'];
             unset($body['new_id']);
             unset($body['company_id']);
-            unset($body['remove_img']);
-            unset($body['cancel_img']);
             $body += [
                 'updated_at' => Carbon::now(),
                 'updated_by' => $user->id

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\DataMasterController\DropdownMasterController;
 use App\Http\Controllers\NewsController;
@@ -49,7 +50,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
             Route::get('/fetch/{id}', [SalesController::class, 'fetchById']);
         });
         Route::group(['prefix' => 'customers'], function () {
-            // Route::post('/create', [CustomerController::class, 'create']);
+            Route::post('/create', [CustomerController::class, 'create']);
             // Route::post('/update', [CustomerController::class, 'update']);
             // Route::get('/delete', [CustomerController::class, 'delete']);
             // Route::get('/fetch', [CustomerController::class, 'fetch']);
