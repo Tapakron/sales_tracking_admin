@@ -41,7 +41,7 @@
                             </i>นำเข้าข้อมูล
                         </button>
                     </a> --}}
-                    <a href="{{ url("/sales/add") }}">
+                    <a href="{{ url('/sales/add') }}">
                         <button type="button" class="btn btn-primary">
                             <i class="ki-duotone ki-plus fs-2"></i>เพิ่มพนักงาน
                         </button>
@@ -82,163 +82,73 @@
                     </tr>
                 </thead>
                 <tbody class="text-gray-600 fw-semibold">
-                    <tr>
-                        <td>
-                            <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                <input class="form-check-input" type="checkbox" value="1" />
-                            </div>
-                        </td>
-                        <td class="d-flex align-items-center">
-                            <!--begin:: Avatar -->
-                            <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                <a href="{{ url("/management/users/view") }}">
-                                    <div class="symbol-label">
-                                        <img src="{{ asset("assets/media/avatars/300-6.jpg") }}" alt="Emma Smith" class="w-100" />
+                    @if (Count($pageDetails['sales']) > 0)
+                        @foreach ($pageDetails['sales'] as $item)
+                            @php
+                                if ($item['user_img'] != null) {
+                                    $img = $item['user_img'];
+                                } else {
+                                    $img = '/assets/media/avatars/300-6.jpg';
+                                }
+                                switch ($item['sales_level']) {
+                                    case '2':
+                                        $classLevel = "badge badge-light-warning fw-bold";
+                                        $level = 'Gold';
+                                        break;
+                                    case '3':
+                                        $classLevel = "badge badge-light-primary fw-bold";
+                                        $level = 'Premium';
+                                        break;
+                                    default:
+                                        $classLevel = "badge badge-light fw-bold";
+                                        $level = 'Silver';
+                                        break;
+                                }
+                            @endphp
+                            <tr>
+                                <td>
+                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                        <input class="form-check-input" type="checkbox" value="1" />
                                     </div>
-                                </a>
-                            </div>
-                            <!--end::Avatar-->
-                            <!--begin::User details-->
-                            <div class="d-flex flex-column">
-                                <a href="{{ url("/management/users/view") }}" class="text-gray-800 text-hover-primary mb-1">Emma Smith</a>
-                                <span>EMP0001</span>
-                            </div>
-                            <!--begin::User details-->
-                        </td>
-                        <td>084-878-9889</td>
-                        <td>Emma_S@gmail.com</td>
-                        <td></td>
-                        <td>
-                            <div class="badge badge-light fw-bold">Silver</div>
-                        </td>
-                        <td class="text-end">
-                            <a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">จัดการ
-                                <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
-                            <!--begin::Menu-->
-                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="{{ url("/management/users/view") }}" class="menu-link px-3">ดู</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="../../demo9/dist/apps/ecommerce/catalog/add-product.html" class="menu-link px-3">แกไข</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">ลบ</a>
-                                </div>
-                                <!--end::Menu item-->
-                            </div>
-                            <!--end::Menu-->
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                <input class="form-check-input" type="checkbox" value="1" />
-                            </div>
-                        </td>
-                        <td class="d-flex align-items-center">
-                            <!--begin:: Avatar -->
-                            <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                <a href="{{ url("/management/users/view") }}">
-                                    <div class="symbol-label fs-3 bg-light-danger text-danger">M</div>
-                                </a>
-                            </div>
-                            <!--end::Avatar-->
-                            <!--begin::User details-->
-                            <div class="d-flex flex-column">
-                                <a href="{{ url("/management/users/view") }}" class="text-gray-800 text-hover-primary mb-1">Melody Macy</a>
-                                <span>EMP0002</span>
-                            </div>
-                            <!--begin::User details-->
-                        </td>
-                        <td>067-821-3626</td>
-                        <td>Melody@gmail.com</td>
-                        <td></td>
-                        <td>
-                            <div class="badge badge-light-warning fw-bold">Gold</div>
-                        </td>
-                        <td class="text-end">
-                            <a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">จัดการ
-                                <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
-                            <!--begin::Menu-->
-                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="{{ url("/management/users/view") }}" class="menu-link px-3">ดู</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="../../demo9/dist/apps/ecommerce/catalog/add-product.html" class="menu-link px-3">แกไข</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">ลบ</a>
-                                </div>
-                                <!--end::Menu item-->
-                            </div>
-                            <!--end::Menu-->
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                <input class="form-check-input" type="checkbox" value="1" />
-                            </div>
-                        </td>
-                        <td class="d-flex align-items-center">
-                            <!--begin:: Avatar -->
-                            <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                <a href="{{ url("/management/users/view") }}">
-                                    <div class="symbol-label">
-                                        <img src="{{ asset("assets/media/avatars/300-1.jpg") }}" alt="Max Smith" class="w-100" />
+                                </td>
+                                <td class="d-flex align-items-center">
+                                    <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+                                        <a href="{{ url('/management/users/view') }}">
+                                            <div class="symbol-label">
+                                                <img src="{{ asset($img) }}" alt="{{ $item['name'] }}" class="w-100" />
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
-                            <!--end::Avatar-->
-                            <!--begin::User details-->
-                            <div class="d-flex flex-column">
-                                <a href="{{ url("/management/users/view") }}" class="text-gray-800 text-hover-primary mb-1">Max Smith</a>
-                                <span>EMP0003</span>
-                            </div>
-                            <!--begin::User details-->
-                        </td>
-                        <td>096-481-2136</td>
-                        <td>max@kt.com</td>
-                        <td></td>
-                        <td>
-                            <div class="badge badge-light-primary fw-bold">Premium</div>
-                        </td>
-                        <td class="text-end">
-                            <a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">จัดการ
-                                <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
-                            <!--begin::Menu-->
-                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="{{ url("/management/users/view") }}" class="menu-link px-3">ดู</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="../../demo9/dist/apps/ecommerce/catalog/add-product.html" class="menu-link px-3">แกไข</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">ลบ</a>
-                                </div>
-                                <!--end::Menu item-->
-                            </div>
-                            <!--end::Menu-->
-                        </td>
-                    </tr>
+                                    <div class="d-flex flex-column">
+                                        <a href="{{ url('/management/users/view') }}" data-sale-id="{{ $item['id'] }}" class="text-gray-800 text-hover-primary mb-1">{{ $item['name'] }}</a>
+                                        <span>{{ $item['username'] }}</span>
+                                    </div>
+                                </td>
+                                <td>{{ $item['tel'] }}</td>
+                                <td>{{ $item['email'] }}</td>
+                                <td></td>
+                                <td>
+                                    <div class="{{ $classLevel }}">{{ $level }}</div>
+                                </td>
+                                <td class="text-end">
+                                    <a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">จัดการ
+                                        <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
+                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
+                                        <div class="menu-item px-3">
+                                            <a href="{{ url('/management/users/view') }}" class="menu-link px-3">ดู</a>
+                                        </div>
+                                        <div class="menu-item px-3">
+                                            <a href="../../demo9/dist/apps/ecommerce/catalog/add-product.html" class="menu-link px-3">แก้ไข</a>
+                                        </div>
+                                        <div class="menu-item px-3">
+                                            <a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">ลบ</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
+                    @endif
                 </tbody>
             </table>
             <!--end::Table-->
