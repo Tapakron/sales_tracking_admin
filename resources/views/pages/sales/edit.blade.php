@@ -14,7 +14,7 @@
             <div class="card-header">
                 <!--begin::Card title-->
                 <div class="card-title">
-                    <h2>Thumbnail</h2>
+                    <h2>รุปภาพ</h2>
                 </div>
                 <!--end::Card title-->
             </div>
@@ -110,7 +110,7 @@
                                         <label class="required form-label">ชื่อ-นามสกุล</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control mb-2" id="name" name="name" value="" />
+                                        <input type="text" class="form-control mb-2" id="name" name="name" value="{{ $pageDetails['sale_profile']["name"] }}" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -121,7 +121,7 @@
                                         <label class="required form-label">รหัส Sales</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control mb-2" id="username" name="username" value="FSO0001" />
+                                        <input type="text" class="form-control mb-2" id="username" name="username" value="{{ $pageDetails['sale_profile']["username"] }}" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -131,7 +131,7 @@
                                         <label class="form-label">เลขบัตรประชาชน</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control mb-2" id="citizen_id" name="citizen_id" value="" />
+                                        <input type="text" class="form-control mb-2" id="citizen_id" name="citizen_id" value="{{ $pageDetails['sale_profile']["citizen_id"] }}" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -153,9 +153,9 @@
                                         <!--begin::Select2-->
                                         <select class="form-select mb-2" id="sales_level" name="sales_level" data-control="select2" data-hide-search="false" data-placeholder="- เลือก -">
                                             <option></option>
-                                            <option value="1">Basic</option>
-                                            <option value="2">Golds</option>
-                                            <option value="3">Premium</option>
+                                            <option value="1" {{ $pageDetails['sale_profile']["username"] == "1" ? "selected" : "" }}>Silver</option>
+                                            <option value="2" {{ $pageDetails['sale_profile']["username"] == "2" ? "selected" : "" }}>Golds</option>
+                                            <option value="3" {{ $pageDetails['sale_profile']["username"] == "3" ? "selected" : "" }}>Premium</option>
                                         </select>
                                         <!--end::Select2-->
                                         <!--begin::Description-->
