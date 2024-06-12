@@ -146,7 +146,7 @@ class NavigatorPagesContoller extends Controller
         ];
         return view('pages.sales.add')->with($data);
     }
-    public function salesEdit()
+    public function salesEdit($user_id)
     {
         $data['pageDetails'] = [
             'page_lv' => '2',
