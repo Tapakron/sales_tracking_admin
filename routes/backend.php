@@ -53,7 +53,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
             Route::post('/create', [CustomerController::class, 'create']);
             // Route::post('/update', [CustomerController::class, 'update']);
             Route::get('/delete/{id}', [CustomerController::class, 'delete']);
-            Route::get('/fetch', [CustomerController::class, 'fetch']);
             // Route::get('/fetchbyid/{id}', [CustomerController::class, 'fetchById']);
             // Route::get('/recordsales/{id}', [CustomerController::class, 'recordSalesById']);
         });
@@ -111,6 +110,9 @@ Route::group(['prefix' => 'api',], function () {
     Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => 'sales'], function () {
             Route::get('/fetch', [SalesController::class, 'fetch']);
+        });
+        Route::group(['prefix' => 'customer'], function () {
+            Route::get('/fetch', [CustomerController::class, 'fetch']);
         });
     });
 });
