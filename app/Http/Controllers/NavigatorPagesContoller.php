@@ -122,6 +122,7 @@ class NavigatorPagesContoller extends Controller
             'company_profile' => (array)$this->user->company_profile,
             'province' => json_decode(ProvinceService::fetch(), true),
             'product' => json_decode(productService::fetch(), true),
+            'sales' => json_decode(SalesService::fetch(), true),
         ];
         return view('pages.customers.add')->with($data);
     }

@@ -86,10 +86,17 @@ class SalesController extends Controller
         $rules = array(
             'name' => 'required',
             'username' => 'required',
+            'tel' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|digits:10',
+            'sales_level' => 'required',
         );
         $messages = array(
             'name.required' => 'กรุณากรอกข้อมูล!',
             'username.required' => 'กรุณากรอกข้อมูล!',
+            'tel.required' => 'กรอกเบอร์ไม่ครบถ้วน!',
+            'tel.numeric' => 'กรอกเบอร์เฉพาะตัวเลข!',
+            'tel.regex' => 'กรอกเบอร์ไม่ครบ 10 ตัว!',
+            'tel.digits' => 'กรอกเบอร์ไม่ครบ 10 ตัว!',
+            'sales_level.required' => 'กรุณากรอกข้อมูล!',
         );
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
