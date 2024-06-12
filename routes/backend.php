@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
     //! ล็อคเอาท์
     Route::post('/logout', [AuthController::class, 'logout']);
     //todo admin
+    //!---------------------------------------admin-------------------------------------------
     Route::group(['prefix' => 'admin'], function () {
         Route::post('/update_profile', [CompanyController::class, 'updateProfile']);
         Route::post('/update_address', [CompanyController::class, 'updateAddress']);
@@ -44,7 +45,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
             Route::post('/create', [SalesController::class, 'create']);
             Route::post('/update', [SalesController::class, 'update']);
             Route::get('/delete/{id}', [SalesController::class, 'delete']);
-            Route::get('/fetch', [SalesController::class, 'fetch']);
             Route::get('/fetch/{id}', [SalesController::class, 'fetchById']);
         });
         Route::group(['prefix' => 'customers'], function () {
@@ -67,7 +67,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
         // Route::post('/targetsales/create', [CustomerController::class, 'create']);
         // });
     });
-    //!----------------------------------------------------------------------------------
+    //!---------------------------------------sales-------------------------------------------
     Route::group(['middleware' => 'auth', 'prefix' => 'users'], function () {
         Route::group(['prefix' => 'sales'], function () {
             // Route::post('/create', [CustomerController::class, 'create']);
@@ -105,5 +105,10 @@ Route::group(['prefix' => 'api',], function () {
         // Route::get('/zipcode/fetch/{id}', [DropdownMasterController::class, 'fetchZipcodeById']);
         //todo มาสเตอร์ โปรแกรม
         // Route::get('/program/fetch', [DropdownMasterController::class, 'getTypeWork']);
+    });
+    Route::group(['prefix' => 'admin'], function () {
+        Route::group(['prefix' => 'sales'], function () {
+            Route::get('/fetch', [SalesController::class, 'fetch']);
+        });
     });
 });

@@ -39,4 +39,11 @@ class SysUsers
             ->where('username', $username)
             ->first();
     }
+    public static function genCodeSales()
+    {
+        return DB::table(self::TABLE)
+            ->where('username', 'like', 'FSO%')
+            ->orderBy('created_at', 'desc')
+            ->first();
+    }
 }

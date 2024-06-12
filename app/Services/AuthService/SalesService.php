@@ -93,7 +93,6 @@ class SalesService
                 $rs['success'] = $rsDelete;
                 return $rs;
             }
-
             $rs['message'] = "ลบข้อมูลสำเร็จ";
             $rs['success'] = $rsDelete;
             return $rs;
@@ -116,6 +115,28 @@ class SalesService
         try {
             $data = SysUsers::fetchById($user_id);
             return $data;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    public static function genCodeSales()
+    {
+        try {
+            $data = SysUsers::genCodeSales();
+            $username = $data->username;
+            $text = substr($data->username, 0, 3);
+            $number = substr($data->username, 3, 4);
+            $number = intval($number) + 1;
+            $stringArr = '';
+            if (strlen($number) < 4) {
+                $loop = 4 - strlen($number);
+                for ($i = 0; $i < $loop; $i++) {
+                    $stringArr = $stringArr . '0';
+                }
+                $number = $stringArr . $number;
+            }
+            $username = $text . $number;
+            return $username;
         } catch (\Throwable $th) {
             throw $th;
         }
