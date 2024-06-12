@@ -26,4 +26,10 @@ class SysUsers
             ->where('user_level', 3)
             ->get();
     }
+    public static function checkUserName($username)
+    {
+        return DB::table(self::TABLE)
+            ->where('username', $username)
+            ->get();
+    }
 }

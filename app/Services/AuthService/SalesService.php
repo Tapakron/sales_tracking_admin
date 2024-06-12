@@ -18,26 +18,34 @@ class SalesService
             unset($body['company_id']);
             unset($body['remove_img']);
             unset($body['cancel_img']);
-            $body += [
-                'sme_id' => $user->sme_id,
-                'company_id' => $user->company_id,
-                'sys_customer_code' => $user->sys_customer_code,
-                'password' => Hash::make(trim($body['username'])),
-                'user_level' => 3,
-                'is_active' => true,
-                'is_delete' => false,
-                'created_by' => $user->id,
-                'created_at' => Carbon::now(),
-            ];
-            $rsCreate = SysUsers::create($body);
-            if ($rsCreate == false) {;
-                $rs['message'] = "บันทึกข้อมูลผิดพลาด";
+            $username = $body['username'];
+            $rsCheck = SysUsers::checkUserName($username);
+            if (is_null($rsCheck) == true) {
+                $body += [
+                    'sme_id' => $user->sme_id,
+                    'company_id' => $user->company_id,
+                    'sys_customer_code' => $user->sys_customer_code,
+                    'password' => Hash::make(trim($body['username'])),
+                    'user_level' => 3,
+                    'is_active' => true,
+                    'is_delete' => false,
+                    'created_by' => $user->id,
+                    'created_at' => Carbon::now(),
+                ];
+                $rsCreate = SysUsers::create($body);
+                if ($rsCreate == false) {;
+                    $rs['message'] = "บันทึกข้อมูลผิดพลาด";
+                    $rs['success'] = $rsCreate;
+                    return $rs;
+                }
+                $rs['message'] = "บันทึกข้อมูลสำเร็จ";
                 $rs['success'] = $rsCreate;
                 return $rs;
+            } else {
+                $rs['message'] = "รหัส Sales" . $username . " นี้ซ้ำ";
+                $rs['success'] = false;
+                return $rs;
             }
-            $rs['message'] = "บันทึกข้อมูลสำเร็จ";
-            $rs['success'] = $rsCreate;
-            return $rs;
         } catch (\Throwable $th) {
             throw $th;
         }
