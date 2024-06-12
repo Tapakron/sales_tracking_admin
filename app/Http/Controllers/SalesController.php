@@ -128,7 +128,7 @@ class SalesController extends Controller
         }
         //!------------------------------อัพโหลดรูปภาพ----------------------------------------------
 
-        $uploadImg = GlobalFunc::uploadImg($request, $user, $body['user_id'], 'user_img', 'user'); //! request จากหน้าบ้าน,ข้อมูล user, id ไปใส่ชื่อไฟล์ , ตัวแปร , ชื่อไฟล์จะเก็บรูป
+        $uploadImg = GlobalFunc::uploadImg($request, $user, $body['id'], 'user_img', 'user'); //! request จากหน้าบ้าน,ข้อมูล user, id ไปใส่ชื่อไฟล์ , ตัวแปร , ชื่อไฟล์จะเก็บรูป
         if ($uploadImg == null) {
             $body['user_img'] = null;
         } else {
