@@ -14,6 +14,18 @@ class GlobalFunc
     {
         return DB::select('select NEWID() as uuid')[0]->uuid;
     }
+    public static function formatPhoneNum($phone)
+    {
+        $phone = preg_replace("/[^0-9]*/", '', $phone);
+        if (strlen($phone) != 10) {
+            return $phone;
+        }
+        $sArea = substr($phone, 0, 3);
+        $sPrefix = substr($phone, 3, 3);
+        $sNumber = substr($phone, 6, 4);
+        $phone = $sArea . "-" . $sPrefix . "-" . $sNumber;
+        return $phone;
+    }
     // public static function path_image_customer()
     // {
     //     $imagePath = public_path("assets/images/customer");

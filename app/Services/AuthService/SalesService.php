@@ -105,6 +105,8 @@ class SalesService
         try {
             $user = Auth::user();
             $data = SysUsers::fetch($user->company_id);
+            $data['tel'] = GlobalFunc::formatPhoneNum($data['tel']);
+            $data['tel'] = $data['email'] ? $data['email'] : 'ไม่พบข้อมูล';
             return $data;
         } catch (\Throwable $th) {
             throw $th;
