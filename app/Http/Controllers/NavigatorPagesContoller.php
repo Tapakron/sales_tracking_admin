@@ -146,6 +146,27 @@ class NavigatorPagesContoller extends Controller
         ];
         return view('pages.sales.add')->with($data);
     }
+    public function salesEdit()
+    {
+        $data['pageDetails'] = [
+            'page_lv' => '2',
+            'page_name_en_1' => 'dashboard',
+            'page_name_th_1' => 'แดชบอร์ด',
+            'page_url_1' => '/dashboard',
+            'page_desc_1' => '',
+            'page_name_en_2' => 'ecommerce-sales-edit',
+            'page_name_th_2' => 'แก้ไขข้อมูลพนักงาน',
+            'page_url_2' => '/sales/edit',
+            'page_desc_2' => 'เพิ่มข้อมูล',
+            'page_name_en_3' => '',
+            'page_name_th_3' => '',
+            'page_url_3' => '',
+            'page_desc_3' => '',
+            'company_profile' => (array)$this->user->company_profile,
+            'province' => json_decode(ProvinceService::fetch(), true),
+        ];
+        return view('pages.sales.edit')->with($data);
+    }
     public function customersDetails()
     {
         $data['pageDetails'] = [

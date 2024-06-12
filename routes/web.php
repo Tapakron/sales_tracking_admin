@@ -53,7 +53,7 @@ Route::group(['middleware' => 'auth'], function () {
     // ! sales
     Route::group(['prefix' => 'sales'], function () {
         Route::get('/add', [NavigatorPagesContoller::class, 'salesAdd']);
-        
+        Route::get('/edit', [NavigatorPagesContoller::class, 'salesEdit']);
         Route::get('/list', [NavigatorPagesContoller::class, 'salesList']);
     });
 
