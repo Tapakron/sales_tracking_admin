@@ -145,6 +145,15 @@ class SalesController extends Controller
         }
         return JsonResult::success(null, $result['message']);
     }
+    public static function deleteSelect(Request $request)
+    {
+        $body = $request->all();
+        $result = SalesService::deleteSelect($body);
+        if (!$result['success']) {
+            return JsonResult::errors(null, $result['message']);
+        }
+        return JsonResult::success(null, $result['message']);
+    }
     public static function fetch()
     {
         $result = SalesService::fetch();

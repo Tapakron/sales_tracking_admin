@@ -7,6 +7,7 @@ use App\Helpers\JsonResult;
 use App\Models\SysUsers;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class SalesService
@@ -97,6 +98,40 @@ class SalesService
             $rs['success'] = $rsDelete;
             return $rs;
         } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    public static function deleteSelect($body)
+    {
+        try {
+            DB::beginTransaction();
+            $user = Auth::user();
+            $userArr = array();
+            $dataArr = array();
+            foreach ($body as $key => $value) {
+                $dataArr[$key] = [
+                    'is_active' => false,
+                    'is_delete' => true,
+                    'deleted_at' => Carbon::now(),
+                    'deleted_by' => $user->id
+                ];
+                $userArr[$key] = [
+                    'id' => $value['user_id']
+                ];
+            }
+            $rsDelete = SysUsers::update($userArr, $dataArr);
+            if ($rsDelete == false) {
+                $rs['message'] = "การลบข้อมูลผิดพลาด";
+                $rs['success'] = $rsDelete;
+                DB::commit();
+                return $rs;
+            }
+            $rs['message'] = "ลบข้อมูลสำเร็จ";
+            $rs['success'] = $rsDelete;
+            DB::commit();
+            return $rs;
+        } catch (\Throwable $th) {
+            DB::rollBack();
             throw $th;
         }
     }

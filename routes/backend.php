@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
             Route::post('/create', [SalesController::class, 'create']);
             Route::post('/update', [SalesController::class, 'update']);
             Route::get('/delete/{id}', [SalesController::class, 'delete']);
+            Route::post('/deleteall', [SalesController::class, 'deleteSelect']);
             Route::get('/fetch/{id}', [SalesController::class, 'fetchById']);
         });
         Route::group(['prefix' => 'customers'], function () {
