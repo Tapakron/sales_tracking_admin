@@ -1,9 +1,4 @@
-@extends('layouts.app')
 
-@section('css-content')
-@endsection
-
-@section('content')
 {{-- !------------------------------------------------------- --}}
 <form id="form" action="/backend/login" method="post" {{ csrf_token() }}>
     @csrf
@@ -13,10 +8,3 @@
     <button type="submit" id="submit" name="submit">เข้าสู่ระบบ</button>
 </form>
 {{-- !------------------------------------------------------- --}}
-@endsection
-
-@section('modal-content')
-@endsection
-
-@section('js-content')
-@endsection
