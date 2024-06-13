@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Helpers\GlobalFunc;
 use App\Helpers\JsonResult;
 use App\Models\CustomerModel;
+use App\Models\CustomerModels\RecordCustomerSaleModel;
 use App\Models\DataMasterModel\productModel;
 use App\Models\FavoriteProductModel;
 use Carbon\Carbon;
@@ -30,7 +31,7 @@ class CustomerService
                 'created_at' => Carbon::now(),
             ];
             foreach ($array_favorite_product as $key => $value) {
-                $data_produc[$key] = [
+                $data_product[$key] = [
                     'customer_id' => $body['customer_id'],
                     'product_id' => $value,
                     'is_delete' => false,
@@ -38,16 +39,16 @@ class CustomerService
                     'deleted_by' => null,
                 ];
             }
-
+            $record = [
+                'customer_id' => $body['customer_id'],
+                'sale_id' => $body['sales_in_charge'],
+                'created_at' => Carbon::now(),
+                'created_by' => $user->id,
+            ];
+            RecordCustomerSaleModel::create($record);
+            FavoriteProductModel::create($data_product);
             $rsCreate = CustomerModel::create($body);
             if ($rsCreate == false) {;
-                $rs['message'] = "บันทึกข้อมูลผิดพลาด";
-                $rs['success'] = $rsCreate;
-                DB::commit();
-                return $rs;
-            }
-            $rsCreateProduct = FavoriteProductModel::create($data_produc);
-            if ($rsCreateProduct == false) {;
                 $rs['message'] = "บันทึกข้อมูลผิดพลาด";
                 $rs['success'] = $rsCreate;
                 DB::commit();
