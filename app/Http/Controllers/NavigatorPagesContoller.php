@@ -148,7 +148,7 @@ class NavigatorPagesContoller extends Controller
             'province' => json_decode(ProvinceService::fetch(), true),
             'product' => json_decode(productService::fetch(), true),
             'sales' => json_decode(SalesService::fetch(), true),
-            'customer_profile' => CustomerService::fetchById($customer_id), //!-----------------------------------------------------------------ต้องย้าย
+            'customer_profile' => CustomerService::fetchById($customer_id),
         ];
         // dd($data['pageDetails']);
         return view('pages.customers.edit')->with($data);
@@ -196,7 +196,7 @@ class NavigatorPagesContoller extends Controller
         ];
         return view('pages.sales.edit')->with($data);
     }
-    public function customersDetails()
+    public function companyDetails()
     {
         $data['pageDetails'] = [
             'page_lv' => '2',
@@ -215,7 +215,7 @@ class NavigatorPagesContoller extends Controller
             'company_profile' => (array)$this->user->company_profile,
             'province' => json_decode(ProvinceService::fetch(), true),
         ];
-        return view('pages.customers.details')->with($data);
+        return view('pages.company.details')->with($data);
     }
     public function invoices()
     {

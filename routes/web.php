@@ -44,10 +44,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/view', [NavigatorPagesContoller::class, 'contactsView']);
     });
 
+    // ! customers
+    Route::group(['prefix' => 'company'], function () {
+        Route::get('/details', [NavigatorPagesContoller::class, 'companyDetails']);
 
     // ! customers
     Route::group(['prefix' => 'customers'], function () {
-        Route::get('/details', [NavigatorPagesContoller::class, 'customersDetails']);
+        // Route::get('/details', [NavigatorPagesContoller::class, 'customersDetails']);
         Route::get('/add', [NavigatorPagesContoller::class, 'customersAdd']);
         Route::get('/edit/{id}', [NavigatorPagesContoller::class, 'customersEdit']);
         Route::get('/listing', [NavigatorPagesContoller::class, 'customersListing']);

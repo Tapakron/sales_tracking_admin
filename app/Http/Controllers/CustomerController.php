@@ -77,8 +77,6 @@ class CustomerController extends Controller
     {
         $body = $request->all();
         $user = Auth::user();
-        $cus_id = GlobalFunc::getNewId();
-        $body['customer_id'] = $cus_id;
         $rules = array(
             'customer_name' => 'required',
             'customer_tel' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|digits:10',
@@ -123,7 +121,7 @@ class CustomerController extends Controller
             return JsonResult::errors($result['data'], $result['message']);
         }
         //!------------------------------อัพโหลดรูปภาพ----------------------------------------------
-        $uploadImg = GlobalFunc::uploadImg($request, $user, $cus_id, "customer_img", "customer"); //! request จากหน้าบ้าน,ข้อมูล user, id ไปใส่ชื่อไฟล์ , ตัวแปร , ชื่อไฟล์จะเก็บรูป
+        $uploadImg = GlobalFunc::uploadImg($request, $user, $body['customer_id'], "customer_img", "customer"); //! request จากหน้าบ้าน,ข้อมูล user, id ไปใส่ชื่อไฟล์ , ตัวแปร , ชื่อไฟล์จะเก็บรูป
         if ($uploadImg != null) {
             $body['customer_img'] = array_key_exists('customer_img', $uploadImg) ? $uploadImg["customer_img"] : NULL;
         } else {

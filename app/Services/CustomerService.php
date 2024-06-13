@@ -69,6 +69,7 @@ class CustomerService
     public static function update($body)
     {
         try {
+            dd($body,'752');
             $user = Auth::user();
             $customer_id = $body['customer_id'];
             unset($body['customer_id']);
