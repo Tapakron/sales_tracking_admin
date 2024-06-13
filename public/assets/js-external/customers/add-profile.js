@@ -76,7 +76,6 @@ var CustomersProfileForm1 = function () {
                                         sales_in_charge: $('#sales_in_charge').val(),
                                         referrer: $('#referrer').val(),
                                         know_us_from: $('#know_us_from').val(),
-                                        documents: $('#documents').val(),
                                         favorite_product: $('#favorite_product').val(),
                                         address: $('#address').val(),
                                         village_building: $('#village_building').val(),

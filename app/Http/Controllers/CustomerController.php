@@ -14,6 +14,7 @@ class CustomerController extends Controller
     public function create(Request $request)
     {
         $body = $request->all();
+        dd($body);
         $user = Auth::user();
         $cus_id = GlobalFunc::getNewId();
         $body['customer_id'] = $cus_id;
