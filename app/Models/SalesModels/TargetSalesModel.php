@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models\CompanyModels;
+namespace App\Models\SalesModels;
 
 use Illuminate\Support\Facades\DB;
 
-class TargetSalesDetailsModel
+class TargetSalesModel
 {
-    private const TABLE = 'commission_details';
-    private const PK = 'id';
+    private const TABLE = 'commission';
+    private const PK = 'commission_id';
 
     public static function create($data)
     {

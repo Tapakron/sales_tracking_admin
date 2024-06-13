@@ -3,8 +3,8 @@
 namespace App\Services\CompanyServices;
 
 use App\Helpers\JsonResult;
-use App\Models\CompanyModels\TargetSalesDetailsModel;
-use App\Models\CompanyModels\TargetSalesModel;
+use App\Models\SalesModels\TargetSalesDetailsModel;
+use App\Models\SalesModels\TargetSalesModel;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -73,7 +73,10 @@ class TargetSalesService
             $fliters = [
                 'company_id' => $user->company_id,
             ];
-            $data = TargetSalesDetailsModel::fetch($fliters);
+            $data = TargetSalesModel::fetch($fliters);
+            if (!is_null($data)) {
+                dd('1111');
+            }
             return $data;
         } catch (\Throwable $th) {
             throw $th;

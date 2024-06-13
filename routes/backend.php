@@ -32,7 +32,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
     Route::post('/changepassword', [AuthController::class, 'changePassword']);
     //! เป้ายอดขาย
     Route::post('/targetsales/create', [TargetSalesController::class, 'create']);
-    Route::get('/targetsales/fetch', [TargetSalesController::class, 'fetch']);
     Route::get('/targetsales/delete/{id}', [TargetSalesController::class, 'fetch']);
     //! ล็อคเอาท์
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -98,6 +97,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
 //'middleware' => 'auth', 
 //todo มาสเตอร์
 Route::group(['prefix' => 'api',], function () {
+    Route::get('/targetsales/fetch', [TargetSalesController::class, 'fetch']);
     Route::group(['prefix' => 'datamaster'], function () {
         //todo มาสเตอร์ อำเภอ
         Route::get('/amphure/fetch/{id}', [DropdownMasterController::class, 'fetchAmphureById']);

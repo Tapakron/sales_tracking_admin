@@ -30,14 +30,10 @@ class TargetSalesController extends Controller
     }
     public static function fetch()
     {
-        try {
-            $result = TargetSalesService::fetch();
-            if (!$result) {
-                return JsonResult::errors(null, 'ไม่พบข้อมูล');
-            }
-            return JsonResult::success($result);
-        } catch (\Throwable $th) {
-            throw $th;
+        $result = TargetSalesService::fetch();
+        if (!$result) {
+            return JsonResult::errors(null, 'ไม่พบข้อมูล');
         }
+        return JsonResult::success($result);
     }
 }

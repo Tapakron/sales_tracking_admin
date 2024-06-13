@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\AuthService\SalesService;
+use App\Services\CompanyServices\TargetSalesService;
 use App\Services\CustomerService;
 use App\Services\DataMasterService\productService;
 use App\Services\DataMasterService\ProvinceService;
@@ -311,6 +312,7 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '',
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
+            'target_sales' => TargetSalesService::fetch(),
         ];
         return view('pages.subscriptions.add')->with($data);
     }
