@@ -104,19 +104,20 @@ class SalesService
         try {
             DB::beginTransaction();
             $user = Auth::user();
+            $data = $body['user_id'];
             $userArr = array();
             $dataArr = array();
-            foreach ($body as $key => $value) {
+            foreach ($data as $key => $value) {
+                // dd($value);
                 $dataArr[$key] = [
                     'is_active' => false,
                     'is_delete' => true,
                     'deleted_at' => Carbon::now(),
                     'deleted_by' => $user->id
                 ];
-                $userArr[$key] = [
-                    'id' => $value['user_id']
-                ];
+                $userArr[$key] = $value;
             }
+            // dd($dataArr,$userArr);
             $rsDelete = SysUsers::update($userArr, $dataArr);
             if ($rsDelete == false) {
                 $rs['message'] = "การลบข้อมูลผิดพลาด";

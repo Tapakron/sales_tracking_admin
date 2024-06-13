@@ -138,8 +138,8 @@ class CustomerService
                 $arrayCus[$key_customer]['customer_name'] = $customer['customer_name'];
                 $arrayCus[$key_customer]['customer_tel'] = GlobalFunc::formatPhoneNum($customer['customer_tel']);
                 $created_at = Carbon::parse($customer['created_at']);
-                $arrayCus[$key_customer]['created_at'] = $created_at->format('d/m/Y');
-                $arrayCus[$key_customer]['contact_date'] = "ไม่พบการติดต่อล่าสุด";
+                $arrayCus[$key_customer]['begin_date'] = $created_at->format('d/m/Y');
+                $arrayCus[$key_customer]['last_contact_date'] = "ไม่พบการติดต่อล่าสุด";
 
                 $araray_products = FavoriteProductModel::fetchById($customer['customer_id']);
                 $araray_product = array_map('get_object_vars', $araray_products);
