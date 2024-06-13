@@ -232,7 +232,6 @@ class NavigatorPagesContoller extends Controller
             'customer_succeed' => CustomerService::fetchStatus(2),
             'customer_lost' => CustomerService::fetchStatus(3),
         ];
-        dd($data['pageDetails']);
         return view('pages.customers.listing')->with($data);
     }
     public function invoicesView()
