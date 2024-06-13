@@ -109,24 +109,24 @@ class SalesService
             $dataArr = array();
             foreach ($data as $key => $value) {
                 // dd($value);
-                $dataArr[$key] = [
+                $dataArr = [
                     'is_active' => false,
                     'is_delete' => true,
                     'deleted_at' => Carbon::now(),
                     'deleted_by' => $user->id
                 ];
-                $userArr[$key] = $value;
-            }
-            // dd($dataArr,$userArr);
-            $rsDelete = SysUsers::update($userArr, $dataArr);
-            if ($rsDelete == false) {
-                $rs['message'] = "การลบข้อมูลผิดพลาด";
-                $rs['success'] = $rsDelete;
-                DB::commit();
-                return $rs;
+                $userArr = $value;
+                $rsDelete = SysUsers::update($userArr, $dataArr);
+                if ($rsDelete == false) {
+                    $rs['message'] = "การลบข้อมูลผิดพลาด";
+                    $rs['success'] = $rsDelete;
+                    DB::commit();
+                    return $rs;
+                }
             }
             $rs['message'] = "ลบข้อมูลสำเร็จ";
             $rs['success'] = $rsDelete;
+            // dd($dataArr,$userArr);
             DB::commit();
             return $rs;
         } catch (\Throwable $th) {
