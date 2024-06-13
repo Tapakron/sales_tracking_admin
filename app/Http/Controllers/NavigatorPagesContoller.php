@@ -153,6 +153,27 @@ class NavigatorPagesContoller extends Controller
         // dd($data['pageDetails']);
         return view('pages.customers.edit')->with($data);
     }
+    public function customersDetails()
+    {
+        $data['pageDetails'] = [
+            'page_lv' => '2',
+            'page_name_en_1' => 'dashboard',
+            'page_name_th_1' => 'แดชบอร์ด',
+            'page_url_1' => '/dashboard',
+            'page_desc_1' => '',
+            'page_name_en_2' => 'customers-details',
+            'page_name_th_2' => 'ข้อมูลลูกค้า',
+            'page_url_2' => '/customers/details',
+            'page_desc_2' => 'รายละเอียดลูกค้า',
+            'page_name_en_3' => '',
+            'page_name_th_3' => '',
+            'page_url_3' => '',
+            'page_desc_3' => '',
+            'company_profile' => (array)$this->user->company_profile,
+            'province' => json_decode(ProvinceService::fetch(), true),
+        ];
+        return view('pages.customers.details')->with($data);
+    }
     public function salesAdd()
     {
         $data['pageDetails'] = [
@@ -204,9 +225,9 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_1' => 'แดชบอร์ด',
             'page_url_1' => '/dashboard',
             'page_desc_1' => '',
-            'page_name_en_2' => 'customers-details',
+            'page_name_en_2' => 'company-details',
             'page_name_th_2' => 'ข้อมูลบริษัท',
-            'page_url_2' => '/customers/details',
+            'page_url_2' => '/company/details',
             'page_desc_2' => 'โปรไฟล์บริษัท',
             'page_name_en_3' => '',
             'page_name_th_3' => '',

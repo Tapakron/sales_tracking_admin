@@ -69,10 +69,12 @@ class CustomerService
     public static function update($body)
     {
         try {
-            dd($body,'752');
+            dd($body, '752');
             $user = Auth::user();
             $customer_id = $body['customer_id'];
             unset($body['customer_id']);
+            $array_favorite_product = explode(',', $body['favorite_product']);
+            unset($body['favorite_product']);
             $body += [
                 'updated_at' => Carbon::now(),
                 'updated_by' => $user->id
