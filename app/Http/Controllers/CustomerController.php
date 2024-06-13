@@ -97,4 +97,12 @@ class CustomerController extends Controller
         }
         return JsonResult::success($result);
     }
+    public static function fetchById($customer_id)
+    {
+        $result = CustomerService::fetchById($customer_id);
+        if (!$result) {
+            return JsonResult::errors(null, 'ไม่พบข้อมูล');
+        }
+        return JsonResult::success($result);
+    }
 }

@@ -212,7 +212,7 @@ class NavigatorPagesContoller extends Controller
         ];
         return view('pages.invoices.invoices')->with($data);
     }
-    public function customersListing()
+    public function customersListing($id)
     {
         $data['pageDetails'] = [
             'page_lv' => '2',
@@ -232,6 +232,7 @@ class NavigatorPagesContoller extends Controller
             'customer_all' => CustomerService::fetchStatus(1),
             'customer_succeed' => CustomerService::fetchStatus(2),
             'customer_lost' => CustomerService::fetchStatus(3),
+            'customer_profile' => CustomerService::fetchById($id), //!-----------------------------------------------------------------ต้องย้าย
         ];
         return view('pages.customers.listing')->with($data);
     }

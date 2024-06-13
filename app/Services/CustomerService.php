@@ -143,6 +143,27 @@ class CustomerService
             throw $th;
         }
     }
+    public static function fetchById($customer_id)
+    {
+        try {
+            $user = Auth::user();
+            $data = CustomerModel::fetchById($customer_id);
+            $arrayData = get_object_vars($data);
+            $products = FavoriteProductModel::fetchById($arrayData['customer_id']);
+            foreach ($products as $key_product => $product) {
+                $rsProduct = productModel::fetchById($product->product_id);
+                // dd($rsProduct);
+                if ($product->customer_id == $arrayData['customer_id']) {
+                    $arrayData['products'][$key_product]['product_id'] = $product->product_id;
+                    $arrayData['products'][$key_product]['product_name'] = $rsProduct->product_name_th;
+                    $arrayData['products'][$key_product]['product_short_name'] = $rsProduct->product_short_name_th;
+                }
+            }
+            return $arrayData;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
     public static function fetchStatus($status)
     {
         try {

@@ -46,9 +46,11 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     // ! customers
-    Route::get('/customers/details', [NavigatorPagesContoller::class, 'customersDetails']);
-    Route::get('/customers/add', [NavigatorPagesContoller::class, 'customersAdd']);
-    Route::get('/customers/listing', [NavigatorPagesContoller::class, 'customersListing']);
+    Route::group(['prefix' => 'customers'], function () {
+        Route::get('/details', [NavigatorPagesContoller::class, 'customersDetails']);
+        Route::get('/add', [NavigatorPagesContoller::class, 'customersAdd']);
+        Route::get('/listing/{id}', [NavigatorPagesContoller::class, 'customersListing']);
+    });
 
     // ! sales
     Route::group(['prefix' => 'sales'], function () {
@@ -78,7 +80,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // ! user-management
     Route::group(['prefix' => 'management'], function () {
-        
+
         Route::get('/users/import', [NavigatorPagesContoller::class, 'managementUsersImport']);
         Route::get('/users/view', [NavigatorPagesContoller::class, 'managementUsersView']);
     });

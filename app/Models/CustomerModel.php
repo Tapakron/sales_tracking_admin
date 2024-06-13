@@ -43,8 +43,7 @@ class CustomerModel
     public static function fetchById($customer_id)
     {
         return DB::table(self::TABLE)
-            ->where('company_id', $customer_id)
-            ->where('is_delete', 0)
-            ->get();
+            ->where('customer_id', $customer_id)
+            ->first();
     }
 }
