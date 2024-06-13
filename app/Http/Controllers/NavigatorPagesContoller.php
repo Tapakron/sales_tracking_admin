@@ -150,6 +150,7 @@ class NavigatorPagesContoller extends Controller
             'sales' => json_decode(SalesService::fetch(), true),
             'customer_profile' => CustomerService::fetchById($customer_id), //!-----------------------------------------------------------------ต้องย้าย
         ];
+        // dd($data['pageDetails']);
         return view('pages.customers.edit')->with($data);
     }
     public function salesAdd()

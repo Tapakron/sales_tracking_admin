@@ -6,7 +6,10 @@ use App\Helpers\GlobalFunc;
 use App\Helpers\JsonResult;
 use App\Models\CustomerModel;
 use App\Models\CustomerModels\RecordCustomerSaleModel;
+use App\Models\DataMasterModel\AmphureModel;
 use App\Models\DataMasterModel\productModel;
+use App\Models\DataMasterModel\ProvinceModel;
+use App\Models\DataMasterModel\TambolModel;
 use App\Models\FavoriteProductModel;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -181,6 +184,13 @@ class CustomerService
             $user = Auth::user();
             $data = CustomerModel::fetchById($customer_id);
             $arrayData = get_object_vars($data);
+
+            $province = ProvinceModel::fetchById($arrayData['province_id']);
+            $amphure = AmphureModel::fetchById($arrayData['amphure_id']);
+            $tambol = TambolModel::fetchById($arrayData['tambol_id']);
+            $arrayData['province_text'] = $province->name_th;
+            $arrayData['amphure_text'] = $amphure->name_th;
+            $arrayData['tambol_text'] = $tambol->name_th;
             $products = FavoriteProductModel::fetchById($arrayData['customer_id']);
             foreach ($products as $key_product => $product) {
                 $rsProduct = productModel::fetchById($product->product_id);
