@@ -335,7 +335,7 @@
                         <!--end::Menu separator-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
-                            <a href="{{ url('/customers/details') }}" class="menu-link px-5">ข้อมูลบริษัท</a>
+                            <a href="{{ url('/company/details') }}" class="menu-link px-5">ข้อมูลบริษัท</a>
                         </div>
                         <!--end::Menu item-->
 
