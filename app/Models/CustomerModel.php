@@ -32,10 +32,15 @@ class CustomerModel
         $query = DB::table(self::TABLE)
             ->where('company_id', $filters['company_id'])
             ->where('is_delete', 0);
-        if ($filters['status'] == 2) {
+        if ($filters['status'] == 1) {
+            $query->where('is_payment', 0);
+            $query->where('is_lost', 0);
+        } elseif ($filters['status'] == 2) {
+            $query->where('is_lost', 0);
             $query->where('is_payment', 1);
         } elseif ($filters['status'] == 3) {
             $query->where('is_lost', 1);
+            $query->where('is_payment', 0);
         }
 
         return $query->get()->toArray();
