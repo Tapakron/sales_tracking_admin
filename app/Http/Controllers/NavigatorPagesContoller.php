@@ -153,7 +153,7 @@ class NavigatorPagesContoller extends Controller
         // dd($data['pageDetails']);
         return view('pages.customers.edit')->with($data);
     }
-    public function customersDetails()
+    public function customersDetails($customer_id)
     {
         $data['pageDetails'] = [
             'page_lv' => '2',
@@ -169,8 +169,7 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_3' => '',
             'page_url_3' => '',
             'page_desc_3' => '',
-            'company_profile' => (array)$this->user->company_profile,
-            'province' => json_decode(ProvinceService::fetch(), true),
+            'customer_profile' => (array)CustomerService::fetchById($customer_id),
         ];
         return view('pages.customers.details')->with($data);
     }

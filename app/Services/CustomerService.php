@@ -69,12 +69,12 @@ class CustomerService
     public static function update($body)
     {
         try {
-            dd($body, '752');
             $user = Auth::user();
             $customer_id = $body['customer_id'];
             unset($body['customer_id']);
             $array_favorite_product = explode(',', $body['favorite_product']);
             unset($body['favorite_product']);
+            $rsDelete = FavoriteProductModel::delete($customer_id);
             $body += [
                 'updated_at' => Carbon::now(),
                 'updated_by' => $user->id
@@ -204,7 +204,8 @@ class CustomerService
                     $arrayData['products'][$key_product]['product_short_name'] = $rsProduct->product_short_name_th;
                 }
             }
-            return $arrayData;
+            $result = GlobalFunc::setProfileCompany($data);
+            return $result;
         } catch (\Throwable $th) {
             throw $th;
         }

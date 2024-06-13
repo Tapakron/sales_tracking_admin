@@ -13,6 +13,10 @@ class FavoriteProductModel
     {
         return DB::table(self::TABLE)->insert($data);
     }
+    public static function delete($data)
+    {
+        return DB::table(self::TABLE)->insert($data);
+    }
     public static function fetchById($customer_id)
     {
         return DB::table(self::TABLE)
