@@ -199,7 +199,7 @@ class CustomerService
             $arrayData = get_object_vars($data);
             $arrayData['customer_tel'] = GlobalFunc::formatPhoneNum($arrayData['customer_tel']);
             $rsSale = SysUsers::fetchById($arrayData['sales_in_charge']);
-            $arrayData['sales_name'] = $rsSale->name;
+            $arrayData['sale_name'] = $rsSale->name;
             $province = ProvinceModel::fetchById($arrayData['province_id']);
             $amphure = AmphureModel::fetchById($arrayData['amphure_id']);
             $tambol = TambolModel::fetchById($arrayData['tambol_id']);
