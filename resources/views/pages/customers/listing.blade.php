@@ -45,7 +45,7 @@
                                 <!--begin::Search-->
                                 <div class="d-flex align-items-center position-relative my-1">
                                     <i class="ki-outline ki-magnifier fs-3 position-absolute ms-4"></i>
-                                    <input type="text" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-12" placeholder="ค้นหาลูกค้า" />
+                                    <input type="text" data-customers-all-order-filter="search" class="form-control form-control-solid w-250px ps-12" placeholder="ค้นหาลูกค้า" />
                                 </div>
                                 <!--end::Search-->
                             </div>
@@ -55,19 +55,19 @@
                         <!--begin::Card body-->
                         <div class="card-body pt-0">
                             <!--begin::Table-->
-                            <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_sales_table">
+                            <table class="table align-middle table-row-dashed fs-6 gy-5" id="table-01">
                                 <thead>
                                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                                        <th class="w-10px pe-2">
+                                        {{-- <th class="w-10px pe-2">
                                             <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
                                                 <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_ecommerce_sales_table .form-check-input" value="1" />
                                             </div>
-                                        </th>
-                                        <th class="min-w-100px">#</th>
+                                        </th> --}}
+                                        {{-- <th class="min-w-100px">#</th> --}}
                                         <th class="min-w-175px">ชื่อลูกค้า</th>
                                         <th class="text-center min-w-70px">โปรแกรมที่สนใจ</th>
                                         <th class="text-center min-w-100px">เบอร์โทร</th>
-                                        <th class="text-center min-w-100px">วันที่เริ่มดูแล</th>
+                                        <th class="text-center min-w-100px">วันที่เริ่มดูแล</th> 
                                         <th class="text-center min-w-100px">วันที่ติดต่อล่าสุด</th>
                                         <th class="text-center min-w-100px">Actions</th>
                                     </tr>
@@ -83,17 +83,16 @@
                                                 }
                                             @endphp
                                             <tr>
-                                                <td>
+                                                {{-- <td>
                                                     <div class="form-check form-check-sm form-check-custom form-check-solid">
                                                         <input class="form-check-input" type="checkbox" value="{{ $item['customer_id'] }}" />
                                                     </div>
-                                                </td>
-                                                <td data-kt-ecommerce-order-filter="order_id">
+                                                </td> --}}
+                                                {{-- <td data-kt-ecommerce-order-filter="order_id">
                                                     <a href="{{ url('/projects') }}" class="text-gray-800 text-hover-primary fw-bold">14287</a>
-                                                </td>
+                                                </td> --}}
                                                 <td>
                                                     <div class="d-flex align-items-center">
-                                                        <!--begin:: Avatar -->
                                                         <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                                             <a href="{{ url('/projects') }}">
                                                                 <div class="symbol-label">
@@ -101,11 +100,8 @@
                                                                 </div>
                                                             </a>
                                                         </div>
-                                                        <!--end::Avatar-->
                                                         <div class="ms-5">
-                                                            <!--begin::Title-->
-                                                            <a href="{{ url('/projects') }}" class="text-gray-800 text-hover-primary fs-5 fw-bold">{{ $item['customer_name'] }} {{ Count($item['products']) }}</a>
-                                                            <!--end::Title-->
+                                                            <a  href="{{ url('/projects') }}" data-customer-id="{{ $item['customer_id'] }}" class="text-gray-800 text-hover-primary fs-5 fw-bold">{{ $item['customer_name'] }}</a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -156,12 +152,12 @@
                                                         <!--end::Menu item-->
                                                         <!--begin::Menu item-->
                                                         <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3" data-kt-ecommerce-order-filter="move_row">Lost</a>
+                                                            <a href="#" class="menu-link px-3" data-customers-all-order-filter="move_row">Lost</a>
                                                         </div>
                                                         <!--end::Menu item-->
                                                         <!--begin::Menu item-->
                                                         <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3" data-kt-ecommerce-order-filter="delete_row">ลบ</a>
+                                                            <a href="#" class="menu-link px-3" data-customers-all-order-filter="delete_row">ลบ</a>
                                                         </div>
                                                         <!--end::Menu item-->
                                                     </div>
@@ -1729,5 +1725,6 @@
 @endsection
 
 @section('js-content')
-    <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/listing.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/listing.js') }}"></script> --}}
+    <script src="{{ asset('assets/js-external/customers/listing.js') }}"></script>
 @endsection
