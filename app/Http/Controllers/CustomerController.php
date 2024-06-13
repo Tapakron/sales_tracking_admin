@@ -81,6 +81,14 @@ class CustomerController extends Controller
         }
         return JsonResult::success(null, $result['message']);
     }
+    public function lost($customer_id)
+    {
+        $result = CustomerService::lost($customer_id);
+        if (!$result['success']) {
+            return JsonResult::errors(null, $result['message']);
+        }
+        return JsonResult::success(null, $result['message']);
+    }
     public static function fetch()
     {
         $result = CustomerService::fetch();

@@ -84,6 +84,28 @@ class CustomerService
             throw $th;
         }
     }
+    public static function lost($customer_id)
+    {
+        try {
+            $user = Auth::user();
+            $body = [
+                'is_lost' => true,
+                'dupdated_at' => Carbon::now(),
+                'updated_by' => $user->id
+            ];
+            $rsLost = CustomerModel::update($customer_id, $body);
+            if ($rsLost == false) {
+                $rs['message'] = "บันทึกข้อมูลผิดพลาด";
+                $rs['success'] = $rsLost;
+                return $rs;
+            }
+            $rs['message'] = "บันทึกข้อมูลสำเร็จ";
+            $rs['success'] = $rsLost;
+            return $rs;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
     public static function fetch()
     {
         try {
@@ -93,6 +115,7 @@ class CustomerService
             $data = CustomerModel::fetch($user->company_id);
             $arraysArray = array_map('get_object_vars', $data); //! แปลง object ใน array ให้เป็น array อีกที
             foreach ($arraysArray as $key_customer => $customer) {
+                $arrayCus[$key_customer]['customer_recoed'] = $customer['customer_recoed'];
                 $arrayCus[$key_customer]['customer_id'] = $customer['customer_id'];
                 $arrayCus[$key_customer]['customer_img'] = $customer['customer_img'];
                 $arrayCus[$key_customer]['customer_name'] = $customer['customer_name'];
