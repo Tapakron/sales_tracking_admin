@@ -169,6 +169,7 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_3' => '',
             'page_url_3' => '',
             'page_desc_3' => '',
+            'company_profile' => (array)$this->user->company_profile,
             'customer_profile' => (array)CustomerService::fetchById($customer_id),
         ];
         return view('pages.customers.details')->with($data);
