@@ -196,27 +196,27 @@ class CustomerService
         try {
             $user = Auth::user();
             $data = CustomerModel::fetchById($customer_id);
-            $data['customer_tel'] = GlobalFunc::formatPhoneNum($data['customer_tel']);
-            $rsSale = SysUsers::fetchById($data['sales_in_charge']);
-            $data['sale_name'] = $rsSale->name;
-            $province = ProvinceModel::fetchById($data['province_id']);
-            $amphure = AmphureModel::fetchById($data['amphure_id']);
-            $tambol = TambolModel::fetchById($data['tambol_id']);
-            $data['province_name'] = $province->name_th;
-            $data['amphure_name'] = $amphure->name_th;
-            $data['tambol_name'] = $tambol->name_th;
-            $products = FavoriteProductModel::fetchById($data['customer_id']);
+            $arrayData = get_object_vars($data);
+            $arrayData['customer_tel'] = GlobalFunc::formatPhoneNum($arrayData['customer_tel']);
+            $rsSale = SysUsers::fetchById($arrayData['sales_in_charge']);
+            $arrayData['sale_name'] = $rsSale->name;
+            $province = ProvinceModel::fetchById($arrayData['province_id']);
+            $amphure = AmphureModel::fetchById($arrayData['amphure_id']);
+            $tambol = TambolModel::fetchById($arrayData['tambol_id']);
+            $arrayData['province_name'] = $province->name_th;
+            $arrayData['amphure_name'] = $amphure->name_th;
+            $arrayData['tambol_name'] = $tambol->name_th;
+            $products = FavoriteProductModel::fetchById($arrayData['customer_id']);
             foreach ($products as $key_product => $product) {
                 $rsProduct = productModel::fetchById($product->product_id);
                 // dd($rsProduct);
-                if ($product->customer_id == $data['customer_id']) {
-                    $data['products'][$key_product]['product_id'] = $product->product_id;
-                    $data['products'][$key_product]['product_name'] = $rsProduct->product_name_th;
-                    $data['products'][$key_product]['product_short_name'] = $rsProduct->product_short_name_th;
+                if ($product->customer_id == $arrayData['customer_id']) {
+                    $arrayData['products'][$key_product]['product_id'] = $product->product_id;
+                    $arrayData['products'][$key_product]['product_name'] = $rsProduct->product_name_th;
+                    $arrayData['products'][$key_product]['product_short_name'] = $rsProduct->product_short_name_th;
                 }
             }
             $result = GlobalFunc::setProfileCompany((object)$arrayData);
-            dd($result);
             return $result;
         } catch (\Throwable $th) {
             throw $th;
