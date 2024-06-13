@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'customers'], function () {
         Route::get('/details', [NavigatorPagesContoller::class, 'customersDetails']);
         Route::get('/add', [NavigatorPagesContoller::class, 'customersAdd']);
-        Route::get('/listing/{id}', [NavigatorPagesContoller::class, 'customersListing']);
+        Route::get('/listing', [NavigatorPagesContoller::class, 'customersListing']);
     });
 
     // ! sales

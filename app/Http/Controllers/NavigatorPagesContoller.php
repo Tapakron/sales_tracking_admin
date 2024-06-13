@@ -212,7 +212,7 @@ class NavigatorPagesContoller extends Controller
         ];
         return view('pages.invoices.invoices')->with($data);
     }
-    public function customersListing($id)
+    public function customersListing()
     {
         $data['pageDetails'] = [
             'page_lv' => '2',
