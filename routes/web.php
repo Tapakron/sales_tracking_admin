@@ -49,6 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'customers'], function () {
         Route::get('/details', [NavigatorPagesContoller::class, 'customersDetails']);
         Route::get('/add', [NavigatorPagesContoller::class, 'customersAdd']);
+        Route::get('/edit/{id}', [NavigatorPagesContoller::class, 'customersEdit']);
         Route::get('/listing', [NavigatorPagesContoller::class, 'customersListing']);
     });
 
