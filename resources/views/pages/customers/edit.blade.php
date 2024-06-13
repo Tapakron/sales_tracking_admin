@@ -1,3 +1,6 @@
+@php
+    // dd($pageDetails)
+@endphp
 @extends('layouts.app')
 
 @section('css-content')
@@ -14,7 +17,7 @@
                 <div class="card-header">
                     <!--begin::Card title-->
                     <div class="card-title">
-                        <h2>รุปภาพ</h2>
+                        <h2>รูปภาพ</h2>
                     </div>
                     <!--end::Card title-->
                 </div>
@@ -23,11 +26,20 @@
                 <div class="card-body text-center pt-0">
                     <!--begin::Image input-->
                     <!--begin::Image input placeholder-->
+                    @if ($pageDetails['customer_profile']['customer_img'] != '')
+                        <style>
+                            .image-input-placeholder {
+                                background-image: url({{ asset($pageDetails['customer_profile']['customer_img']) }});
+                            }
+                        </style>
+                    @else
+                        <style>
+                            .image-input-placeholder {
+                                background-image: url({{ asset('assets/media/avatars/sme.png') }});
+                            }
+                        </style>
+                    @endif
                     <style>
-                        .image-input-placeholder {
-                            background-image: url({{ asset('assets/media/svg/files/blank-image.svg') }});
-                        }
-
                         [data-bs-theme="dark"] .image-input-placeholder {
                             background-image: url({{ asset('assets/media/svg/files/blank-image-dark.svg') }});
                         }
@@ -92,9 +104,21 @@
                     <!--begin::Select2-->
                     <div class="fv-row w-100 flex-md-root mb-2">
                         <select class="form-select mb-2" id="favorite_product" name="favorite_product" data-control="select2" data-hide-search="false" data-placeholder="- เลือก -" data-allow-clear="true" multiple="multiple">
-                            <option></option>
+                            <option value=""></option>
                             @foreach ($pageDetails['product'] as $item)
-                                <option value="{{ $item['product_id'] }}">{{ $item['product_name_th'] }}</option>
+                                @php
+                                    $selectedStatus = "";
+                                @endphp
+                                @if (Count($pageDetails['customer_profile']['products']) > 0 )
+                                    @foreach ($pageDetails['customer_profile']['products'] as $selected)
+                                        @if ($selected["product_id"] == $item['product_id'])
+                                            @php
+                                                $selectedStatus = "selected";
+                                            @endphp
+                                        @endif
+                                    @endforeach
+                                @endif
+                                <option value="{{ $item['product_id'] }}" {{ $selectedStatus }}>{{ $item['product_name_th'] }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -148,7 +172,7 @@
                                             <label class="required form-label">ชื่อ-นามสกุล</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" id="customer_name" name="customer_name" class="form-control mb-2" value="" />
+                                            <input type="text" id="customer_name" name="customer_name" class="form-control mb-2" value="{{ $pageDetails['customer_profile']['customer_name'] }}" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -159,7 +183,7 @@
                                             <label class="form-label">ชื่อบริษัท</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" id="company_name" name="company_name" class="form-control mb-2" value="" />
+                                            <input type="text" id="company_name" name="company_name" class="form-control mb-2" value="{{ $pageDetails['customer_profile']['company_name'] }}" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -170,7 +194,7 @@
                                             <label class="form-label">เลขประจำตัวประชาชน/ผู้เสียภาษี</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" id="citizen_id" name="citizen_id" class="form-control mb-2" value="" />
+                                            <input type="text" id="citizen_id" name="citizen_id" class="form-control mb-2" value="{{ $pageDetails['customer_profile']['citizen_id'] }}" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -189,7 +213,7 @@
                                             <label class="required form-label">เบอร์โทร</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" id="customer_tel" name="customer_tel" class="form-control mb-2" value="" />
+                                            <input type="text" id="customer_tel" name="customer_tel" class="form-control mb-2" value="{{ $pageDetails['customer_profile']['customer_tel'] }}" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -199,7 +223,7 @@
                                             <label class="form-label">Email</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" id="customer_email" name="customer_email" class="form-control mb-2" value="" />
+                                            <input type="text" id="customer_email" name="customer_email" class="form-control mb-2" value="{{ $pageDetails['customer_profile']['customer_email'] }}" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -209,7 +233,7 @@
                                             <label class="form-label">ช่องทางติดต่ออื่น ๆ</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" id="other_contact" name="other_contact" class="form-control mb-2" value="" />
+                                            <input type="text" id="other_contact" name="other_contact" class="form-control mb-2" value="{{ $pageDetails['customer_profile']['other_contact'] }}" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -231,7 +255,7 @@
                                             <select class="form-select mb-2" id="sales_in_charge" name="sales_in_charge" data-control="select2" data-hide-search="false" data-placeholder="- เลือก -">
                                                 <option></option>
                                                 @foreach ($pageDetails['sales'] as $item)
-                                                    <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                                                    <option value="{{ $item['id'] }}" {{ $pageDetails['customer_profile']['sales_in_charge'] == $item['id'] ? 'selected' : '' }}>{{ $item['name'] }}</option>
                                                 @endforeach
                                             </select>
                                             <!--end::Select2-->
@@ -246,7 +270,7 @@
                                             <label class="form-label">ผู้แนะนำ</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" id="referrer" name="referrer" class="form-control mb-2" placeholder="กรอกรหัส หรือ ชื่อผู้แนะนำ" value="" />
+                                            <input type="text" id="referrer" name="referrer" class="form-control mb-2" placeholder="กรอกรหัส หรือ ชื่อผู้แนะนำ" value="{{ $pageDetails['customer_profile']['referrer'] }}" />
                                             <!--end::Input-->
                                             <!--begin::Description-->
                                             <div class="text-muted fs-7">ระบุชื่อหรือรหัสผู้ที่แนะนำโปรแกรมให้ลูกค้ารู้จัก</div>
@@ -261,10 +285,10 @@
                                             <!--begin::Select2-->
                                             <select class="form-select mb-2" data-control="select2" data-hide-search="false" data-placeholder="- เลือก -" id="know_us_from" name="know_us_from">
                                                 <option></option>
-                                                <option value="facebook">Facebook</option>
-                                                <option value="email">Email</option>
-                                                <option value="line">Line</option>
-                                                <option value="youtube">Youtube</option>
+                                                <option value="facebook" {{ $pageDetails['customer_profile']['know_us_from'] == 'facebook' ? 'selected' : '' }}>Facebook</option>
+                                                <option value="email" {{ $pageDetails['customer_profile']['know_us_from'] == 'email' ? 'selected' : '' }}>Email</option>
+                                                <option value="line" {{ $pageDetails['customer_profile']['know_us_from'] == 'line' ? 'selected' : '' }}>Line</option>
+                                                <option value="youtube" {{ $pageDetails['customer_profile']['know_us_from'] == 'youtube' ? 'selected' : '' }}>Youtube</option>
                                             </select>
                                             <!--end::Select2-->
                                             <!--begin::Description-->
@@ -306,7 +330,7 @@
                                             <label class="form-label">ที่อยู่</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" id="address" name="address" class="form-control mb-2" value="" />
+                                            <input type="text" id="address" name="address" class="form-control mb-2" value="{{ $pageDetails['customer_profile']['address'] }}" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -317,7 +341,7 @@
                                             <label class="form-label">หมู่บ้าน/อาคาร</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" id="village_building" name="village_building" class="form-control mb-2" value="" />
+                                            <input type="text" id="village_building" name="village_building" class="form-control mb-2" value="{{ $pageDetails['customer_profile']['village_building'] }}" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -328,7 +352,7 @@
                                             <label class="form-label">หมู่ที่</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" id="village_no" name="village_no" class="form-control mb-2" value="" />
+                                            <input type="text" id="village_no" name="village_no" class="form-control mb-2" value="{{ $pageDetails['customer_profile']['village_no'] }}" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -348,7 +372,7 @@
                                             <label class="form-label">ตรอก/ซอย</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" id="alley" name="alley" class="form-control mb-2" value="" />
+                                            <input type="text" id="alley" name="alley" class="form-control mb-2" value="{{ $pageDetails['customer_profile']['alley'] }}" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -359,7 +383,7 @@
                                             <label class="form-label">ถนน</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" id="road" name="road" class="form-control mb-2" value="" />
+                                            <input type="text" id="road" name="road" class="form-control mb-2" value="{{ $pageDetails['customer_profile']['road'] }}" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -372,7 +396,7 @@
                                             <select class="form-select mb-2" data-control="select2" data-hide-search="false" data-placeholder="- เลือก -" id="province_id" name="province_id">
                                                 <option></option>
                                                 @foreach ($pageDetails['province'] as $item)
-                                                    <option value="{{ $item['id'] }}">{{ $item['name_th'] }}</option>
+                                                    <option value="{{ $item['id'] }}" {{ $pageDetails['customer_profile']['province_id'] == $item['id'] ? 'selected' : '' }}>{{ $item['name_th'] }}</option>
                                                 @endforeach
                                             </select>
                                             <!--end::Select2-->
@@ -393,11 +417,11 @@
                                             <!--end::Label-->
                                             <!--begin::Select2-->
                                             <select class="form-select mb-2" data-control="select2" data-hide-search="false" data-placeholder="- เลือก -" id="amphure_id" name="amphure_id" disabled>
-                                                <option></option>
-                                                <option value="0">อำเภอ</option>
-                                                <option value="1">อำเภอ</option>
-                                                <option value="2">อำเภอ</option>
-                                                <option value="3">อำเภอ</option>
+                                                @if ($pageDetails['customer_profile']['amphure_id'] != '')
+                                                    <option value="{{ $pageDetails['customer_profile']['amphure_id'] }}">{{ $pageDetails['customer_profile']['amphure_name'] }}</option>
+                                                @else
+                                                    <option></option>
+                                                @endif
                                             </select>
                                             <!--end::Select2-->
                                         </div>
@@ -410,11 +434,11 @@
                                             <!--end::Label-->
                                             <!--begin::Select2-->
                                             <select class="form-select mb-2" data-control="select2" data-hide-search="true" data-placeholder="- เลือก -" id="tambol_id" name="tambol_id" disabled>
-                                                <option></option>
-                                                <option value="0">ตำบล</option>
-                                                <option value="1">ตำบล</option>
-                                                <option value="2">ตำบล</option>
-                                                <option value="3">ตำบล</option>
+                                                @if ($pageDetails['customer_profile']['tambol_id'] != '')
+                                                    <option value="{{ $pageDetails['customer_profile']['tambol_id'] }}">{{ $pageDetails['customer_profile']['tambol_name'] }}</option>
+                                                @else
+                                                    <option></option>
+                                                @endif
                                             </select>
                                             <!--end::Select2-->
 
@@ -427,7 +451,7 @@
                                             <label class="form-label">รหัสไปรษณีย์</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" id="postal_code" name="postal_code" class="form-control mb-2" value="" disabled />
+                                            <input type="text" id="postal_code" name="postal_code" class="form-control mb-2" value="{{ $pageDetails['customer_profile']['postal_code'] }}" disabled />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -446,7 +470,7 @@
             <!--end::Tab content-->
             <div class="d-flex justify-content-end">
                 <!--begin::Button-->
-                <a href="{{ url("/dashboard") }}" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">ยกเลิก</a>
+                <a href="{{ url('/dashboard') }}" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">ยกเลิก</a>
                 <!--end::Button-->
                 <!--begin::Button-->
                 <button type="submit" id="frm_customer_profile_submit" class="btn btn-primary">
@@ -466,5 +490,5 @@
 @endsection
 
 @section('js-content')
-    <script src="{{ asset('assets/js-external/customers/add-profile.js') }}"></script>
+    <script src="{{ asset('assets/js-external/customers/edit-profile.js') }}"></script>
 @endsection

@@ -115,10 +115,10 @@
                                                 <td class="text-center pe-0">
                                                     <span class="fw-bold">{{ $item['customer_tel'] }}</span>
                                                 </td>
-                                                <td class="text-center" data-order="2023-07-14">
+                                                <td class="text-center">
                                                     <span class="fw-bold">{{ $item['begin_date'] }}</span>
                                                 </td>
-                                                <td class="text-center" data-order="2023-07-18">
+                                                <td class="text-center">
                                                     <span class="fw-bold">{{ $item['last_contact_date'] }}</span>
                                                 </td>
                                                 <td class="text-center">
@@ -126,7 +126,7 @@
                                                         <i class="ki-outline ki-down fs-5 ms-1"></i></a>
                                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                                                         <div class="menu-item px-3">
-                                                            <a href="{{ url('/projects') }}" class="menu-link px-3">แก้ไข</a>
+                                                            <a href="{{ url('/customers/edit/'.$item['customer_id']) }}" class="menu-link px-3">แก้ไข</a>
                                                         </div>
                                                         <div class="menu-item px-3">
                                                             <a href="#" class="menu-link px-3" data-customers-all-order-filter="move_row">Lost</a>
@@ -221,10 +221,10 @@
                                                 <td class="text-center pe-0">
                                                     <span class="fw-bold">{{ $item['customer_tel'] }}</span>
                                                 </td>
-                                                <td class="text-center" data-order="2023-07-14">
+                                                <td class="text-center">
                                                     <span class="fw-bold">{{ $item['begin_date'] }}</span>
                                                 </td>
-                                                <td class="text-center" data-order="2023-07-18">
+                                                <td class="text-center">
                                                     <span class="fw-bold">{{ $item['last_contact_date'] }}</span>
                                                 </td>
                                             </tr>
@@ -317,19 +317,19 @@
                                                 <td class="text-center pe-0">
                                                     <span class="fw-bold">{{ $item['customer_tel'] }}</span>
                                                 </td>
-                                                <td class="text-center" data-order="2023-07-14">
+                                                <td class="text-center">
                                                     <span class="fw-bold">{{ $item['begin_date'] }}</span>
                                                 </td>
-                                                <td class="text-center" data-order="2023-07-18">
+                                                <td class="text-center">
                                                     <span class="fw-bold">{{ $item['last_contact_date'] }}</span>
                                                 </td>
                                                 <td class="text-center">
                                                     <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">จัดการ
                                                         <i class="ki-outline ki-down fs-5 ms-1"></i></a>
                                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                                        <div class="menu-item px-3">
+                                                        {{-- <div class="menu-item px-3">
                                                             <a href="{{ url('/projects') }}" class="menu-link px-3">ดู</a>
-                                                        </div>
+                                                        </div> --}}
                                                         <div class="menu-item px-3">
                                                             <a href="#" class="menu-link px-3" data-customers-lost-order-filter="move_row">ปกติ</a>
                                                         </div>

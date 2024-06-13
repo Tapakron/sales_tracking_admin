@@ -95,7 +95,7 @@ var CustomersProfileForm1 = function () {
                                     })
 
                                     $.ajax({
-                                        url: '/backend/admin/customers/create',
+                                        url: '/backend/admin/customers/update',
                                         type: 'POST',
                                         data: formData,
                                         cache: false,
