@@ -66,6 +66,7 @@ var CustomersProfileForm1 = function () {
                                     btn.disabled = !0;
                                     let formData = new FormData();
                                     let frmData = {
+                                        customer_id : $('#frm_customer_profile').data("customerid"),
                                         customer_img: $('#customer_img').prop('files')[0],                                        
                                         customer_name: $('#customer_name').val(),
                                         company_name: $('#company_name').val(),

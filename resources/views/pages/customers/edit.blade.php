@@ -8,7 +8,7 @@
 
 @section('content')
     {{-- !------------------------------------------------------- --}}
-    <form id="frm_customer_profile" class="form d-flex flex-column flex-lg-row" data-kt-redirect="../../demo9/dist/apps/ecommerce/catalog/products.html">
+    <form id="frm_customer_profile" data-customerid="{{ $pageDetails['customer_profile']['customer_id'] }}" class="form d-flex flex-column flex-lg-row" data-kt-redirect="../../demo9/dist/apps/ecommerce/catalog/products.html">
         <!--begin::Aside column-->
         <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
             <!--begin::Thumbnail settings-->
