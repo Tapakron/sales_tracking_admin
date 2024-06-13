@@ -89,11 +89,20 @@ class CustomerService
     {
         try {
             $user = Auth::user();
-            $body = [
-                'is_lost' => true,
-                'dupdated_at' => Carbon::now(),
-                'updated_by' => $user->id
-            ];
+            $rsCheck = CustomerModel::fetchById($customer_id);
+            if ($rsCheck->is_lost == 0) {
+                $body = [
+                    'is_lost' => true,
+                    'updated_at' => Carbon::now(),
+                    'updated_by' => $user->id
+                ];
+            } elseif ($rsCheck->is_lost == 1) {
+                $body = [
+                    'is_lost' => false,
+                    'updated_at' => Carbon::now(),
+                    'updated_by' => $user->id
+                ];
+            }
             $rsLost = CustomerModel::update($customer_id, $body);
             if ($rsLost == false) {
                 $rs['message'] = "บันทึกข้อมูลผิดพลาด";
