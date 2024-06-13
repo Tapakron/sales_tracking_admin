@@ -104,7 +104,7 @@ class GlobalFunc
             $adress .= $data->village_no ? " " . $data->village_no : "";
             $adress .= $data->alley ? " " . $data->alley : "";
             $adress .= $data->road ? " " . $data->road : "";
-            $adress .= $tambol->id ? "แขวง" . $tambol->name_th : "";
+            $adress .= $tambol->id ? " แขวง" . $tambol->name_th : "";
             $adress .= $amphure->id ? " " . $amphure->name_th : "";
             $adress .= $province->id ? " " . $province->name_th : "";
             $adress .= $tambol->id ? " " . $tambol->zip_code : "";

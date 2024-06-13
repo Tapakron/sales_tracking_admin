@@ -11,6 +11,7 @@ use App\Models\DataMasterModel\productModel;
 use App\Models\DataMasterModel\ProvinceModel;
 use App\Models\DataMasterModel\TambolModel;
 use App\Models\FavoriteProductModel;
+use App\Models\SysUsers;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -71,14 +72,23 @@ class CustomerService
         try {
             $user = Auth::user();
             $customer_id = $body['customer_id'];
-            unset($body['customer_id']);
             $array_favorite_product = explode(',', $body['favorite_product']);
+            unset($body['customer_id']);
             unset($body['favorite_product']);
-            $rsDelete = FavoriteProductModel::delete($customer_id);
             $body += [
                 'updated_at' => Carbon::now(),
                 'updated_by' => $user->id
             ];
+            foreach ($array_favorite_product as $key => $value) {
+                $data_product[$key] = [
+                    'customer_id' => $body['customer_id'],
+                    'product_id' => $value,
+                    'is_delete' => false,
+                    'deleted_at' => null,
+                    'deleted_by' => null,
+                ];
+            }
+            FavoriteProductModel::delete($customer_id);
             $rsUpdate = CustomerModel::update($customer_id, $body);
             if ($rsUpdate == false) {
                 $rs['message'] = "แก้ไขข้อมูลผิดพลาด";
@@ -187,7 +197,9 @@ class CustomerService
             $user = Auth::user();
             $data = CustomerModel::fetchById($customer_id);
             $arrayData = get_object_vars($data);
-
+            $arrayData['customer_tel'] = GlobalFunc::formatPhoneNum($arrayData['customer_tel']);
+            $rsSale = SysUsers::fetchById($arrayData['sales_in_charge']);
+            $arrayData['sales_name'] = null;
             $province = ProvinceModel::fetchById($arrayData['province_id']);
             $amphure = AmphureModel::fetchById($arrayData['amphure_id']);
             $tambol = TambolModel::fetchById($arrayData['tambol_id']);

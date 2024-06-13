@@ -15,7 +15,9 @@ class FavoriteProductModel
     }
     public static function delete($customer_id)
     {
-        return DB::table(self::TABLE)->insert($customer_id);
+        return DB::table(self::TABLE)
+            ->where('customer_id', $customer_id)
+            ->delete();
     }
     public static function fetchById($customer_id)
     {
