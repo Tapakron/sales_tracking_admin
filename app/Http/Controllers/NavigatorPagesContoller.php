@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\AuthService\SalesService;
+use App\Services\CustomerService;
 use App\Services\DataMasterService\productService;
 use App\Services\DataMasterService\ProvinceService;
 
@@ -227,7 +228,11 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '',
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
+            'customer_all' => CustomerService::fetchStatus(1),
+            'customer_succeed' => CustomerService::fetchStatus(2),
+            'customer_lost' => CustomerService::fetchStatus(3),
         ];
+        dd($data['pageDetails']);
         return view('pages.customers.listing')->with($data);
     }
     public function invoicesView()

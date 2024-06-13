@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Helpers\GlobalFunc;
 use App\Helpers\JsonResult;
 use App\Models\CustomerModel;
+use App\Models\DataMasterModel\productModel;
 use App\Models\FavoriteProductModel;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -87,11 +88,74 @@ class CustomerService
     {
         try {
             $user = Auth::user();
+            $array_favorite_product = array();
+            $arrayCus = array();
             $data = CustomerModel::fetch($user->company_id);
-            foreach ($data as $key => $value) {
-                $value->tel = GlobalFunc::formatPhoneNum($value->tel);
+            $arraysArray = array_map('get_object_vars', $data); //! แปลง object ใน array ให้เป็น array อีกที
+            foreach ($arraysArray as $key_customer => $customer) {
+                $arrayCus[$key_customer]['customer_id'] = $customer['customer_id'];
+                $arrayCus[$key_customer]['customer_img'] = $customer['customer_img'];
+                $arrayCus[$key_customer]['customer_name'] = $customer['customer_name'];
+                $arrayCus[$key_customer]['customer_tel'] = GlobalFunc::formatPhoneNum($customer['customer_tel']);
+                $created_at = Carbon::parse($customer['created_at']);
+                $arrayCus[$key_customer]['created_at'] = $created_at->format('d/m/Y');
+                $arrayCus[$key_customer]['contact_date'] = "ไม่พบการติดต่อล่าสุด";
+
+                $araray_products = FavoriteProductModel::fetchById($customer['customer_id']);
+                $araray_product = array_map('get_object_vars', $araray_products);
+
+                $arrayCus[$key_customer]['products'] = [];
+                foreach ($araray_product as $key_product => $product) {
+                    $rsProduct = productModel::fetchById($product['id']);
+                    // dd($rsProduct);
+                    if ($product['customer_id'] == $customer['customer_id']) {
+                        $arrayCus[$key_customer]['products'][$key_product]['product_id'] = $product['product_id'];
+                        $arrayCus[$key_customer]['products'][$key_product]['product_name'] = $rsProduct->product_name_th;
+                        $arrayCus[$key_customer]['products'][$key_product]['product_short_name'] = $rsProduct->product_short_name_th;
+                    }
+                }
             }
-            return $data;
+            return $arrayCus;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    public static function fetchStatus($status)
+    {
+        try {
+            $user = Auth::user();
+            $array_favorite_product = array();
+            $arrayCus = array();
+            $filters = [
+                'status' => $status,
+                'company_id' => $user->company_id
+            ];
+            $data = CustomerModel::fetchStatus($filters);
+            $arraysArray = array_map('get_object_vars', $data); //! แปลง object ใน array ให้เป็น array อีกที
+            foreach ($arraysArray as $key_customer => $customer) {
+                $arrayCus[$key_customer]['customer_id'] = $customer['customer_id'];
+                $arrayCus[$key_customer]['customer_img'] = $customer['customer_img'];
+                $arrayCus[$key_customer]['customer_name'] = $customer['customer_name'];
+                $arrayCus[$key_customer]['customer_tel'] = GlobalFunc::formatPhoneNum($customer['customer_tel']);
+                $created_at = Carbon::parse($customer['created_at']);
+                $arrayCus[$key_customer]['created_at'] = $created_at->format('d/m/Y');
+                $arrayCus[$key_customer]['contact_date'] = "ไม่พบการติดต่อล่าสุด";
+
+                $araray_products = FavoriteProductModel::fetchById($customer['customer_id']);
+                $araray_product = array_map('get_object_vars', $araray_products);
+
+                $arrayCus[$key_customer]['products'] = [];
+                foreach ($araray_product as $key_product => $product) {
+                    $rsProduct = productModel::fetchById($product['id']);
+                    // dd($rsProduct);
+                    if ($product['customer_id'] == $customer['customer_id']) {
+                        $arrayCus[$key_customer]['products'][$key_product]['product_id'] = $product['product_id'];
+                        $arrayCus[$key_customer]['products'][$key_product]['product_name'] = $rsProduct->product_name_th;
+                        $arrayCus[$key_customer]['products'][$key_product]['product_short_name'] = $rsProduct->product_short_name_th;
+                    }
+                }
+            }
+            return $arrayCus;
         } catch (\Throwable $th) {
             throw $th;
         }
