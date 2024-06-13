@@ -47,7 +47,7 @@ var KTUsersList = function () {
                                             toastr.warning('บันทึกข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
                                             a()
                                         }
-                                        
+
                                     }
                                 }
                             });
@@ -69,6 +69,11 @@ var KTUsersList = function () {
                     }), 50)
                 }))
             })), s.addEventListener("click", (function () {
+                let selectedIds = [];
+                o.querySelectorAll('tbody [type="checkbox"]:checked').forEach((checkbox) => {
+                    selectedIds.push(checkbox.value);
+                });
+
                 Swal.fire({
                     text: "ต้องการลบข้อมูล sales ที่เลือกไว้?",
                     icon: "warning",
@@ -81,6 +86,28 @@ var KTUsersList = function () {
                         cancelButton: "btn fw-bold btn-active-light-primary"
                     }
                 }).then((function (t) {
+                    if (t.value) {
+                        $.ajax({
+                            type: "post",
+                            url: "/backend/admin/sales/deleteall",
+                            data: {
+                                user_id: selectedIds,
+                            },
+                            success: function (response) {
+                                if (response.success) {
+                                    toastr.success('บันทึกข้อมูลสำเร็จ');
+                                    selectedIds.forEach((id) => {
+                                        o.querySelector('tbody [type="checkbox"][value="' + id + '"]').closest("tr").remove();
+                                    });
+                                    a();
+                                } else {
+                                    toastr.warning('บันทึกข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
+                                    a();
+                                }
+                            }
+                        });
+                    }
+                    /*
                     t.value ? Swal.fire({
                         text: "You have deleted all selected customers!.",
                         icon: "success",
@@ -105,6 +132,7 @@ var KTUsersList = function () {
                             confirmButton: "btn fw-bold btn-primary"
                         }
                     })
+                        */
                 }))
             }))
         };
