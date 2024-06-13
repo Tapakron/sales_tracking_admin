@@ -128,6 +128,30 @@ class NavigatorPagesContoller extends Controller
         ];
         return view('pages.customers.add')->with($data);
     }
+    public function customersEdit($customer_id)
+    {
+        $data['pageDetails'] = [
+            'page_lv' => '2',
+            'page_name_en_1' => 'dashboard',
+            'page_name_th_1' => 'แดชบอร์ด',
+            'page_url_1' => '/dashboard',
+            'page_desc_1' => '',
+            'page_name_en_2' => 'customers-add',
+            'page_name_th_2' => 'แก้ไขข้อมูลลูกค้า',
+            'page_url_2' => '/customers/edit',
+            'page_desc_2' => 'แก้ไขข้อมูล',
+            'page_name_en_3' => '',
+            'page_name_th_3' => '',
+            'page_url_3' => '',
+            'page_desc_3' => '',
+            'company_profile' => (array)$this->user->company_profile,
+            'province' => json_decode(ProvinceService::fetch(), true),
+            'product' => json_decode(productService::fetch(), true),
+            'sales' => json_decode(SalesService::fetch(), true),
+            'customer_profile' => CustomerService::fetchById($customer_id), //!-----------------------------------------------------------------ต้องย้าย
+        ];
+        return view('pages.customers.edit')->with($data);
+    }
     public function salesAdd()
     {
         $data['pageDetails'] = [
@@ -160,7 +184,7 @@ class NavigatorPagesContoller extends Controller
             'page_name_en_2' => 'ecommerce-sales-edit',
             'page_name_th_2' => 'แก้ไขข้อมูลพนักงาน',
             'page_url_2' => '/sales/edit',
-            'page_desc_2' => 'เพิ่มข้อมูล',
+            'page_desc_2' => 'แก้ไขข้อมูล',
             'page_name_en_3' => '',
             'page_name_th_3' => '',
             'page_url_3' => '',
@@ -232,7 +256,6 @@ class NavigatorPagesContoller extends Controller
             'customer_all' => CustomerService::fetchStatus(1),
             'customer_succeed' => CustomerService::fetchStatus(2),
             'customer_lost' => CustomerService::fetchStatus(3),
-            // 'customer_profile' => CustomerService::fetchById($id), //!-----------------------------------------------------------------ต้องย้าย
         ];
         return view('pages.customers.listing')->with($data);
     }
