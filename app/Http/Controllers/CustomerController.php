@@ -129,11 +129,11 @@ class CustomerController extends Controller
         } else {
             unset($body["customer_img"]);
         }
-        // $result = CustomerService::update($body);
-        // if (!$result['success']) {
-        //     return JsonResult::errors(null, $result['message']);
-        // }
-        // return JsonResult::success(null, $result['message']);
+        $result = CustomerService::update($body);
+        if (!$result['success']) {
+            return JsonResult::errors(null, $result['message']);
+        }
+        return JsonResult::success(null, $result['message']);
     }
     public function delete($customer_id)
     {
