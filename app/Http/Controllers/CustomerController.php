@@ -14,24 +14,21 @@ class CustomerController extends Controller
     public function create(Request $request)
     {
         $body = $request->all();
-        dd($body);
         $user = Auth::user();
         $cus_id = GlobalFunc::getNewId();
         $body['customer_id'] = $cus_id;
         $rules = array(
             'customer_name' => 'required',
-            'customer_tel' => 'required',
-            'tel' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|digits:10',
+            'customer_tel' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|digits:10',
             'sales_in_charge' => 'required',
             'favorite_product' => 'required',
         );
         $messages = array(
             'customer_name.required' => 'กรุณากรอกข้อมูล!',
-            'customer_tel.required' => 'กรุณากรอกข้อมูล!',
-            'tel.required' => 'กรอกเบอร์ไม่ครบถ้วน!',
-            'tel.numeric' => 'กรอกเบอร์เฉพาะตัวเลข!',
-            'tel.regex' => 'กรอกเบอร์ไม่ครบ 10 ตัว!',
-            'tel.digits' => 'กรอกเบอร์ไม่ครบ 10 ตัว!',
+            'customer_tel.required' => 'กรอกเบอร์ไม่ครบถ้วน!',
+            'customer_tel.numeric' => 'กรอกเบอร์เฉพาะตัวเลข!',
+            'customer_tel.regex' => 'กรอกเบอร์ไม่ครบ 10 ตัว!',
+            'customer_tel.digits' => 'กรอกเบอร์ไม่ครบ 10 ตัว!',
             'sales_in_charge.required' => 'กรุณากรอกข้อมูล!',
             'favorite_product.required' => 'กรุณากรอกข้อมูล!',
         );
