@@ -188,9 +188,9 @@ class CustomerService
             $province = ProvinceModel::fetchById($arrayData['province_id']);
             $amphure = AmphureModel::fetchById($arrayData['amphure_id']);
             $tambol = TambolModel::fetchById($arrayData['tambol_id']);
-            $arrayData['province_text'] = $province->name_th;
-            $arrayData['amphure_text'] = $amphure->name_th;
-            $arrayData['tambol_text'] = $tambol->name_th;
+            $arrayData['province_name'] = $province->name_th;
+            $arrayData['amphure_name'] = $amphure->name_th;
+            $arrayData['tambol_name'] = $tambol->name_th;
             $products = FavoriteProductModel::fetchById($arrayData['customer_id']);
             foreach ($products as $key_product => $product) {
                 $rsProduct = productModel::fetchById($product->product_id);
