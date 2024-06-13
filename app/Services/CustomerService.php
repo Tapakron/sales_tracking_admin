@@ -63,6 +63,29 @@ class CustomerService
             throw $th;
         }
     }
+    public static function update($body)
+    {
+        try {
+            $user = Auth::user();
+            $customer_id = $body['customer_id'];
+            unset($body['customer_id']);
+            $body += [
+                'updated_at' => Carbon::now(),
+                'updated_by' => $user->id
+            ];
+            $rsUpdate = CustomerModel::update($customer_id, $body);
+            if ($rsUpdate == false) {
+                $rs['message'] = "แก้ไขข้อมูลผิดพลาด";
+                $rs['success'] = $rsUpdate;
+                return $rs;
+            }
+            $rs['message'] = "แก้ไขข้อมูลสำเร็จ";
+            $rs['success'] = $rsUpdate;
+            return $rs;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
     public static function delete($customer_id)
     {
         try {
