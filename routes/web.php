@@ -47,7 +47,8 @@ Route::group(['middleware' => 'auth'], function () {
     // ! customers
     Route::group(['prefix' => 'company'], function () {
         Route::get('/details', [NavigatorPagesContoller::class, 'companyDetails']);
-
+    });
+    
     // ! customers
     Route::group(['prefix' => 'customers'], function () {
         // Route::get('/details', [NavigatorPagesContoller::class, 'customersDetails']);
