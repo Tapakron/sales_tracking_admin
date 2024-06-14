@@ -20,6 +20,9 @@ class TargetSalesService
             // if(is_null($commission_id)){
 
             // }
+            $body += [
+                '' => '',
+            ];
             $rsCreate = TargetSalesModel::create($body);
             if ($rsCreate == false) {
                 $rs['message'] = "บันทึกข้อมูลผิดพลาด";

@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\DB;
 
 class TargetSalesModel
 {
-    private const TABLE = 'commission';
-    private const PK = 'commission_id';
+    private const TABLE = 'targetsales';
+    private const PK = 'targetsales_id';
 
     public static function create($data)
     {

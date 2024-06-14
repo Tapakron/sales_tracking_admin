@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\AuthService\SalesService;
 use App\Services\CompanyServices\TargetSalesService;
 use App\Services\CustomerService;
+use App\Services\CustomerServices\ContactRecordService;
 use App\Services\DataMasterService\productService;
 use App\Services\DataMasterService\ProvinceService;
 
@@ -171,8 +172,9 @@ class NavigatorPagesContoller extends Controller
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
             'customer_profile' => (array)CustomerService::fetchById($customer_id),
+            'contact_record' => (array)ContactRecordService::fetchById($customer_id),//! รอแก้ไข รอดึงข้อมูลจาก db ตอนนี้ make
         ];
-        // dd($data['pageDetails']['customer_profile']['sale_name']);
+        // dd($data['pageDetails']['contact_record']);
         return view('pages.customers.details')->with($data);
     }
     public function salesAdd()
