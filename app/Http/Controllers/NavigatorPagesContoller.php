@@ -370,7 +370,7 @@ class NavigatorPagesContoller extends Controller
         ];
         return view('pages.subscriptions.add')->with($data);
     }
-    public function supportCenterTicketsList()
+    public function newsLists()
     {
         $fliters = [
             'title' => '',
@@ -395,9 +395,9 @@ class NavigatorPagesContoller extends Controller
             'list_news' => NewsService::fetch($fliters),
         ];
         // dd($data['pageDetails']);
-        return view('pages.support-center.tickets.list')->with($data);
+        return view('pages.news.lists')->with($data);
     }
-    public function supportCenterTicketsView()
+    public function newsdetail($id)
     {
         $data['pageDetails'] = [
             'page_lv' => '3',
@@ -415,7 +415,7 @@ class NavigatorPagesContoller extends Controller
             'page_desc_3' => 'รายละเอียด',
             'company_profile' => (array)$this->user->company_profile,
         ];
-        return view('pages.support-center.tickets.view')->with($data);
+        return view('pages.news.detail')->with($data);
     }
     public function salesList()
     {
