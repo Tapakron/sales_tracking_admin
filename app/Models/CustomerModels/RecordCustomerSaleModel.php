@@ -13,4 +13,5 @@ class RecordCustomerSaleModel
     {
         return DB::table(self::TABLE)->insert($data);
     }
+    
 }

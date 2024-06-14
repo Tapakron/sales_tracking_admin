@@ -34,23 +34,25 @@ class CustomerService
                 'created_by' => $user->id,
                 'created_at' => Carbon::now(),
             ];
-            foreach ($array_favorite_product as $key => $value) {
-                $data_product[$key] = [
-                    'customer_id' => $body['customer_id'],
-                    'product_id' => $value,
-                    'is_delete' => false,
-                    'deleted_at' => null,
-                    'deleted_by' => null,
-                ];
-            }
             $record = [
                 'customer_id' => $body['customer_id'],
                 'sale_id' => $body['sales_in_charge'],
                 'created_at' => Carbon::now(),
                 'created_by' => $user->id,
             ];
+            if (count($array_favorite_product) > 0) {
+                foreach ($array_favorite_product as $key => $value) {
+                    $data_product[$key] = [
+                        'customer_id' => $body['customer_id'],
+                        'product_id' => $value,
+                        'is_delete' => false,
+                        'deleted_at' => null,
+                        'deleted_by' => null,
+                    ];
+                }
+                FavoriteProductModel::create($data_product);
+            }
             RecordCustomerSaleModel::create($record);
-            FavoriteProductModel::create($data_product);
             $rsCreate = CustomerModel::create($body);
             if ($rsCreate == false) {;
                 $rs['message'] = "บันทึกข้อมูลผิดพลาด";
@@ -70,35 +72,52 @@ class CustomerService
     public static function update($body)
     {
         try {
+            DB::beginTransaction();
             $user = Auth::user();
             $customer_id = $body['customer_id'];
             $array_favorite_product = explode(',', $body['favorite_product']);
-            unset($body['customer_id']);
-            unset($body['favorite_product']);
             $body += [
                 'updated_at' => Carbon::now(),
                 'updated_by' => $user->id
             ];
-            foreach ($array_favorite_product as $key => $value) {
-                $data_product[$key] = [
-                    'customer_id' => $body['customer_id'],
-                    'product_id' => $value,
-                    'is_delete' => false,
-                    'deleted_at' => null,
-                    'deleted_by' => null,
+            $rsRecord = CustomerModel::fetchById($customer_id);
+            if ($body['sales_in_charge'] != $rsRecord->sales_in_charge) {
+                $record = [
+                    'customer_id' => $customer_id,
+                    'sale_id' => $body['sales_in_charge'],
+                    'created_at' => Carbon::now(),
+                    'created_by' => $user->id,
                 ];
+                RecordCustomerSaleModel::create($record);
             }
-            FavoriteProductModel::delete($customer_id);
+            if (count($array_favorite_product) > 0) {
+                foreach ($array_favorite_product as $key => $value) {
+                    $data_product[$key] = [
+                        'customer_id' => $customer_id,
+                        'product_id' => $value,
+                        'is_delete' => false,
+                        'deleted_at' => null,
+                        'deleted_by' => null,
+                    ];
+                }
+                FavoriteProductModel::delete($customer_id);
+                FavoriteProductModel::create($data_product);
+            }
+            unset($body['customer_id']);
+            unset($body['favorite_product']);
             $rsUpdate = CustomerModel::update($customer_id, $body);
             if ($rsUpdate == false) {
                 $rs['message'] = "แก้ไขข้อมูลผิดพลาด";
                 $rs['success'] = $rsUpdate;
+                DB::commit();
                 return $rs;
             }
             $rs['message'] = "แก้ไขข้อมูลสำเร็จ";
             $rs['success'] = $rsUpdate;
+            DB::commit();
             return $rs;
         } catch (\Throwable $th) {
+            DB::rollBack();
             throw $th;
         }
     }
@@ -197,7 +216,7 @@ class CustomerService
             $user = Auth::user();
             $data = CustomerModel::fetchById($customer_id);
             $arrayData = get_object_vars($data);
-            $arrayData['customer_tel'] = GlobalFunc::formatPhoneNum($arrayData['customer_tel']);
+            $arrayData['customer_tel_show'] = GlobalFunc::formatPhoneNum($arrayData['customer_tel']);
             $rsSale = SysUsers::fetchById($arrayData['sales_in_charge']);
             $arrayData['sale_name'] = $rsSale->name;
             $province = ProvinceModel::fetchById($arrayData['province_id']);
@@ -206,14 +225,17 @@ class CustomerService
             $arrayData['province_name'] = $province->name_th;
             $arrayData['amphure_name'] = $amphure->name_th;
             $arrayData['tambol_name'] = $tambol->name_th;
+            $arrayData['products'] = [];
             $products = FavoriteProductModel::fetchById($arrayData['customer_id']);
-            foreach ($products as $key_product => $product) {
-                $rsProduct = productModel::fetchById($product->product_id);
-                // dd($rsProduct);
-                if ($product->customer_id == $arrayData['customer_id']) {
-                    $arrayData['products'][$key_product]['product_id'] = $product->product_id;
-                    $arrayData['products'][$key_product]['product_name'] = $rsProduct->product_name_th;
-                    $arrayData['products'][$key_product]['product_short_name'] = $rsProduct->product_short_name_th;
+            if (count($products) > 0) {
+                foreach ($products as $key_product => $product) {
+                    $rsProduct = productModel::fetchById($product->product_id);
+                    // dd($rsProduct);
+                    if ($product->customer_id == $arrayData['customer_id']) {
+                        $arrayData['products'][$key_product]['product_id'] = $product->product_id;
+                        $arrayData['products'][$key_product]['product_name'] = $rsProduct->product_name_th;
+                        $arrayData['products'][$key_product]['product_short_name'] = $rsProduct->product_short_name_th;
+                    }
                 }
             }
             $result = GlobalFunc::setProfileCompany((object)$arrayData);
