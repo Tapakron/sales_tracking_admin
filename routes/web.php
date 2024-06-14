@@ -80,7 +80,7 @@ Route::group(['middleware' => 'auth'], function () {
     // ! support-center
     Route::group(['prefix' => 'news'], function () {
         Route::get('/lists', [NavigatorPagesContoller::class, 'newsLists']);
-        Route::get('/detail', [NavigatorPagesContoller::class, 'newsdetail']);
+        Route::get('/detai/{id}', [NavigatorPagesContoller::class, 'newsdetail']);
     });
 
     // ! user-management

@@ -397,7 +397,7 @@ class NavigatorPagesContoller extends Controller
         // dd($data['pageDetails']);
         return view('pages.support-center.tickets.list')->with($data);
     }
-    public function newsdetail()
+    public function newsdetail($id)
     {
         $data['pageDetails'] = [
             'page_lv' => '3',
