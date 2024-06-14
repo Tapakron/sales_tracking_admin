@@ -148,7 +148,7 @@ class NavigatorPagesContoller extends Controller
             'province' => json_decode(ProvinceService::fetch(), true),
             'product' => json_decode(productService::fetch(), true),
             'sales' => json_decode(SalesService::fetch(), true),
-            'customer_profile' => CustomerService::fetchById($customer_id),
+            'customer_profile' => (array)CustomerService::fetchById($customer_id),
         ];
         // dd($data['pageDetails']);
         return view('pages.customers.edit')->with($data);
