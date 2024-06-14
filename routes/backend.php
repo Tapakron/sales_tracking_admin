@@ -22,11 +22,11 @@ use App\Http\Controllers\TargetSalesController;
 */
 
 
-//todo ล็อคอินใช้งาน
+
 // Route::post('/account/create', [AuthController::class, 'create']);
 // Route::post('/backend/admin/sales/create', [SalesController::class, 'create']);
 //'middleware' => 'auth',
-//! ล็อคอินใช้งาน
+//todo ล็อคอินใช้งาน
 Route::post('/backend/login', [AuthController::class, 'login']);
 Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
     Route::post('/changepassword', [AuthController::class, 'changePassword']);

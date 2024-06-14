@@ -15,7 +15,7 @@ class ContactRecordService
             $user = Auth::user();
             $data = ContactRecordModel::fetchById($customer_id);
             for ($i = 0; $i < 1; $i++) {
-                $data = [
+                $data[$i] = [
                     'row' => $i + 1,
                     'contact_id' => '123456',
                     'detail' => 'ติดต่อสอบถามความสนใจโปรแกรม(Fake Data)',

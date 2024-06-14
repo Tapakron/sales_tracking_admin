@@ -34,6 +34,12 @@ class GlobalFunc
         $dateTime = $dateTime . " น.";
         return $dateTime;
     }
+    public static function formatDate($date)
+    {
+        $createdAt = new Carbon($date);
+        $date = $createdAt->format('d/m/Y');
+        return $date;
+    }
     // public static function path_image_customer()
     // {
     //     $imagePath = public_path("assets/images/customer");
