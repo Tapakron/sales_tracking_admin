@@ -395,7 +395,7 @@ class NavigatorPagesContoller extends Controller
             'list_news' => NewsService::fetch($fliters),
         ];
         // dd($data['pageDetails']);
-        return view('pages.support-center.tickets.list')->with($data);
+        return view('pages.news.lists')->with($data);
     }
     public function newsdetail($id)
     {
@@ -415,7 +415,7 @@ class NavigatorPagesContoller extends Controller
             'page_desc_3' => 'รายละเอียด',
             'company_profile' => (array)$this->user->company_profile,
         ];
-        return view('pages.support-center.tickets.view')->with($data);
+        return view('pages.news.detail')->with($data);
     }
     public function salesList()
     {
