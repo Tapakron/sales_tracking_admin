@@ -204,7 +204,7 @@ var customersListLost = function () {
                     const n = t.target.closest("tr");
                     r = n.querySelectorAll("td")[0].querySelectorAll("a")[1].innerText
                     id = n.querySelectorAll("td")[0].querySelectorAll("a")[1].getAttribute('data-customer-id');
-                    console.log(id);
+                    
                     Swal.fire({
                         text: "ต้องการย้ายข้อมูลของ " + r + "?",
                         icon: "warning",

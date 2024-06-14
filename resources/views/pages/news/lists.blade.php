@@ -1,3 +1,6 @@
+@php
+    // dd($pageDetails);
+@endphp
 @extends('layouts.app')
 
 @section('css-content')
@@ -28,9 +31,9 @@
                 <h1 class="text-dark">รายการข่าวสาร</h1>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#kt_modal_new_ticket" class="btn btn-light-primary fw-bold fs-8 fs-lg-base mb-2">เพิ่มข่าวสาร</a>
             </div>
-            <div class="mb-10">
+            <div class="mb-10" id="news">
                 @for ($i = 0; $i < 8; $i++)
-                <div class="d-flex mb-10">
+                <div class="d-flex mb-10" data-new-id="5">
                     <i class="ki-outline ki-file-added fs-2x me-5 ms-n1 mt-2 text-success"></i>
                     <div class="d-flex flex-column">
                         <div class="d-flex align-items-center mb-2">
@@ -40,7 +43,7 @@
                         <span class="text-muted fw-semibold fs-7 mt-2">20/05/2024 13:00 น.</span>
                     </div>
                     <span class="flex-equal d-flex justify-content-center ms-5">
-                        <a href="#" class="btn btn-icon btn-light w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_new_ticket">
+                        <a href="#" class="btn btn-icon btn-light w-30px h-30px ms-auto" data-btn-toggle="edit">
                             <i class="ki-duotone ki-pencil fs-2 ms-0">
                                 <span class="path1"></span>
                                 <span class="path2"></span>
@@ -48,7 +51,7 @@
                             </i>
                         </a>
                         <span>
-                            <a href="#" class="btn btn-icon btn-light-danger w-30px h-30px ms-2" data-bs-toggle="modal" data-bs-target="#kt_modal_new_ticket">
+                            <a href="#" class="btn btn-icon btn-light-danger w-30px h-30px ms-2" data-btn-toggle="delete">
                                 <i class="ki-duotone ki-trash fs-2 ms-0">
                                     <span class="path1"></span>
                                     <span class="path2"></span>
@@ -126,11 +129,11 @@
                                 </i>
                             </span>
                         </label>
-                        <input type="text" class="form-control form-control-solid" placeholder="กรอกข้อมูล" name="subject" />
+                        <input type="text" id="title" name="title"class="form-control form-control-solid" placeholder="กรอกข้อมูล" />
                     </div>
                     <div class="d-flex flex-column mb-5 fv-row">
-                        <label class="fs-6 fw-semibold mb-2">รายละเอียดข่าวสาร</label>
-                        <textarea class="form-control form-control-solid" rows="4" name="description" placeholder="กรอกรายละเอียดข่าวสาร"></textarea>
+                        <label class="required fs-6 fw-semibold mb-2">รายละเอียดข่าวสาร</label>
+                        <textarea id="detail" name="detail" class="form-control form-control-solid" rows="4" placeholder="กรอกรายละเอียดข่าวสาร"></textarea>
                     </div>
                     <div class="fv-row mb-8">
                         <label class="fs-6 fw-semibold mb-2">อัปโหลดรูปภาพ</label>
