@@ -57,7 +57,7 @@
                         <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                             <!--begin::Number-->
                             <div class="d-flex align-items-center">
-                                <div class="fs-4 fw-bold">{{ $pageDetails['customer_profile']['customer_tel'] }}</div>
+                                <div class="fs-4 fw-bold">{{ $pageDetails['customer_profile']['customer_tel_show'] }}</div>
                             </div>
                             <!--end::Number-->
                             <!--begin::Label-->
