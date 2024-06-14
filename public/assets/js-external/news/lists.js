@@ -21,41 +21,20 @@ var KTModalNewTicket = function () {
                 n.revalidateField("status")
             })), n = FormValidation.formValidation(i, {
                 fields: {
-                    subject: {
+                    title: {
                         validators: {
                             notEmpty: {
-                                message: "Ticket subject is required"
+                                message: "โปรดกรอก! หัวข้อข่าวสารที่ต้องการแจ้ง"
                             }
                         }
                     },
-                    user: {
+                    detail: {
                         validators: {
                             notEmpty: {
-                                message: "Ticket user is required"
+                                message: "โปรดกรอก! รายละเอียดข่าวสาร"
                             }
                         }
                     },
-                    due_date: {
-                        validators: {
-                            notEmpty: {
-                                message: "Ticket due date is required"
-                            }
-                        }
-                    },
-                    description: {
-                        validators: {
-                            notEmpty: {
-                                message: "Target description is required"
-                            }
-                        }
-                    },
-                    "notifications[]": {
-                        validators: {
-                            notEmpty: {
-                                message: "Please select at least one notifications method"
-                            }
-                        }
-                    }
                 },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger,
@@ -67,52 +46,128 @@ var KTModalNewTicket = function () {
                 }
             }), t.addEventListener("click", (function (e) {
                 e.preventDefault(), n && n.validate().then((function (e) {
-                    console.log("validated!"), "Valid" == e ? (t.setAttribute("data-kt-indicator", "on"), t.disabled = !0, setTimeout((function () {
-                        t.removeAttribute("data-kt-indicator"), t.disabled = !1, Swal.fire({
-                            text: "Form has been successfully submitted!",
-                            icon: "success",
+                    if ("Valid" == e) {
+
+
+                        Swal.fire({
+                            text: "บันทึกข้อมูล! โปรดกดปุ่มบันทึกอีกครั้ง",
+                            icon: "info",
+                            buttonsStyling: !1,
+                            showCancelButton: !0,
+                            allowEscapeKey: false,
+                            allowOutsideClick: false,
+                            confirmButtonText: "บันทึก",
+                            cancelButtonText: "ยกเลิก",
+                            customClass: {
+                                confirmButton: "btn btn-primary",
+                                cancelButton: "btn btn-active-light"
+                            }
+                        }).then((function (n) {
+                            if (n.isConfirmed) {
+                                t.setAttribute("data-kt-indicator", "on");
+                                t.disabled = !0;
+                                let formData = new FormData();
+                                let frmData = {
+                                    image: $('#kt_modal_create_ticket_attachments').prop('files')[0],
+                                    title: $('#title').val(),
+                                    detail: $('#detail').val(),
+                                }
+
+                                if (!frmData.image) {
+                                    frmData.image = "";
+                                }
+                                Object.keys(frmData).forEach(function (key, index) {
+                                    formData.append(key, frmData[key]);
+                                })
+                                console.log(formData);
+
+                                // $.ajax({
+                                //     url: '/backend/admin/sales/create',
+                                //     type: 'POST',
+                                //     data: formData,
+                                //     cache: false,
+                                //     contentType: false,
+                                //     processData: false,
+                                //     success: function (response) {
+                                //         if (response.success) {
+                                //             toastr.success('บันทึกข้อมูลสำเร็จ');
+                                //             setTimeout(() => {
+                                //                 window.location.reload();
+                                //             }, 1000);
+                                //         } else {
+                                //             toastr.warning('บันทึกข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
+                                //         }
+                                //         btn.removeAttribute("data-kt-indicator")
+                                //         btn.disabled = !1
+                                //     },
+                                //     error: function () {
+
+                                //     }
+                                // });
+                            }
+                        }))
+
+                        // Swal.fire({
+                        //     text: "Form has been successfully submitted!",
+                        //     icon: "success",
+                        //     buttonsStyling: !1,
+                        //     confirmButtonText: "Ok, got it!",
+                        //     customClass: {
+                        //         confirmButton: "btn btn-primary"
+                        //     }
+                        // }).then((function (t) {
+                        //     t.removeAttribute("data-kt-indicator");
+                        //     t.disabled = !1;
+
+                        //     t.isConfirmed && o.hide()
+                        // }))
+                    } else {
+                        Swal.fire({
+                            text: "Sorry, looks like there are some errors detected, please try again.",
+                            icon: "error",
                             buttonsStyling: !1,
                             confirmButtonText: "Ok, got it!",
                             customClass: {
                                 confirmButton: "btn btn-primary"
                             }
-                        }).then((function (t) {
-                            t.isConfirmed && o.hide()
-                        }))
-                    }), 2e3)) : Swal.fire({
-                        text: "Sorry, looks like there are some errors detected, please try again.",
-                        icon: "error",
-                        buttonsStyling: !1,
-                        confirmButtonText: "Ok, got it!",
-                        customClass: {
-                            confirmButton: "btn btn-primary"
-                        }
-                    })
+                        })
+                    }
                 }))
             })), e.addEventListener("click", (function (t) {
-                t.preventDefault(), Swal.fire({
-                    text: "Are you sure you would like to cancel?",
-                    icon: "warning",
-                    showCancelButton: !0,
-                    buttonsStyling: !1,
-                    confirmButtonText: "Yes, cancel it!",
-                    cancelButtonText: "No, return",
-                    customClass: {
-                        confirmButton: "btn btn-primary",
-                        cancelButton: "btn btn-active-light"
-                    }
-                }).then((function (t) {
-                    t.value ? (i.reset(), o.hide()) : "cancel" === t.dismiss && Swal.fire({
-                        text: "Your form has not been cancelled!.",
-                        icon: "error",
-                        buttonsStyling: !1,
-                        confirmButtonText: "Ok, got it!",
-                        customClass: {
-                            confirmButton: "btn btn-primary"
-                        }
-                    })
-                }))
+                i.reset();
+                o.hide();
             })))
+        }
+    }
+}();
+
+var BtnEvents = function () {
+    let r, id, o = document.getElementById("news"),
+        edit = () => {
+            o.querySelectorAll('[data-btn-toggle="edit"]').forEach((t => {
+                t.addEventListener("click", (function (t) {
+                    t.preventDefault();
+                    const n = t.target.closest("div");
+                    r = n.querySelectorAll("a")[0].innerText
+                    id = n.getAttribute('data-new-id');
+                    console.log(id);
+                }))
+            }))
+        },
+        del = () => {
+            o.querySelectorAll('[data-btn-toggle="delete"]').forEach((t => {
+                t.addEventListener("click", (function (t) {
+                    t.preventDefault();
+                    const n = t.target.closest("div");
+                    r = n.querySelectorAll("a")[0].innerText
+                    id = n.getAttribute('data-new-id');
+                    console.log(id);
+                }))
+            }))
+        };
+    return {
+        init: function () {
+            edit(), del()
         }
     }
 }();
@@ -124,7 +179,7 @@ var Daterangepicker = function () {
             // var end = moment();
             start = moment($("#kt_daterangepicker_4").data("date-start"));
             end = moment($("#kt_daterangepicker_4").data("date-end"));
-            
+
             function cb(start, end) {
                 $("#kt_daterangepicker_4").html(start.format("MMMM D, YYYY") + " - " + end.format("MMMM D, YYYY"));
             }
@@ -149,8 +204,10 @@ var Daterangepicker = function () {
         }
     }
 }();
+
 KTUtil.onDOMContentLoaded((function () {
     KTModalNewTicket.init()
+    BtnEvents.init()
     Daterangepicker.init()
     // $("#kt_daterangepicker_4").daterangepicker();
 }));
