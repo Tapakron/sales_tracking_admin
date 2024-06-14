@@ -78,9 +78,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/subscriptions/add', [NavigatorPagesContoller::class, 'subscriptionsAdd']);
 
     // ! support-center
-    Route::group(['prefix' => 'supportCenter'], function () {
-        Route::get('/tickets/list', [NavigatorPagesContoller::class, 'supportCenterTicketsList']);
-        Route::get('/tickets/view', [NavigatorPagesContoller::class, 'supportCenterTicketsView']);
+    Route::group(['prefix' => 'news'], function () {
+        Route::get('/lists', [NavigatorPagesContoller::class, 'newsLists']);
+        Route::get('/detail', [NavigatorPagesContoller::class, 'newsdetail']);
     });
 
     // ! user-management

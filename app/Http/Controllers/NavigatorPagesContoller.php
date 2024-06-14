@@ -370,7 +370,7 @@ class NavigatorPagesContoller extends Controller
         ];
         return view('pages.subscriptions.add')->with($data);
     }
-    public function supportCenterTicketsList()
+    public function newsLists()
     {
         $fliters = [
             'title' => '',
@@ -397,7 +397,7 @@ class NavigatorPagesContoller extends Controller
         // dd($data['pageDetails']);
         return view('pages.support-center.tickets.list')->with($data);
     }
-    public function supportCenterTicketsView()
+    public function newsdetail()
     {
         $data['pageDetails'] = [
             'page_lv' => '3',
