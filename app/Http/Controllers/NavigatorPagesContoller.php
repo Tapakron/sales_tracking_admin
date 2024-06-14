@@ -370,12 +370,12 @@ class NavigatorPagesContoller extends Controller
         ];
         return view('pages.subscriptions.add')->with($data);
     }
-    public function newsLists()
+    public function newsLists(Request $request)
     {
         $fliters = [
             'title' => '',
-            'date_start' => '',
-            'date_end' => '',
+            'search_date' => '', //14/05/2024-14/06/2024
+            'page' => ''
         ];
         $data['pageDetails'] = [
             'page_lv' => '2',

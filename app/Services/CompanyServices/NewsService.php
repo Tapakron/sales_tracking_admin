@@ -83,12 +83,23 @@ class NewsService
     public static function fetch($body)
     {
         try {
+            // dd($body,'yyy');
             $user = Auth::user();
+            if (!empty($body['search_date'])) {
+                $arrayDate = explode('-', $body['search_date']);
+                $date_start = $arrayDate[0];
+                $date_end = $arrayDate[1];
+                // dd($search_date);
+            } else {
+                $date_start = '';
+                $date_end = '';
+            }
             $fliters = [
                 'company_id' => $user->company_id,
                 'title' => $body['title'],
-                'date_start' => $body['date_start'],
-                'date_end' => $body['date_end'],
+                'date_start' => $date_start,
+                'date_end' => $date_end,
+                'page' => $body['page'],
             ];
             $data = NewsModel::fetch($fliters);
             if (count($data) > 0) {

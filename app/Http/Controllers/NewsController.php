@@ -20,7 +20,7 @@ class NewsController extends Controller
         $body['news_id'] = $news_id;
         $rules = array(
             'title' => 'required',
-            'image' => 'nullable|mimes:jpeg,png|max:2048', //!ไฟล์ไม่เกิน 2MB
+            'image' => 'nullable|mimes:jpeg,png|max:5120', //!ไฟล์ไม่เกิน 2MB
         );
         $messages = array(
             'title.required' => 'กรุณากรอกข้อมูล!',
