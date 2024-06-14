@@ -14,7 +14,7 @@ class ContactRecordService
         try {
             $user = Auth::user();
             $data = ContactRecordModel::fetchById($customer_id);
-            for ($i = 0; $i < 1; $i++) {
+            for ($i = 0; $i < 3; $i++) {
                 $data[$i] = [
                     'row' => $i + 1,
                     'contact_id' => '123456',
