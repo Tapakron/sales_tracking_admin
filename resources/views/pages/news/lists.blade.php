@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="flex-equal d-flex justify-content-center align-items-end ms-5">
-                <input class="form-control fs-4 py-4 ps-14 text-gray-700 placeholder-gray-400 mw-500px" placeholder="" id="kt_daterangepicker_4" value="06/01/2024 - 06/30/2024"/>
+                <input id="kt_daterangepicker_4" data-date-start="2024-05-15" data-date-end="2024-05-20" class="form-control fs-4 py-4 ps-14 text-gray-700 placeholder-gray-400 mw-500px" placeholder="" value=""/>
             </div>
             <button class="btn btn-primary ms-5">ค้นหา</button>
         </div>

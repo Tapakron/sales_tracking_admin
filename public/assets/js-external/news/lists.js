@@ -117,11 +117,14 @@ var KTModalNewTicket = function () {
     }
 }();
 var Daterangepicker = function () {
+    let start, end
     return {
         init: function () {
-            var start = moment().subtract(29, "days");
-            var end = moment();
-
+            // var start = moment().subtract(29, "days");
+            // var end = moment();
+            start = moment($("#kt_daterangepicker_4").data("date-start"));
+            end = moment($("#kt_daterangepicker_4").data("date-end"));
+            
             function cb(start, end) {
                 $("#kt_daterangepicker_4").html(start.format("MMMM D, YYYY") + " - " + end.format("MMMM D, YYYY"));
             }
