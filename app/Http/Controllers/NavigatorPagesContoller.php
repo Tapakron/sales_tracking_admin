@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\AuthService\SalesService;
+use App\Services\CompanyServices\NewsService;
 use App\Services\CompanyServices\TargetSalesService;
+use App\Services\AuthService\SalesService;
 use App\Services\CustomerService;
 use App\Services\CustomerServices\ContactRecordService;
 use App\Services\DataMasterService\productService;
@@ -103,6 +104,7 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '',
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
+            'sales' => json_decode(SalesService::fetch(), true),
         ];
         return view('pages.contacts.view')->with($data);
     }
@@ -172,7 +174,7 @@ class NavigatorPagesContoller extends Controller
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
             'customer_profile' => (array)CustomerService::fetchById($customer_id),
-            'contact_record' => (array)ContactRecordService::fetchById($customer_id),//! รอแก้ไข รอดึงข้อมูลจาก db ตอนนี้ make
+            'contact_record' => (array)ContactRecordService::fetchById($customer_id), //! รอแก้ไข รอดึงข้อมูลจาก db ตอนนี้ make
         ];
         // dd($data['pageDetails']['contact_record']);
         return view('pages.customers.details')->with($data);
@@ -258,7 +260,10 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '',
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
+            'customer_all' => CustomerService::fetchStatus(1), //! ปกติ
+            // 'customer_succeed' => CustomerService::fetchStatus(2), //! ชำระเงินแล้ว
         ];
+        // dd($data['pageDetails']['customer_all']);
         return view('pages.invoices.invoices')->with($data);
     }
     public function customersListing()
@@ -278,9 +283,9 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '',
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
-            'customer_all' => CustomerService::fetchStatus(1),
-            'customer_succeed' => CustomerService::fetchStatus(2),
-            'customer_lost' => CustomerService::fetchStatus(3),
+            'customer_all' => CustomerService::fetchStatus(1), //! ปกติ
+            'customer_succeed' => CustomerService::fetchStatus(2), //! ชำระเงินแล้ว
+            'customer_lost' => CustomerService::fetchStatus(3), //! ไม่มีการติดต่อ
         ];
         return view('pages.customers.listing')->with($data);
     }
@@ -367,6 +372,11 @@ class NavigatorPagesContoller extends Controller
     }
     public function supportCenterTicketsList()
     {
+        $fliters = [
+            'title' => '',
+            'date_start' => '',
+            'date_end' => '',
+        ];
         $data['pageDetails'] = [
             'page_lv' => '2',
             'page_name_en_1' => 'dashboard',
@@ -382,7 +392,9 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '',
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
+            'list_news' => NewsService::fetch($fliters),
         ];
+        // dd($data['pageDetails']);
         return view('pages.support-center.tickets.list')->with($data);
     }
     public function supportCenterTicketsView()

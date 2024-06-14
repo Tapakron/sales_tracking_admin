@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Models\CompanyModels;
+namespace App\Services\CompanyServices;
 
 use App\Helpers\GlobalFunc;
+use App\Models\CompanyModels\NewsModel;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +20,7 @@ class NewsService
                 'created_at' => Carbon::now(),
                 'created_by' => $user->id
             ];
-            $rsCreate = TargetSalesModel::create($body);
+            $rsCreate = NewsModel::create($body);
             if ($rsCreate == false) {
                 $rs['message'] = "บันทึกข้อมูลผิดพลาด";
                 $rs['success'] = $rsCreate;
@@ -90,6 +91,11 @@ class NewsService
                 'date_end' => $body['date_end'],
             ];
             $data = NewsModel::fetch($fliters);
+            if (count($data) > 0) {
+                foreach ($data as $key => $value) {
+                    $value['created_at'] = GlobalFunc::formatDateTime($value['created_at']);
+                }
+            }
             return $data;
         } catch (\Throwable $th) {
             throw $th;

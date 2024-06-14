@@ -5,6 +5,7 @@ namespace App\Helpers;
 use App\Models\DataMasterModel\AmphureModel;
 use App\Models\DataMasterModel\ProvinceModel;
 use App\Models\DataMasterModel\TambolModel;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
@@ -25,6 +26,13 @@ class GlobalFunc
         $sNumber = substr($phone, 6, 4);
         $phone = $sArea . "-" . $sPrefix . "-" . $sNumber;
         return $phone;
+    }
+    public static function formatDateTime($dateTime)
+    {
+        $createdAt = new Carbon($dateTime);
+        $dateTime = $createdAt->format('d/m/Y H:i');
+        $dateTime = $dateTime . " น.";
+        return $dateTime;
     }
     // public static function path_image_customer()
     // {

@@ -33,6 +33,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
     //! เป้ายอดขาย
     Route::post('/targetsales/create', [TargetSalesController::class, 'create']);
     Route::get('/targetsales/delete/{id}', [TargetSalesController::class, 'fetch']);
+    //! ชำระเงิน
+    Route::post('/payment/create', [TargetSalesController::class, 'create']);
     //! ล็อคเอาท์
     Route::post('/logout', [AuthController::class, 'logout']);
     //todo admin
@@ -61,7 +63,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
             Route::post('/update', [NewsController::class, 'update']);
             // Route::post('/search', [CustomerController::class, 'search']);
             Route::get('/delete/{id}', [NewsController::class, 'delete']);
-            Route::get('/fetch', [NewsController::class, 'fetch']);
             Route::get('/fetch/{id}', [NewsController::class, 'fetchById']);
         });
         // Route::group(['prefix' => 'master'], function () {
@@ -114,6 +115,9 @@ Route::group(['prefix' => 'api',], function () {
         });
         Route::group(['prefix' => 'customer'], function () {
             Route::get('/fetch', [CustomerController::class, 'fetch']);
+        });
+        Route::group(['prefix' => 'news'], function () {
+            Route::get('/fetch', [NewsController::class, 'fetch']);
         });
     });
 });

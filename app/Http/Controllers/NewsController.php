@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\GlobalFunc;
 use App\Helpers\JsonResult;
-use App\Models\CompanyModels\NewsService;
+use App\Services\CompanyServices\NewsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;

@@ -257,10 +257,14 @@ class CustomerService
             $data = CustomerModel::fetchStatus($filters);
             $arraysArray = array_map('get_object_vars', $data); //! แปลง object ใน array ให้เป็น array อีกที
             foreach ($arraysArray as $key_customer => $customer) {
+                $rsSales = SysUsers::fetchById($customer['sales_in_charge']);
+                
                 $arrayCus[$key_customer]['customer_id'] = $customer['customer_id'];
                 $arrayCus[$key_customer]['customer_img'] = $customer['customer_img'];
                 $arrayCus[$key_customer]['customer_name'] = $customer['customer_name'];
+                $arrayCus[$key_customer]['company_name'] = $customer['company_name'];
                 $arrayCus[$key_customer]['customer_tel'] = GlobalFunc::formatPhoneNum($customer['customer_tel']);
+                $arrayCus[$key_customer]['sale_name'] = $rsSales->name;
                 $created_at = Carbon::parse($customer['created_at']);
                 $arrayCus[$key_customer]['begin_date'] = $created_at->format('d/m/Y');
                 $arrayCus[$key_customer]['last_contact_date'] = "ไม่พบการติดต่อล่าสุด";
