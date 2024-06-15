@@ -96,7 +96,7 @@ class NewsService
             }
             $fliters = [
                 'company_id' => $user->company_id,
-                'title' => $body['title'],
+                'search_title' => $body['search_title'],
                 'date_start' => $date_start,
                 'date_end' => $date_end,
                 'page' => $body['page'],

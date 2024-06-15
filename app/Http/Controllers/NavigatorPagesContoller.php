@@ -9,7 +9,7 @@ use App\Services\CustomerService;
 use App\Services\CustomerServices\ContactRecordService;
 use App\Services\DataMasterService\productService;
 use App\Services\DataMasterService\ProvinceService;
-
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -371,10 +371,17 @@ class NavigatorPagesContoller extends Controller
         return view('pages.subscriptions.add')->with($data);
     }
     public function newsLists(Request $request)
-    {
+    {  
+        $startDate = Carbon::now()->startOfMonth()->format('Y-m-d');
+        $endDate = Carbon::now()->format('Y-m-d');
+        $search_date = $startDate."-".$endDate;
+        $array_date = [
+            'startDate' => $startDate,
+            'endDate' => $endDate
+        ];
         $fliters = [
-            'title' => '',
-            'search_date' => '', //14/05/2024-14/06/2024
+            'search_title' => '',
+            'search_date' => $search_date, //14/05/2024-14/06/2024
             'page' => ''
         ];
         $data['pageDetails'] = [
@@ -385,7 +392,7 @@ class NavigatorPagesContoller extends Controller
             'page_desc_1' => '',
             'page_name_en_2' => 'supportCenter-tickets-list',
             'page_name_th_2' => 'ประกาศข่าวสาร',
-            'page_url_2' => '/supportCenter/tickets/list',
+            'page_url_2' => '/news/lists',
             'page_desc_2' => 'รายการข่าวสาร',
             'page_name_en_3' => '',
             'page_name_th_3' => '',
@@ -393,6 +400,7 @@ class NavigatorPagesContoller extends Controller
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
             'list_news' => NewsService::fetch($fliters),
+            'search_date' => $array_date
         ];
         // dd($data['pageDetails']);
         return view('pages.news.lists')->with($data);

@@ -25,20 +25,20 @@ class NewsModel
             ->where('company_id', $fliters['company_id'])
             ->where('is_delete', 0);
         //todo ค้นหาข่าวสาร
-        if (array_key_exists('title', $fliters)) {
-            if ($fliters['title']) {
-                $query->where('title', 'like', '%' . $fliters['title'] . '%');
+        if (array_key_exists('search_title', $fliters)) {
+            if ($fliters['search_title']) {
+                $query->where('title', 'like', '%' . $fliters['search_title'] . '%');
             }
         }
         //todo วันที่
-        if (array_key_exists('date_start', $fliters) && array_key_exists('date_end', $fliters)) {
-            if ($fliters['date_start']) {
-                $query->where('date_start', '>=', $fliters['date_start']);
-            }
-            if ($fliters['date_end']) {
-                $query->where('date_end', '<=', $fliters['date_end']);
-            }
-        }
+        // if (array_key_exists('date_start', $fliters) && array_key_exists('date_end', $fliters)) {
+        //     if ($fliters['date_start']) {
+        //         $query->where('date_start', '>=', $fliters['date_start']);
+        //     }
+        //     if ($fliters['date_end']) {
+        //         $query->where('date_end', '<=', $fliters['date_end']);
+        //     }
+        // }
         return $query->get()->toArray();
     }
     public static function fetchById($id)
