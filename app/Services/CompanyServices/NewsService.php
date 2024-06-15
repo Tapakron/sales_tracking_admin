@@ -101,9 +101,13 @@ class NewsService
                 'search_title' => $body['search_title'],
                 'date_start' => $date_start,
                 'date_end' => $date_end,
-                'page' => $body['page'],
+                //! ----------------------------------------
+                'size' => $body['size'],
+                'page' => $body['page']
             ];
             $data = NewsModel::fetch($fliters);
+            // list($total, $data) = NewsModel::fetchByPaginate($fliters);
+
             if (count($data) > 0) {
                 foreach ($data as $key => $value) {
                     $newsArray[$key] = (array) $value;
