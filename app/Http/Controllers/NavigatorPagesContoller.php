@@ -400,13 +400,13 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '',
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
-            'list_news' => NewsService::fetch($fliters),
+            'list_news' => (array)NewsService::fetch($fliters),
             'search' => $arraySearch
         ];
         // dd($data['pageDetails']);
         return view('pages.news.lists')->with($data);
     }
-    public function newsdetail($id)
+    public function newsdetail($news_id)
     {
         $data['pageDetails'] = [
             'page_lv' => '3',
@@ -423,7 +423,9 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '/supportCenter/tickets/view',
             'page_desc_3' => 'รายละเอียด',
             'company_profile' => (array)$this->user->company_profile,
+            'news_detail' => (array)NewsService::fetchById($news_id)
         ];
+        // dd($data['pageDetails']);
         return view('pages.news.detail')->with($data);
     }
     public function salesList()
