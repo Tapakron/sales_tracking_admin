@@ -15,7 +15,7 @@
                     <div class="d-flex flex-column align-items-start justift-content-center flex-equal me-5">
                         <div class="position-relative w-100">
                             <i class="ki-outline ki-magnifier fs-2 text-primary position-absolute top-50 translate-middle ms-8"></i>
-                            <input type="text" class="form-control fs-4 py-4 ps-14 text-gray-700 placeholder-gray-400 mw-500px" id="title" name="title" value="" placeholder="ค้นหาข่าวสาร" />
+                            <input type="text" class="form-control fs-4 py-4 ps-14 text-gray-700 placeholder-gray-400 mw-500px" id="search" name="search" value="{{ $pageDetails['search']['search'] }}" placeholder="ค้นหาข่าวสาร" />
                         </div>
                     </div>
                     <div class="flex-equal d-flex justify-content-center align-items-end ms-5">
@@ -34,38 +34,41 @@
                     <a href="#" data-bs-toggle="modal" data-bs-target="#kt_modal_new_ticket" class="btn btn-light-primary fw-bold fs-8 fs-lg-base mb-2">เพิ่มข่าวสาร</a>
                 </div>
                 <div class="mb-10" id="news">
-                    @for ($i = 0; $i < 8; $i++)
-                        <div class="d-flex mb-10" data-new-id="5">
-                            <i class="ki-outline ki-file-added fs-2x me-5 ms-n1 mt-2 text-success"></i>
-                            <div class="d-flex flex-column">
-                                <div class="d-flex align-items-center mb-2">
-                                    <a href="{{ url('/news/detail/') }}" class="text-dark text-hover-primary fs-4 me-3 fw-semibold">ตารางโปรโมชันลูกค้าเดือนพฤษภาคม</a>
+                    @if (Count($pageDetails['list_news']) > 0)
+                        @foreach ($pageDetails['list_news'] as $item)
+                            <div class="d-flex mb-10" data-new-id="5">
+                                <i class="ki-outline ki-file-added fs-2x me-5 ms-n1 mt-2 text-success"></i>
+                                <div class="d-flex flex-column">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <a href="{{ url('/news/detail/'.$item->news_id) }}" class="text-dark text-hover-primary fs-4 me-3 fw-semibold">{{ $item->title }}</a>
+                                    </div>
+                                    <span class="text-gray-700 fw-semibold fs-6">{{ $item->detail }}</span>
+                                    <span class="text-muted fw-semibold fs-7 mt-2">{{ $item->created_at }}</span>
                                 </div>
-                                <span class="text-gray-700 fw-semibold fs-6">Keenthemes example description</span>
-                                <span class="text-muted fw-semibold fs-7 mt-2">20/05/2024 13:00 น.</span>
-                            </div>
-                            <span class="flex-equal d-flex justify-content-center ms-5">
-                                <a href="#" class="btn btn-icon btn-light w-30px h-30px ms-auto" data-btn-toggle="edit">
-                                    <i class="ki-duotone ki-pencil fs-2 ms-0">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                        <span class="path3"></span>
-                                    </i>
-                                </a>
-                                <span>
-                                    <a href="#" class="btn btn-icon btn-light-danger w-30px h-30px ms-2" data-btn-toggle="delete">
-                                        <i class="ki-duotone ki-trash fs-2 ms-0">
+                                <span class="flex-equal d-flex justify-content-center ms-5">
+                                    <a href="#" class="btn btn-icon btn-light w-30px h-30px ms-auto" data-btn-toggle="edit">
+                                        <i class="ki-duotone ki-pencil fs-2 ms-0">
                                             <span class="path1"></span>
                                             <span class="path2"></span>
                                             <span class="path3"></span>
-                                            <span class="path4"></span>
-                                            <span class="path5"></span>
                                         </i>
                                     </a>
+                                    <span>
+                                        <a href="#" class="btn btn-icon btn-light-danger w-30px h-30px ms-2" data-btn-toggle="delete">
+                                            <i class="ki-duotone ki-trash fs-2 ms-0">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                                <span class="path3"></span>
+                                                <span class="path4"></span>
+                                                <span class="path5"></span>
+                                            </i>
+                                        </a>
+                                    </span>
                                 </span>
-                            </span>
-                        </div>
-                    @endfor
+                            </div>
+                        @endforeach
+                    @else
+                    @endif
                 </div>
                 <ul class="pagination">
                     <li class="page-item previous disabled">
