@@ -31,15 +31,37 @@ class NewsModel
             }
         }
         //todo วันที่
-        // if (array_key_exists('date_start', $fliters) && array_key_exists('date_end', $fliters)) {
-        //     if ($fliters['date_start']) {
-        //         $query->where('date_start', '>=', $fliters['date_start']);
-        //     }
-        //     if ($fliters['date_end']) {
-        //         $query->where('date_end', '<=', $fliters['date_end']);
-        //     }
-        // }
+        if (array_key_exists('date_start', $fliters) && array_key_exists('date_end', $fliters)) {
+            $query->whereBetween('created_at', [$fliters['date_start'], $fliters['date_end']]);
+        }
         return $query->get()->toArray();
+    }
+    public static function fetchByPaginate($fliters)
+    {
+        //! For Filter Loop
+        $query = DB::table(self::TABLE)
+            ->where('company_id', $fliters['company_id'])
+            ->where('is_delete', 0);
+        //todo ค้นหาข่าวสาร
+        if (array_key_exists('search_title', $fliters)) {
+            if ($fliters['search_title']) {
+                $query->where('title', 'like', '%' . $fliters['search_title'] . '%');
+            }
+        }
+        //todo วันที่
+        if (array_key_exists('date_start', $fliters) && array_key_exists('date_end', $fliters)) {
+            $query->whereBetween('created_at', [$fliters['date_start'], $fliters['date_end']]);
+        }
+        $query2 = $query;
+        $total = $query2->count();
+        //! For Offset} Limit} Select} Oder
+        $result = $query
+            ->skip(($fliters['page'] - 1) * $fliters['size'])
+            ->take($fliters['size'])
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return [$total,$result];
     }
     public static function fetchById($id)
     {

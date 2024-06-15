@@ -30,8 +30,9 @@ class GlobalFunc
     public static function formatDateTime($dateTime)
     {
         $createdAt = new Carbon($dateTime);
-        $dateTime = $createdAt->format('d/m/Y H:i');
-        $dateTime = $dateTime . " น.";
+        $date = $createdAt->format('d/m/Y H:i');
+        $time = $createdAt->format('H:i');
+        $dateTime = $date . ' เวลา ' . $time . ' น.';
         return $dateTime;
     }
     public static function formatDate($date)
