@@ -349,7 +349,7 @@ class NavigatorPagesContoller extends Controller
         ];
         return view('pages.projects.project')->with($data);
     }
-    public function subscriptionsAdd()
+    public function salesTarget()
     {
         $data['pageDetails'] = [
             'page_lv' => '2',
@@ -357,9 +357,9 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_1' => 'แดชบอร์ด',
             'page_url_1' => '/dashboard',
             'page_desc_1' => '',
-            'page_name_en_2' => 'subscriptions-add',
+            'page_name_en_2' => 'sales-target',
             'page_name_th_2' => 'มาสเตอร์การตั้งเป้ายอดขายฯ',
-            'page_url_2' => '/subscriptions/add',
+            'page_url_2' => '/sales/target',
             'page_desc_2' => 'เป้ายอดขาย และ คอมมิชชัน',
             'page_name_en_3' => '',
             'page_name_th_3' => '',
@@ -368,7 +368,7 @@ class NavigatorPagesContoller extends Controller
             'company_profile' => (array)$this->user->company_profile,
             'target_sales' => TargetSalesService::fetch(),
         ];
-        return view('pages.subscriptions.add')->with($data);
+        return view('pages.sales.target')->with($data);
     }
     public function newsLists(Request $request)
     {  

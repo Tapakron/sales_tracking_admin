@@ -6,9 +6,19 @@ var KTModalNewTicket = function () {
             (a = document.querySelector("#kt_modal_new_ticket")) && (o = new bootstrap.Modal(a), i = document.querySelector("#kt_modal_new_ticket_form"), t = document.getElementById("kt_modal_new_ticket_submit"), e = document.getElementById("kt_modal_new_ticket_cancel"), new Dropzone("#kt_modal_create_ticket_attachments", {
                 url: "https://keenthemes.com/scripts/void.php",
                 paramName: "file",
-                maxFiles: 10,
-                maxFilesize: 10,
-                addRemoveLinks: !0,
+                maxFiles: 1,
+                maxFilesize: 5,
+                addRemoveLinks: true,
+                autoProcessQueue: false,
+                dictDefaultMessage: "อัปโหลดรูปภาพเเ",
+                dictFallbackMessage: "เบราว์เซอร์ของคุณไม่รองรับการอัปโหลดไฟล์ด้วยการลากและวาง",
+                dictFileTooBig: "ไฟล์มีขนาดใหญ่เกินไป ({{filesize}}MB). ขนาดสูงสุด: {{maxFilesize}}MB.", 
+                dictInvalidFileType: "ไฟล์ประเภทนี้ไม่รองรับ",
+                dictResponseError: "เซิร์ฟเวอร์ตอบกลับด้วยรหัส {{statusCode}}.",
+                dictCancelUpload: "ยกเลิกการอัปโหลด",
+                dictCancelUploadConfirmation: "คุณแน่ใจหรือไม่ว่าต้องการยกเลิกการอัปโหลดนี้?", 
+                dictRemoveFile: "ลบไฟล์",
+                dictMaxFilesExceeded: "คุณสามารถอัปโหลดไฟล์ได้สูงสุด {{maxFiles}} ไฟล์เท่านั้น.",
                 accept: function (t, e) {
                     "justinbieber.jpg" == t.name ? e("Naha, you don't.") : e()
                 }
@@ -47,8 +57,6 @@ var KTModalNewTicket = function () {
             }), t.addEventListener("click", (function (e) {
                 e.preventDefault(), n && n.validate().then((function (e) {
                     if ("Valid" == e) {
-
-
                         Swal.fire({
                             text: "บันทึกข้อมูล! โปรดกดปุ่มบันทึกอีกครั้ง",
                             icon: "info",
@@ -66,44 +74,41 @@ var KTModalNewTicket = function () {
                             if (n.isConfirmed) {
                                 t.setAttribute("data-kt-indicator", "on");
                                 t.disabled = !0;
-                                let formData = new FormData();
-                                let frmData = {
-                                    image: $('#kt_modal_create_ticket_attachments').prop('files')[0],
-                                    title: $('#title').val(),
-                                    detail: $('#detail').val(),
+                                let formData = new FormData(i);
+    
+                                // ดึงไฟล์จาก Dropzone
+                                let dropzoneFiles = Dropzone.forElement("#kt_modal_create_ticket_attachments").getAcceptedFiles();
+                                if (dropzoneFiles.length > 0) {
+                                    formData.append("image", dropzoneFiles[0]);
                                 }
 
-                                if (!frmData.image) {
-                                    frmData.image = "";
-                                }
-                                Object.keys(frmData).forEach(function (key, index) {
-                                    formData.append(key, frmData[key]);
-                                })
-                                console.log(formData);
-
-                                // $.ajax({
-                                //     url: '/backend/admin/sales/create',
-                                //     type: 'POST',
-                                //     data: formData,
-                                //     cache: false,
-                                //     contentType: false,
-                                //     processData: false,
-                                //     success: function (response) {
-                                //         if (response.success) {
-                                //             toastr.success('บันทึกข้อมูลสำเร็จ');
-                                //             setTimeout(() => {
-                                //                 window.location.reload();
-                                //             }, 1000);
-                                //         } else {
-                                //             toastr.warning('บันทึกข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
-                                //         }
-                                //         btn.removeAttribute("data-kt-indicator")
-                                //         btn.disabled = !1
-                                //     },
-                                //     error: function () {
-
-                                //     }
-                                // });
+                                $.ajax({
+                                    url: '/backend/admin/news/create',
+                                    type: 'POST',
+                                    data: formData,
+                                    cache: false,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function (response) {
+                                        if (response.success) {
+                                            toastr.success('บันทึกข้อมูลสำเร็จ');
+                                            setTimeout(() => {
+                                                window.location.reload();
+                                            }, 1000);
+                                        } else {
+                                            toastr.warning('บันทึกข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
+                                        }
+                                        i.reset();
+                                        o.hide();
+                                        t.removeAttribute("data-kt-indicator")
+                                        t.disabled = !1
+                                    },
+                                    error: function () {
+                                        toastr.error('เกิดข้อผิดพลาดในการบันทึกข้อมูล');
+                                        t.removeAttribute("data-kt-indicator")
+                                        t.disabled = !1
+                                    }
+                                });
                             }
                         }))
 
@@ -123,7 +128,7 @@ var KTModalNewTicket = function () {
                         // }))
                     } else {
                         Swal.fire({
-                            text: "Sorry, looks like there are some errors detected, please try again.",
+                            text: "โปรดกรอกข้อมูลให้ครบถ้วน",
                             icon: "error",
                             buttonsStyling: !1,
                             confirmButtonText: "Ok, got it!",

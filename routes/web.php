@@ -62,7 +62,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/add', [NavigatorPagesContoller::class, 'salesAdd']);
         Route::get('/edit/{id}', [NavigatorPagesContoller::class, 'salesEdit']);
         Route::get('/list', [NavigatorPagesContoller::class, 'salesList']);
+        Route::get('/target', [NavigatorPagesContoller::class, 'salesTarget']);
     });
+
+    // ! subscriptions
+    // Route::get('/subscriptions/add', [NavigatorPagesContoller::class, 'subscriptionsAdd']);
 
     // ! invoices
     Route::group(['prefix' => 'invoices'], function () {
@@ -72,10 +76,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     // ! projects
-    Route::get('/projects', [NavigatorPagesContoller::class, 'projects']);
-
-    // ! subscriptions
-    Route::get('/subscriptions/add', [NavigatorPagesContoller::class, 'subscriptionsAdd']);
+    Route::get('/projects', [NavigatorPagesContoller::class, 'projects']);    
 
     // ! support-center
     Route::group(['prefix' => 'news'], function () {
