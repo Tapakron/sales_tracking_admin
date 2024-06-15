@@ -4,6 +4,7 @@ namespace App\Services\CompanyServices;
 
 use App\Helpers\GlobalFunc;
 use App\Models\CompanyModels\NewsModel;
+use App\Models\SysUsers;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -85,6 +86,7 @@ class NewsService
         try {
             // dd($body,'yyy');
             $user = Auth::user();
+            $newsArray = array();
             if (!empty($body['search_date'])) {
                 $arrayDate = explode('-', $body['search_date']);
                 $date_start = $arrayDate[0];
@@ -102,12 +104,14 @@ class NewsService
                 'page' => $body['page'],
             ];
             $data = NewsModel::fetch($fliters);
-            // if (count($data) > 0) {
-            //     foreach ($data as $key => $value) {
-            //         $value['created_at'] = GlobalFunc::formatDateTime($value['created_at']);
-            //     }
-            // }
-            return $data;
+            if (count($data) > 0) {
+                foreach ($data as $key => $value) {
+                    $newsArray[$key] = (array) $value;
+                    $newsArray[$key]['created_at'] = GlobalFunc::formatDateTime($value->created_at);
+                }
+            }
+            // dd($newsArray);
+            return $newsArray;
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -115,9 +119,12 @@ class NewsService
     public static function fetchById($news_id) //!
     {
         try {
-            return NewsModel::fetchById($news_id);
-            // $rsWork = NewsModel::getDetailJobById($news_id);
-            // return $rsWork;
+            // return NewsModel::fetchById($news_id);
+            $rsWorkObject = NewsModel::fetchById($news_id);
+            $rsWorkArray = (array)$rsWorkObject;
+            $rsUser = SysUsers::fetchById($rsWorkArray['created_by']);
+            $rsWorkArray['author_name'] = $rsUser->name;
+            return $rsWorkArray;
         } catch (\Throwable $th) {
             throw $th;
         }
