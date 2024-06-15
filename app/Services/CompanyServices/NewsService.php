@@ -14,8 +14,8 @@ class NewsService
     {
         try {
             $user = Auth::user();
-            $body = [
-                'news_id' => GlobalFunc::getNewId(),
+            $body += [
+                'company_id' => $user->company_id,
                 'is_delete' => false,
                 'created_at' => Carbon::now(),
                 'created_by' => $user->id
@@ -102,11 +102,11 @@ class NewsService
                 'page' => $body['page'],
             ];
             $data = NewsModel::fetch($fliters);
-            if (count($data) > 0) {
-                foreach ($data as $key => $value) {
-                    $value['created_at'] = GlobalFunc::formatDateTime($value['created_at']);
-                }
-            }
+            // if (count($data) > 0) {
+            //     foreach ($data as $key => $value) {
+            //         $value['created_at'] = GlobalFunc::formatDateTime($value['created_at']);
+            //     }
+            // }
             return $data;
         } catch (\Throwable $th) {
             throw $th;

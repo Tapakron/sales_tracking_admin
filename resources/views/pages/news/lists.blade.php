@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="flex-equal d-flex justify-content-center align-items-end ms-5">
-                        <input id="kt_daterangepicker_4" name="search_date" data-date-start="{{ $pageDetails['search_date']['startDate'] }}" data-date-end="{{ $pageDetails['search_date']['endDate'] }}" class="form-control fs-4 py-4 ps-14 text-gray-700 placeholder-gray-400 mw-500px" placeholder="" value="" />
+                        <input id="kt_daterangepicker_4" name="search_date" data-date-start="{{ $pageDetails['search']['startDate'] }}" data-date-end="{{ $pageDetails['search']['endDate'] }}" class="form-control fs-4 py-4 ps-14 text-gray-700 placeholder-gray-400 mw-500px" placeholder="" value="" />
                     </div>
                     <button type="submit" class="btn btn-primary ms-5">ค้นหา</button>
                 </div>
