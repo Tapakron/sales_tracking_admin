@@ -21,7 +21,7 @@
                         <!--begin::Card title-->
                         <!--begin::Card toolbar-->
                         <div class="card-toolbar">
-                            <a href="#" class="btn btn-light-primary" data-bs-toggle="modal" data-bs-target="#modal_sele_target">กำหนดค่า</a>
+                            <a href="#" id="modal_toggle" class="btn btn-light-primary">กำหนดค่า</a>
                         </div>
                         <!--end::Card toolbar-->
                     </div>
@@ -218,15 +218,15 @@
                                     <div class="fv-row form-group row mb-5">
                                         <div class="col-md-3">
                                             <label class="form-label">% ค่าคอม</label>
-                                            <input type="text" class="form-control mb-2 mb-md-0" name="percent" placeholder="0" />
+                                            <input type="text" class="form-control mb-2 mb-md-0" name="percent" placeholder="0" value=""/>
                                         </div>
                                         <div class="col-md-3">
                                             <label class="form-label">ยอดขายเริ่มต้น</label>
-                                            <input type="number" class="form-control mb-2 mb-md-0" name="start_sales" placeholder="0" />
+                                            <input type="number" class="form-control mb-2 mb-md-0" name="start_sales" placeholder="0" value=""/>
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-label">ยอดขายสูงสุด</label>
-                                            <input type="number" class="form-control mb-2 mb-md-0" name="max_sales" placeholder="0" />
+                                            <input type="number" class="form-control mb-2 mb-md-0" name="max_sales" placeholder="0" value=""/>
                                         </div>
                                         <div class="col-md-2">
                                             <a href="javascript:;" data-repeater-delete class="btn btn-sm btn-flex flex-center btn-light-danger mt-3 mt-md-9">
@@ -265,5 +265,5 @@
 
 @section('js-content')
     <script src="{{ asset('assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
-    <script src="{{ asset('assets/js-external/sales/target copy.js') }}"></script>
+    <script src="{{ asset('assets/js-external/sales/target.js') }}"></script>
 @endsection
