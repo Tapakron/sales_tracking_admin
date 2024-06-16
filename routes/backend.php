@@ -60,7 +60,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
             Route::post('/update', [NewsController::class, 'update']);
             // Route::post('/search', [CustomerController::class, 'search']);
             Route::get('/delete/{id}', [NewsController::class, 'delete']);
-            Route::get('/fetch/{id}', [NewsController::class, 'fetchById']);
         });
 
         //! เป้ายอดขาย
@@ -122,6 +121,7 @@ Route::group(['prefix' => 'api',], function () {
         });
         Route::group(['prefix' => 'news'], function () {
             Route::post('/fetch', [NewsController::class, 'fetch']);
+            Route::get('/fetch/{id}', [NewsController::class, 'fetchById']);
         });
     });
 });

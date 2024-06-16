@@ -86,7 +86,7 @@ class NewsService
         try {
             // dd($body,'yyy');
             $user = Auth::user();
-            $newsArray = array();
+            $newsArray['data'] = array();
             if (!empty($body['search_date'])) {
                 $arrayDate = explode('/', $body['search_date']);
                 $date_start = $arrayDate[0];
@@ -106,16 +106,19 @@ class NewsService
                 'size' => $body['size'],
                 'page' => $body['page']
             ];
-            $data = NewsModel::fetch($fliters);
-            // list($total, $data) = NewsModel::fetchByPaginate($fliters);
-
+            // $data = NewsModel::fetch($fliters);
+            list($total, $data) = NewsModel::fetchByPaginate($fliters);
+            $total = strval($total);
+            // dd(gettype($total));
             if (count($data) > 0) {
                 foreach ($data as $key => $value) {
-                    $newsArray[$key] = (array) $value;
-                    $newsArray[$key]['created_at'] = GlobalFunc::formatDateTime($value->created_at);
+                    $newsArray['data'][$key] = (array)$value;
+                    $newsArray['data'][$key]['created_at'] = GlobalFunc::formatDateTime($value->created_at);
                 }
             }
+            $newsArray['totalPage'] = $total;
             // dd($newsArray);
+            // return [$newsArray,$totalPage];
             return $newsArray;
         } catch (\Throwable $th) {
             throw $th;

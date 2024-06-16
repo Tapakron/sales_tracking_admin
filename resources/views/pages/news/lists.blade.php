@@ -1,5 +1,5 @@
 @php
-    // dd($pageDetails);
+     dd($pageDetails);
 @endphp
 @extends('layouts.app')
 

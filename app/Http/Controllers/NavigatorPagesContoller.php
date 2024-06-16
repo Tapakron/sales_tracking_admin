@@ -384,8 +384,8 @@ class NavigatorPagesContoller extends Controller
         $fliters = [
             'search_title' => '',
             'search_date' => $search_date, //14/05/2024-14/06/2024
-            'size' => '10',
-            'page' => ''
+            'size' => '2',
+            'page' => '1'
         ];
         $data['pageDetails'] = [
             'page_lv' => '2',
@@ -425,7 +425,7 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '/supportCenter/tickets/view',
             'page_desc_3' => 'รายละเอียด',
             'company_profile' => (array)$this->user->company_profile,
-            'news_detail' => (array)NewsService::fetchById($news_id)
+            // 'news_detail' => (array)NewsService::fetchById($news_id)
         ];
         // dd($data['pageDetails']);
         return view('pages.news.detail')->with($data);

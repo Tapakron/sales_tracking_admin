@@ -24,7 +24,8 @@ class NewsModel
         // dd($fliters);
         $query = DB::table(self::TABLE)
             ->where('company_id', $fliters['company_id'])
-            ->where('is_delete', 0);
+            ->where('is_delete', 0)
+            ->orderBy('created_at', 'desc');
         //todo ค้นหาข่าวสาร
         if (array_key_exists('search_title', $fliters)) {
             if ($fliters['search_title']) {
@@ -33,7 +34,9 @@ class NewsModel
         }
         //todo วันที่
         if (array_key_exists('date_start', $fliters) && array_key_exists('date_end', $fliters)) {
-            $query->whereBetween('created_at', [$fliters['date_start'], $fliters['date_end']]);
+            // $query->whereBetween(DB::raw('DATE(created_at)'), [$fliters['date_start'], $fliters['date_end']]);
+            $query->whereDate('created_at', '>=', $fliters['date_start'])
+                ->whereDate('created_at', '<=', $fliters['date_end']);
         }
         return $query->get()->toArray();
     }
@@ -51,7 +54,9 @@ class NewsModel
         }
         //todo วันที่
         if (array_key_exists('date_start', $fliters) && array_key_exists('date_end', $fliters)) {
-            $query->whereBetween('created_at', [$fliters['date_start'], $fliters['date_end']]);
+            // $query->whereBetween('created_at', [$fliters['date_start'], $fliters['date_end']]);
+            $query->whereDate('created_at', '>=', $fliters['date_start'])
+                ->whereDate('created_at', '<=', $fliters['date_end']);
         }
         $query2 = $query;
         $total = $query2->count();
@@ -62,7 +67,7 @@ class NewsModel
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return [$total,$result];
+        return [$total, $result];
     }
     public static function fetchById($id)
     {
