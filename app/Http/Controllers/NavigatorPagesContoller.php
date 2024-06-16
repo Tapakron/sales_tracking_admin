@@ -368,13 +368,14 @@ class NavigatorPagesContoller extends Controller
             'company_profile' => (array)$this->user->company_profile,
             'target_sales' => TargetSalesService::fetch(),
         ];
+        dd($data['pageDetails']);
         return view('pages.sales.target')->with($data);
     }
     public function newsLists(Request $request)
     {
         $startDate = Carbon::now()->startOfMonth()->format('Y-m-d');
         $endDate = Carbon::now()->format('Y-m-d');
-        $search_date = $startDate . "-" . $endDate;
+        $search_date = $startDate . "/" . $endDate;
         $arraySearch = [
             'search' => '',
             'startDate' => $startDate,

@@ -88,9 +88,10 @@ class NewsService
             $user = Auth::user();
             $newsArray = array();
             if (!empty($body['search_date'])) {
-                $arrayDate = explode('-', $body['search_date']);
+                $arrayDate = explode('/', $body['search_date']);
                 $date_start = $arrayDate[0];
                 $date_end = $arrayDate[1];
+                // $date_end = $date_end->addDay();
                 // dd($search_date);
             } else {
                 $date_start = '';

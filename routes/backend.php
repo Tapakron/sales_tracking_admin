@@ -30,9 +30,6 @@ use App\Http\Controllers\TargetSalesController;
 Route::post('/backend/login', [AuthController::class, 'login']);
 Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
     Route::post('/changepassword', [AuthController::class, 'changePassword']);
-    //! เป้ายอดขาย
-    Route::post('/targetsales/create', [TargetSalesController::class, 'create']);
-    Route::get('/targetsales/delete/{id}', [TargetSalesController::class, 'fetch']);
     //! ชำระเงิน
     Route::post('/payment/create', [TargetSalesController::class, 'create']);
     //! ล็อคเอาท์
@@ -65,9 +62,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
             Route::get('/delete/{id}', [NewsController::class, 'delete']);
             Route::get('/fetch/{id}', [NewsController::class, 'fetchById']);
         });
-        // Route::group(['prefix' => 'master'], function () {
-        // Route::post('/targetsales/create', [CustomerController::class, 'create']);
-        // });
+
+        //! เป้ายอดขาย
+        Route::group(['prefix' => 'targetsales'], function () {
+            Route::post('/create', [TargetSalesController::class, 'create']);
+            Route::get('/delete/{id}', [TargetSalesController::class, 'fetch']);
+        });
     });
     //!---------------------------------------sales-------------------------------------------
     Route::group(['middleware' => 'auth', 'prefix' => 'users'], function () {
@@ -110,6 +110,10 @@ Route::group(['prefix' => 'api',], function () {
         // Route::get('/program/fetch', [DropdownMasterController::class, 'getTypeWork']);
     });
     Route::group(['prefix' => 'admin'], function () {
+        Route::group(['prefix' => 'targetsales'], function () {
+            Route::get('/fetch', [SalesController::class, 'fetch']);
+        });
+
         Route::group(['prefix' => 'sales'], function () {
             Route::get('/fetch', [SalesController::class, 'fetch']);
         });

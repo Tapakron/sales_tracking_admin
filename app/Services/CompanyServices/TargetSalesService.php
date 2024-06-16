@@ -77,9 +77,25 @@ class TargetSalesService
                 'company_id' => $user->company_id,
             ];
             $data = TargetSalesModel::fetch($fliters);
-            if (!is_null($data)) {
-                dd('1111');
-            }
+            // if (!is_null($data)) {
+            //     dd('1111');
+            // }
+            $data['targetValue'] = '50000';
+            $data['commissionItems'][0] = [
+                'percent' => '10',
+                'start_sales' => '0',
+                'max_sales' => '10000'
+            ];
+            $data['commissionItems'][1] = [
+                'percent' => '15',
+                'start_sales' => '10001',
+                'max_sales' => '20000'
+            ];
+            $data['commissionItems'][2] = [
+                'percent' => '20',
+                'start_sales' => '20001',
+                'max_sales' => '40000'
+            ];
             return $data;
         } catch (\Throwable $th) {
             throw $th;

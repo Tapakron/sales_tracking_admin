@@ -21,6 +21,7 @@ class NewsModel
     }
     public static function fetch($fliters)
     {
+        // dd($fliters);
         $query = DB::table(self::TABLE)
             ->where('company_id', $fliters['company_id'])
             ->where('is_delete', 0);
