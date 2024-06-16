@@ -1,5 +1,5 @@
 @php
-     dd($pageDetails);
+    // dd($pageDetails);
 @endphp
 @extends('layouts.app')
 
@@ -34,8 +34,8 @@
                     <a href="#" data-bs-toggle="modal" data-bs-target="#kt_modal_new_ticket" class="btn btn-light-primary fw-bold fs-8 fs-lg-base mb-2">เพิ่มข่าวสาร</a>
                 </div>
                 <div class="mb-10" id="news">
-                    @if (Count($pageDetails['list_news']) > 0)
-                        @foreach ($pageDetails['list_news'] as $item)
+                    @if (Count($pageDetails['list_news']['data']) > 0)
+                        @foreach ($pageDetails['list_news']['data'] as $item)
                             <div class="d-flex mb-10" data-new-id="5">
                                 <i class="ki-outline ki-file-added fs-2x me-5 ms-n1 mt-2 text-success"></i>
                                 <div class="d-flex flex-column">
