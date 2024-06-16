@@ -36,7 +36,7 @@ const KTModalNewCard = (function () {
             });
 
             function addFields(index) {
-                const namePrefix = "data["+index+"]";
+                const namePrefix = "data[" + index + "]";
 
                 validator.addField(namePrefix + "[percent]", {
                     validators: {
@@ -64,9 +64,9 @@ const KTModalNewCard = (function () {
             }
 
             function removeFields(index) {
-                
-                const namePrefix = "data["+index+"]";
 
+                const namePrefix = "data[" + index + "]";
+                
                 validator.removeField(namePrefix + "[percent]");
                 validator.removeField(namePrefix + "[start_sales]");
                 validator.removeField(namePrefix + "[max_sales]");
@@ -84,10 +84,10 @@ const KTModalNewCard = (function () {
                             commissionItems: []
                         };
 
-                        document.querySelectorAll("[data-repeater-item]").forEach(function (item,index) {
-                            const percentInput = item.querySelector('input[name="data['+index+'][percent]"]');
-                            const startSalesInput = item.querySelector('input[name="data['+index+'][start_sales]"]');
-                            const maxSalesInput = item.querySelector('input[name="data['+index+'][max_sales]"]');
+                        document.querySelectorAll("[data-repeater-item]").forEach(function (item, index) {
+                            const percentInput = item.querySelector('input[name="data[' + index + '][percent]"]');
+                            const startSalesInput = item.querySelector('input[name="data[' + index + '][start_sales]"]');
+                            const maxSalesInput = item.querySelector('input[name="data[' + index + '][max_sales]"]');
 
                             if (percentInput && startSalesInput && maxSalesInput) {
                                 const percent = percentInput.value;
@@ -201,7 +201,7 @@ const KTModalNewCard = (function () {
                     `;
                     repeaterList.appendChild(newItem);
 
-                    const namePrefix = "data["+index+"]";
+                    const namePrefix = "data[" + index + "]";
 
                     validator.addField(namePrefix + `[percent]`, {
                         validators: {
@@ -226,8 +226,11 @@ const KTModalNewCard = (function () {
                             }
                         }
                     });
+
+                    // addFields(index);
                 });
 
+                
                 modal.show();
             }
 
@@ -264,11 +267,14 @@ const KTModalNewCard = (function () {
                         addFields(index);
                     },
                     hide: function (deleteElement) {
-                        if (confirm('คุณต้องการลบข้อมูลชุดนี้?')) {
-                            $(this).slideUp(deleteElement);
-                            const index = $(this).closest("[data-repeater-item]").index();
-                            removeFields(index);
-                        }
+                        // if (confirm('คุณต้องการลบข้อมูลชุดนี้?')) {
+                        //     $(this).slideUp(deleteElement);
+                        //     const index = $(this).closest("[data-repeater-item]").index();
+                        //     removeFields(index);
+                        // }
+                        $(this).slideUp(deleteElement);
+                        const index = $(this).closest("[data-repeater-item]").index();
+                        removeFields(index)
                     }
                 });
             });
