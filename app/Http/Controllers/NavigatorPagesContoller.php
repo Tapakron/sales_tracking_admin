@@ -428,8 +428,9 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '/supportCenter/tickets/view',
             'page_desc_3' => 'รายละเอียด',
             'company_profile' => (array)$this->user->company_profile,
+            'detail_news' => NewsService::fetchById($news_id),
         ];
-        // dd($data['pageDetails']);
+        // dd($data['pageDetails'],'777');
         return view('pages.news.detail')->with($data);
     }
     public function salesList()
