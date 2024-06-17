@@ -37,7 +37,7 @@
                 <div class="mb-10" id="news">
                     @if (Count($pageDetails['list_news2']) > 0)
                         @foreach ($pageDetails['list_news2'] as $item)
-                            <div class="d-flex mb-10" data-new-id="5">
+                            <div class="d-flex mb-10" data-new-id="{{ $item->news_id }}">
                                 <i class="ki-outline ki-file-added fs-2x me-5 ms-n1 mt-2 text-success"></i>
                                 <div class="d-flex flex-column">
                                     <div class="d-flex align-items-center mb-2">
