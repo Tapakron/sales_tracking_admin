@@ -42,6 +42,7 @@ class NewsModel
     }
     public static function fetchByPaginate($fliters)
     {
+        // dd($fliters);
         //! For Filter Loop
         $query = DB::table(self::TABLE)
             ->where('company_id', $fliters['company_id'])

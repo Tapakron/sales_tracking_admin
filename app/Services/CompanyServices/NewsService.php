@@ -106,18 +106,18 @@ class NewsService
                 'size' => $body['size'],
                 'page' => $body['page']
             ];
+            $size = intval($body['size']);
             // $data = NewsModel::fetch($fliters);
             list($total, $data) = NewsModel::fetchByPaginate($fliters);
-            $total = strval($total);
-            // dd(gettype($total));
+            // dd(ceil($total / $size), $total, $size);
             if (count($data) > 0) {
                 foreach ($data as $key => $value) {
                     $newsArray['data'][$key] = (array)$value;
                     $newsArray['data'][$key]['created_at'] = GlobalFunc::formatDateTime($value->created_at);
                 }
             }
-            $newsArray['totalPage'] = $total;
-            // dd($newsArray);
+            $newsArray['totalPage'] = ceil($total / $size);
+            $newsArray['totalPage'] = intval($newsArray['totalPage']);
             // return [$newsArray,$totalPage];
             return $newsArray;
         } catch (\Throwable $th) {

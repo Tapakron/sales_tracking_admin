@@ -385,7 +385,7 @@ class NavigatorPagesContoller extends Controller
             'search_title' => '',
             'search_date' => $search_date, //14/05/2024-14/06/2024
             'size' => '2',
-            'page' => '1'
+            'page' => '4'
         ];
         $data['pageDetails'] = [
             'page_lv' => '2',
@@ -405,7 +405,7 @@ class NavigatorPagesContoller extends Controller
             'list_news' => (array)NewsService::fetch($fliters),
             'search' => $arraySearch
         ];
-        // dd($data['pageDetails']);
+        dd($data['pageDetails']);
         return view('pages.news.lists')->with($data);
     }
     public function newsdetail($news_id)
