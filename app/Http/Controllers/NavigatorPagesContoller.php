@@ -405,7 +405,7 @@ class NavigatorPagesContoller extends Controller
             'list_news' => (array)NewsService::fetch($fliters),
             'search' => $arraySearch
         ];
-        dd($data['pageDetails']);
+        // dd($data['pageDetails']);
         return view('pages.news.lists')->with($data);
     }
     public function newsdetail($news_id)
