@@ -44,7 +44,8 @@ class NewsModel
     {
         $query = DB::table(self::TABLE)
             ->where('company_id', $fliters['company_id'])
-            ->where('is_delete', 0);
+            ->where('is_delete', 0)
+            ->orderBy('created_at', 'desc');
         //todo ค้นหาข่าวสาร
         if (array_key_exists('search_title', $fliters)) {
             if ($fliters['search_title']) {
