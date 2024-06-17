@@ -143,21 +143,10 @@ class NewsService
                 'date_start' => $date_start,
                 'date_end' => $date_end,
             ];
-            // dd($fliters);
-            // $data = NewsModel::fetch($fliters);
-            // list($total, $data) = NewsModel::fetchByPaginate($fliters);
             $data = NewsModel::fetchByPaginate2($fliters);
             foreach ($data as $key => $value) {
                 $value->created_at = GlobalFunc::formatDateTime($value->created_at);
             }
-            // dd(ceil($total / $size), $total, $size);
-            // if (count($data) > 0) {
-            //     foreach ($data as $key => $value) {
-            //         $newsArray['data'][$key] = (array)$value;
-            //         $newsArray['data'][$key]['created_at'] = GlobalFunc::formatDateTime($value->created_at);
-            //     }
-            // }
-            // $data = json_decode(json_encode($data), true);
             return $data;
         } catch (\Throwable $th) {
             throw $th;

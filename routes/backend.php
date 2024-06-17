@@ -120,7 +120,8 @@ Route::group(['prefix' => 'api',], function () {
             Route::get('/fetch', [CustomerController::class, 'fetch']);
         });
         Route::group(['prefix' => 'news'], function () {
-            Route::post('/fetch', [NewsController::class, 'fetch'])->name('search.news');
+            Route::post('/fetch', [NewsController::class, 'fetch']);
+            Route::get('/search', [NewsController::class, 'search'])->name('search.news');
             Route::get('/fetch/{id}', [NewsController::class, 'fetchById']);
         });
     });

@@ -374,17 +374,34 @@ class NavigatorPagesContoller extends Controller
     }
     public function newsLists(Request $request)
     {
-        $startDate = Carbon::now()->startOfMonth()->format('Y-m-d');
-        $endDate = Carbon::now()->format('Y-m-d');
+        $body = $request->all();
+        $search_title = $body['search_title'] ? $body['search_title'] : '';
+        $search_date = $body['search_date'] ? $body['search_date'] : '';
+        $arrayDate = explode('-', $body['search_date']);
+        $date_start = $arrayDate[0];
+        $date_end = $arrayDate[1];
 
-        $search_date = $startDate . "/" . $endDate;
+        $date_start = Carbon::createFromFormat('d/m/Y', trim($date_start));
+        $startDate = $date_start->format('Y-m-d');
+
+        $date_end = Carbon::createFromFormat('d/m/Y', trim($date_end));
+        $endDate = $date_end->format('Y-m-d');
+
+        $search_date = $startDate . " / " . $endDate;
+
+        if ($search_date == null) {
+            $startDate = Carbon::now()->startOfMonth()->format('Y-m-d');
+            $endDate = Carbon::now()->format('Y-m-d');
+            $search_date = $startDate . "/" . $endDate;
+        }
+
         $arraySearch = [
-            'search_title' => '',
+            'search_title' => $search_title,
             'startDate' => $startDate,
             'endDate' => $endDate
         ];
         $fliters = [
-            'search_title' => '',
+            'search_title' => $search_title,
             'search_date' => $search_date, //14/05/2024-14/06/2024
             'size' => '3',
             'page' => '1'
