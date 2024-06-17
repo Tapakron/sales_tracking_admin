@@ -1,3 +1,6 @@
+@php
+    // dd($pageDetails);
+@endphp
 @extends('layouts.app')
 
 @section('css-content')
@@ -16,24 +19,27 @@
                     <div class="text-center mb-15">
                         <!--begin::Title-->
                         <h3 class="fs-2hx text-dark mb-5">
-                            ตารางโปรโมชันลูกค้าเดือนพฤษภาคม</h3>
+                            {{ $pageDetails['detail_news']['title'] }}
+                        </h3>
                         <!--end::Title-->
                         <!--begin::Text-->
                         <!-- <div class="fs-5 text-muted fw-semibold">Within the last 10 years, we have sold over 100,000 admin theme copies that have been
-                        <br />successfully deployed by small businesses to global enterprises</div> -->
+                            <br />successfully deployed by small businesses to global enterprises</div> -->
                         <!--end::Text-->
                     </div>
                     <!--end::Top-->
                     <!--begin::Overlay-->
                     <div class="overlay text-center">
                         <!--begin::Image-->
-                        <img class="w-90 card-rounded" src="{{ asset("assets/media/stock/1600x800/1.jpg") }}" alt="" />
+                        @if ($pageDetails['detail_news']['image'] != null)
+                            <img class="w-90 card-rounded" src="{{ asset($pageDetails['detail_news']['image']) }}" alt="" />
+                        @endif
                         <!--end::Image-->
                         <!--begin::Links-->
                         <!-- <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-                            <a href="../../demo23/dist/pages/pricing.html" class="btn btn-primary">Pricing</a>
-                            <a href="../../demo23/dist/pages/careers/apply.html" class="btn btn-light-primary ms-3">Join Us</a>
-                        </div> -->
+                                <a href="../../demo23/dist/pages/pricing.html" class="btn btn-primary">Pricing</a>
+                                <a href="../../demo23/dist/pages/careers/apply.html" class="btn btn-light-primary ms-3">Join Us</a>
+                            </div> -->
                         <!--end::Links-->
                     </div>
                     <!--end::Container-->
@@ -42,8 +48,7 @@
                 <!--begin::Description-->
                 <div class="fs-5 fw-semibold text-gray-600">
                     <!--begin::Text-->
-                    <p class="mb-8">First, a disclaimer – the entire process of writing a blog post often takes more than a couple of hours, even if you can type eighty words per minute and your writing skills are sharp. From the seed of the idea to finally hitting “Publish,” you might spend several days or maybe even a week “writing” a blog post, but it’s important to spend those vital hours planning your post and even thinking about
-                        (yes, thinking counts as working if you’re a blogger) before you actually write it.</p>
+                    <p class="mb-8">{{ $pageDetails['detail_news']['detail'] }}</p>
                     <!--end::Text-->
                 </div>
                 <!--end::Description-->
@@ -57,7 +62,7 @@
                     <i class="ki-outline ki-calendar text-primary fs-2 me-1"></i>
                     <!--end::Icon-->
                     <!--begin::Label-->
-                    <span class="fw-bold text-gray-400">06.05.2024 เวลา 13:00 น.</span>
+                    <span class="fw-bold text-gray-400">{{ $pageDetails['detail_news']['created_at'] }}</span>
                     <!--end::Label-->
                 </div>
                 <!--end::Item-->
@@ -67,7 +72,7 @@
                     <i class="ki-outline ki-user-tick text-primary fs-2 me-1"></i>
                     <!--end::Icon-->
                     <!--begin::Label-->
-                    <span class="fw-bold text-gray-400">Announcements</span>
+                    <span class="fw-bold text-gray-400">{{ $pageDetails['detail_news']['author_name'] }}</span>
                     <!--begin::Label-->
                 </div>
                 <!--end::Item-->
@@ -285,6 +290,6 @@
 @endsection
 
 @section('js-content')
-    <script src="{{ asset("assets/js/custom/apps/support-center/tickets/create.js") }}"></script>
-    <script src="{{ asset("assets/js/custom/apps/support-center/general.js") }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/support-center/tickets/create.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/support-center/general.js') }}"></script>
 @endsection
