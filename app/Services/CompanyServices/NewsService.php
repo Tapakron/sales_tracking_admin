@@ -124,6 +124,46 @@ class NewsService
             throw $th;
         }
     }
+    public static function fetch2($body)
+    {
+        try {
+            // $newsArray['data'] = array();
+            if (!empty($body['search_date'])) {
+                $arrayDate = explode('/', $body['search_date']);
+                $date_start = $arrayDate[0];
+                $date_end = $arrayDate[1];
+                // $date_end = $date_end->addDay();
+                // dd($search_date);
+            } else {
+                $date_start = '';
+                $date_end = '';
+            }
+            $fliters = [
+                'company_id' => $user->company_id,
+                'search_title' => $body['search_title'],
+                'date_start' => $date_start,
+                'date_end' => $date_end,
+                //! ----------------------------------------
+                'size' => $body['size'],
+                'page' => $body['page']
+            ];
+            // $data = NewsModel::fetch($fliters);
+            // list($total, $data) = NewsModel::fetchByPaginate($fliters);
+            $data = NewsModel::fetchByPaginate2($fliters);
+            // dd($data);
+            // dd(ceil($total / $size), $total, $size);
+            // if (count($data) > 0) {
+            //     foreach ($data as $key => $value) {
+            //         $newsArray['data'][$key] = (array)$value;
+            //         $newsArray['data'][$key]['created_at'] = GlobalFunc::formatDateTime($value->created_at);
+            //     }
+            // }
+            // return [$newsArray,$totalPage];
+            return $data;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
     public static function fetchById($news_id) //!
     {
         try {

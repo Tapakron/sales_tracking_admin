@@ -403,6 +403,7 @@ class NavigatorPagesContoller extends Controller
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
             'list_news' => (array)NewsService::fetch($fliters),
+            'list_news2' => (array)NewsService::fetch2($fliters),
             'search' => $arraySearch
         ];
         // dd($data['pageDetails']);
