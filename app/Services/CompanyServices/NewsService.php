@@ -127,7 +127,6 @@ class NewsService
     public static function fetch2($body)
     {
         try {
-            // dd($body,'yyy');
             $user = Auth::user();
             $newsArray['data'] = array();
             if (!empty($body['search_date'])) {
@@ -145,9 +144,6 @@ class NewsService
                 'search_title' => $body['search_title'],
                 'date_start' => $date_start,
                 'date_end' => $date_end,
-                //! ----------------------------------------
-                'size' => $body['size'],
-                'page' => $body['page']
             ];
             // $data = NewsModel::fetch($fliters);
             // list($total, $data) = NewsModel::fetchByPaginate($fliters);

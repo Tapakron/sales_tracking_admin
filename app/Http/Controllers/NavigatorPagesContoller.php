@@ -12,6 +12,7 @@ use App\Services\DataMasterService\ProvinceService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class NavigatorPagesContoller extends Controller
 {
@@ -404,9 +405,11 @@ class NavigatorPagesContoller extends Controller
             'company_profile' => (array)$this->user->company_profile,
             'list_news' => (array)NewsService::fetch($fliters),
             'list_news2' => NewsService::fetch2($fliters),
-            'search' => $arraySearch
+            'search' => $arraySearch,
         ];
+        // dd($data['pageDetails']);
         return view('pages.news.lists')->with($data);
+        // return Redirect::route('search.news')->with($data);
     }
     public function newsdetail($news_id)
     {
@@ -425,7 +428,6 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '/supportCenter/tickets/view',
             'page_desc_3' => 'รายละเอียด',
             'company_profile' => (array)$this->user->company_profile,
-            // 'news_detail' => (array)NewsService::fetchById($news_id)
         ];
         // dd($data['pageDetails']);
         return view('pages.news.detail')->with($data);

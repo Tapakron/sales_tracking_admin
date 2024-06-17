@@ -165,7 +165,8 @@ class NewsController extends Controller
     {
         try {
             $body = $request->all();
-            $result = NewsService::fetch($body);
+            // $result = NewsService::fetch($body);fetch2
+            $result = NewsService::fetch2($body);
             if (!$result) {
                 return JsonResult::errors(null, 'ไม่พบข้อมูล');
             }
