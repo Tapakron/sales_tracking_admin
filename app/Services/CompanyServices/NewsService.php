@@ -162,8 +162,7 @@ class NewsService
             //         $newsArray['data'][$key]['created_at'] = GlobalFunc::formatDateTime($value->created_at);
             //     }
             // }
-            $data = json_decode(json_encode($data), true);
-            dd($data);
+            // $data = json_decode(json_encode($data), true);
             return $data;
         } catch (\Throwable $th) {
             throw $th;
