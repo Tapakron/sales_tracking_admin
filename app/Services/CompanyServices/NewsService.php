@@ -127,7 +127,9 @@ class NewsService
     public static function fetch2($body)
     {
         try {
-            // $newsArray['data'] = array();
+            // dd($body,'yyy');
+            $user = Auth::user();
+            $newsArray['data'] = array();
             if (!empty($body['search_date'])) {
                 $arrayDate = explode('/', $body['search_date']);
                 $date_start = $arrayDate[0];
@@ -150,7 +152,9 @@ class NewsService
             // $data = NewsModel::fetch($fliters);
             // list($total, $data) = NewsModel::fetchByPaginate($fliters);
             $data = NewsModel::fetchByPaginate2($fliters);
-            // dd($data);
+            foreach ($data as $key => $value) {
+                $value->created_at = GlobalFunc::formatDateTime($value->created_at);
+            }
             // dd(ceil($total / $size), $total, $size);
             // if (count($data) > 0) {
             //     foreach ($data as $key => $value) {
@@ -158,7 +162,7 @@ class NewsService
             //         $newsArray['data'][$key]['created_at'] = GlobalFunc::formatDateTime($value->created_at);
             //     }
             // }
-            // return [$newsArray,$totalPage];
+            // dd($data);
             return $data;
         } catch (\Throwable $th) {
             throw $th;
