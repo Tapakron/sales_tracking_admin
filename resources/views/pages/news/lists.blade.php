@@ -41,7 +41,7 @@
                                 <i class="ki-outline ki-file-added fs-2x me-5 ms-n1 mt-2 text-success"></i>
                                 <div class="d-flex flex-column">
                                     <div class="d-flex align-items-center mb-2">
-                                        <a href="{{ url('/api/admin/news/fetch/' . $item->news_id) }}" class="text-dark text-hover-primary fs-4 me-3 fw-semibold">{{ $item->title }}</a>
+                                        <a href="{{ url('/news/detail/' . $item->news_id) }}" class="text-dark text-hover-primary fs-4 me-3 fw-semibold">{{ $item->title }}</a>
                                     </div>
                                     <span class="text-gray-700 fw-semibold fs-6">{{ $item->detail }}</span>
                                     <span class="text-muted fw-semibold fs-7 mt-2">{{ $item->created_at }}</span>
