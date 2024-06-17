@@ -58,7 +58,7 @@ class NewsModel
                 ->whereDate('created_at', '<=', $fliters['date_end']);
         }
 
-        $newsList = $query->paginate(2); // Adjust the number of items per page as needed
+        $newsList = $query->paginate(1); // Adjust the number of items per page as needed
 
         return $newsList;
     }
