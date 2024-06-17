@@ -34,16 +34,16 @@
                     <a href="#" data-bs-toggle="modal" data-bs-target="#kt_modal_new_ticket" class="btn btn-light-primary fw-bold fs-8 fs-lg-base mb-2">เพิ่มข่าวสาร</a>
                 </div>
                 <div class="mb-10" id="news">
-                    @if (Count($pageDetails['list_news']['data']) > 0)
-                        @foreach ($pageDetails['list_news']['data'] as $item)
+                    @if (Count($pageDetails['list_news2']) > 0)
+                        @foreach ($pageDetails['list_news2'] as $item)
                             <div class="d-flex mb-10" data-new-id="5">
                                 <i class="ki-outline ki-file-added fs-2x me-5 ms-n1 mt-2 text-success"></i>
                                 <div class="d-flex flex-column">
                                     <div class="d-flex align-items-center mb-2">
-                                        <a href="{{ url('/api/admin/news/fetch/'.$item['news_id']) }}" class="text-dark text-hover-primary fs-4 me-3 fw-semibold">{{ $item['title'] }}</a>
+                                        <a href="{{ url('/api/admin/news/fetch/' . $item->news_id) }}" class="text-dark text-hover-primary fs-4 me-3 fw-semibold">{{ $item->title }}</a>
                                     </div>
-                                    <span class="text-gray-700 fw-semibold fs-6">{{ $item['detail'] }}</span>
-                                    <span class="text-muted fw-semibold fs-7 mt-2">{{ $item['created_at'] }}</span>
+                                    <span class="text-gray-700 fw-semibold fs-6">{{ $item->detail }}</span>
+                                    <span class="text-muted fw-semibold fs-7 mt-2">{{ $item->created_at }}</span>
                                 </div>
                                 <span class="flex-equal d-flex justify-content-center ms-5">
                                     <a href="#" class="btn btn-icon btn-light w-30px h-30px ms-auto" data-btn-toggle="edit">
@@ -70,35 +70,50 @@
                     @else
                     @endif
                 </div>
+                {{-- <div class="pagination">
+                    {{ $pageDetails['list_news2']->links() }}
+                </div> --}}
+
                 <ul class="pagination">
-                    <li class="page-item previous disabled">
-                        <a href="#" class="page-link">
-                            <i class="previous"></i>
-                        </a>
-                    </li>
-                    <li class="page-item active">
-                        <a href="#" class="page-link">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">4</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">5</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">6</a>
-                    </li>
-                    <li class="page-item next">
-                        <a href="#" class="page-link">
-                            <i class="next"></i>
-                        </a>
-                    </li>
+                    
+                    @if ($pageDetails['list_news2']->onFirstPage())
+                        <li class="page-item previous disabled">
+                            <span class="page-link">
+                                <i class="previous"></i>
+                            </span>
+                        </li>
+                    @else
+                        <li class="page-item previous">
+                            <a href="{{ $pageDetails['list_news2']->previousPageUrl() }}" class="page-link">
+                                <i class="previous"></i>
+                            </a>
+                        </li>
+                    @endif
+                    
+                    @php
+                        $currentPage = $pageDetails['list_news2']->currentPage();
+                    @endphp
+                    @foreach ($pageDetails['list_news2']->toArray()['links'] as $item)
+                        @if ($item['label'] != "&laquo; Previous" && $item['label'] != "Next &raquo;" )
+                            <li class="page-item  {{ $currentPage == $item['label'] ? 'active' : '' }}">
+                                <a href="{{ $item['url'] }}" class="page-link">{{ $item['label'] }}</a>
+                            </li>
+                        @endif
+                    @endforeach
+
+                    @if ($pageDetails['list_news2']->hasMorePages())
+                        <li class="page-item next">
+                            <a href="{{ $pageDetails['list_news2']->nextPageUrl() }}" class="page-link">
+                                <i class="next"></i>
+                            </a>
+                        </li>
+                    @else
+                        <li class="page-item next disabled">
+                            <span class="page-link">
+                                <i class="next"></i>
+                            </span>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>
