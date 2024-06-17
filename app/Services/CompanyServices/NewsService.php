@@ -133,8 +133,6 @@ class NewsService
                 $arrayDate = explode('/', $body['search_date']);
                 $date_start = $arrayDate[0];
                 $date_end = $arrayDate[1];
-                // $date_end = $date_end->addDay();
-                // dd($search_date);
             } else {
                 $date_start = '';
                 $date_end = '';
@@ -145,6 +143,7 @@ class NewsService
                 'date_start' => $date_start,
                 'date_end' => $date_end,
             ];
+            // dd($fliters);
             // $data = NewsModel::fetch($fliters);
             // list($total, $data) = NewsModel::fetchByPaginate($fliters);
             $data = NewsModel::fetchByPaginate2($fliters);

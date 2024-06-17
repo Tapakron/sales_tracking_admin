@@ -165,6 +165,7 @@ class NewsController extends Controller
     {
         try {
             $body = $request->all();
+            dd($body);
             // $result = NewsService::fetch($body);fetch2
             $result = NewsService::fetch2($body);
             if (!$result) {

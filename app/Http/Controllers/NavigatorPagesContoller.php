@@ -376,9 +376,10 @@ class NavigatorPagesContoller extends Controller
     {
         $startDate = Carbon::now()->startOfMonth()->format('Y-m-d');
         $endDate = Carbon::now()->format('Y-m-d');
+
         $search_date = $startDate . "/" . $endDate;
         $arraySearch = [
-            'search' => '',
+            'search_title' => '',
             'startDate' => $startDate,
             'endDate' => $endDate
         ];
@@ -403,13 +404,12 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '',
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
-            'list_news' => (array)NewsService::fetch($fliters),
+            // 'list_news' => (array)NewsService::fetch($fliters),
             'list_news2' => NewsService::fetch2($fliters),
             'search' => $arraySearch,
         ];
         // dd($data['pageDetails']);
         return view('pages.news.lists')->with($data);
-        // return Redirect::route('search.news')->with($data);
     }
     public function newsdetail($news_id)
     {
