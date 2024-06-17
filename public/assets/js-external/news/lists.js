@@ -147,7 +147,7 @@ var KTModalNewTicket = function () {
 }();
 
 var BtnEvents = function () {
-    let r, id, o = document.getElementById("news"),modal = document.getElementById("#kt_modal_new_ticket"),
+    let r, id, o = document.getElementById("news"),modal = document.querySelector("#kt_modal_new_ticket"),
         edit = () => {
             o.querySelectorAll('[data-btn-toggle="edit"]').forEach((t => {
                 t.addEventListener("click", (function (t) {
@@ -157,7 +157,7 @@ var BtnEvents = function () {
                     id = n.getAttribute('data-new-id');
                     console.log(id);
                     // modal.show()
-                    modal.modal('show')
+                    modal.show()
                     // $.ajax({
                     //     type: "get",
                     //     url: "/api/admin/news/fetch/" + id,

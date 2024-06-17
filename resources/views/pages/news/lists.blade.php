@@ -16,7 +16,7 @@
                     <div class="d-flex flex-column align-items-start justift-content-center flex-equal me-5">
                         <div class="position-relative w-100">
                             <i class="ki-outline ki-magnifier fs-2 text-primary position-absolute top-50 translate-middle ms-8"></i>
-                            <input type="text" class="form-control fs-4 py-4 ps-14 text-gray-700 placeholder-gray-400 mw-500px" id="search" name="search" value="{{ $pageDetails['search']['search'] }}" placeholder="ค้นหาข่าวสาร" />
+                            <input type="text" class="form-control fs-4 py-4 ps-14 text-gray-700 placeholder-gray-400 mw-500px" id="search_title" name="search_title" value="{{ $pageDetails['search']['search_title'] }}" placeholder="ค้นหาข่าวสาร" />
                         </div>
                     </div>
                     <div class="flex-equal d-flex justify-content-center align-items-end ms-5">
