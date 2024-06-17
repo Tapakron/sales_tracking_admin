@@ -168,8 +168,9 @@ class NewsService
         try {
             // return NewsModel::fetchById($news_id);
             $rsWorkObject = NewsModel::fetchById($news_id);
+            $rsUser = SysUsers::fetchById($rsWorkObject->created_by);
+            $rsWorkObject->created_at = GlobalFunc::formatDateTime($rsWorkObject->created_at);
             $rsWorkArray = (array)$rsWorkObject;
-            $rsUser = SysUsers::fetchById($rsWorkArray['created_by']);
             $rsWorkArray['author_name'] = $rsUser->name;
             return $rsWorkArray;
         } catch (\Throwable $th) {
