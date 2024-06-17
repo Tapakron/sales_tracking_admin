@@ -12,11 +12,11 @@ var KTModalNewTicket = function () {
                 autoProcessQueue: false,
                 dictDefaultMessage: "อัปโหลดรูปภาพเเ",
                 dictFallbackMessage: "เบราว์เซอร์ของคุณไม่รองรับการอัปโหลดไฟล์ด้วยการลากและวาง",
-                dictFileTooBig: "ไฟล์มีขนาดใหญ่เกินไป ({{filesize}}MB). ขนาดสูงสุด: {{maxFilesize}}MB.", 
+                dictFileTooBig: "ไฟล์มีขนาดใหญ่เกินไป ({{filesize}}MB). ขนาดสูงสุด: {{maxFilesize}}MB.",
                 dictInvalidFileType: "ไฟล์ประเภทนี้ไม่รองรับ",
                 dictResponseError: "เซิร์ฟเวอร์ตอบกลับด้วยรหัส {{statusCode}}.",
                 dictCancelUpload: "ยกเลิกการอัปโหลด",
-                dictCancelUploadConfirmation: "คุณแน่ใจหรือไม่ว่าต้องการยกเลิกการอัปโหลดนี้?", 
+                dictCancelUploadConfirmation: "คุณแน่ใจหรือไม่ว่าต้องการยกเลิกการอัปโหลดนี้?",
                 dictRemoveFile: "ลบไฟล์",
                 dictMaxFilesExceeded: "คุณสามารถอัปโหลดไฟล์ได้สูงสุด {{maxFiles}} ไฟล์เท่านั้น.",
                 accept: function (t, e) {
@@ -75,7 +75,7 @@ var KTModalNewTicket = function () {
                                 t.setAttribute("data-kt-indicator", "on");
                                 t.disabled = !0;
                                 let formData = new FormData(i);
-    
+
                                 // ดึงไฟล์จาก Dropzone
                                 let dropzoneFiles = Dropzone.forElement("#kt_modal_create_ticket_attachments").getAcceptedFiles();
                                 if (dropzoneFiles.length > 0) {
@@ -147,7 +147,7 @@ var KTModalNewTicket = function () {
 }();
 
 var BtnEvents = function () {
-    let r, id, o = document.getElementById("news"),
+    let r, id, o = document.getElementById("news"),modal = document.getElementById("#kt_modal_new_ticket"),
         edit = () => {
             o.querySelectorAll('[data-btn-toggle="edit"]').forEach((t => {
                 t.addEventListener("click", (function (t) {
@@ -156,6 +156,18 @@ var BtnEvents = function () {
                     r = n.querySelectorAll("a")[0].innerText
                     id = n.getAttribute('data-new-id');
                     console.log(id);
+                    // modal.show()
+                    modal.modal('show')
+                    // $.ajax({
+                    //     type: "get",
+                    //     url: "/api/admin/news/fetch/" + id,
+                    //     success: function (response) {
+                    //         if (response.success) {
+                    //             console.log(response.data);
+                    //             modal.show()
+                    //         }
+                    //     }
+                    // });
                 }))
             }))
         },

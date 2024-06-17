@@ -9,6 +9,7 @@
 @section('content')
     {{-- !------------------------------------------------------- --}}
     <form id="" name="" method="post" action="{{ route('search.news') }}">
+        @csrf
         <div class="card mb-12">
             <div class="card-body flex-column p-5">
                 <div class="d-flex align-items-center h-lg-100px p-5">
