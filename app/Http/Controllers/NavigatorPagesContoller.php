@@ -385,7 +385,7 @@ class NavigatorPagesContoller extends Controller
             'search_title' => '',
             'search_date' => $search_date, //14/05/2024-14/06/2024
             'size' => '2',
-            'page' => '4'
+            'page' => '1'
         ];
         $data['pageDetails'] = [
             'page_lv' => '2',

@@ -42,7 +42,6 @@ class NewsModel
     }
     public static function fetchByPaginate($fliters)
     {
-        // dd($fliters);
         //! For Filter Loop
         $query = DB::table(self::TABLE)
             ->where('company_id', $fliters['company_id'])
@@ -66,8 +65,7 @@ class NewsModel
             ->skip(($fliters['page'] - 1) * $fliters['size'])
             ->take($fliters['size'])
             ->orderBy('created_at', 'desc')
-            ->get();
-
+            ->get()->toArray();
         return [$total, $result];
     }
     public static function fetchById($id)
