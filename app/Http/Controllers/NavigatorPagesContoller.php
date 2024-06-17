@@ -384,7 +384,7 @@ class NavigatorPagesContoller extends Controller
         $fliters = [
             'search_title' => '',
             'search_date' => $search_date, //14/05/2024-14/06/2024
-            'size' => '2',
+            'size' => '3',
             'page' => '1'
         ];
         $data['pageDetails'] = [
