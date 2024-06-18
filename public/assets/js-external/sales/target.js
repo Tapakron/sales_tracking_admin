@@ -267,7 +267,6 @@ const KTModalNewCard = (function () {
                     type: "get",
                     url: "/api/admin/targetsales/fetch",
                     success: function (response) {
-                        console.log(response.data);
                         populateForm(response.data);
                     }
                 });

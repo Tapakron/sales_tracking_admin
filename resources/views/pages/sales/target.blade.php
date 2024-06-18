@@ -1,3 +1,6 @@
+@php
+    // dd($pageDetails);
+@endphp
 @extends('layouts.app')
 
 @section('css-content')
@@ -28,17 +31,19 @@
                     <!--end::Card header-->
                     <!--begin::Card body-->
                     <div class="card-body pt-0">
-                        @if ($pageDetails['targetValue'] != null)
-                            <div class="fs-1 fw-bold text-primary">50,000</div>
+                            <div class="fs-1 fw-bold text-primary">{{ $pageDetails['targetValue'] }}</div>
                             <p class="text-gray-400 fw-semibold fs-5 mt-1 mb-7">เป้ายอดขาย</p>
 
+                        @if ($pageDetails['commissionItems'] != null)
+                            @foreach ($pageDetails['commissionItems'] as $item)
+                            
                             <div class="d-flex flex-wrap mb-5">
                                 <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mb-3 me-5">
-                                    <div class="fs-6 text-gray-800 fw-bold">฿5,000 - ฿10,000</div>
+                                    <div class="fs-6 text-gray-800 fw-bold">฿{{ $item['start_sales'] }} - ฿{{ $item['max_sales'] }}</div>
                                     <div class="fw-semibold text-gray-400">ยอดขาย</div>
                                 </div>
                                 <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mb-3">
-                                    <div class="fs-6 text-gray-800 fw-bold">10%</div>
+                                    <div class="fs-6 text-gray-800 fw-bold">{{ $item['percent'] }}%</div>
                                     <div class="fw-semibold text-gray-400">เปอร์เซ็นต์ค่าคอม</div>
                                 </div>
                             </div>
@@ -53,6 +58,7 @@
                                     <img alt="Pic" src="{{ url('assets/media/avatars/300-1.jpg') }}">
                                 </div>
                             </div>
+                            .@endforeach
                         @else
                             <div class="">ไม่พบข้อมูล! เป้ายอดขาย และ คอมมิชชัน</div>
                         @endif
