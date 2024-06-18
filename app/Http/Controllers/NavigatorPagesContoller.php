@@ -352,6 +352,7 @@ class NavigatorPagesContoller extends Controller
     }
     public function salesTarget()
     {
+        $target_sales = TargetSalesService::fetch();
         $data['pageDetails'] = [
             'page_lv' => '2',
             'page_name_en_1' => 'dashboard',
@@ -367,9 +368,12 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '',
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
-            'target_sales' => TargetSalesService::fetch(),
+            'targetsales_id' => $target_sales['targetsales_id'],
+            'targetValue' => $target_sales['targetValue'],
+            'commissionItems' => $target_sales['commissionItems'],
+
         ];
-        // dd($data['pageDetails']);
+        dd($data['pageDetails']);
         return view('pages.sales.target')->with($data);
     }
     public function newsLists(Request $request)

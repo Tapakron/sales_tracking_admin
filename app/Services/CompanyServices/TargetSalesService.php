@@ -88,7 +88,6 @@ class TargetSalesService
                     $arrayData['commissionItems'][$key]['max_sales'] = intval($value->top_sales);
                 }
             }
-
             return $arrayData;
         } catch (\Throwable $th) {
             throw $th;
