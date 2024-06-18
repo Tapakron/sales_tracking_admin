@@ -260,6 +260,15 @@ const KTModalNewCard = (function () {
             }
 
             modalToggleButton.addEventListener("click", function () {
+                $.ajax({
+                    type: "get",
+                    url: "/api/admin/targetsales/fetch",
+                    success: function (response) {
+                        console.log(response.data);
+                        populateForm(response.data);
+                    }
+                });
+                /*
                 const data = {
                     targetValue: 50000,
                     commissionItems: [{
@@ -280,6 +289,7 @@ const KTModalNewCard = (function () {
                     ]
                 };
                 populateForm(data);
+                */
             });
 
             $(document).ready(function () {
