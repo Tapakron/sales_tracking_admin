@@ -353,7 +353,8 @@ class NavigatorPagesContoller extends Controller
     public function salesTarget()
     {
         $target_sales = TargetSalesService::fetch();
-        
+        // dd($target_sales);
+        $targetSales = $target_sales['targetValue'] ? number_format($target_sales['targetValue']) : null;
         $data['pageDetails'] = [
             'page_lv' => '2',
             'page_name_en_1' => 'dashboard',
@@ -369,8 +370,7 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '',
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
-            'targetsales_id' => $target_sales['targetsales_id'] ?? null,
-            'targetValue' => number_format($target_sales['targetValue']) ?? null,
+            'targetValue' => $targetSales,
             'commissionItems' => $target_sales['commissionItems'] ?? null, //! ถ้าไม่มีให้ = null เลย
 
         ];

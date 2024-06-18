@@ -20,28 +20,38 @@ class TargetSalesService
             $user = Auth::user();
             $tarGetSales = array();
             $commissionSales = array();
+            $rs = [
+                'message' => "โปรดระบุค่าคอมมิชชั่นอย่างน้อย 1 รายการ",
+                'success' => false
+            ];
             if (!empty($body['commissionItems'])) {
-                if (!array_key_exists("targetsales_id", $body)) {
-                    $targetsale_id = GlobalFunc::getNewId();
-                    $tarGetSales = [
-                        'targetsales_id' => $targetsale_id,
-                        'company_id' => $user->company_id,
-                        'sales_target' => $body['targetValue'],
-                        'is_delete' => false,
-                        'created_at' => Carbon::now(),
-                        'created_by' => $user->id
-                    ];
-                    TargetSalesModel::create($tarGetSales);
-                } else {
-                    $targetsale_id = $body['targetsales_id'];
-                    $tarGetSales = [
-                        'sales_target' => $body['targetValue'],
-                        'updated_at' => Carbon::now(),
-                        'updated_by' => $user->id
-                    ];
-                    TargetSalesModel::update($targetsale_id, $tarGetSales);
-                    CommissionModel::delete($targetsale_id);
+                // if (!array_key_exists("targetsales_id", $body)) {
+                $rsCheck = TargetSalesModel::fetchByCompanyId($user->company_id);
+                if ($rsCheck != null) {
+                    TargetSalesModel::delete($user->company_id);
+                    CommissionModel::delete($rsCheck->targetsales_id);
                 }
+
+                $targetsale_id = GlobalFunc::getNewId();
+                $tarGetSales = [
+                    'targetsales_id' => $targetsale_id,
+                    'company_id' => $user->company_id,
+                    'sales_target' => $body['targetValue'],
+                    'is_delete' => false,
+                    'created_at' => Carbon::now(),
+                    'created_by' => $user->id
+                ];
+                TargetSalesModel::create($tarGetSales);
+                // } else {
+                // $targetsale_id = $body['targetsales_id'];
+                // $tarGetSales = [
+                //     'sales_target' => $body['targetValue'],
+                //     'updated_at' => Carbon::now(),
+                //     'updated_by' => $user->id
+                // ];
+                // TargetSalesModel::update($targetsale_id, $tarGetSales);
+                // CommissionModel::delete($targetsale_id);
+                // }
                 foreach ($body['commissionItems'] as $key => $value) {
                     $commissionSales[$key]['targetsales_id'] = $targetsale_id;
                     $commissionSales[$key]['commission'] = $value['percent'];
@@ -60,8 +70,6 @@ class TargetSalesService
                 $rs['message'] = "บันทึกข้อมูลสำเร็จ";
                 $rs['success'] = $rsCreate;
             }
-            $rs['message'] = "โปรดระบุค่าคอมมิชชั่นอย่างน้อย 1 รายการ";
-            $rs['success'] = false;
             DB::commit();
             return $rs;
         } catch (\Throwable $th) {
@@ -78,11 +86,12 @@ class TargetSalesService
                 'company_id' => $user->company_id,
             ];
             $data = TargetSalesModel::fetch($fliters);
-            if (!empty($data)) {
-                $arrayData = [
-                    'targetsales_id' => $data->targetsales_id,
-                    'targetValue' => $data->sales_target,
-                ];
+            // if (!empty($data)) {
+            $arrayData = [
+                'targetsales_id' => $data->targetsales_id ?? null,
+                'targetValue' => $data->sales_target ?? null,
+            ];
+            if (!empty($data->targetsales_id)) {
                 $detail = CommissionModel::fetchById($data->targetsales_id);
                 foreach ($detail as $key => $value) {
                     $arrayData['commissionItems'][$key]['percent'] = intval($value->commission);
@@ -91,6 +100,8 @@ class TargetSalesService
                     $arrayData['commissionItems'][$key]['start_sales_text'] = number_format($value->first_sales);
                     $arrayData['commissionItems'][$key]['max_sales_text'] = number_format($value->top_sales);
                 }
+            } else {
+                $arrayData['commissionItems'] = [];
             }
 
             return $arrayData;
