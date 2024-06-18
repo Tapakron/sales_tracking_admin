@@ -144,6 +144,7 @@ const KTModalNewCard = (function () {
                                                     modal.hide();
                                                     submitButton.removeAttribute("data-kt-indicator");
                                                     submitButton.disabled = false;
+                                                    window.location.reload();
                                                 }
                                             });
                                         }else{

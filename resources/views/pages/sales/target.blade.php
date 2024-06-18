@@ -39,7 +39,7 @@
                             
                             <div class="d-flex flex-wrap mb-5">
                                 <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mb-3 me-5">
-                                    <div class="fs-6 text-gray-800 fw-bold">฿{{ $item['start_sales'] }} - ฿{{ $item['max_sales'] }}</div>
+                                    <div class="fs-6 text-gray-800 fw-bold">฿{{ $item['start_sales_text'] }} - ฿{{ $item['max_sales_text'] }}</div>
                                     <div class="fw-semibold text-gray-400">ยอดขาย</div>
                                 </div>
                                 <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mb-3">
