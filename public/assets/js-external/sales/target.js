@@ -149,7 +149,7 @@ const KTModalNewCard = (function () {
                                             });
                                         }else{
                                             Swal.fire({
-                                                text: "มีข้อผิดพลาด กรุณาลองใหม่อีกครั้ง.",
+                                                text: response.message,
                                                 icon: "error",
                                                 buttonsStyling: false,
                                                 allowEscapeKey: false,
