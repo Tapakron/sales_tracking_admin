@@ -86,8 +86,11 @@ class TargetSalesService
                     $arrayData['commissionItems'][$key]['percent'] = intval($value->commission);
                     $arrayData['commissionItems'][$key]['start_sales'] = intval($value->first_sales);
                     $arrayData['commissionItems'][$key]['max_sales'] = intval($value->top_sales);
+                    $arrayData['commissionItems'][$key]['start_sales_text'] = number_format($value->first_sales);
+                    $arrayData['commissionItems'][$key]['max_sales_text'] = number_format($value->top_sales);
                 }
             }
+
             return $arrayData;
         } catch (\Throwable $th) {
             throw $th;
