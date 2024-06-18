@@ -158,6 +158,13 @@ const KTModalNewCard = (function () {
                                                 customClass: {
                                                     confirmButton: "btn btn-primary"
                                                 }
+                                            }).then(function (result) {
+                                                if (result.isConfirmed) {
+                                                    modal.hide();
+                                                    submitButton.removeAttribute("data-kt-indicator");
+                                                    submitButton.disabled = false;
+                                                    window.location.reload();
+                                                }
                                             });
                                         }
                                     }
