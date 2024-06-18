@@ -66,7 +66,7 @@ const KTModalNewCard = (function () {
             function removeFields(index) {
 
                 const namePrefix = "data[" + index + "]";
-                
+
                 validator.removeField(namePrefix + "[percent]");
                 validator.removeField(namePrefix + "[start_sales]");
                 validator.removeField(namePrefix + "[max_sales]");
@@ -76,39 +76,6 @@ const KTModalNewCard = (function () {
                 e.preventDefault();
                 validator.validate().then(function (status) {
                     if (status === "Valid") {
-                        submitButton.setAttribute("data-kt-indicator", "on");
-                        submitButton.disabled = true;
-
-                        const formData = {
-                            targetValue: $('input[name="card_name"]').val(),
-                            commissionItems: []
-                        };
-
-                        document.querySelectorAll("[data-repeater-item]").forEach(function (item, index) {
-                            const percentInput = item.querySelector('input[name="data[' + index + '][percent]"]');
-                            const startSalesInput = item.querySelector('input[name="data[' + index + '][start_sales]"]');
-                            const maxSalesInput = item.querySelector('input[name="data[' + index + '][max_sales]"]');
-
-                            if (percentInput && startSalesInput && maxSalesInput) {
-                                const percent = percentInput.value;
-                                const start_sales = startSalesInput.value;
-                                const max_sales = maxSalesInput.value;
-
-                                formData.commissionItems.push({
-                                    percent: percent,
-                                    start_sales: start_sales,
-                                    max_sales: max_sales
-                                });
-                            } else {
-                                console.error('Some input fields are missing or have incorrect values.');
-                            }
-                        });
-
-
-
-
-
-
 
                         Swal.fire({
                             text: "บันทึกข้อมูล! โปรดกดปุ่มบันทึกอีกครั้ง",
@@ -125,114 +92,77 @@ const KTModalNewCard = (function () {
                             }
                         }).then((function (n) {
                             if (n.isConfirmed) {
-                                t.setAttribute("data-kt-indicator", "on");
-                                t.disabled = !0;
-                                let formData = new FormData(i);
+                                submitButton.setAttribute("data-kt-indicator", "on");
+                                submitButton.disabled = true;
 
-                                // ดึงไฟล์จาก Dropzone
-                                let dropzoneFiles = Dropzone.forElement("#kt_modal_create_ticket_attachments").getAcceptedFiles();
-                                if (dropzoneFiles.length > 0) {
-                                    formData.append("image", dropzoneFiles[0]);
-                                }
+                                const formData = {
+                                    targetValue: $('input[name="card_name"]').val(),
+                                    commissionItems: []
+                                };
 
-                                let frmStatus = $('#kt_modal_new_ticket_form').data('frmstatus')
-                                let url = "";
-                                if (frmStatus != "update") {
-                                    url = "/backend/admin/news/create";
-                                } else {
-                                    formData.append("news_id", $('#kt_modal_new_ticket_form').data('newid'));
-                                    url = "/backend/admin/news/update";
-                                }
+                                document.querySelectorAll("[data-repeater-item]").forEach(function (item, index) {
+                                    const percentInput = item.querySelector('input[name="data[' + index + '][percent]"]');
+                                    const startSalesInput = item.querySelector('input[name="data[' + index + '][start_sales]"]');
+                                    const maxSalesInput = item.querySelector('input[name="data[' + index + '][max_sales]"]');
+
+                                    if (percentInput && startSalesInput && maxSalesInput) {
+                                        const percent = percentInput.value;
+                                        const start_sales = startSalesInput.value;
+                                        const max_sales = maxSalesInput.value;
+
+                                        formData.commissionItems.push({
+                                            percent: percent,
+                                            start_sales: start_sales,
+                                            max_sales: max_sales
+                                        });
+
+                                        
+
+                                    } else {
+                                        console.error('Some input fields are missing or have incorrect values.');
+                                    }
+                                });
 
                                 $.ajax({
-                                    url: url,
-                                    type: 'POST',
+                                    type: "post",
+                                    url: "/backend/admin/targetsales/create",
                                     data: formData,
-                                    cache: false,
-                                    contentType: false,
-                                    processData: false,
                                     success: function (response) {
                                         if (response.success) {
-                                            toastr.success('บันทึกข้อมูลสำเร็จ');
-                                            setTimeout(() => {
-                                                window.location.reload();
-                                            }, 1000);
-                                        } else {
-                                            toastr.warning('บันทึกข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
+                                            Swal.fire({
+                                                text: "บันทึกสำเร็จ!",
+                                                icon: "success",
+                                                buttonsStyling: false,
+                                                allowEscapeKey: false,
+                                                allowOutsideClick: false,
+                                                confirmButtonText: "ตกลง",
+                                                customClass: {
+                                                    confirmButton: "btn btn-primary"
+                                                }
+                                            }).then(function (result) {
+                                                if (result.isConfirmed) {
+                                                    modal.hide();
+                                                    submitButton.removeAttribute("data-kt-indicator");
+                                                    submitButton.disabled = false;
+                                                }
+                                            });
+                                        }else{
+                                            Swal.fire({
+                                                text: "มีข้อผิดพลาด กรุณาลองใหม่อีกครั้ง.",
+                                                icon: "error",
+                                                buttonsStyling: false,
+                                                allowEscapeKey: false,
+                                                allowOutsideClick: false,
+                                                confirmButtonText: "ตกลง",
+                                                customClass: {
+                                                    confirmButton: "btn btn-primary"
+                                                }
+                                            });
                                         }
-                                        i.reset();
-                                        o.hide();
-                                        t.removeAttribute("data-kt-indicator")
-                                        t.disabled = !1
-                                    },
-                                    error: function () {
-                                        toastr.error('เกิดข้อผิดพลาดในการบันทึกข้อมูล');
-                                        t.removeAttribute("data-kt-indicator")
-                                        t.disabled = !1
                                     }
                                 });
                             }
                         }))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        $.ajax({
-                            type: "post",
-                            url: "/backend/admin/targetsales/create",
-                            data: formData,
-                            dataType: "dataType",
-                            success: function (response) {
-                                
-                            }
-                        });
-
-                        setTimeout(function () {
-                            submitButton.removeAttribute("data-kt-indicator");
-                            submitButton.disabled = false;
-                            Swal.fire({
-                                text: "บันทึกสำเร็จ!",
-                                icon: "success",
-                                buttonsStyling: false,
-                                allowEscapeKey: false,
-                                allowOutsideClick: false,
-                                confirmButtonText: "ตกลง",
-                                customClass: {
-                                    confirmButton: "btn btn-primary"
-                                }
-                            }).then(function (result) {
-                                if (result.isConfirmed) {
-                                    modal.hide();
-                                }
-                            });
-                        }, 2000);
                     } else {
                         Swal.fire({
                             text: "มีข้อผิดพลาด กรุณาลองใหม่อีกครั้ง.",
@@ -325,7 +255,7 @@ const KTModalNewCard = (function () {
                     // addFields(index);
                 });
 
-                
+
                 modal.show();
             }
 
