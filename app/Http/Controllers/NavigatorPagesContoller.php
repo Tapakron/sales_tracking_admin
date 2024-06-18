@@ -375,14 +375,16 @@ class NavigatorPagesContoller extends Controller
     public function newsLists(Request $request)
     {
         $body = $request->all();
-        if (empty($body)) {
+        if (!array_key_exists("search_title", $body)) {
+            $search_title = '';
+        } else {
+            $search_title = $body['search_title'] ? $body['search_title'] : '';
+        }
+        if (!array_key_exists("search_date", $body)) {
             $startDate = Carbon::now()->startOfMonth()->format('Y-m-d');
             $endDate = Carbon::now()->format('Y-m-d');
             $search_date = $startDate . "/" . $endDate;
-            $search_title = '';
         } else {
-
-            $search_title = $body['search_title'] ? $body['search_title'] : '';
             $search_date = $body['search_date'] ? $body['search_date'] : '';
             $arrayDate = explode('-', $body['search_date']);
             $date_start = $arrayDate[0];
