@@ -373,7 +373,7 @@ class NavigatorPagesContoller extends Controller
             'commissionItems' => $target_sales['commissionItems'],
 
         ];
-        dd($data['pageDetails']);
+        // dd($data['pageDetails']);
         return view('pages.sales.target')->with($data);
     }
     public function newsLists(Request $request)
