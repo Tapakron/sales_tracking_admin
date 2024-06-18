@@ -76,7 +76,6 @@ class TargetSalesService
                 'company_id' => $user->company_id,
             ];
             $data = TargetSalesModel::fetch($fliters);
-            // dd($data);
             if (!empty($data)) {
                 $arrayData = [
                     'targetsales_id' => $data->targetsales_id,
@@ -84,7 +83,7 @@ class TargetSalesService
                 ];
                 $detail = CommissionModel::fetchById($data->targetsales_id);
                 foreach ($detail as $key => $value) {
-                    $arrayData['commissionItems'][$key]['commission'] = intval($value->commission);
+                    $arrayData['commissionItems'][$key]['percent'] = intval($value->commission);
                     $arrayData['commissionItems'][$key]['start_sales'] = intval($value->first_sales);
                     $arrayData['commissionItems'][$key]['max_sales'] = intval($value->top_sales);
                 }

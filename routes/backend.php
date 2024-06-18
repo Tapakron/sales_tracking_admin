@@ -112,7 +112,6 @@ Route::group(['prefix' => 'api',], function () {
         Route::group(['prefix' => 'targetsales'], function () {
             Route::get('/fetch', [TargetSalesController::class, 'fetch']);
         });
-
         Route::group(['prefix' => 'sales'], function () {
             Route::get('/fetch', [SalesController::class, 'fetch']);
         });
