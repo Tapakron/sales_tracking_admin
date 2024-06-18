@@ -368,9 +368,9 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '',
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
-            'targetsales_id' => $target_sales['targetsales_id'],
-            'targetValue' => $target_sales['targetValue'],
-            'commissionItems' => $target_sales['commissionItems'],
+            'targetsales_id' => $target_sales['targetsales_id'] ?? null,
+            'targetValue' => $target_sales['targetValue'] ?? null,
+            'commissionItems' => $target_sales['commissionItems'] ?? null, //! ถ้าไม่มีให้ = null เลย
 
         ];
         // dd($data['pageDetails']);
