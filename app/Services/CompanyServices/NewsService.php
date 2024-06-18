@@ -41,7 +41,7 @@ class NewsService
             $user = Auth::user();
             $news_id = $body['news_id'];
             unset($body['new_id']);
-            $body = [
+            $body += [
                 'updated_at' => Carbon::now(),
                 'updated_by' => $user->id
             ];
