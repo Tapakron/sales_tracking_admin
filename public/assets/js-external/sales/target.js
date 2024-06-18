@@ -184,6 +184,9 @@ const KTModalNewCard = (function () {
             });
 
             function populateForm(data) {
+                if (data != null) {
+                    
+                
                 const targetInput = document.querySelector("[name='card_name']");
                 if (targetInput) {
                     targetInput.value = data.targetValue;
@@ -255,7 +258,7 @@ const KTModalNewCard = (function () {
                     // addFields(index);
                 });
 
-
+            }
                 modal.show();
             }
 
