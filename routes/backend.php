@@ -8,6 +8,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\DataMasterController\DropdownMasterController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TargetSalesController;
 
 /*
@@ -31,7 +32,7 @@ Route::post('/backend/login', [AuthController::class, 'login']);
 Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
     Route::post('/changepassword', [AuthController::class, 'changePassword']);
     //! ชำระเงิน
-    Route::post('/payment/create', [TargetSalesController::class, 'create']);
+    Route::post('/payment/create', [PaymentController::class, 'create']);
     //! ล็อคเอาท์
     Route::post('/logout', [AuthController::class, 'logout']);
     //todo admin
