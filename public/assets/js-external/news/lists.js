@@ -35,8 +35,10 @@ var KTModalNewTicket = function () {
                                 myDropzone.emit("thumbnail", mockFile, data.image);
                                 myDropzone.emit("complete", mockFile);
                                 myDropzone.files.push(mockFile);
-                            }
+                            }   
 
+                            $('#kt_modal_new_ticket_form').data('newid',data.news_id)
+                            $('#kt_modal_new_ticket_form').data('frmstatus','update')
                             // แสดง modal
                             o.show();
                         }
@@ -173,8 +175,17 @@ var KTModalNewTicket = function () {
                                         formData.append("image", dropzoneFiles[0]);
                                     }
 
+                                    let frmStatus = $('#kt_modal_new_ticket_form').data('frmstatus')
+                                    let url = "";
+                                    if (frmStatus != "update") {
+                                        url = "/backend/admin/news/create";
+                                    }else{
+                                        formData.append("news_id", $('#kt_modal_new_ticket_form').data('newid'));
+                                        url = "/backend/admin/news/update";
+                                    }
+
                                     $.ajax({
-                                        url: '/backend/admin/news/create',
+                                        url: url,
                                         type: 'POST',
                                         data: formData,
                                         cache: false,
@@ -220,6 +231,8 @@ var KTModalNewTicket = function () {
                     o.hide();
                 })))
                 a.addEventListener('hidden.bs.modal', function () {
+                    $('#kt_modal_new_ticket_form').data('newid','')
+                    $('#kt_modal_new_ticket_form').data('frmstatus','')
                     i.reset();
                     myDropzone.removeAllFiles(true); // ลบไฟล์จาก Dropzone
                 });
