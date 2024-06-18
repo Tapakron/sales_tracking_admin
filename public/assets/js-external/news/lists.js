@@ -11,7 +11,7 @@ var KTModalNewTicket = function () {
                 const n = t.target.closest("div");
                 r = n.querySelectorAll("a")[0].innerText
                 id = n.getAttribute('data-new-id');
-                
+
 
                 $.ajax({
                     type: "get",
@@ -35,10 +35,10 @@ var KTModalNewTicket = function () {
                                 myDropzone.emit("thumbnail", mockFile, data.image);
                                 myDropzone.emit("complete", mockFile);
                                 myDropzone.files.push(mockFile);
-                            }   
+                            }
 
-                            $('#kt_modal_new_ticket_form').data('newid',data.news_id)
-                            $('#kt_modal_new_ticket_form').data('frmstatus','update')
+                            $('#kt_modal_new_ticket_form').data('newid', data.news_id)
+                            $('#kt_modal_new_ticket_form').data('frmstatus', 'update')
                             // แสดง modal
                             o.show();
                         }
@@ -46,7 +46,7 @@ var KTModalNewTicket = function () {
                 });
 
             }))
-        }));        
+        }));
     };
     let del = () => {
         news.querySelectorAll('[data-btn-toggle="delete"]').forEach((t => {
@@ -55,7 +55,7 @@ var KTModalNewTicket = function () {
                 const n = t.target.closest("div");
                 r = n.querySelectorAll("a")[0].innerText
                 id = n.getAttribute('data-new-id');
-                
+
                 Swal.fire({
                     text: "ลบข้อมูล! โปรดกดปุ่มบันทึกอีกครั้ง",
                     icon: "warning",
@@ -91,7 +91,7 @@ var KTModalNewTicket = function () {
 
     return {
         init: function () {
-            edit(),del(),
+            edit(), del(),
                 (a = document.querySelector("#kt_modal_new_ticket")) && (o = new bootstrap.Modal(a), i = document.querySelector("#kt_modal_new_ticket_form"), t = document.getElementById("kt_modal_new_ticket_submit"), e = document.getElementById("kt_modal_new_ticket_cancel"), myDropzone = new Dropzone("#kt_modal_create_ticket_attachments", {
                     url: "https://keenthemes.com/scripts/void.php",
                     paramName: "file",
@@ -179,7 +179,7 @@ var KTModalNewTicket = function () {
                                     let url = "";
                                     if (frmStatus != "update") {
                                         url = "/backend/admin/news/create";
-                                    }else{
+                                    } else {
                                         formData.append("news_id", $('#kt_modal_new_ticket_form').data('newid'));
                                         url = "/backend/admin/news/update";
                                     }
@@ -230,12 +230,12 @@ var KTModalNewTicket = function () {
                     i.reset();
                     o.hide();
                 })))
-                a.addEventListener('hidden.bs.modal', function () {
-                    $('#kt_modal_new_ticket_form').data('newid','')
-                    $('#kt_modal_new_ticket_form').data('frmstatus','')
-                    i.reset();
-                    myDropzone.removeAllFiles(true); // ลบไฟล์จาก Dropzone
-                });
+            a.addEventListener('hidden.bs.modal', function () {
+                $('#kt_modal_new_ticket_form').data('newid', '')
+                $('#kt_modal_new_ticket_form').data('frmstatus', '')
+                i.reset();
+                myDropzone.removeAllFiles(true); // ลบไฟล์จาก Dropzone
+            });
         }
     }
 }();

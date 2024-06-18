@@ -105,19 +105,114 @@ const KTModalNewCard = (function () {
                         });
 
 
-                        console.log(formData);
-                        // $.ajax({
-                        //     url: '/your-backend-endpoint',
-                        //     type: 'POST',
-                        //     contentType: 'application/json',
-                        //     data: JSON.stringify(formData),
-                        //     success: function(response) {
-                        //         alert('บันทึกข้อมูลสำเร็จ');
-                        //     },
-                        //     error: function(xhr, status, error) {
-                        //         alert('มีข้อผิดพลาดในการบันทึกข้อมูล');
-                        //     }
-                        // });
+
+
+
+
+
+                        Swal.fire({
+                            text: "บันทึกข้อมูล! โปรดกดปุ่มบันทึกอีกครั้ง",
+                            icon: "info",
+                            buttonsStyling: !1,
+                            showCancelButton: !0,
+                            allowEscapeKey: false,
+                            allowOutsideClick: false,
+                            confirmButtonText: "บันทึก",
+                            cancelButtonText: "ยกเลิก",
+                            customClass: {
+                                confirmButton: "btn btn-primary",
+                                cancelButton: "btn btn-active-light"
+                            }
+                        }).then((function (n) {
+                            if (n.isConfirmed) {
+                                t.setAttribute("data-kt-indicator", "on");
+                                t.disabled = !0;
+                                let formData = new FormData(i);
+
+                                // ดึงไฟล์จาก Dropzone
+                                let dropzoneFiles = Dropzone.forElement("#kt_modal_create_ticket_attachments").getAcceptedFiles();
+                                if (dropzoneFiles.length > 0) {
+                                    formData.append("image", dropzoneFiles[0]);
+                                }
+
+                                let frmStatus = $('#kt_modal_new_ticket_form').data('frmstatus')
+                                let url = "";
+                                if (frmStatus != "update") {
+                                    url = "/backend/admin/news/create";
+                                } else {
+                                    formData.append("news_id", $('#kt_modal_new_ticket_form').data('newid'));
+                                    url = "/backend/admin/news/update";
+                                }
+
+                                $.ajax({
+                                    url: url,
+                                    type: 'POST',
+                                    data: formData,
+                                    cache: false,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function (response) {
+                                        if (response.success) {
+                                            toastr.success('บันทึกข้อมูลสำเร็จ');
+                                            setTimeout(() => {
+                                                window.location.reload();
+                                            }, 1000);
+                                        } else {
+                                            toastr.warning('บันทึกข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
+                                        }
+                                        i.reset();
+                                        o.hide();
+                                        t.removeAttribute("data-kt-indicator")
+                                        t.disabled = !1
+                                    },
+                                    error: function () {
+                                        toastr.error('เกิดข้อผิดพลาดในการบันทึกข้อมูล');
+                                        t.removeAttribute("data-kt-indicator")
+                                        t.disabled = !1
+                                    }
+                                });
+                            }
+                        }))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        $.ajax({
+                            type: "post",
+                            url: "/backend/admin/targetsales/create",
+                            data: formData,
+                            dataType: "dataType",
+                            success: function (response) {
+                                
+                            }
+                        });
 
                         setTimeout(function () {
                             submitButton.removeAttribute("data-kt-indicator");
