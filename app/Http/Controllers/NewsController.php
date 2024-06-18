@@ -63,21 +63,6 @@ class NewsController extends Controller
         } else {
             unset($body["image"]);
         }
-        // if ($request->hasFile('image')) {
-        //     $image = $request->file('image');
-        //     if ($image) {
-        //         // $emp_id = $empProfile->employee_profile_id;
-        //         $imagePath = GlobalFunc::path_image_news($user->sys_customer_code);
-        //         // Delete existing image
-        //         File::delete($imagePath . $news_id);
-        //         // Move the new image and update emp_img field
-        //         $new_img_name = $news_id . '.' . $image->getClientOriginalExtension();
-        //         $image->move($imagePath, $new_img_name);
-        //         $body['image'] = $imagePath . $new_img_name;
-        //     }
-        // } else {
-        //     $body['image'] = NULL;
-        // }
         $result = NewsService::create($body);
         if (!$result['success']) {
             return JsonResult::errors(null, $result['message']);
@@ -132,22 +117,6 @@ class NewsController extends Controller
         } else {
             unset($body["image"]);
         }
-        // if ($request->hasFile('image')) {
-        //     $image = $request->file('image');
-        //     if ($image) {
-        //         // $emp_id = $empProfile->employee_profile_id;
-        //         $imagePath = GlobalFunc::path_image_news($user->sys_customer_code);
-        //         $imgaePateDB =
-        //             // Delete existing image
-        //             File::delete($imagePath . $body['news_id']);
-        //         // Move the new image and update emp_img field
-        //         $new_img_name = $body['news_id'] . '.' . $image->getClientOriginalExtension();
-        //         $image->move($imagePath, $new_img_name);
-        //         $body['image'] = $imagePath . $new_img_name;
-        //     }
-        // } else {
-        //     $body['image'] = NULL;
-        // }
         $result = NewsService::update($body);
         if (!$result['success']) {
             return JsonResult::errors(null, $result['message']);
