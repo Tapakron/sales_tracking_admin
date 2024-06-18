@@ -20,14 +20,6 @@ class TargetSalesController extends Controller
         }
         return JsonResult::success(null, $result['message']);
     }
-    public function delete($id)
-    {
-        $result = TargetSalesService::delete($id);
-        if (!$result['success']) {
-            return JsonResult::errors(null, $result['message']);
-        }
-        return JsonResult::success(null, $result['message']);
-    }
     public static function fetch()
     {
         $result = TargetSalesService::fetch();

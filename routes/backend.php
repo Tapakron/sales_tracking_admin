@@ -98,7 +98,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
 //'middleware' => 'auth', 
 //todo มาสเตอร์
 Route::group(['prefix' => 'api',], function () {
-    Route::get('/targetsales/fetch', [TargetSalesController::class, 'fetch']);
     Route::group(['prefix' => 'datamaster'], function () {
         //todo มาสเตอร์ อำเภอ
         Route::get('/amphure/fetch/{id}', [DropdownMasterController::class, 'fetchAmphureById']);
@@ -111,7 +110,7 @@ Route::group(['prefix' => 'api',], function () {
     });
     Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => 'targetsales'], function () {
-            Route::get('/fetch', [SalesController::class, 'fetch']);
+            Route::get('/fetch', [TargetSalesController::class, 'fetch']);
         });
 
         Route::group(['prefix' => 'sales'], function () {
