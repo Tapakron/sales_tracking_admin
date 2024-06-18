@@ -134,7 +134,7 @@
                     </div>
                 </div>
                 <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
-                    <form id="kt_modal_new_ticket_form" class="form" action="#">
+                    <form id="kt_modal_new_ticket_form" data-frmstatus="" data-newid="" class="form" action="#">
                         <div class="mb-13 text-center">
                             <h1 class="mb-3">เพิ่มข่าวสาร</h1>
                         </div>
@@ -173,7 +173,7 @@
                         <div class="text-center">
                             <button type="reset" id="kt_modal_new_ticket_cancel" class="btn btn-light me-3">ยกเลิก</button>
                             <button type="submit" id="kt_modal_new_ticket_submit" class="btn btn-primary">
-                                <span class="indicator-label">สร้างข่าวสาร</span>
+                                <span class="indicator-label">บันทึกข้อมูล</span>
                                 <span class="indicator-progress">รอสักครู่...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
