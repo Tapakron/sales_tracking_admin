@@ -86,7 +86,6 @@ class TargetSalesService
                 'company_id' => $user->company_id,
             ];
             $data = TargetSalesModel::fetch($fliters);
-            // if (!empty($data)) {
             $arrayData = [
                 'targetsales_id' => $data->targetsales_id ?? null,
                 'targetValue' => $data->sales_target ?? null,

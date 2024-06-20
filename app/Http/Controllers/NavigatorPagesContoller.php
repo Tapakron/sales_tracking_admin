@@ -262,9 +262,9 @@ class NavigatorPagesContoller extends Controller
             'page_desc_3' => '',
             'company_profile' => (array)$this->user->company_profile,
             'customer_all' => CustomerService::fetchStatus(1), //! ปกติ
-            // 'customer_succeed' => CustomerService::fetchStatus(2), //! ชำระเงินแล้ว
+            'customer_succeed' => CustomerService::fetchStatus(2), //! ชำระเงินแล้ว
         ];
-        // dd($data['pageDetails']['customer_all']);
+        // dd($data['pageDetails']['customer_succeed']);
         return view('pages.invoices.invoices')->with($data);
     }
     public function customersListing()
