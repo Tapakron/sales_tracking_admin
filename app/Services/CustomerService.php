@@ -256,31 +256,42 @@ class CustomerService
             ];
             $data = CustomerModel::fetchStatus($filters);
             $arraysArray = array_map('get_object_vars', $data); //! แปลง object ใน array ให้เป็น array อีกที
-            foreach ($arraysArray as $key_customer => $customer) {
-                $rsSales = SysUsers::fetchById($customer['sales_in_charge']);
-                
-                $arrayCus[$key_customer]['customer_id'] = $customer['customer_id'];
-                $arrayCus[$key_customer]['customer_img'] = $customer['customer_img'];
-                $arrayCus[$key_customer]['customer_name'] = $customer['customer_name'];
-                $arrayCus[$key_customer]['company_name'] = $customer['company_name'];
-                $arrayCus[$key_customer]['customer_tel'] = GlobalFunc::formatPhoneNum($customer['customer_tel']);
-                $arrayCus[$key_customer]['sale_name'] = $rsSales->name;
-                $created_at = Carbon::parse($customer['created_at']);
-                $arrayCus[$key_customer]['begin_date'] = $created_at->format('d/m/Y');
-                $arrayCus[$key_customer]['last_contact_date'] = "ไม่พบการติดต่อล่าสุด";
+            if (count($arraysArray) > 0) {
+                foreach ($arraysArray as $key_customer => $customer) {
+                    $rsSales = SysUsers::fetchById($customer['sales_in_charge']);
 
-                $araray_products = FavoriteProductModel::fetchById($customer['customer_id']);
-                $araray_product = array_map('get_object_vars', $araray_products);
+                    $arrayCus[$key_customer]['customer_id'] = $customer['customer_id'];
+                    $arrayCus[$key_customer]['customer_img'] = $customer['customer_img'];
+                    $arrayCus[$key_customer]['customer_name'] = $customer['customer_name'];
+                    $arrayCus[$key_customer]['company_name'] = $customer['company_name'];
+                    $arrayCus[$key_customer]['customer_tel'] = GlobalFunc::formatPhoneNum($customer['customer_tel']);
+                    $arrayCus[$key_customer]['sale_name'] = $rsSales->name;
+                    $created_at = Carbon::parse($customer['created_at']);
+                    $arrayCus[$key_customer]['begin_date'] = $created_at->format('d/m/Y');
+                    $arrayCus[$key_customer]['last_contact_date'] = "ไม่พบการติดต่อล่าสุด";
 
-                $arrayCus[$key_customer]['products'] = [];
-                foreach ($araray_product as $key_product => $product) {
-                    $rsProduct = productModel::fetchById($product['product_id']);
-                    if ($product['customer_id'] == $customer['customer_id']) {
-                        $arrayCus[$key_customer]['products'][$key_product]['product_id'] = $product['product_id'];
-                        $arrayCus[$key_customer]['products'][$key_product]['product_name'] = $rsProduct->product_name_th;
-                        $arrayCus[$key_customer]['products'][$key_product]['product_short_name'] = $rsProduct->product_short_name_th;
+                    $araray_products = FavoriteProductModel::fetchById($customer['customer_id']);
+                    $araray_product = array_map('get_object_vars', $araray_products);
+
+                    $arrayCus[$key_customer]['products'] = [];
+                    foreach ($araray_product as $key_product => $product) {
+                        $rsProduct = productModel::fetchById($product['product_id']);
+                        if ($product['customer_id'] == $customer['customer_id']) {
+                            $arrayCus[$key_customer]['products'][$key_product]['product_id'] = $product['product_id'];
+                            $arrayCus[$key_customer]['products'][$key_product]['product_name'] = $rsProduct->product_name_th;
+                            $arrayCus[$key_customer]['products'][$key_product]['product_short_name'] = $rsProduct->product_short_name_th;
+                        }
                     }
                 }
+            } else {
+                $arrayCus[0]['customer_id'] = '2D23015D-638B-4EC5-81F8-11CE172DFBDA';
+                $arrayCus[0]['customer_name'] = 'Sutasinee Phalahan';
+                $arrayCus[0]['product_name'] = 'บุุคคล';
+                $arrayCus[0]['amount'] = '1200';
+                $arrayCus[0]['is_payment'] = '1';
+                $arrayCus[0]['payment_at'] = '09/05/2024';
+                $arrayCus[0]['slip_img'] = '/assets/images/CN000011/customer/2D23015D-638B-4EC5-81F8-11CE172DFBDA.jpg';
+                $arrayCus[0]['receipt_img'] = '/assets/images/CN000011/customer/2D23015D-638B-4EC5-81F8-11CE172DFBDA.jpg';
             }
             return $arrayCus;
         } catch (\Throwable $th) {
