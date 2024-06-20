@@ -1,3 +1,6 @@
+@php
+    // dd($pageDetails['customer_succeed']);
+@endphp
 @extends('layouts.app')
 
 @section('css-content')
@@ -148,7 +151,7 @@
                             <!--begin::Card title-->
                             <div class="card-title flex-column">
                                 <h2 class="mb-1">ประวัติการขาย</h2>
-                                <div class="fs-6 text-gray-400">ทั้งหมด 9 รายการ</div>
+                                <div class="fs-6 text-gray-400">ทั้งหมด {{ Count($pageDetails['customer_succeed']) }} รายการ</div>
                             </div>
                             <!--end::Card title-->
                         </div>
@@ -169,235 +172,43 @@
                                     </tr>
                                 </thead>
                                 <tbody class="fs-6 fw-semibold text-gray-600">
-                                    <tr>
-                                        <td>
-                                            <a href="{{ url('/projects') }}" class="text-gray-600 text-hover-primary mb-1">Mikaela Collins</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-light-primary">บุุคคล</span>
-                                        </td>
-                                        <td>฿1,200</td>
-                                        <td class="text-success">สำเร็จ</td>
-                                        <td>09/05/2024</td>
-                                        <td>
-                                            <a href="#" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_view_target">
-                                                <i class="ki-duotone ki-some-files fs-2 ms-0">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                </i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_view_target">
-                                                <i class="ki-duotone ki-some-files fs-2 ms-0">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="{{ url('/projects') }}" class="text-gray-600 text-hover-primary mb-1">Mikaela Collins</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-light-primary">บุุคคล</span>
-                                        </td>
-                                        <td>฿1,200</td>
-                                        <td class="text-success">สำเร็จ</td>
-                                        <td>01/04/2024</td>
-                                        <td>
-                                            <a href="#" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_view_target">
-                                                <i class="ki-duotone ki-some-files fs-2 ms-0">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                </i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_view_target">
-                                                <i class="ki-duotone ki-some-files fs-2 ms-0">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="{{ url('/projects') }}" class="text-gray-600 text-hover-primary mb-1">Mikaela Collins</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-light-nc">นายช่าง</span>
-                                        </td>
-                                        <td>฿1,200</td>
-                                        <td class="text-success">สำเร็จ</td>
-                                        <td>01/04/2024</td>
-                                        <td>
-                                            <a href="#" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_view_target">
-                                                <i class="ki-duotone ki-some-files fs-2 ms-0">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="{{ url('/projects') }}" class="text-gray-600 text-hover-primary mb-1">Mikaela Collins</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-light-primary">บุุคคล</span>
-                                        </td>
-                                        <td>฿X,200</td>
-                                        <td class="text-success">สำเร็จ</td>
-                                        <td>xx/xx/xxxx</td>
-                                        <td>
-                                            <a href="#" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_view_target">
-                                                <i class="ki-duotone ki-some-files fs-2 ms-0">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="{{ url('/projects') }}" class="text-gray-600 text-hover-primary mb-1">Mikaela Collins</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-light-nc">นายช่าง</span>
-                                        </td>
-                                        <td>฿X,200</td>
-                                        <td class="text-success">สำเร็จ</td>
-                                        <td>xx/xx/xxxx</td>
-                                        <td>
-                                            <a href="#" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_view_target">
-                                                <i class="ki-duotone ki-some-files fs-2 ms-0">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="{{ url('/projects') }}" class="text-gray-600 text-hover-primary mb-1">Mikaela Collins</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-light-primary">บุุคคล</span>
-                                        </td>
-                                        <td>฿X,200</td>
-                                        <td class="text-success">สำเร็จ</td>
-                                        <td>xx/xx/xxxx</td>
-                                        <td>
-                                            <a href="#" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_view_target">
-                                                <i class="ki-duotone ki-some-files fs-2 ms-0">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                </i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_view_target">
-                                                <i class="ki-duotone ki-some-files fs-2 ms-0">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="{{ url('/projects') }}" class="text-gray-600 text-hover-primary mb-1">Mikaela Collins</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-light-nc">นายช่าง</span>
-                                        </td>
-                                        <td>฿X,200</td>
-                                        <td class="text-success">สำเร็จ</td>
-                                        <td>xx/xx/xxxx</td>
-                                        <td>
-                                            <a href="#" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_view_target">
-                                                <i class="ki-duotone ki-some-files fs-2 ms-0">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                </i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_view_target">
-                                                <i class="ki-duotone ki-some-files fs-2 ms-0">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="{{ url('/projects') }}" class="text-gray-600 text-hover-primary mb-1">Mikaela Collins</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-light-primary">บุุคคล</span>
-                                        </td>
-                                        <td>฿X,200</td>
-                                        <td class="text-success">สำเร็จ</td>
-                                        <td>xx/xx/xxxx</td>
-                                        <td>
-                                            <a href="#" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_view_target">
-                                                <i class="ki-duotone ki-some-files fs-2 ms-0">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="{{ url('/projects') }}" class="text-gray-600 text-hover-primary mb-1">Mikaela Collins</a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-light-nc">นายช่าง</span>
-                                        </td>
-                                        <td>฿X,200</td>
-                                        <td class="text-success">สำเร็จ</td>
-                                        <td>xx/xx/xxxx</td>
-                                        <td>
-                                            <a href="#" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_view_target">
-                                                <i class="ki-duotone ki-some-files fs-2 ms-0">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    @if (Count($pageDetails['customer_succeed']) > 0)
+                                        @foreach ($pageDetails['customer_succeed'] as $item)
+                                            <tr>
+                                                <td>
+                                                    <a href="{{ url('/projects') }}" class="text-gray-600 text-hover-primary mb-1">{{ $item['customer_name'] }}</a>
+                                                </td>
+                                                <td>
+                                                    <span class="badge badge-light-primary">{{ $item['product_name'] }}</span>
+                                                </td>
+                                                <td>฿{{ $item['amount'] }}</td>
+                                                <td class="text-success">{{ $item['is_payment'] == 1 ? 'สำเร็จ' : '' }}</td>
+                                                <td>{{ $item['payment_at'] }}</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_view_target">
+                                                        <i class="ki-duotone ki-some-files fs-2 ms-0">
+                                                            <span class="path1"></span>
+                                                            <span class="path2"></span>
+                                                            <span class="path3"></span>
+                                                        </i>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_view_target">
+                                                        <i class="ki-duotone ki-some-files fs-2 ms-0">
+                                                            <span class="path1"></span>
+                                                            <span class="path2"></span>
+                                                            <span class="path3"></span>
+                                                        </i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                    @endif
                                 </tbody>
                             </table>
                             <!--end::Table-->
-                            <ul class="pagination justify-content-end">
-                                <li class="page-item previous disabled"><a href="#" class="page-link"><i class="previous"></i></a></li>
-                                <li class="page-item "><a href="#" class="page-link">1</a></li>
-                                <li class="page-item active"><a href="#" class="page-link">2</a></li>
-                                <li class="page-item "><a href="#" class="page-link">3</a></li>
-                                <li class="page-item "><a href="#" class="page-link">4</a></li>
-                                <li class="page-item "><a href="#" class="page-link">5</a></li>
-                                <li class="page-item "><a href="#" class="page-link">6</a></li>
-                                <li class="page-item next"><a href="#" class="page-link"><i class="next"></i></a></li>
-                            </ul>
                         </div>
                         <!--end::Card body-->
                     </div>
