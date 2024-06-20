@@ -49,7 +49,7 @@
                         <!--begin::Body-->
                         <div class="card-body py-3">
                             <div class="table-responsive">
-                                <table class="table align-middle gs-0 gy-5">
+                                <table class="table align-middle gs-0 gy-5" id="table-01">
                                     <thead>
                                         <tr>
                                             <th class="p-0 w-50px"></th>
@@ -80,7 +80,7 @@
                                                                 </a>
                                                             </div>
                                                         </div>
-                                                    </td>                                                    
+                                                    </td>
                                                     <td>
                                                         <a href="#" class="text-dark fw-bold text-hover-primary mb-1 fs-6">{{ $item['customer_name'] }}</a>
                                                         <span class="text-muted fw-semibold d-block fs-7">{{ $item['company_name'] }}</span>
@@ -128,42 +128,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="row mb-5">
-                                <div class="col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start">
-                                    <div class="dataTables_length" id="kt_ecommerce_sales_table_length">
-                                        <label>
-                                            <select name="kt_ecommerce_sales_table_length" aria-controls="kt_ecommerce_sales_table" class="form-select form-select-sm form-select-solid">
-                                                <option value="10">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                            </select>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
-                                    <div class="dataTables_paginate paging_simple_numbers" id="kt_ecommerce_sales_table_paginate">
-                                        <ul class="pagination">
-                                            <li class="paginate_button page-item previous disabled" id="kt_ecommerce_sales_table_previous">
-                                                <a href="#" aria-controls="kt_ecommerce_sales_table" data-dt-idx="0" tabindex="0" class="page-link">
-                                                    <i class="previous"></i>
-                                                </a>
-                                            </li>
-                                            <li class="paginate_button page-item active">
-                                                <a href="#" aria-controls="kt_ecommerce_sales_table" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-                                            </li>
-                                            <li class="paginate_button page-item ">
-                                                <a href="#" aria-controls="kt_ecommerce_sales_table" data-dt-idx="2" tabindex="0" class="page-link">2</a>
-                                            </li>
-                                            <li class="paginate_button page-item next" id="kt_ecommerce_sales_table_next">
-                                                <a href="#" aria-controls="kt_ecommerce_sales_table" data-dt-idx="3" tabindex="0" class="page-link">
-                                                    <i class="next"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <!--end::Body-->
 
@@ -192,7 +156,7 @@
                         <!--begin::Card body-->
                         <div class="card-body pt-0 pb-5">
                             <!--begin::Table-->
-                            <table class="table align-middle table-row-dashed gy-5" id="kt_table_customers_payment">
+                            <table class="table align-middle table-row-dashed gy-5" id="table-02">
                                 <thead class="border-bottom border-gray-200 fs-7 fw-bold">
                                     <tr class="text-start text-muted text-uppercase gs-0">
                                         <th class="min-w-130px">ชื่อลูกค้า</th>
@@ -452,4 +416,5 @@
 @endsection
 
 @section('js-content')
+    <script src="{{ asset('assets/js-external/invoices/invoices.js') }}"></script>
 @endsection
