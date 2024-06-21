@@ -18,16 +18,16 @@ class PaymentController extends Controller
         $payment_id = GlobalFunc::getNewId();
         // $body['payment_id'] = $payment_id;
         $rules = array(
-            'slip_img' => 'required|mimes:jpeg,png|max:2048', //!ไฟล์ไม่เกิน 2MB
-            'receipt_img' => 'nullable|mimes:pdf|max:2048', //!ไฟล์ไม่เกิน 2MB
+            'img_slip' => 'required|mimes:jpeg,png|max:2048', //!ไฟล์ไม่เกิน 2MB
+            'img_receipt' => 'nullable|mimes:pdf|max:2048', //!ไฟล์ไม่เกิน 2MB
         );
         $messages = array(
-            'slip_img.required' => 'อัพโหลดไฟล์สลิปเงินด้วย!',
-            'slip_img.max' => 'ขนาดของไฟล์รูปใหญ่เกินไป!',
-            'slip_img.mimes' => 'ประเภทไฟล์รูปไม่ถูกต้อง!',
+            'img_slip.required' => 'อัพโหลดไฟล์สลิปเงินด้วย!',
+            'img_slip.max' => 'ขนาดของไฟล์รูปใหญ่เกินไป!',
+            'img_slip.mimes' => 'ประเภทไฟล์รูปไม่ถูกต้อง!',
             // 'receipt_img.required' => 'อัพโหลดไฟล์ใบเสร็จด้วย!',
-            'receipt_img.max' => 'ขนาดของไฟล์รูปใหญ่เกินไป!',
-            'receipt_img.mimes' => 'ประเภทไฟล์รูปไม่ถูกต้อง!'
+            'img_receipt.max' => 'ขนาดของไฟล์รูปใหญ่เกินไป!',
+            'img_receipt.mimes' => 'ประเภทไฟล์รูปไม่ถูกต้อง!'
         );
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
