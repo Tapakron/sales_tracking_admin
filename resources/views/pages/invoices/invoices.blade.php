@@ -189,7 +189,7 @@
                                                 <td>{{ $item['seller_name'] }}</td>
                                                 <td>
                                                     @foreach ($item['products_buy'] as $productsItem)
-                                                        @switch($products["product_id"])
+                                                        @switch($productsItem["product_id"])
                                                             @case(1)
                                                                 <div class="badge badge-light-primary fw-semibold me-1">{{ $productsItem['product_name'] }}</div>
                                                             @break
