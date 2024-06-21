@@ -95,4 +95,18 @@ class PaymentService
             throw $th;
         }
     }
+    public static function fetchById($payment_id) //!
+    {
+        try {
+            $arrayData = [];
+            $rsWorkObject = PaymentModel::fetchById($payment_id);
+            // $rsUser = SysUsers::fetchById($rsWorkObject->created_by);
+            // $rsWorkObject->created_at = GlobalFunc::formatDateTime($rsWorkObject->created_at);
+            $rsWorkArray = (array)$rsWorkObject;
+            $rsWorkArray['author_name'] = $rsUser->name;
+            return $rsWorkArray;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }
