@@ -1,8 +1,25 @@
 "use strict";
 var customersListAll = function () {
-    let e, table = document.getElementById("table-01");
+    let t,e, table = document.getElementById("table-01");
+    let createInvoice = () => {
+        table.querySelectorAll('[data-btn-toggle="createInvoice"]').forEach((t => {
+            
+            t.addEventListener("click", (function (t) {
+                t.preventDefault();
+                console.log(APP_BASE_URL+"/invoices/create");
+                let customer_id = $(this).data('customer-id');
+                $.ajax({
+                    type: "post",
+                    url: APP_BASE_URL+"/invoices/create",
+                    data: {customer_id : customer_id},
+                    success: function (response) {}
+                });                
+            }))
+        }))
+    };
     return {
         init: function () {
+            createInvoice(),
             table && (table.querySelectorAll("tbody tr").forEach((e => {
                 const t = e.querySelectorAll("td"),
                     n = t[3].innerText.toLowerCase();
@@ -26,7 +43,7 @@ var customersListAll = function () {
                     targets: 4
                 }]
             })).on("draw", (function () {
-                 
+       
             })), document.querySelector('[data-kt-ecommerce-order-filter="search"]').addEventListener("keyup", (function (t) {
                 e.search(t.target.value).draw()
             })))

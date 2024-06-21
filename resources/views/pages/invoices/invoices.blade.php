@@ -120,7 +120,7 @@
                                                         <span class="text-muted fw-semibold d-block fs-7">{{ $item['last_contact_date'] }}</span>
                                                     </td>
                                                     <td class="text-end">
-                                                        <a href="{{ url('/invoices/create') }}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary">
+                                                        <a href="javascript:;" data-btn-toggle="createInvoice" data-customer-id="{{ $item['customer_id'] }}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary">
                                                             <i class="ki-outline ki-arrow-right fs-2"></i>
                                                         </a>
                                                     </td>

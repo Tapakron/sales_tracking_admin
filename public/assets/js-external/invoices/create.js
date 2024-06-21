@@ -258,23 +258,25 @@ var KTAppInvoicesCreate = function () {
                         console.log(pair[0] + ', ' + pair[1]);
                     }
 
-                    /*
                     $.ajax({
-                        url: 'your-backend-url',
+                        url: '/backend/payment/create',
                         type: 'POST',
                         data: formData,
                         contentType: false,
                         processData: false,
                         success: function(response) {
+                            if (response.success) {
+                                
+                            } else {
+                                
+                            }
                             alert('Form submitted successfully!');
-                            // Handle success response from server
                         },
                         error: function(xhr, status, error) {
                             alert('Form submission failed!');
                             // Handle error response from server
                         }
                     });
-                    */
                 } else {
                     alert(message);
                 }

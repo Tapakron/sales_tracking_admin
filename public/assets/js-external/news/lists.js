@@ -147,7 +147,8 @@ var KTModalNewTicket = function () {
                             eleValidClass: ""
                         })
                     }
-                }), t.addEventListener("click", (function (e) {
+                }), 
+                t.addEventListener("click", (function (e) {
                     e.preventDefault(), n && n.validate().then((function (e) {
                         if ("Valid" == e) {
                             Swal.fire({
