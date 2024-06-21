@@ -39,7 +39,9 @@ var KTAppInvoicesCreate = function () {
             const price = parseFloat(priceInput.value) || 0;
             const total = quantity * price;
 
+            
             row.querySelector('[data-kt-element="item-total"]').textContent = formatNumber(total);
+            row.querySelector('[data-kt-element="total"]').value = total;
             grandTotal += total;
 
             // Add event listener to set empty input to 0
