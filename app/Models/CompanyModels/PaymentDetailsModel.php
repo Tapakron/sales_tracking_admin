@@ -13,4 +13,11 @@ class PaymentDetailsModel
     {
         return DB::table(self::TABLE)->insert($data);
     }
+
+    public static function fetchById($payment_id)
+    {
+        return DB::table(self::TABLE)
+            ->where('payment_id', $payment_id)
+            ->get()->toArray();
+    }
 }

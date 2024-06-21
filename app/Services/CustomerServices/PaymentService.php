@@ -39,6 +39,7 @@ class PaymentService
                 'img_receipt' => $body['img_receipt'],
                 'save_at' => $format_save_at,
                 'payment_at' => $format_payment_at,
+                'is_admin' => true,
                 'is_delete' => false,
                 'created_at' => Carbon::now(),
                 'created_by' => $user->id
@@ -47,6 +48,8 @@ class PaymentService
             $payment_img = [];
             foreach ($body['product_id'] as $key => $value) {
                 $payment_detail[$key]['product_id'] = $value;
+                $payment_detail[$key]['payment_id'] = $body['payment_id'];
+                $payment_detail[$key]['is_delete'] = false;
             }
             foreach ($body['expiration_at'] as $key => $value) {
                 $expiration_at = DateTime::createFromFormat('d/m/Y', $value);

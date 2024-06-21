@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Helpers\GlobalFunc;
 use App\Helpers\JsonResult;
+use App\Models\CompanyModels\PaymentDetailsModel;
+use App\Models\CompanyModels\PaymentModel;
 use App\Models\CustomerModel;
 use App\Models\CustomerModels\RecordCustomerSaleModel;
 use App\Models\DataMasterModel\AmphureModel;
@@ -256,8 +258,20 @@ class CustomerService
             ];
             $data = CustomerModel::fetchStatus($filters);
             $arraysArray = array_map('get_object_vars', $data); //! แปลง object ใน array ให้เป็น array อีกที
+            // dd($arraysArray);
             if (count($arraysArray) > 0) {
                 foreach ($arraysArray as $key_customer => $customer) {
+                    if ($status == '2') {
+                        $rsPayment = PaymentModel::fetchByCusId($customer['customer_id']);
+                        $arrayCus[$key_customer]['payment_at'] = GlobalFunc::formatDate($rsPayment->payment_at);
+                        $arrayCus[$key_customer]['sum_total'] = number_format($rsPayment->sum_total);
+                        $rsPaymentDetails = PaymentDetailsModel::fetchById($rsPayment->payment_id);
+                        // dd($rsPaymentDetails);
+                        foreach ($rsPaymentDetails as $key => $value) {
+                            $rsProduct = productModel::fetchById($value->product_id);
+                            $arrayCus[$key_customer]['products_buy'][$key]['product_name'] = $rsProduct->product_name_th;
+                        }
+                    }
                     $rsSales = SysUsers::fetchById($customer['sales_in_charge']);
 
                     $arrayCus[$key_customer]['customer_id'] = $customer['customer_id'];
@@ -282,6 +296,7 @@ class CustomerService
                             $arrayCus[$key_customer]['products'][$key_product]['product_short_name'] = $rsProduct->product_short_name_th;
                         }
                     }
+                    // dd($arrayCus);
                 }
             } else {
                 $arrayCus[0]['customer_id'] = '2D23015D-638B-4EC5-81F8-11CE172DFBDA';
@@ -298,7 +313,7 @@ class CustomerService
                 $arrayCus[0]['receipt_img'] = '/assets/images/CN000011/customer/2D23015D-638B-4EC5-81F8-11CE172DFBDA.jpg';
                 $arrayCus[0]['products'][0]['product_id'] = '6';
                 $arrayCus[0]['products'][0]['product_name'] = 'บุคคล Basic';
-                $arrayCus[0]['products'][0]['product_short_name'] ='บุคคล s';
+                $arrayCus[0]['products'][0]['product_short_name'] = 'บุคคล s';
             }
             return $arrayCus;
         } catch (\Throwable $th) {
