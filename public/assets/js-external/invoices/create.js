@@ -206,7 +206,7 @@ var KTAppInvoicesCreate = function () {
 
         // Validate Dropzone
         if (myDropzone.files.length === 0) {
-            message = 'อัพโหลด "รูปสลิป อย่างน้อยหนึ่งรูป';
+            message = 'อัพโหลด "รูปสลิป" อย่างน้อยหนึ่งรูป';
             isValid = false;
         }
 
