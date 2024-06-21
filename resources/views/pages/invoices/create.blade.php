@@ -120,7 +120,7 @@
                                         <i class="ki-outline ki-file-up text-primary fs-3x"></i>
                                         <div class="ms-4">
                                             <h3 class="fs-5 fw-bold text-gray-900 mb-1">อัปโหลดสลิปเงิน</h3>
-                                            <span class="fs-7 fw-semibold text-gray-400">ขนาดไฟล์ไม่เกิน 200MB</span>
+                                            <span class="fs-7 fw-semibold text-gray-400">ขนาดไฟล์ไม่เกิน 5MB</span>
                                         </div>
                                     </div>
                                 </div>
@@ -131,7 +131,7 @@
                                         <i class="ki-outline ki-file-up text-primary fs-3x"></i>
                                         <div class="ms-4">
                                             <h3 class="fs-5 fw-bold text-gray-900 mb-1">อัปโหลดใบเสร็จ</h3>
-                                            <span class="fs-7 fw-semibold text-gray-400">ขนาดไฟล์ไม่เกิน 200MB</span>
+                                            <span class="fs-7 fw-semibold text-gray-400">ขนาดไฟล์ไม่เกิน 5MB</span>
                                         </div>
                                     </div>
                                 </div>
