@@ -24,7 +24,7 @@
                                 <!--begin::Input-->
                                 <div class="position-relative d-flex align-items-center w-160px">
                                     <!--begin::Datepicker-->
-                                    <input class="form-control form-control-transparent fw-bold pe-5" placeholder="05/05/2024 13:00" name="invoice_date" />
+                                    <input class="form-control form-control-transparent fw-bold pe-5" placeholder="05/05/2024 13:00" name="invoice_date" id="invoice_date" />
                                     <!--end::Datepicker-->
                                     <!--begin::Icon-->
                                     <i class="ki-outline ki-down fs-4 position-absolute end-0"></i>
@@ -42,7 +42,7 @@
                             <div class="d-flex align-items-center justify-content-end flex-equal order-3 fw-row" data-bs-toggle="tooltip" data-bs-trigger="hover" title="วันที่ลูกค้าชำระเงิน">
                                 <div class="fs-6 fw-bold text-gray-700 text-nowrap">วันที่ชำระ:</div>
                                 <div class="position-relative d-flex align-items-center w-160px">
-                                    <input class="form-control form-control-transparent fw-bold pe-5" placeholder="05/05/2024 13:00" name="invoice_due_date" />
+                                    <input class="form-control form-control-transparent fw-bold pe-5" placeholder="05/05/2024 13:00" name="invoice_due_date" id="invoice_due_date" />
                                     <i class="ki-outline ki-down fs-4 position-absolute end-0 ms-4"></i>
                                 </div>
                             </div>
@@ -73,16 +73,18 @@
                                         <!-- Empty row template -->
                                         <tr data-kt-element="item-template" class="d-none">
                                             <td>
-                                                <select class="form-select" data-kt-element="item-name">
+                                                <select class="form-select" data-kt-element="item-name" name="product[]">
                                                     <option value="">โปรดระบุ</option>
                                                     <option value="นายช่าง">นายช่าง</option>
                                                     <option value="บุคคล">บุคคล</option>
                                                 </select>
                                             </td>
-                                            <td><input type="text" class="form-control" data-kt-element="item-expiry" placeholder="Pick a date"></td>
-                                            <td><input type="number" class="form-control" data-kt-element="item-quantity" value="1" min="1"></td>
-                                            <td><input type="number" class="form-control" data-kt-element="item-price" value="0" min="0"></td>
-                                            <td class="text-end" data-kt-element="item-total">0</td>
+                                            <td><input type="text" class="form-control" data-kt-element="item-expiry" name="date_expiry[]" placeholder="Pick a date"></td>
+                                            <td><input type="number" class="form-control" data-kt-element="item-quantity" name="users[]" value="1" min="1"></td>
+                                            <td><input type="number" class="form-control" data-kt-element="item-price" name="price[]" value="0" min="0"></td>
+                                            <td class="text-end" data-kt-element="item-total">0
+                                                <input type="hidden" class="form-control" data-kt-element="item-total" name="total[]" value="">
+                                            </td>
                                             <td class="text-end">
                                                 <button type="button" class="btn btn-sm btn-light-danger" data-kt-element="remove-item">Delete</button>
                                             </td>
@@ -95,7 +97,10 @@
                             </div>
                             <div class="mb-0">
                                 <div class="d-flex justify-content-end">
-                                    <div class="fs-6 fw-bold text-gray-700">รวมยอดสุทธิ: <span id="grand-total">0</span></div>
+                                    <div class="fs-6 fw-bold text-gray-700">
+                                        รวมยอดสุทธิ: <span id="grand-total">0</span>
+                                        <input type="hidden" class="form-control" name="sum_total" id="sum_total" value="">
+                                    </div>
                                 </div>
                             </div>
                             <!--end::Notes-->
@@ -103,7 +108,7 @@
 
                         <div class="mb-0 mt-5">
                             <div class="fv-row mb-5">
-                                <div class="dropzone" id="kt_ecommerce_add_product_media">
+                                <div class="dropzone" id="payment_slip_img">
                                     <div class="dz-message needsclick">
                                         <i class="ki-outline ki-file-up text-primary fs-3x"></i>
                                         <div class="ms-4">
@@ -114,7 +119,7 @@
                                 </div>
                             </div>
                             <div class="fv-row mb-5">
-                                <div class="dropzone" id="kt_ecommerce_add_product_media">
+                                <div class="dropzone" id="payment_receipt_img">
                                     <div class="dz-message needsclick">
                                         <i class="ki-outline ki-file-up text-primary fs-3x"></i>
                                         <div class="ms-4">
