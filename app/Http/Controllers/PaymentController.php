@@ -110,4 +110,12 @@ class PaymentController extends Controller
         }
         return JsonResult::success(null, $result['message']);
     }
+    public static function fetchById($payment_id)
+    {
+        $result = PaymentService::fetchById($payment_id);
+        if (is_null($result)) {
+            return JsonResult::errors(null, 'ไม่พบข้อมูล');
+        }
+        return JsonResult::success($result);
+    }
 }

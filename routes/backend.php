@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
     Route::post('/changepassword', [AuthController::class, 'changePassword']);
     //! ชำระเงิน
     Route::post('/payment/create', [PaymentController::class, 'create']);
+    Route::post('/payment/fetch/{id}', [PaymentController::class, 'fetchById']);
     //! ล็อคเอาท์
     Route::post('/logout', [AuthController::class, 'logout']);
     //todo admin
