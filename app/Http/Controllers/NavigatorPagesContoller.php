@@ -330,7 +330,8 @@ class NavigatorPagesContoller extends Controller
             'page_desc_3' => 'รายละเอียดการชำระเงิน',
             'company_profile' => (array)$this->user->company_profile,
             'sales' => json_decode(SalesService::fetch(), true),
-            'customer_profile' => (array)CustomerService::fetchById($body['customer_id']),
+            'product' => json_decode(productService::fetch(), true),
+            'customer_profile' => (array)CustomerService::fetchById($body['customer_id'])
         ];
         // dd($data['pageDetails']);
         return view('pages.invoices.create')->with($data);
