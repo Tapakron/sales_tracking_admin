@@ -189,7 +189,26 @@
                                                 <td>{{ $item['seller_name'] }}</td>
                                                 <td>
                                                     @foreach ($item['products_buy'] as $productsItem)
-                                                        <span class="badge badge-light-primary">{{ $productsItem['product_name'] }}</span>
+                                                        @switch($products["product_id"])
+                                                            @case(1)
+                                                                <div class="badge badge-light-primary fw-semibold me-1">{{ $productsItem['product_name'] }}</div>
+                                                            @break
+
+                                                            @case(2)
+                                                                <div class="badge badge-light-nc fw-semibold me-1">{{ $productsItem['product_name'] }}</div>
+                                                            @break
+
+                                                            @case(3)
+                                                                <div class="badge badge-light-primary fw-semibold me-1">{{ $productsItem['product_name'] }}</div>
+                                                            @break
+
+                                                            @case(4)
+                                                                <div class="badge badge-light-warning fw-semibold me-1">{{ $productsItem['product_name'] }}</div>
+                                                            @break
+
+                                                            @default
+                                                                <div class="badge badge-light-primary fw-semibold me-1">{{ $productsItem['product_name'] }}</div>
+                                                        @endswitch
                                                     @endforeach
                                                 </td>
                                                 <td>฿{{ $item['sum_total'] }}</td>
