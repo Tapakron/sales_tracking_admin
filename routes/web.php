@@ -72,11 +72,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'invoices'], function () {
         Route::get('/invoices', [NavigatorPagesContoller::class, 'invoices']);
         Route::get('/view', [NavigatorPagesContoller::class, 'invoicesView']);
-        Route::get('/create', [NavigatorPagesContoller::class, 'invoicesCreate']);
+        Route::post('/create', [NavigatorPagesContoller::class, 'invoicesCreate']);
     });
 
     // ! projects
-    Route::get('/projects', [NavigatorPagesContoller::class, 'projects']);    
+    Route::get('/projects', [NavigatorPagesContoller::class, 'projects']);
 
     // ! support-center
     Route::group(['prefix' => 'news'], function () {
