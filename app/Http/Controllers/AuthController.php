@@ -140,13 +140,11 @@ class AuthController extends Controller
     {
         $cookie_username = Cookie::get('username');
         if (isset($cookie_username) && !empty($cookie_username)) {
-            // return view('index');
-            return redirect()->route('dashboard');
+            return redirect('/dashboard');
+            // return redirect()->route('dashboard');
             // dd('hhh');
         } else {
             return redirect('/login');
-            // return view('auth.sign-in');
-            // dd('123');
         }
     }
 }
