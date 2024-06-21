@@ -24,7 +24,7 @@
                                 <!--begin::Input-->
                                 <div class="position-relative d-flex align-items-center w-160px">
                                     <!--begin::Datepicker-->
-                                    <input class="form-control form-control-transparent fw-bold pe-5" placeholder="05/05/2024 13:00" name="invoice_date" id="invoice_date" />
+                                    <input class="form-control form-control-transparent fw-bold pe-5" placeholder="05/05/2024 13:00" name="save_at" id="save_at" />
                                     <!--end::Datepicker-->
                                     <!--begin::Icon-->
                                     <i class="ki-outline ki-down fs-4 position-absolute end-0"></i>
@@ -42,7 +42,7 @@
                             <div class="d-flex align-items-center justify-content-end flex-equal order-3 fw-row" data-bs-toggle="tooltip" data-bs-trigger="hover" title="วันที่ลูกค้าชำระเงิน">
                                 <div class="fs-6 fw-bold text-gray-700 text-nowrap">วันที่ชำระ:</div>
                                 <div class="position-relative d-flex align-items-center w-160px">
-                                    <input class="form-control form-control-transparent fw-bold pe-5" placeholder="05/05/2024 13:00" name="invoice_due_date" id="invoice_due_date" />
+                                    <input class="form-control form-control-transparent fw-bold pe-5" placeholder="05/05/2024 13:00" name="payment_at" id="payment_at" />
                                     <i class="ki-outline ki-down fs-4 position-absolute end-0 ms-4"></i>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                                         <!-- Empty row template -->
                                         <tr data-kt-element="item-template" class="d-none">
                                             <td>
-                                                <select class="form-select" data-kt-element="item-name" name="product[]">
+                                                <select class="form-select" data-kt-element="item-name" name="product_id[]">
                                                     <option value="">โปรดระบุ</option>
                                                     @if (Count($pageDetails['product']) > 0)                                                        
                                                         @foreach ($pageDetails['product'] as $item)
@@ -82,9 +82,9 @@
                                                     @endif
                                                 </select>
                                             </td>
-                                            <td><input type="text" class="form-control" data-kt-element="item-expiry" name="date_expiry[]" placeholder="Pick a date"></td>
-                                            <td><input type="number" class="form-control" data-kt-element="item-quantity" name="users[]" value="1" min="1"></td>
-                                            <td><input type="number" class="form-control" data-kt-element="item-price" name="price[]" value="0" min="0"></td>
+                                            <td><input type="text" class="form-control" data-kt-element="item-expiry" name="expiration_at[]" placeholder="Pick a date"></td>
+                                            <td><input type="number" class="form-control" data-kt-element="item-quantity" name="number_users[]" value="1" min="1"></td>
+                                            <td><input type="number" class="form-control" data-kt-element="item-price" name="amount_unit[]" value="0" min="0"></td>
                                             <td class="text-end" data-kt-element="item-total">0
                                                 <input type="hidden" class="form-control" data-kt-element="item-total" name="total[]" value="">
                                             </td>
@@ -115,7 +115,7 @@
 
                         <div class="mb-0 mt-5">
                             <div class="fv-row mb-5">
-                                <div class="dropzone" id="payment_slip_img">
+                                <div class="dropzone" id="img_slip">
                                     <div class="dz-message needsclick">
                                         <i class="ki-outline ki-file-up text-primary fs-3x"></i>
                                         <div class="ms-4">
@@ -126,7 +126,7 @@
                                 </div>
                             </div>
                             <div class="fv-row mb-5">
-                                <div class="dropzone" id="payment_receipt_img">
+                                <div class="dropzone" id="img_receipt">
                                     <div class="dz-message needsclick">
                                         <i class="ki-outline ki-file-up text-primary fs-3x"></i>
                                         <div class="ms-4">
@@ -143,7 +143,7 @@
                                 <div class="d-flex align-items-center flex-equal fw-row me-4 order-2" data-bs-toggle="tooltip" data-bs-trigger="hover" title="">
                                     <div class="fs-6 fw-bold text-gray-700 text-nowrap">เซลที่ดูแล :</div>
                                     <div class="position-relative d-flex align-items-center w-160px">
-                                        <select class="form-select form-select-sm" data-control="select2" data-placeholder="Select an option">
+                                        <select class="form-select form-select-sm" name="sales_id" data-control="select2" data-placeholder="Select an option">
                                             @if (Count($pageDetails['sales']) > 0)
                                                 @foreach ($pageDetails['sales'] as $item)
                                                     <option value="{{ $item['id'] }}" {{ $pageDetails['customer_profile']['sales_in_charge'] == $item['id'] ? 'selected' : '' }}> {{ $item['name'] }}</option>

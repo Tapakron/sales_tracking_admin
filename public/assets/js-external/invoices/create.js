@@ -1,7 +1,7 @@
 "use strict";
 
 var KTAppInvoicesCreate = function () {
-    var myDropzone, paymentReceipt;
+    var imgSlip, imgReceipt;
     var message = "";
 
     var initDatePickers = function () {
@@ -10,11 +10,11 @@ var KTAppInvoicesCreate = function () {
             (today.getMonth() + 1).toString().padStart(2, '0') + '/' +
             today.getFullYear();
 
-        $(document.querySelector('[name="invoice_date"]')).flatpickr({
+        $(document.querySelector('[name="save_at"]')).flatpickr({
             enableTime: false,
             dateFormat: "d/m/Y"
         });
-        $(document.querySelector('[name="invoice_due_date"]')).flatpickr({
+        $(document.querySelector('[name="payment_at"]')).flatpickr({
             enableTime: false,
             dateFormat: "d/m/Y"
         });
@@ -118,7 +118,7 @@ var KTAppInvoicesCreate = function () {
     };
 
     var initDropzone = function () {
-        myDropzone = new Dropzone("#payment_slip_img", {
+        imgSlip = new Dropzone("#img_slip", {
             url: "https://keenthemes.com/scripts/void.php",
             maxFilesize: 5, // ขนาดไฟล์สูงสุด (MB)
             acceptedFiles: '.jpg,.png', // ประเภทไฟล์ที่รับ
@@ -149,7 +149,7 @@ var KTAppInvoicesCreate = function () {
                 });
             }
         });
-        paymentReceipt = new Dropzone("#payment_receipt_img", {
+        imgReceipt = new Dropzone("#img_receipt", {
             url: "https://keenthemes.com/scripts/void.php",
             maxFilesize: 5, // ขนาดไฟล์สูงสุด (MB)
             acceptedFiles: '.jpg,.png', // ประเภทไฟล์ที่รับ
@@ -187,8 +187,8 @@ var KTAppInvoicesCreate = function () {
         var itemsTable = document.querySelector('#kt_invoice_form tbody');
         var rows = itemsTable.querySelectorAll('tr:not([data-kt-element="item-template"])');
 
-        var invoiceDate = document.querySelector('#invoice_date');
-        var invoiceDueDate = document.querySelector('#invoice_due_date');
+        var invoiceDate = document.querySelector('#save_at');
+        var invoiceDueDate = document.querySelector('#payment_at');
 
         // Validate each row
         rows.forEach(function (row) {
@@ -205,7 +205,7 @@ var KTAppInvoicesCreate = function () {
         });
 
         // Validate Dropzone
-        if (myDropzone.files.length === 0) {
+        if (imgSlip.files.length === 0) {
             message = 'อัพโหลด "รูปสลิป" อย่างน้อยหนึ่งรูป';
             isValid = false;
         }
@@ -246,17 +246,17 @@ var KTAppInvoicesCreate = function () {
                     var formData = new FormData(document.getElementById('kt_invoice_form'));
 
                     // Append uploaded files to FormData
-                    myDropzone.files.forEach(function (file) {
-                        formData.append('payment_slip_img', file);
+                    imgSlip.files.forEach(function (file) {
+                        formData.append('img_slip', file);
                     });
 
-                    paymentReceipt.files.forEach(function (file) {
-                        formData.append('payment_receipt_img', file);
+                    imgReceipt.files.forEach(function (file) {
+                        formData.append('img_receipt', file);
                     });
 
-                    for (var pair of formData.entries()) {
-                        console.log(pair[0] + ', ' + pair[1]);
-                    }
+                    // for (var pair of formData.entries()) {
+                    //     console.log(pair[0] + ', ' + pair[1]);
+                    // }
 
                     $.ajax({
                         url: '/backend/payment/create',
@@ -266,15 +266,28 @@ var KTAppInvoicesCreate = function () {
                         processData: false,
                         success: function(response) {
                             if (response.success) {
-                                
+                                Swal.fire({
+                                    text: "บันทึกข้อมูลสำเร็จ!",
+                                    icon: "success",
+                                    buttonsStyling: !1,
+                                    showCancelButton: !0,
+                                    allowEscapeKey: false,
+                                    allowOutsideClick: false,
+                                    confirmButtonText: "ตกลง",
+                                    customClass: {
+                                        confirmButton: "btn btn-primary"
+                                    }
+                                }).then((function (n) {
+                                    if (n.isConfirmed) {
+                                        window.location.href = "";
+                                    }
+                                }))
                             } else {
-                                
-                            }
-                            alert('Form submitted successfully!');
+                                toastr.warning(response.message);
+                            }                            
                         },
                         error: function(xhr, status, error) {
                             alert('Form submission failed!');
-                            // Handle error response from server
                         }
                     });
                 } else {
