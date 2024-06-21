@@ -25,7 +25,7 @@
                                 <!--begin::Input-->
                                 <div class="position-relative d-flex align-items-center w-160px">
                                     <!--begin::Datepicker-->
-                                    <input class="form-control form-control-transparent fw-bold pe-5" placeholder="05/05/2024 13:00" name="save_at" id="save_at" />
+                                    <input class="form-control form-control-transparent fw-bold pe-5" placeholder="โปรดระบุ" name="save_at" id="save_at" />
                                     <!--end::Datepicker-->
                                     <!--begin::Icon-->
                                     <i class="ki-outline ki-down fs-4 position-absolute end-0"></i>
@@ -43,7 +43,7 @@
                             <div class="d-flex align-items-center justify-content-end flex-equal order-3 fw-row" data-bs-toggle="tooltip" data-bs-trigger="hover" title="วันที่ลูกค้าชำระเงิน">
                                 <div class="fs-6 fw-bold text-gray-700 text-nowrap">วันที่ชำระ:</div>
                                 <div class="position-relative d-flex align-items-center w-160px">
-                                    <input class="form-control form-control-transparent fw-bold pe-5" placeholder="05/05/2024 13:00" name="payment_at" id="payment_at" />
+                                    <input class="form-control form-control-transparent fw-bold pe-5" placeholder="โปรดระบุ" name="payment_at" id="payment_at" />
                                     <i class="ki-outline ki-down fs-4 position-absolute end-0 ms-4"></i>
                                 </div>
                             </div>
@@ -86,10 +86,9 @@
                                             <td><input type="text" class="form-control" data-kt-element="item-expiry" name="expiration_at[]" placeholder="Pick a date"></td>
                                             <td><input type="number" class="form-control" data-kt-element="item-quantity" name="number_users[]" value="1" min="1"></td>
                                             <td><input type="number" class="form-control" data-kt-element="item-price" name="amount_unit[]" value="0" min="0"></td>
-                                            <td class="text-end" data-kt-element="item-total">0
-                                                <input type="hidden" class="form-control" data-kt-element="item-total" name="total[]" value="">
-                                            </td>
+                                            <td class="text-end" data-kt-element="item-total">0</td>
                                             <td class="text-end">
+                                                <input type="hidden" class="form-control" data-kt-element="total" name="total[]" value="">
                                                 <button type="button" class="btn btn-sm btn-light-danger" data-kt-element="remove-item">Delete</button>
                                             </td>
                                         </tr>
