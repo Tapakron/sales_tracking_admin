@@ -311,8 +311,9 @@ class NavigatorPagesContoller extends Controller
         ];
         return view('pages.invoices.view')->with($data);
     }
-    public function invoicesCreate()
+    public function invoicesCreate(Request $request)
     {
+        dd($request->all());
         $data['pageDetails'] = [
             'page_lv' => '3',
             'page_name_en_1' => 'dashboard',

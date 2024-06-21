@@ -72,7 +72,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'invoices'], function () {
         Route::get('/invoices', [NavigatorPagesContoller::class, 'invoices']);
         Route::get('/view', [NavigatorPagesContoller::class, 'invoicesView']);
-        Route::post('/create', [NavigatorPagesContoller::class, 'invoicesCreate']);
+        Route::post('/create', [NavigatorPagesContoller::class, 'invoicesCreate'])->name('invoices.create');
     });
 
     // ! projects
