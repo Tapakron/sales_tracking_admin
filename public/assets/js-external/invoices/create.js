@@ -252,11 +252,11 @@ var KTAppInvoicesCreate = function () {
 
                     // Append uploaded files to FormData
                     imgSlip.files.forEach(function (file) {
-                        formData.append('img_slip', file);
+                        formData.append('img_slip[]', file);
                     });
 
                     imgReceipt.files.forEach(function (file) {
-                        formData.append('img_receipt', file);
+                        formData.append('img_receipt[]', file);
                     });
 
                     // for (var pair of formData.entries()) {
