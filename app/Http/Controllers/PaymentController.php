@@ -7,6 +7,7 @@ use App\Helpers\JsonResult;
 use App\Services\CustomerServices\PaymentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class PaymentController extends Controller
@@ -16,15 +17,15 @@ class PaymentController extends Controller
         $body = $request->all();
         $user = Auth::user();
         $payment_id = GlobalFunc::getNewId();
-        // $body['payment_id'] = $payment_id;
+        $body['payment_id'] = $payment_id;
         $rules = array(
-            'img_slip' => 'required|mimes:jpeg,png|max:2048', //!ไฟล์ไม่เกิน 2MB
-            'img_receipt' => 'nullable|mimes:pdf|max:2048', //!ไฟล์ไม่เกิน 2MB
+            // 'img_slip' => 'required|mimes:jpeg,png|max:5120', //!ไฟล์ไม่เกิน 2MB
+            'img_receipt' => 'nullable|mimes:pdf|max:5120', //!ไฟล์ไม่เกิน 2MB
         );
         $messages = array(
-            'img_slip.required' => 'อัพโหลดไฟล์สลิปเงินด้วย!',
-            'img_slip.max' => 'ขนาดของไฟล์รูปใหญ่เกินไป!',
-            'img_slip.mimes' => 'ประเภทไฟล์รูปไม่ถูกต้อง!',
+            // 'img_slip.required' => 'อัพโหลดไฟล์สลิปเงินด้วย!',
+            // 'img_slip.max' => 'ขนาดของไฟล์รูปใหญ่เกินไป!',
+            // 'img_slip.mimes' => 'ประเภทไฟล์รูปไม่ถูกต้อง!',
             // 'receipt_img.required' => 'อัพโหลดไฟล์ใบเสร็จด้วย!',
             'img_receipt.max' => 'ขนาดของไฟล์รูปใหญ่เกินไป!',
             'img_receipt.mimes' => 'ประเภทไฟล์รูปไม่ถูกต้อง!'
@@ -58,24 +59,49 @@ class PaymentController extends Controller
             return JsonResult::errors($result['data'], $result['message']);
         }
         //!------------------------------อัพโหลดรูปภาพ----------------------------------------------
-        $pay_slip = GlobalFunc::uploadImg($request, $user, $payment_id, 'slip_img', "silp"); //! request จากหน้าบ้าน,ข้อมูล user, id ไปใส่ชื่อไฟล์ , ตัวแปร , ชื่อไฟล์จะเก็บรูป
-        if ($pay_slip == null) {
-            $body['slip_img'] = null;
-        } else {
-            if ($pay_slip != null) {
-                $body['slip_img'] = array_key_exists('slip_img', $pay_slip) ? $pay_slip['slip_img'] : NULL;
-            } else {
-                unset($body["slip_img"]);
+        // foreach ($request->file('img_slip') as $file) {
+        // $image = $request->file($type);
+        // if ($image) {
+        //     // $id = $user->id;
+        //     list($imagePathStorage, $imagePathDB) = self::path_image($user->sys_customer_code, $location);
+        //     // Delete existing image
+        //     File::delete($imagePathStorage . $id);
+
+        //     // Move the new image and update profile_img field
+        //     $new_img_name = $id . '.' . $image->getClientOriginalExtension();
+        //     $image->move($imagePathStorage, $new_img_name);
+        //     $body[$type] = $imagePathDB . $new_img_name;
+        //
+        // }
+        // }
+        // dd($body);
+        if ($request->hasFile('img_slip')) {
+            $num = 1;
+            foreach ($body['img_slip'] as $key => $value) {
+                $image = $request->file('img_slip');
+                if ($image) {
+
+                    $imagePathStorage = public_path("assets/images/" . $user->sys_customer_code . "/silp/" . $payment_id);
+                    $imagePathDB = "/assets/images/" . $user->sys_customer_code . "/silp/" . $payment_id;
+                    // Delete existing image
+                    File::delete($imagePathStorage . $num);
+
+                    // Move the new image and update profile_img field
+                    $new_img_name = $key + 1 . '.' . $value->getClientOriginalExtension();
+                    $value->move($imagePathStorage, $new_img_name);
+                    $body['img_slip'][$key] = $imagePathDB . "/" . $new_img_name;
+                    // dd($imagePathStorage, $body[$type], '77788');
+                }
             }
         }
-        $receipt = GlobalFunc::uploadImg($request, $user, $payment_id, 'receipt', "receipt"); //! request จากหน้าบ้าน,ข้อมูล user, id ไปใส่ชื่อไฟล์ , ตัวแปร , ชื่อไฟล์จะเก็บรูป
+        $receipt = GlobalFunc::uploadImg($request, $user, $payment_id, 'img_receipt', "receipt"); //! request จากหน้าบ้าน,ข้อมูล user, id ไปใส่ชื่อไฟล์ , ตัวแปร , ชื่อไฟล์จะเก็บรูป
         if ($receipt == null) {
-            $body['receipt_img'] = null;
+            $body['img_receipt'] = null;
         } else {
             if ($receipt != null) {
-                $body['receipt_img'] = array_key_exists('receipt_img', $receipt) ? $receipt['receipt_img'] : NULL;
+                $body['img_receipt'] = array_key_exists('img_receipt', $receipt) ? $receipt['img_receipt'] : NULL;
             } else {
-                unset($body["receipt_img"]);
+                unset($body["img_receipt"]);
             }
         }
         $result = PaymentService::create($body);
