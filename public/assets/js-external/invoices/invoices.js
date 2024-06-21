@@ -6,23 +6,9 @@ var customersListAll = function () {
 
             t.addEventListener("click", (function (t) {
                 t.preventDefault();
-                console.log(APP_BASE_URL + "/invoices/create");
                 let customer_id = $(this).data('customer-id');
-
-
                 $("#customer_id").val(customer_id)
                 $("#frm_redirect_page").submit()
-
-                // $.ajax({
-                //     type: "post",
-                //     beforeSend: function (xhr) {
-                //         xhr.setRequestHeader("XSRF-TOKEN",
-                //             $('input:hidden[name="__RequestVerificationToken"]').val());
-                //     },
-                //     url: APP_BASE_URL + "/invoices/create",
-                //     data: customer_id,
-                //     success: function (response) {}
-                // });
             }))
         }))
     };

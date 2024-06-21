@@ -131,15 +131,28 @@
                             </div>
                         </div>
                     </form>
-
-                    <div class="text-center pt-5">
-                        <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">ยกเลิก</button>
-                        <button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
-                            <span class="indicator-label">บันทึก</span>
-                            <span class="indicator-progress">รอสักครู่...
-                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                        </button>
+                    <div class="d-flex justify-content-between">
+                        <div class="pt-5">
+                            <select class="form-select form-select-sm" data-control="select2" data-placeholder="Select an option">
+                                    @if (Count($pageDetails['sales']) > 0 )
+                                        @foreach ($pageDetails['sales'] as $item)
+                                            <option value="{{ $item['id'] }} {{ $pageDetails['customer_profile']['sales_in_charge'] == $item['id'] ? "selected" : "" }}">{{ $item['name'] }}</option>
+                                        @endforeach
+                                    @else
+                                        <option value="">ไม่พบข้อมูล</option>
+                                    @endif
+                            </select>
+                        </div>
+                        <div class="text-center pt-5">
+                            <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">ยกเลิก</button>
+                            <button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
+                                <span class="indicator-label">บันทึก</span>
+                                <span class="indicator-progress">รอสักครู่...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
                     </div>
+                    
 
                 </div>
                 <!--end::Card body-->
