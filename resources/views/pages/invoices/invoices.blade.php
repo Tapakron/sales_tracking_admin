@@ -131,6 +131,10 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <form id="frm_redirect_page" method="post" action="{{ route("invoices.create") }}">
+                                @csrf
+                                <input type="hidden" id="customer_id" name="customer_id" value="">
+                            </form>
                         </div>
                         <!--end::Body-->
 
