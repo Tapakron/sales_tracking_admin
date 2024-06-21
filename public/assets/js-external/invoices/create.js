@@ -78,7 +78,7 @@ var KTAppInvoicesCreate = function () {
         });
 
         const removeButton = newRow.querySelector('[data-kt-element="remove-item"]');
-        if (itemsTable.rows.length > 2) { 
+        if (itemsTable.rows.length > 2) {
             removeButton.addEventListener('click', function () {
                 newRow.remove();
                 calculateTotals(itemsTable, grandTotalElement);
@@ -234,13 +234,16 @@ var KTAppInvoicesCreate = function () {
         init: function () {
             initFormRepeater();
             initDropzone();
-
             // Form submission handling
             $('#kt_modal_new_target_submit').on('click', function (event) {
                 event.preventDefault();
                 var isValid = validateForm();
-
+                let frm = document.querySelector("#kt_invoice_form")
+                let btn = frm.querySelector("#kt_modal_new_target_submit")
                 if (isValid) {
+                    btn.setAttribute("data-kt-indicator", "on");
+                    btn.disabled = !0;
+
                     removeItemTemplateRow(); // Remove the item template row before submission
 
                     var formData = new FormData(document.getElementById('kt_invoice_form'));
@@ -264,7 +267,7 @@ var KTAppInvoicesCreate = function () {
                         data: formData,
                         contentType: false,
                         processData: false,
-                        success: function(response) {
+                        success: function (response) {
                             if (response.success) {
                                 Swal.fire({
                                     text: "บันทึกข้อมูลสำเร็จ!",
@@ -282,12 +285,18 @@ var KTAppInvoicesCreate = function () {
                                         window.location.href = "";
                                     }
                                 }))
+                                btn.removeAttribute("data-kt-indicator")
+                                btn.disabled = !1
                             } else {
                                 toastr.warning(response.message);
-                            }                            
+                                btn.removeAttribute("data-kt-indicator")
+                                btn.disabled = !1
+                            }
                         },
-                        error: function(xhr, status, error) {
+                        error: function (xhr, status, error) {
                             alert('Form submission failed!');
+                            btn.removeAttribute("data-kt-indicator")
+                            btn.disabled = !1
                         }
                     });
                 } else {

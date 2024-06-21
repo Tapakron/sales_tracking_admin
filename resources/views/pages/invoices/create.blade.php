@@ -14,6 +14,7 @@
                 <div class="card-body p-12">
                     <!--begin::Form-->
                     <form action="" id="kt_invoice_form">
+                        <input type="hidden" id="customer_id" name="customer_id" value="{{ $pageDetails['customer_profile']['customer_id'] }}">
                         <!--begin::Wrapper-->
                         <div class="d-flex flex-column align-items-start flex-xxl-row">
                             <!--begin::Input group-->
