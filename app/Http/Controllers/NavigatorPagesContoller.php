@@ -313,7 +313,7 @@ class NavigatorPagesContoller extends Controller
     }
     public function invoicesCreate(Request $request)
     {
-        dd($request->all());
+        $body = $request->all();
         $data['pageDetails'] = [
             'page_lv' => '3',
             'page_name_en_1' => 'dashboard',
@@ -329,7 +329,10 @@ class NavigatorPagesContoller extends Controller
             'page_url_3' => '/invoices/create',
             'page_desc_3' => 'รายละเอียดการชำระเงิน',
             'company_profile' => (array)$this->user->company_profile,
+            'sales' => json_decode(SalesService::fetch(), true),
+            'customer_profile' => (array)CustomerService::fetchById($body['customer_id']),
         ];
+        // dd($data['pageDetails']);
         return view('pages.invoices.create')->with($data);
     }
     public function projects()
