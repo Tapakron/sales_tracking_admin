@@ -284,7 +284,7 @@ var KTAppInvoicesCreate = function () {
                                     }
                                 }).then((function (n) {
                                     if (n.isConfirmed) {
-                                        window.location.href = "";
+                                        window.location.href = APP_BASE_URL+"/invoices/invoices";
                                     }
                                 }))
                                 btn.removeAttribute("data-kt-indicator")
