@@ -257,8 +257,6 @@ var KTAppInvoicesCreate = function () {
                         formData.append('img_receipt', file);
                     });
 
-                    formData.append('customer_id', $("#customer_id").val());
-
                     // for (var pair of formData.entries()) {
                     //     console.log(pair[0] + ', ' + pair[1]);
                     // }
