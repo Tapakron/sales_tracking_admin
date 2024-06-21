@@ -131,7 +131,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <form id="frm_redirect_page" method="post" action="{{ route("invoices.create") }}">
+                            <form id="frm_redirect_page" method="post" action="{{ route('invoices.create') }}">
                                 @csrf
                                 <input type="hidden" id="customer_id" name="customer_id" value="">
                             </form>
@@ -167,26 +167,33 @@
                                 <thead class="border-bottom border-gray-200 fs-7 fw-bold">
                                     <tr class="text-start text-muted text-uppercase gs-0">
                                         <th class="min-w-130px">ชื่อลูกค้า</th>
+                                        <th class="min-w-60px">ผู้ขาย</th>
                                         <th>โปรแกรม</th>
                                         <th>ราคา</th>
-                                        <th class="min-w-60px">สถานะ</th>
-                                        <th class="min-w-100px">วันที่ขาย</th>
-                                        <th>สลิป</th>
-                                        <th>ใบเสร็จ</th>
+                                        <th>วันที่ขาย</th>
+                                        <th>รูปสลิป</th>
+                                        <th>รูปใบเสร็จ</th>
+                                        <th class="text-center">รายละเอียด</th>
                                     </tr>
                                 </thead>
                                 <tbody class="fs-6 fw-semibold text-gray-600">
                                     @if (Count($pageDetails['customer_succeed']) > 0)
+                                        {{-- @php
+                                        dd($pageDetails['customer_succeed']);
+                                    @endphp --}}
                                         @foreach ($pageDetails['customer_succeed'] as $item)
                                             <tr>
                                                 <td>
                                                     <a href="{{ url('/projects') }}" class="text-gray-600 text-hover-primary mb-1">{{ $item['customer_name'] }}</a>
                                                 </td>
+                                                <td>{{ $item['seller_name'] }}</td>
                                                 <td>
-                                                    <span class="badge badge-light-primary">{{ $item['product_name'] }}</span>
+                                                    @foreach ($item['products_buy'] as $productsItem)
+                                                        <span class="badge badge-light-primary">{{ $productsItem['product_name'] }}</span>
+                                                    @endforeach
                                                 </td>
-                                                <td>฿{{ $item['amount'] }}</td>
-                                                <td class="text-success">{{ $item['is_payment'] == 1 ? 'สำเร็จ' : '' }}</td>
+                                                <td>฿{{ $item['sum_total'] }}</td>
+
                                                 <td>{{ $item['payment_at'] }}</td>
                                                 <td>
                                                     <a href="#" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_view_target">
@@ -198,13 +205,18 @@
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="#" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_view_target">
-                                                        <i class="ki-duotone ki-some-files fs-2 ms-0">
-                                                            <span class="path1"></span>
-                                                            <span class="path2"></span>
-                                                            <span class="path3"></span>
-                                                        </i>
-                                                    </a>
+                                                    @if ($item['img_receipt'] != null)
+                                                        <a href="#" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_view_target">
+                                                            <i class="ki-duotone ki-some-files fs-2 ms-0">
+                                                                <span class="path1"></span>
+                                                                <span class="path2"></span>
+                                                                <span class="path3"></span>
+                                                            </i>
+                                                        </a>
+                                                    @endif
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="javascript:;">รายละเอียด</a>
                                                 </td>
                                             </tr>
                                         @endforeach
