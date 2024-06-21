@@ -275,7 +275,7 @@ var KTAppInvoicesCreate = function () {
                                     text: "บันทึกข้อมูลสำเร็จ!",
                                     icon: "success",
                                     buttonsStyling: !1,
-                                    showCancelButton: !0,
+                                    showCancelButton: false,
                                     allowEscapeKey: false,
                                     allowOutsideClick: false,
                                     confirmButtonText: "ตกลง",
