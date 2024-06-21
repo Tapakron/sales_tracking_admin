@@ -95,25 +95,15 @@
                                 <tbody>
                                     <tr class="border-bottom border-bottom-dashed" data-kt-element="item">
                                         <td class="pe-7">
-                                            <!--begin::Input group-->
-                                            <!--begin::Select2-->
-                                            <select class="form-select form-select-solid mb-2" data-control="select2" data-placeholder="- เลือก -" data-allow-clear="true">
-                                                <option></option>
-                                                <option value="bk">บุคคล</option>
-                                                <option value="nc">นายช่าง</option>
-                                            </select>
-                                            <!--end::Select2-->
-                                            <!--end::Input group-->
-                                            <input type="text" class="form-control form-control-solid" name="description[]" placeholder="รายละเอียด" />
+                                            <input type="text" class="form-control form-control-solid mb-2" name="name[]" placeholder="Item name" />
                                         </td>
-                                        <!-- <td class="ps-0">
-                                            <input class="form-control form-control-solid" type="number" min="1" name="quantity[]" placeholder="1" value="1" data-kt-element="quantity" />
-                                        </td> -->
+                                        <td class="ps-0">
+                                            <input class="form-control form-control-solid" type="number" min="1" name="quantity[]" placeholder="1" data-kt-element="quantity" />
+                                        </td>
                                         <td>
-                                            <input type="text" class="form-control form-control-solid text-end" name="price[]" placeholder="0.00" value="0.00" data-kt-element="price" />
+                                            <input type="text" class="form-control form-control-solid text-end" name="price[]" placeholder="0.00" data-kt-element="price" />
                                         </td>
-                                        <td class="pt-8 text-end text-nowrap">฿
-                                        <span data-kt-element="total">0.00</span></td>
+                                        <td class="pt-8 text-end">฿<span data-kt-element="total">0.00</span></td>
                                         <td class="pt-5 text-end">
                                             <button type="button" class="btn btn-sm btn-icon btn-active-color-primary" data-kt-element="remove-item">
                                                 <i class="ki-outline ki-trash fs-3"></i>
@@ -154,7 +144,6 @@
                             <tr class="border-bottom border-bottom-dashed" data-kt-element="item">
                                 <td class="pe-7">
                                     <input type="text" class="form-control form-control-solid mb-2" name="name[]" placeholder="Item name" />
-                                    <input type="text" class="form-control form-control-solid" name="description[]" placeholder="Description" />
                                 </td>
                                 <td class="ps-0">
                                     <input class="form-control form-control-solid" type="number" min="1" name="quantity[]" placeholder="1" data-kt-element="quantity" />
@@ -249,5 +238,5 @@
 @endsection
 
 @section('js-content')
-<script src="{{ asset("assets/js/custom/apps/invoices/create.js") }}"></script>
+<script src="{{ asset("assets/js-external/invoices/create.js") }}"></script>
 @endsection
