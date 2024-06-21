@@ -283,6 +283,7 @@ class CustomerService
                     $created_at = Carbon::parse($customer['created_at']);
                     $arrayCus[$key_customer]['begin_date'] = $created_at->format('d/m/Y');
                     $arrayCus[$key_customer]['last_contact_date'] = "ไม่พบการติดต่อล่าสุด";
+                    $arrayCus[$key_customer]['is_payment'] = $customer['is_payment'];
 
                     $araray_products = FavoriteProductModel::fetchById($customer['customer_id']);
                     $araray_product = array_map('get_object_vars', $araray_products);
