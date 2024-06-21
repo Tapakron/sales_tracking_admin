@@ -264,7 +264,7 @@ class NavigatorPagesContoller extends Controller
             'customer_all' => CustomerService::fetchStatus(1), //! ปกติ
             'customer_succeed' => CustomerService::fetchStatus(2), //! ชำระเงินแล้ว
         ];
-        // dd($data['pageDetails']['customer_succeed']);
+        // dd($data['pageDetails']['customer_all']);
         return view('pages.invoices.invoices')->with($data);
     }
     public function customersListing()
@@ -288,6 +288,7 @@ class NavigatorPagesContoller extends Controller
             'customer_succeed' => CustomerService::fetchStatus(2), //! ชำระเงินแล้ว
             'customer_lost' => CustomerService::fetchStatus(3), //! ไม่มีการติดต่อ
         ];
+        // dd($data['pageDetails']);
         return view('pages.customers.listing')->with($data);
     }
     public function invoicesView()
