@@ -272,6 +272,7 @@ class CustomerService
                         // dd($rsPaymentDetails);
                         foreach ($rsPaymentDetails as $key => $value) {
                             $rsProduct = productModel::fetchById($value->product_id);
+                            $arrayCus[$key_customer]['products_buy'][$key]['product_id'] = $rsProduct->product_id;
                             $arrayCus[$key_customer]['products_buy'][$key]['product_name'] = $rsProduct->product_name_th;
                         }
                     }
