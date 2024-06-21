@@ -75,8 +75,11 @@
                                             <td>
                                                 <select class="form-select" data-kt-element="item-name" name="product[]">
                                                     <option value="">โปรดระบุ</option>
-                                                    <option value="นายช่าง">นายช่าง</option>
-                                                    <option value="บุคคล">บุคคล</option>
+                                                    @if (Count($pageDetails['product']) > 0)                                                        
+                                                        @foreach ($pageDetails['product'] as $item)
+                                                            <option value="{{ $item["product_id"] }}">{{ $item["product_name_th"] }}</option>
+                                                        @endforeach
+                                                    @endif
                                                 </select>
                                             </td>
                                             <td><input type="text" class="form-control" data-kt-element="item-expiry" name="date_expiry[]" placeholder="Pick a date"></td>
@@ -102,6 +105,10 @@
                                         <input type="hidden" class="form-control" name="sum_total" id="sum_total" value="">
                                     </div>
                                 </div>
+                            </div>
+                            <div class="d-flex flex-column mb-5 mt-5 fv-row">
+                                {{-- <label class="required fs-6 fw-semibold mb-2">รายละเอียดเพิ่มเติม</label> --}}
+                                <textarea id="detail" name="detail" class="form-control form-control-solid" rows="5" placeholder="กรอกรายละเอียดเพิ่มเติม"></textarea>
                             </div>
                             <!--end::Notes-->
                         </div>
@@ -130,30 +137,34 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
-                    <div class="d-flex justify-content-between">
-                        <div class="pt-5">
-                            <select class="form-select form-select-sm" data-control="select2" data-placeholder="Select an option">
-                                    @if (Count($pageDetails['sales']) > 0 )
-                                        @foreach ($pageDetails['sales'] as $item)
-                                            <option value="{{ $item['id'] }} {{ $pageDetails['customer_profile']['sales_in_charge'] == $item['id'] ? "selected" : "" }}">{{ $item['name'] }}</option>
-                                        @endforeach
-                                    @else
-                                        <option value="">ไม่พบข้อมูล</option>
-                                    @endif
-                            </select>
-                        </div>
-                        <div class="text-center pt-5">
-                            <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">ยกเลิก</button>
-                            <button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
-                                <span class="indicator-label">บันทึก</span>
-                                <span class="indicator-progress">รอสักครู่...
-                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                            </button>
-                        </div>
-                    </div>
-                    
 
+                        <div class="d-flex justify-content-between">
+                            <div class="pt-5">
+                                <div class="d-flex align-items-center flex-equal fw-row me-4 order-2" data-bs-toggle="tooltip" data-bs-trigger="hover" title="">
+                                    <div class="fs-6 fw-bold text-gray-700 text-nowrap">เซลที่ดูแล :</div>
+                                    <div class="position-relative d-flex align-items-center w-160px">
+                                        <select class="form-select form-select-sm" data-control="select2" data-placeholder="Select an option">
+                                            @if (Count($pageDetails['sales']) > 0)
+                                                @foreach ($pageDetails['sales'] as $item)
+                                                    <option value="{{ $item['id'] }}" {{ $pageDetails['customer_profile']['sales_in_charge'] == $item['id'] ? 'selected' : '' }}> {{ $item['name'] }}</option>
+                                                @endforeach
+                                            @else
+                                                <option value="">ไม่พบข้อมูล</option>
+                                            @endif
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center pt-5">
+                                <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">ยกเลิก</button>
+                                <button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
+                                    <span class="indicator-label">บันทึก</span>
+                                    <span class="indicator-progress">รอสักครู่...
+                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <!--end::Card body-->
             </div>
