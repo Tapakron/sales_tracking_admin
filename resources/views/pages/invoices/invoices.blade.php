@@ -235,7 +235,7 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#kt_modal_new_ticket" class="">รายละเอียด</a>
+                                                    <a href="#" class="" data-btn-toggle="fetchInvoices" data-payment-id="{{ $item['payment_id'] }}">รายละเอียด</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -259,7 +259,7 @@
 @endsection
 
 @section('modal-content')
-    <div class="modal fade" id="kt_modal_new_ticket" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="modal_invoice_detail" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered mw-750px">
             <div class="modal-content rounded">
                 <div class="modal-header pb-0 border-0 justify-content-between">
@@ -274,10 +274,10 @@
                 <div class="modal-body scroll-y">
                     <div class="d-flex justify-content-between">
                         <div class="">
-                            <span style="font-size: 14px;"><strong>วันที่บันทึก: </strong>05/06/2024</span>
+                            <span style="font-size: 14px;"><strong>วันที่บันทึก: </strong><span id="save_at"></span></span>
                         </div>
                         <div class="">
-                            <span style="font-size: 14px;"><strong>วันที่ชำระ: </strong>05/06/2024</span>
+                            <span style="font-size: 14px;"><strong>วันที่ชำระ: </strong><span id="payment_at"></span></span>
                         </div>
                     </div>
                     <div class="row mt-4">
@@ -293,34 +293,20 @@
                                         <th class="text-center">รวม</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
+                                <tbody id="textData">
+                                    {{-- <tr>
                                         <td class="text-center">1</td>
                                         <td>บุคคล.com</td>
                                         <td>05/06/2025</td>
                                         <td class="text-right">100</td>
                                         <td class="text-right">25</td>
                                         <td class="text-right">2,500.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">2</td>
-                                        <td>หาช่าง หางาน</td>
-                                        <td>05/06/2025</td>
-                                        <td class="text-right">50</td>
-                                        <td class="text-right">10</td>
-                                        <td class="text-right">500.00</td>
-                                    </tr>
-                                    {{-- <tr>
-                                    <td colspan="4" class="text-right"><strong>Total</strong></td>
-                                    <td>106.00</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4" class="text-right"><strong>VAT 7%</strong></td>
-                                    <td>7.42</td>
-                                </tr> --}}
+                                    </tr> --}}
+                                </tbody>
+                                <tbody>
                                     <tr>
                                         <td colspan="5"><strong>รวมยอดสุทธิ:</strong></td>
-                                        <td class="text-right">3,000.00</td>
+                                        <td class="text-right" id="sum_total">0.00</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -335,13 +321,14 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa ducimus aperiam delectus reprehenderit est incidunt nulla pariatur eaque, blanditiis laudantium earum quis veniam cum ipsam assumenda unde debitis laborum. Facilis.</p>
+                                            <p id="detail"></p>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    <div class="d-flex justify-content-end"><div class=""><strong>ผู้ขาย:</strong> <span id="sales_name"></span></div></div>
                 </div>
             </div>            
         </div>
