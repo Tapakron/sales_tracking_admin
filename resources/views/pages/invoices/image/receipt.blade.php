@@ -1,5 +1,5 @@
 @php
-    // dd($pageDetails['image_slip']);
+    // dd($pageDetails['image_receipt']);
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -42,8 +42,8 @@
 </head>
 
 <body>
-    @if (Count($pageDetails['image_slip']) > 0)
-        @foreach ($pageDetails['image_slip'] as $item)
+    @if (Count($pageDetails['image_receipt']) > 0)
+        @foreach ($pageDetails['image_receipt'] as $item)
             <div class="image-container">
                 <img src="{{ asset($item['img_path']) }}" alt="image">
             </div>
