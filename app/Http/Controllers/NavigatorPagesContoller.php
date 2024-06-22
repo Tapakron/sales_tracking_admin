@@ -362,7 +362,7 @@ class NavigatorPagesContoller extends Controller
                 'image_receipt' => $rsImg
             ];
             // dd($data['pageDetails']);
-            return view('pages.invoices.image.slip')->with($data);
+            return view('pages.invoices.image.receipt')->with($data);
         } else {
             dd("ไม่พบข้อมูล");
         }
