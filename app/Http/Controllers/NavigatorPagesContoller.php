@@ -7,6 +7,7 @@ use App\Services\CompanyServices\TargetSalesService;
 use App\Services\AuthService\SalesService;
 use App\Services\CustomerService;
 use App\Services\CustomerServices\ContactRecordService;
+use App\Services\CustomerServices\PaymentService;
 use App\Services\DataMasterService\productService;
 use App\Services\DataMasterService\ProvinceService;
 use Carbon\Carbon;
@@ -289,7 +290,7 @@ class NavigatorPagesContoller extends Controller
             'customer_all' => CustomerService::fetchStatus(1), //! ปกติ
             'customer_succeed' => CustomerService::fetchStatus(2), //! ชำระเงินแล้ว
         ];
-        dd($data['pageDetails']);
+        // dd($data['pageDetails']);
         return view('pages.invoices.invoices')->with($data);
     }
     public function invoicesView()
@@ -312,25 +313,32 @@ class NavigatorPagesContoller extends Controller
         ];
         return view('pages.invoices.view')->with($data);
     }
-    public function invoicesViewImageSlip()
+    public function invoicesViewImageSlip($payment_id)
     {
-        $data['pageDetails'] = [
-            'page_lv' => '3',
-            'page_name_en_1' => 'dashboard',
-            'page_name_th_1' => 'แดชบอร์ด',
-            'page_url_1' => '/dashboard',
-            'page_desc_1' => '',
-            'page_name_en_2' => '',
-            'page_name_th_2' => 'สถานะดำเนินการ',
-            'page_url_2' => '',
-            'page_desc_2' => 'สถานะดำเนินการ',
-            'page_name_en_3' => 'invoices-view',
-            'page_name_th_3' => 'รายละเอียดการบันทึก',
-            'page_url_3' => '/view/image/slip',
-            'page_desc_3' => 'รายละเอียดการบันทึก',
-            'company_profile' => (array)$this->user->company_profile,
-        ];
-        return view('pages.invoices.image.slip')->with($data);
+        $rsImg = PaymentService::fetchImgs($payment_id);
+        if (!empty($rsImg)) {
+            $data['pageDetails'] = [
+                'page_lv' => '3',
+                'page_name_en_1' => 'dashboard',
+                'page_name_th_1' => 'แดชบอร์ด',
+                'page_url_1' => '/dashboard',
+                'page_desc_1' => '',
+                'page_name_en_2' => '',
+                'page_name_th_2' => 'สถานะดำเนินการ',
+                'page_url_2' => '',
+                'page_desc_2' => 'สถานะดำเนินการ',
+                'page_name_en_3' => 'invoices-view',
+                'page_name_th_3' => 'รายละเอียดการบันทึก',
+                'page_url_3' => '/view/image/slip',
+                'page_desc_3' => 'รายละเอียดการบันทึก',
+                'company_profile' => (array)$this->user->company_profile,
+                'image_slip' => $rsImg
+            ];
+            // dd($data['pageDetails']);
+            return view('pages.invoices.image.slip')->with($data);
+        } else {
+            dd("ไม่พบข้อมูล");
+        }
     }
 
     public function invoicesCreate(Request $request)

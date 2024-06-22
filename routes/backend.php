@@ -7,6 +7,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\DataMasterController\DropdownMasterController;
+use App\Http\Controllers\NavigatorPagesContoller;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TargetSalesController;
@@ -29,48 +30,53 @@ use App\Http\Controllers\TargetSalesController;
 //'middleware' => 'auth',
 //todo ล็อคอินใช้งาน
 Route::post('/backend/login', [AuthController::class, 'login']);
-Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
-    Route::post('/changepassword', [AuthController::class, 'changePassword']);
-    //! ชำระเงิน
-    Route::group(['prefix' => 'payment'], function () {
-        Route::post('/create', [PaymentController::class, 'create']);
-        Route::get('/fetch/img/{id}', [PaymentController::class, 'fetchImgs']);
-        Route::get('/fetch/{id}', [PaymentController::class, 'fetchById']);
-    });
-    //! ล็อคเอาท์
-    Route::post('/logout', [AuthController::class, 'logout']);
-    //todo admin
-    //!---------------------------------------admin-------------------------------------------
-    Route::group(['prefix' => 'admin'], function () {
-        Route::post('/update_profile', [CompanyController::class, 'updateProfile']);
-        Route::post('/update_address', [CompanyController::class, 'updateAddress']);
-        //todo sales
-        Route::group(['prefix' => 'sales'], function () {
-            Route::post('/create', [SalesController::class, 'create']);
-            Route::post('/update', [SalesController::class, 'update']);
-            Route::get('/delete/{id}', [SalesController::class, 'delete']);
-            Route::post('/deleteall', [SalesController::class, 'deleteSelect']);
-            Route::get('/fetch/{id}', [SalesController::class, 'fetchById']);
-        });
-        Route::group(['prefix' => 'customers'], function () {
-            Route::post('/create', [CustomerController::class, 'create']);
-            Route::post('/update', [CustomerController::class, 'update']);
-            Route::get('/delete/{id}', [CustomerController::class, 'delete']);
-            Route::get('/lost/{id}', [CustomerController::class, 'lost']);
-            Route::get('/fetch/{id}', [CustomerController::class, 'fetchById']);
-            // Route::get('/recordsales/{id}', [CustomerController::class, 'recordSalesById']);
-        });
-        Route::group(['prefix' => 'news'], function () {
-            Route::post('/create', [NewsController::class, 'create']);
-            Route::post('/update', [NewsController::class, 'update']);
-            // Route::post('/search', [CustomerController::class, 'search']);
-            Route::get('/delete/{id}', [NewsController::class, 'delete']);
-        });
+Route::group(['middleware' => 'auth'], function () {
 
-        //! เป้ายอดขาย
-        Route::group(['prefix' => 'targetsales'], function () {
-            Route::post('/create', [TargetSalesController::class, 'create']);
-            Route::get('/delete/{id}', [TargetSalesController::class, 'fetch']);
+    Route::get('/invoices/view/image/slip/{id}', [NavigatorPagesContoller::class, 'invoicesViewImageSlip']);
+
+    Route::group(['prefix' => 'backend'], function () {
+        Route::post('/changepassword', [AuthController::class, 'changePassword']);
+        //! ชำระเงิน
+        Route::group(['prefix' => 'payment'], function () {
+            Route::post('/create', [PaymentController::class, 'create']);
+            Route::get('/fetch/img/{id}', [PaymentController::class, 'fetchImgs']);
+            Route::get('/fetch/{id}', [PaymentController::class, 'fetchById']);
+        });
+        //! ล็อคเอาท์
+        Route::post('/logout', [AuthController::class, 'logout']);
+        //todo admin
+        //!---------------------------------------admin-------------------------------------------
+        Route::group(['prefix' => 'admin'], function () {
+            Route::post('/update_profile', [CompanyController::class, 'updateProfile']);
+            Route::post('/update_address', [CompanyController::class, 'updateAddress']);
+            //todo sales
+            Route::group(['prefix' => 'sales'], function () {
+                Route::post('/create', [SalesController::class, 'create']);
+                Route::post('/update', [SalesController::class, 'update']);
+                Route::get('/delete/{id}', [SalesController::class, 'delete']);
+                Route::post('/deleteall', [SalesController::class, 'deleteSelect']);
+                Route::get('/fetch/{id}', [SalesController::class, 'fetchById']);
+            });
+            Route::group(['prefix' => 'customers'], function () {
+                Route::post('/create', [CustomerController::class, 'create']);
+                Route::post('/update', [CustomerController::class, 'update']);
+                Route::get('/delete/{id}', [CustomerController::class, 'delete']);
+                Route::get('/lost/{id}', [CustomerController::class, 'lost']);
+                Route::get('/fetch/{id}', [CustomerController::class, 'fetchById']);
+                // Route::get('/recordsales/{id}', [CustomerController::class, 'recordSalesById']);
+            });
+            Route::group(['prefix' => 'news'], function () {
+                Route::post('/create', [NewsController::class, 'create']);
+                Route::post('/update', [NewsController::class, 'update']);
+                // Route::post('/search', [CustomerController::class, 'search']);
+                Route::get('/delete/{id}', [NewsController::class, 'delete']);
+            });
+
+            //! เป้ายอดขาย
+            Route::group(['prefix' => 'targetsales'], function () {
+                Route::post('/create', [TargetSalesController::class, 'create']);
+                Route::get('/delete/{id}', [TargetSalesController::class, 'fetch']);
+            });
         });
     });
 });
