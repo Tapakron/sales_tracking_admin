@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Helpers\GlobalFunc;
 use App\Helpers\JsonResult;
 use App\Models\CompanyModels\PaymentDetailsModel;
+use App\Models\CompanyModels\PaymentImgModel;
 use App\Models\CompanyModels\PaymentModel;
 use App\Models\CustomerModel;
 use App\Models\CustomerModels\RecordCustomerSaleModel;
@@ -266,7 +267,16 @@ class CustomerService
                         $arrayCus[$key_customer]['payment_id'] = $rsPayment->payment_id;
                         $arrayCus[$key_customer]['payment_at'] = GlobalFunc::formatDate($rsPayment->payment_at);
                         $arrayCus[$key_customer]['sum_total'] = number_format($rsPayment->sum_total);
-                        $arrayCus[$key_customer]['img_receipt'] = $rsPayment->img_receipt ? $rsPayment->img_receipt : null;
+                        $fliters = [
+                            'payment_id' => $rsPayment->payment_id,
+                            'img_type' => 'img_receipt'
+                        ];
+                        $rsImgReceipt = PaymentImgModel::fetchByPaymentId($fliters);
+                        if (!empty($rsImgReceipt)) {
+                            $arrayCus[$key_customer]['img_receipt'] = '1';
+                        } else {
+                            $arrayCus[$key_customer]['img_receipt'] = null;
+                        }
                         $rsSalesOfSale = SysUsers::fetchById($customer['sales_in_charge']);
                         $arrayCus[$key_customer]['seller_name'] = $rsSalesOfSale->name;
                         $rsPaymentDetails = PaymentDetailsModel::fetchById($rsPayment->payment_id);

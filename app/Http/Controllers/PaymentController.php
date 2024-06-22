@@ -94,16 +94,35 @@ class PaymentController extends Controller
                 }
             }
         }
-        $receipt = GlobalFunc::uploadImg($request, $user, $payment_id, 'img_receipt', "receipt"); //! request จากหน้าบ้าน,ข้อมูล user, id ไปใส่ชื่อไฟล์ , ตัวแปร , ชื่อไฟล์จะเก็บรูป
-        if ($receipt == null) {
-            $body['img_receipt'] = null;
-        } else {
-            if ($receipt != null) {
-                $body['img_receipt'] = array_key_exists('img_receipt', $receipt) ? $receipt['img_receipt'] : NULL;
-            } else {
-                unset($body["img_receipt"]);
+        if ($request->hasFile('img_receipt')) {
+            $num = 1;
+            foreach ($body['img_receipt'] as $key => $value) {
+                $image = $request->file('img_receipt');
+                if ($image) {
+
+                    $imagePathStorage = public_path("assets/images/" . $user->sys_customer_code . "/receipt/" . $payment_id);
+                    $imagePathDB = "/assets/images/" . $user->sys_customer_code . "/receipt/" . $payment_id;
+                    // Delete existing image
+                    File::delete($imagePathStorage . $num);
+
+                    // Move the new image and update profile_img field
+                    $new_img_name = $key + 1 . '.' . $value->getClientOriginalExtension();
+                    $value->move($imagePathStorage, $new_img_name);
+                    $body['img_receipt'][$key] = $imagePathDB . "/" . $new_img_name;
+                    // dd($imagePathStorage, $body[$type], '77788');
+                }
             }
         }
+        // $receipt = GlobalFunc::uploadImg($request, $user, $payment_id, 'img_receipt', "receipt"); //! request จากหน้าบ้าน,ข้อมูล user, id ไปใส่ชื่อไฟล์ , ตัวแปร , ชื่อไฟล์จะเก็บรูป
+        // if ($receipt == null) {
+        //     $body['img_receipt'] = null;
+        // } else {
+        //     if ($receipt != null) {
+        //         $body['img_receipt'] = array_key_exists('img_receipt', $receipt) ? $receipt['img_receipt'] : NULL;
+        //     } else {
+        //         unset($body["img_receipt"]);
+        //     }
+        // }
         $result = PaymentService::create($body);
         if (!$result['success']) {
             return JsonResult::errors(null, $result['message']);

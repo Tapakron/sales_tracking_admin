@@ -33,6 +33,7 @@ Route::post('/backend/login', [AuthController::class, 'login']);
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/invoices/view/image/slip/{id}', [NavigatorPagesContoller::class, 'invoicesViewImageSlip']);
+    Route::get('/invoices/view/image/receipt/{id}', [NavigatorPagesContoller::class, 'invoicesViewImageReceipt']);
 
     Route::group(['prefix' => 'backend'], function () {
         Route::post('/changepassword', [AuthController::class, 'changePassword']);

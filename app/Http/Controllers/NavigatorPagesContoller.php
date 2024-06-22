@@ -315,7 +315,7 @@ class NavigatorPagesContoller extends Controller
     }
     public function invoicesViewImageSlip($payment_id)
     {
-        $rsImg = PaymentService::fetchImgs($payment_id);
+        $rsImg = PaymentService::fetchImgs($payment_id, 'img_slip');
         if (!empty($rsImg)) {
             $data['pageDetails'] = [
                 'page_lv' => '3',
@@ -333,6 +333,33 @@ class NavigatorPagesContoller extends Controller
                 'page_desc_3' => 'รายละเอียดการบันทึก',
                 'company_profile' => (array)$this->user->company_profile,
                 'image_slip' => $rsImg
+            ];
+            // dd($data['pageDetails']);
+            return view('pages.invoices.image.slip')->with($data);
+        } else {
+            dd("ไม่พบข้อมูล");
+        }
+    }
+    public function invoicesViewImageReceipt($payment_id)
+    {
+        $rsImg = PaymentService::fetchImgs($payment_id, 'img_receipt');
+        if (!empty($rsImg)) {
+            $data['pageDetails'] = [
+                'page_lv' => '3',
+                'page_name_en_1' => 'dashboard',
+                'page_name_th_1' => 'แดชบอร์ด',
+                'page_url_1' => '/dashboard',
+                'page_desc_1' => '',
+                'page_name_en_2' => '',
+                'page_name_th_2' => 'สถานะดำเนินการ',
+                'page_url_2' => '',
+                'page_desc_2' => 'สถานะดำเนินการ',
+                'page_name_en_3' => 'invoices-view',
+                'page_name_th_3' => 'รายละเอียดการบันทึก',
+                'page_url_3' => '/view/image/slip',
+                'page_desc_3' => 'รายละเอียดการบันทึก',
+                'company_profile' => (array)$this->user->company_profile,
+                'image_receipt' => $rsImg
             ];
             // dd($data['pageDetails']);
             return view('pages.invoices.image.slip')->with($data);
