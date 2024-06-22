@@ -78,7 +78,7 @@ Route::group(['middleware' => 'auth'], function () {
     // ! projects
     Route::get('/projects', [NavigatorPagesContoller::class, 'projects']);
 
-    // ! support-center
+    // ! news
     Route::group(['prefix' => 'news'], function () {
         Route::get('/lists', [NavigatorPagesContoller::class, 'newsLists'])->name('list.news');
         Route::get('/detail/{id}', [NavigatorPagesContoller::class, 'newsdetail']);

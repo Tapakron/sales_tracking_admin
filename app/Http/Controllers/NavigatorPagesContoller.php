@@ -109,6 +109,31 @@ class NavigatorPagesContoller extends Controller
         ];
         return view('pages.contacts.view')->with($data);
     }
+
+    public function customersListing()
+    {
+        $data['pageDetails'] = [
+            'page_lv' => '2',
+            'page_name_en_1' => 'dashboard',
+            'page_name_th_1' => 'แดชบอร์ด',
+            'page_url_1' => '/dashboard',
+            'page_desc_1' => '',
+            'page_name_en_2' => 'customers-listing',
+            'page_name_th_2' => 'ข้อมูลลูกค้า',
+            'page_url_2' => '/customers/listing',
+            'page_desc_2' => 'ลูกค้าที่รับผิดชอบ',
+            'page_name_en_3' => '',
+            'page_name_th_3' => '',
+            'page_url_3' => '',
+            'page_desc_3' => '',
+            'company_profile' => (array)$this->user->company_profile,
+            'customer_all' => CustomerService::fetchStatus(1), //! ปกติ
+            'customer_succeed' => CustomerService::fetchStatus(2), //! ชำระเงินแล้ว
+            'customer_lost' => CustomerService::fetchStatus(3), //! ไม่มีการติดต่อ
+        ];
+        // dd($data['pageDetails']);
+        return view('pages.customers.listing')->with($data);
+    }
     public function customersAdd()
     {
         $data['pageDetails'] = [
@@ -266,30 +291,6 @@ class NavigatorPagesContoller extends Controller
         ];
         // dd($data['pageDetails']['customer_succeed']);
         return view('pages.invoices.invoices')->with($data);
-    }
-    public function customersListing()
-    {
-        $data['pageDetails'] = [
-            'page_lv' => '2',
-            'page_name_en_1' => 'dashboard',
-            'page_name_th_1' => 'แดชบอร์ด',
-            'page_url_1' => '/dashboard',
-            'page_desc_1' => '',
-            'page_name_en_2' => 'customers-listing',
-            'page_name_th_2' => 'ข้อมูลลูกค้า',
-            'page_url_2' => '/customers/listing',
-            'page_desc_2' => 'ลูกค้าที่รับผิดชอบ',
-            'page_name_en_3' => '',
-            'page_name_th_3' => '',
-            'page_url_3' => '',
-            'page_desc_3' => '',
-            'company_profile' => (array)$this->user->company_profile,
-            'customer_all' => CustomerService::fetchStatus(1), //! ปกติ
-            'customer_succeed' => CustomerService::fetchStatus(2), //! ชำระเงินแล้ว
-            'customer_lost' => CustomerService::fetchStatus(3), //! ไม่มีการติดต่อ
-        ];
-        // dd($data['pageDetails']);
-        return view('pages.customers.listing')->with($data);
     }
     public function invoicesView()
     {

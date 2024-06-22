@@ -263,6 +263,7 @@ class CustomerService
                 foreach ($arraysArray as $key_customer => $customer) {
                     if ($status == '2') {
                         $rsPayment = PaymentModel::fetchByCusId($customer['customer_id']);
+                        $arrayCus[$key_customer]['payment_id'] = $rsPayment->payment_id;
                         $arrayCus[$key_customer]['payment_at'] = GlobalFunc::formatDate($rsPayment->payment_at);
                         $arrayCus[$key_customer]['sum_total'] = number_format($rsPayment->sum_total);
                         $arrayCus[$key_customer]['img_receipt'] = $rsPayment->img_receipt ? $rsPayment->img_receipt : null;
