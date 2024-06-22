@@ -45,6 +45,7 @@ class NavigatorPagesContoller extends Controller
             'page_name_th_3' => '',
             'page_url_3' => '',
             'company_profile' => (array)$this->user->company_profile,
+            'product' => json_decode(productService::fetch(), true),
         ];
         // dd($data);
         return view('pages.dashboard')->with($data);
