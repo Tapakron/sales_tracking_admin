@@ -215,7 +215,7 @@
 
                                                 <td>{{ $item['payment_at'] }}</td>
                                                 <td>
-                                                    <a href="#" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_view_target">
+                                                    <a href="{{ url('/invoices/view/image/slip') }}" target="_blank" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
                                                         <i class="ki-duotone ki-some-files fs-2 ms-0">
                                                             <span class="path1"></span>
                                                             <span class="path2"></span>
@@ -235,7 +235,7 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="javascript:;">รายละเอียด</a>
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#kt_modal_new_ticket" class="">รายละเอียด</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -259,6 +259,93 @@
 @endsection
 
 @section('modal-content')
+    <div class="modal fade" id="kt_modal_new_ticket" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered mw-750px">
+            <div class="modal-content rounded">
+                <div class="modal-header pb-0 border-0 justify-content-between">
+                    <h4 class="modal-title">ใบชำระเงิน</h4>
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <i class="ki-duotone ki-cross fs-1">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                    </div>
+                </div>
+                <div class="modal-body scroll-y">
+                    <div class="d-flex justify-content-between">
+                        <div class="">
+                            <span style="font-size: 14px;"><strong>วันที่บันทึก: </strong>05/06/2024</span>
+                        </div>
+                        <div class="">
+                            <span style="font-size: 14px;"><strong>วันที่ชำระ: </strong>05/06/2024</span>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">ลำดับ</th>
+                                        <th class="text-center">รายการชำระ</th>
+                                        <th class="text-center">วันหมดอายุ</th>
+                                        <th class="text-center">จำนวน/USER</th>
+                                        <th class="text-center">ราคาต่อหน่วย</th>
+                                        <th class="text-center">รวม</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">1</td>
+                                        <td>บุคคล.com</td>
+                                        <td>05/06/2025</td>
+                                        <td class="text-right">100</td>
+                                        <td class="text-right">25</td>
+                                        <td class="text-right">2,500.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">2</td>
+                                        <td>หาช่าง หางาน</td>
+                                        <td>05/06/2025</td>
+                                        <td class="text-right">50</td>
+                                        <td class="text-right">10</td>
+                                        <td class="text-right">500.00</td>
+                                    </tr>
+                                    {{-- <tr>
+                                    <td colspan="4" class="text-right"><strong>Total</strong></td>
+                                    <td>106.00</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="text-right"><strong>VAT 7%</strong></td>
+                                    <td>7.42</td>
+                                </tr> --}}
+                                    <tr>
+                                        <td colspan="5"><strong>รวมยอดสุทธิ:</strong></td>
+                                        <td class="text-right">3,000.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <table class="">
+                                <thead>
+                                    <tr><th><strong>รายละเอียดเพิ่มเติม</strong></th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa ducimus aperiam delectus reprehenderit est incidunt nulla pariatur eaque, blanditiis laudantium earum quis veniam cum ipsam assumenda unde debitis laborum. Facilis.</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
 @endsection
 
 @section('js-content')

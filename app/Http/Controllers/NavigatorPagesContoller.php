@@ -311,6 +311,27 @@ class NavigatorPagesContoller extends Controller
         ];
         return view('pages.invoices.view')->with($data);
     }
+    public function invoicesViewImageSlip()
+    {
+        $data['pageDetails'] = [
+            'page_lv' => '3',
+            'page_name_en_1' => 'dashboard',
+            'page_name_th_1' => 'แดชบอร์ด',
+            'page_url_1' => '/dashboard',
+            'page_desc_1' => '',
+            'page_name_en_2' => '',
+            'page_name_th_2' => 'สถานะดำเนินการ',
+            'page_url_2' => '',
+            'page_desc_2' => 'สถานะดำเนินการ',
+            'page_name_en_3' => 'invoices-view',
+            'page_name_th_3' => 'รายละเอียดการบันทึก',
+            'page_url_3' => '/view/image/slip',
+            'page_desc_3' => 'รายละเอียดการบันทึก',
+            'company_profile' => (array)$this->user->company_profile,
+        ];
+        return view('pages.invoices.image.slip')->with($data);
+    }
+
     public function invoicesCreate(Request $request)
     {
         $body = $request->all();
