@@ -1,3 +1,6 @@
+@php
+    // dd($pageDetails['image_slip']);
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,14 +19,16 @@
         }
 
         .image-container {
-            width: 100%;
+            width: 25%;
             /* display: flex;
             flex-direction: column;
             align-items: center; */
 
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 columns with equal width */
-            gap: 10px; /* Gap between images */
+            grid-template-columns: repeat(1, 1fr);
+            /* 2 columns with equal width */
+            gap: 10px;
+            /* Gap between images */
         }
 
         .image-container img {
@@ -33,18 +38,18 @@
             box-sizing: border-box;
             padding: 5px;
         }
-
     </style>
 </head>
 
 <body>
-    <div class="image-container">
-        <img src="https://bamboo-bungalows.com/wp-content/uploads/2021/03/photo-1507525428034-b723cf961d3e-1536x1021.jpeg" alt="Image 1">
-        {{-- <img src="https://i.pinimg.com/originals/10/ff/2f/10ff2fc7c2c8a34491c1b7a3a401f3f4.jpg" alt="Image 2"> --}}
-        <img src="https://bamboo-bungalows.com/wp-content/uploads/2021/03/photo-1507525428034-b723cf961d3e-1536x1021.jpeg" alt="Image 3">
-        <img src="https://bamboo-bungalows.com/wp-content/uploads/2021/03/photo-1507525428034-b723cf961d3e-1536x1021.jpeg" alt="Image 4">
-        <img src="https://bamboo-bungalows.com/wp-content/uploads/2021/03/photo-1507525428034-b723cf961d3e-1536x1021.jpeg" alt="Image 5">
-    </div>
+    @if (Count($pageDetails['image_slip']) > 0)
+        @foreach ($pageDetails['image_slip'] as $item)
+            <div class="image-container">
+                <img src="{{ asset($item['img_path']) }}" alt="image">
+            </div>
+        @endforeach
+    @else
+    @endif
 </body>
 
 </html>

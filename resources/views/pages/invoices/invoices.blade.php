@@ -215,7 +215,7 @@
 
                                                 <td>{{ $item['payment_at'] }}</td>
                                                 <td>
-                                                    <a href="{{ url('/invoices/view/image/slip') }}" target="_blank" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
+                                                    <a href="{{ url('/invoices/view/image/slip/'.$item['payment_id']) }}" target="_blank" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
                                                         <i class="ki-duotone ki-some-files fs-2 ms-0">
                                                             <span class="path1"></span>
                                                             <span class="path2"></span>
