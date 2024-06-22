@@ -155,7 +155,7 @@ var KTAppInvoicesCreate = function () {
             url: "https://keenthemes.com/scripts/void.php",
             maxFilesize: 5, // ขนาดไฟล์สูงสุด (MB)
             acceptedFiles: '.jpg,.png', // ประเภทไฟล์ที่รับ
-            maxFiles: 5, // จำนวนไฟล์สูงสุดที่รับ
+            maxFiles: 1, // จำนวนไฟล์สูงสุดที่รับ
             addRemoveLinks: true, // เพิ่มลิงก์สำหรับลบไฟล์
             dictDefaultMessage: 'ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเลือกไฟล์',
             dictRemoveFile: 'ลบไฟล์',

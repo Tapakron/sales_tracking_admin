@@ -225,7 +225,7 @@
                                                 </td>
                                                 <td>
                                                     @if ($item['img_receipt'] != null)
-                                                        <a href="#" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_view_target">
+                                                        <a href="{{ url('/invoices/view/image/receipt/'.$item['payment_id']) }}" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_view_target">
                                                             <i class="ki-duotone ki-some-files fs-2 ms-0">
                                                                 <span class="path1"></span>
                                                                 <span class="path2"></span>
