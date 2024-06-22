@@ -20,15 +20,15 @@ class PaymentController extends Controller
         $body['payment_id'] = $payment_id;
         $rules = array(
             // 'img_slip' => 'required|mimes:jpeg,png|max:5120', //!ไฟล์ไม่เกิน 2MB
-            'img_receipt' => 'nullable|mimes:pdf|max:5120', //!ไฟล์ไม่เกิน 2MB
+            // 'img_receipt' => 'nullable|mimes:jpeg,png,pdf|max:5120', //!ไฟล์ไม่เกิน 2MB
         );
         $messages = array(
             // 'img_slip.required' => 'อัพโหลดไฟล์สลิปเงินด้วย!',
             // 'img_slip.max' => 'ขนาดของไฟล์รูปใหญ่เกินไป!',
             // 'img_slip.mimes' => 'ประเภทไฟล์รูปไม่ถูกต้อง!',
             // 'receipt_img.required' => 'อัพโหลดไฟล์ใบเสร็จด้วย!',
-            'img_receipt.max' => 'ขนาดของไฟล์รูปใหญ่เกินไป!',
-            'img_receipt.mimes' => 'ประเภทไฟล์รูปไม่ถูกต้อง!'
+            // 'img_receipt.max' => 'ขนาดของไฟล์รูปใหญ่เกินไป!',
+            // 'img_receipt.mimes' => 'ประเภทไฟล์รูปไม่ถูกต้อง!'
         );
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
