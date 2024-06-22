@@ -139,6 +139,7 @@ class AuthController extends Controller
     function checkLogin()
     {
         $cookie_username = Cookie::get('username');
+        // dd($cookie_username);
         if (isset($cookie_username) && !empty($cookie_username)) {
             return redirect('/dashboard');
             // return redirect()->route('dashboard');

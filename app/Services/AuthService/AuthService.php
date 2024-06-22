@@ -49,10 +49,13 @@ class AuthService
                 $result['success'] = false;
                 return $result;
             }
-            if (isset($body['remember_me']) && !empty($body['remember_me'])) {
-                Cookie::queue('username', $body['username'], 8760);
-                Cookie::queue('password', $body['password'], 8760);
-            }
+            // if (isset($body['remember_me']) && !empty($body['remember_me'])) {
+            //     Cookie::queue('username', $body['username'], 8760);
+            //     Cookie::queue('password', $body['password'], 8760);
+            // }
+            Cookie::queue('username', $body['username'], 8760);
+            Cookie::queue('password', $body['password'], 8760);
+            
             $result['message'] = 'เข้าสู่ระบบสำเร็จ';
             $result['message_ex'] = "Successfully";
             $result['success'] = true;
