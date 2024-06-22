@@ -19,4 +19,10 @@ class PaymentModel
             ->where('customer_id', $customer_id)
             ->first();
     }
+    public static function fetchById($payment_id)
+    {
+        return DB::table(self::TABLE)
+            ->where(self::PK, $payment_id)
+            ->first();
+    }
 }
