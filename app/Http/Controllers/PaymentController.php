@@ -118,4 +118,13 @@ class PaymentController extends Controller
         }
         return JsonResult::success($result);
     }
+
+    public static function fetchImgs($payment_id)
+    {
+        $result = PaymentService::fetchImgs($payment_id);
+        if (is_null($result)) {
+            return JsonResult::errors(null, 'ไม่พบข้อมูล');
+        }
+        return JsonResult::success($result);
+    }
 }

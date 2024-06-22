@@ -32,8 +32,11 @@ Route::post('/backend/login', [AuthController::class, 'login']);
 Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
     Route::post('/changepassword', [AuthController::class, 'changePassword']);
     //! ชำระเงิน
-    Route::post('/payment/create', [PaymentController::class, 'create']);
-    Route::get('/payment/fetch/{id}', [PaymentController::class, 'fetchById']);
+    Route::group(['prefix' => 'payment'], function () {
+        Route::post('/create', [PaymentController::class, 'create']);
+        Route::get('/fetch/img/{id}', [PaymentController::class, 'fetchImgs']);
+        Route::get('/fetch/{id}', [PaymentController::class, 'fetchById']);
+    });
     //! ล็อคเอาท์
     Route::post('/logout', [AuthController::class, 'logout']);
     //todo admin
@@ -68,29 +71,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
         Route::group(['prefix' => 'targetsales'], function () {
             Route::post('/create', [TargetSalesController::class, 'create']);
             Route::get('/delete/{id}', [TargetSalesController::class, 'fetch']);
-        });
-    });
-    //!---------------------------------------sales-------------------------------------------
-    Route::group(['middleware' => 'auth', 'prefix' => 'users'], function () {
-        Route::group(['prefix' => 'sales'], function () {
-            // Route::post('/create', [CustomerController::class, 'create']);
-            // Route::post('/update', [CustomerController::class, 'update']);
-            // Route::get('/delete', [CustomerController::class, 'delete']);
-            // Route::get('/fetch', [CustomerController::class, 'fetch']);
-            // Route::get('/fetchbyid/{id}', [CustomerController::class, 'delete']);
-        });
-        Route::group(['prefix' => 'contacts'], function () {
-            // Route::post('/create', [CustomerController::class, 'create']);
-            // Route::get('/fetch', [CustomerController::class, 'fetch']);
-            // Route::get('/fetchbyid/{id}', [CustomerController::class, 'fetchById']);
-        });
-        Route::group(['prefix' => 'news'], function () {
-            // Route::post('/search', [CustomerController::class, 'search']);
-            // Route::get('/fetch', [CustomerController::class, 'fetch']);
-            // Route::get('/fetchbyid/{id}', [CustomerController::class, 'fetchById']);
-        });
-        Route::group(['prefix' => 'payment'], function () {
-            // Route::post('/create', [CustomerController::class, 'create']);
         });
     });
 });

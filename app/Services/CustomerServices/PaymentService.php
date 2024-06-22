@@ -135,4 +135,15 @@ class PaymentService
             throw $th;
         }
     }
+    public static function fetchImgs($payment_id)
+    {
+        try {
+            $rsPaymentImgs = PaymentImgModel::fetchByPaymentId($payment_id);
+            $arrayData = array_map('get_object_vars', $rsPaymentImgs);
+            // dd($arrayData);
+            return $arrayData;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }
