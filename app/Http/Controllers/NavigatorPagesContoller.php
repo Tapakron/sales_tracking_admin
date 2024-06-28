@@ -204,7 +204,7 @@ class NavigatorPagesContoller extends Controller
             'customer_profile' => (array)CustomerService::fetchById($customer_id),
             'contact_record' => (array)ContactRecordService::fetchById($customer_id), //! รอแก้ไข รอดึงข้อมูลจาก db ตอนนี้ make
         ];
-        // dd($data['pageDetails']);
+        dd($data['pageDetails']);
         return view('pages.customers.details')->with($data);
     }
     public function salesAdd()

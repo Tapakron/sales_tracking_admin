@@ -308,6 +308,10 @@ class CustomerService
                     $arrayCus[$key_customer]['products'] = [];
                     foreach ($araray_product as $key_product => $product) {
                         $rsProduct = productModel::fetchById($product['product_id']);
+
+                        // foreach ($rsProduct as $keyProduct2 => $valueProduct2) {
+                        //     $arrayCus[$key_customer]['products'][$key_product][$keyProduct2] = $valueProduct2;
+                        // }
                         if ($product['customer_id'] == $customer['customer_id']) {
                             $arrayCus[$key_customer]['products'][$key_product]['product_id'] = $product['product_id'];
                             $arrayCus[$key_customer]['products'][$key_product]['product_name'] = $rsProduct->product_name_th;
