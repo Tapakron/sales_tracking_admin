@@ -111,34 +111,88 @@ class GlobalFunc
         $province = ProvinceModel::fetchById($data->province_id);
         $amphure = AmphureModel::fetchById($data->amphure_id);
         $tambol = TambolModel::fetchById($data->tambol_id);
-        $adress = 'ไม่พบข้อมูล';
+        $address = 'ไม่พบข้อมูล';
         // dd($data);
         if (isset($data->province_id) && $data->province_id == '1') {
-            $adress = $data->address ? $data->address : "";
-            $adress .= $data->village_building ? " " . $data->village_building : "";
-            $adress .= $data->village_no ? " " . $data->village_no : "";
-            $adress .= $data->alley ? " " . $data->alley : "";
-            $adress .= $data->road ? " " . $data->road : "";
-            $adress .= $tambol->id ? " แขวง" . $tambol->name_th : "";
-            $adress .= $amphure->id ? " " . $amphure->name_th : "";
-            $adress .= $province->id ? " " . $province->name_th : "";
-            $adress .= $tambol->id ? " " . $tambol->zip_code : "";
+            $address = $data->address ? $data->address : "";
+            $address .= $data->village_building ? " " . $data->village_building : "";
+            $address .= $data->village_no ? " " . $data->village_no : "";
+            $address .= $data->alley ? " " . $data->alley : "";
+            $address .= $data->road ? " " . $data->road : "";
+            $address .= $tambol->id ? " แขวง" . $tambol->name_th : "";
+            $address .= $amphure->id ? " " . $amphure->name_th : "";
+            $address .= $province->id ? " " . $province->name_th : "";
+            $address .= $tambol->id ? " " . $tambol->zip_code : "";
+
+            $data->province_name = $province->id ? $province->name_th : "";
+            $data->amphure_name = $amphure->id ? $amphure->name_th : "";
+            $data->tambol_name = $tambol->id ? $tambol->name_th : "";
+            $data->address_text = $address;
         } elseif (isset($data->province_id) && $data->province_id != '1') {
-            $adress = $data->address ? $data->address : " ";
-            $adress .= $data->village_building ? " " . $data->village_building : "";
-            $adress .= $data->village_no ? " " . $data->village_no : "";
-            $adress .= $data->road ? " " . $data->road : "";
-            $adress .= $data->alley ? " " . $data->alley : "";
-            $adress .= $tambol->id ? " ต." . $tambol->name_th : "";
-            $adress .= $amphure->id ? " อ." . $amphure->name_th : "";
-            $adress .= $province->id ? " จ." . $province->name_th : "";
-            $adress .= $tambol->id ? " " . $tambol->zip_code : "";
+            $address = $data->address ? $data->address : " ";
+            $address .= $data->village_building ? " " . $data->village_building : "";
+            $address .= $data->village_no ? " " . $data->village_no : "";
+            $address .= $data->road ? " " . $data->road : "";
+            $address .= $data->alley ? " " . $data->alley : "";
+            $address .= $tambol->id ? " ต." . $tambol->name_th : "";
+            $address .= $amphure->id ? " อ." . $amphure->name_th : "";
+            $address .= $province->id ? " จ." . $province->name_th : "";
+            $address .= $tambol->id ? " " . $tambol->zip_code : "";
+
+            $data->province_name = $province->id ? $province->name_th : "";
+            $data->amphure_name = $amphure->id ? $amphure->name_th : "";
+            $data->tambol_name = $tambol->id ? $tambol->name_th : "";
+            $data->address_text = $address;
         }
 
-        $data->province_name = $province->id ? $province->name_th : "";
-        $data->amphure_name = $amphure->id ? $amphure->name_th : "";
-        $data->tambol_name = $tambol->id ? $tambol->name_th : "";
-        $data->address_text = $adress;
+        return $data;
+    }
+    public static function setProfileCustomer($data)
+    {
+        $address = 'ไม่พบข้อมูล';
+        if (isset($data->province_id) && $data->province_id == '1') {
+
+            $province = ProvinceModel::fetchById($data->province_id);
+            $amphure = AmphureModel::fetchById($data->amphure_id);
+            $tambol = TambolModel::fetchById($data->tambol_id);
+
+            $address = $data->address ? $data->address : "";
+            $address .= $data->village_building ? " " . $data->village_building : "";
+            $address .= $data->village_no ? " " . $data->village_no : "";
+            $address .= $data->alley ? " " . $data->alley : "";
+            $address .= $data->road ? " " . $data->road : "";
+            $address .= $tambol->id ? " แขวง" . $tambol->name_th : "";
+            $address .= $amphure->id ? " " . $amphure->name_th : "";
+            $address .= $province->id ? " " . $province->name_th : "";
+            $address .= $tambol->id ? " " . $tambol->zip_code : "";
+
+            $data->province_name = $province->id ? $province->name_th : "";
+            $data->amphure_name = $amphure->id ? $amphure->name_th : "";
+            $data->tambol_name = $tambol->id ? $tambol->name_th : "";
+            $data->address_text = $address;
+        } elseif (isset($data->province_id) && $data->province_id != '1') {
+
+            $province = ProvinceModel::fetchById($data->province_id);
+            $amphure = AmphureModel::fetchById($data->amphure_id);
+            $tambol = TambolModel::fetchById($data->tambol_id);
+
+            $address = $data->address ? $data->address : " ";
+            $address .= $data->village_building ? " " . $data->village_building : "";
+            $address .= $data->village_no ? " " . $data->village_no : "";
+            $address .= $data->road ? " " . $data->road : "";
+            $address .= $data->alley ? " " . $data->alley : "";
+            $address .= $tambol->id ? " ต." . $tambol->name_th : "";
+            $address .= $amphure->id ? " อ." . $amphure->name_th : "";
+            $address .= $province->id ? " จ." . $province->name_th : "";
+            $address .= $tambol->id ? " " . $tambol->zip_code : "";
+
+            $data->province_name = $province->id ? $province->name_th : "";
+            $data->amphure_name = $amphure->id ? $amphure->name_th : "";
+            $data->tambol_name = $tambol->id ? $tambol->name_th : "";
+            $data->address_text = $address;
+        }
+        $data->address_text = $address;
+
         return $data;
     }
 }

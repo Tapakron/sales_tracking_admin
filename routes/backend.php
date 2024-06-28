@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/invoices/view/image/receipt/{id}', [NavigatorPagesContoller::class, 'invoicesViewImageReceipt']);
 
     Route::group(['prefix' => 'backend'], function () {
+        //! เปลี่ยนรหัสผ่าน
         Route::post('/changepassword', [AuthController::class, 'changePassword']);
         //! ชำระเงิน
         Route::group(['prefix' => 'payment'], function () {
@@ -48,6 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
         //todo admin
         //!---------------------------------------admin-------------------------------------------
         Route::group(['prefix' => 'admin'], function () {
+            //! แก้ไข Profile
             Route::post('/update_profile', [CompanyController::class, 'updateProfile']);
             Route::post('/update_address', [CompanyController::class, 'updateAddress']);
             //todo sales
