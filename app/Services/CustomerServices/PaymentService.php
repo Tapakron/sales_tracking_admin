@@ -19,7 +19,6 @@ class PaymentService
     public static function create($body)
     {
         try {
-            // dd($body);
             DB::beginTransaction();
             $user = Auth::user();
             $sum_total = filter_var($body['sum_total'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
@@ -27,6 +26,7 @@ class PaymentService
             $save_at = $body['save_at'];
             $save_at = DateTime::createFromFormat('d/m/Y', $save_at);
             $format_save_at = $save_at->format('Y-m-d');
+            $rsCustomer = CustomerModel::fetchById($body['customer_id']);
 
             $payment_at = $body['payment_at'];
             $payment_at = DateTime::createFromFormat('d/m/Y', $payment_at);
@@ -36,9 +36,9 @@ class PaymentService
                 'company_id' => $user->company_id,
                 'customer_id' => $body['customer_id'],
                 'sales_id' => $body['sales_id'],
+                'sales_in_charge' => $rsCustomer->sales_in_charge,
                 'detail' => $body['detail'],
                 'sum_total' => intval($sum_total[0]),
-                // 'img_receipt' => $body['img_receipt'],
                 'save_at' => $format_save_at,
                 'payment_at' => $format_payment_at,
                 'is_admin' => true,
@@ -76,13 +76,16 @@ class PaymentService
                 $payment_img_slip[$key]['created_at'] = Carbon::now();
                 $payment_img_slip[$key]['created_by'] = $user->id;
             }
-            foreach ($body['img_receipt'] as $key => $value) {
-                $payment_img_receipt[$key]['payment_id'] = $body['payment_id'];
-                $payment_img_receipt[$key]['img_type'] = 'img_receipt';
-                $payment_img_receipt[$key]['img_path'] = $value;
-                $payment_img_receipt[$key]['is_delete'] = false;
-                $payment_img_receipt[$key]['created_at'] = Carbon::now();
-                $payment_img_receipt[$key]['created_by'] = $user->id;
+            if (array_key_exists('img_receipt', $body)) {
+                foreach ($body['img_receipt'] as $key => $value) {
+                    $payment_img_receipt[$key]['payment_id'] = $body['payment_id'];
+                    $payment_img_receipt[$key]['img_type'] = 'img_receipt';
+                    $payment_img_receipt[$key]['img_path'] = $value;
+                    $payment_img_receipt[$key]['is_delete'] = false;
+                    $payment_img_receipt[$key]['created_at'] = Carbon::now();
+                    $payment_img_receipt[$key]['created_by'] = $user->id;
+                }
+                PaymentImgModel::create($payment_img_receipt);
             }
             $data = [
                 'is_payment' => true
@@ -90,7 +93,6 @@ class PaymentService
             PaymentModel::create($payment);
             PaymentDetailsModel::create($payment_detail);
             PaymentImgModel::create($payment_img_slip);
-            PaymentImgModel::create($payment_img_receipt);
             $rsCreate = CustomerModel::update($body['customer_id'], $data);
             if ($rsCreate == false) {
                 $rs['message'] = "บันทึกข้อมูลผิดพลาด";

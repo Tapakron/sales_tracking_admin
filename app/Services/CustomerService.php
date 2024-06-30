@@ -280,6 +280,7 @@ class CustomerService
                             'img_type' => 'img_receipt'
                         ];
                         $rsImgReceipt = PaymentImgModel::fetchByPaymentId($fliters);
+                        // dd($rsImgReceipt);
                         if (!empty($rsImgReceipt)) {
                             $arrayCus[$key_customer]['img_receipt'] = '1';
                         } else {
