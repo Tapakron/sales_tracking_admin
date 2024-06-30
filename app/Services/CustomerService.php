@@ -8,6 +8,7 @@ use App\Models\CompanyModels\PaymentDetailsModel;
 use App\Models\CompanyModels\PaymentImgModel;
 use App\Models\CompanyModels\PaymentModel;
 use App\Models\CustomerModel;
+use App\Models\CustomerModels\ContactsModel;
 use App\Models\CustomerModels\RecordCustomerSaleModel;
 use App\Models\DataMasterModel\AmphureModel;
 use App\Models\DataMasterModel\productModel;
@@ -37,9 +38,14 @@ class CustomerService
                 'created_by' => $user->id,
                 'created_at' => Carbon::now(),
             ];
-            $record = [
+            $contact = [
+                'contact_id' => GlobalFunc::getNewId(),
                 'customer_id' => $body['customer_id'],
-                'sale_id' => $body['sales_in_charge'],
+                'sale_id' => $user->id,
+                'contract_start_date' => Carbon::now(),
+                'contract_expiration_date' => NULL,
+                'is_status' => false,
+                'is_delete' => false,
                 'created_at' => Carbon::now(),
                 'created_by' => $user->id,
             ];
@@ -55,7 +61,7 @@ class CustomerService
                 }
                 FavoriteProductModel::create($data_product);
             }
-            RecordCustomerSaleModel::create($record);
+            ContactsModel::create($contact);
             $rsCreate = CustomerModel::create($body);
             if ($rsCreate == false) {;
                 $rs['message'] = "บันทึกข้อมูลผิดพลาด";
@@ -83,16 +89,16 @@ class CustomerService
                 'updated_at' => Carbon::now(),
                 'updated_by' => $user->id
             ];
-            $rsRecord = CustomerModel::fetchById($customer_id);
-            if ($body['sales_in_charge'] != $rsRecord->sales_in_charge) {
-                $record = [
-                    'customer_id' => $customer_id,
-                    'sale_id' => $body['sales_in_charge'],
-                    'created_at' => Carbon::now(),
-                    'created_by' => $user->id,
-                ];
-                RecordCustomerSaleModel::create($record);
-            }
+            // $rsRecord = CustomerModel::fetchById($customer_id);
+            // if ($body['sales_in_charge'] != $rsRecord->sales_in_charge) {
+            //     $record = [
+            //         'customer_id' => $customer_id,
+            //         'sale_id' => $body['sales_in_charge'],
+            //         'created_at' => Carbon::now(),
+            //         'created_by' => $user->id,
+            //     ];
+            //     RecordCustomerSaleModel::create($record);
+            // }
             if (count($array_favorite_product) > 0) {
                 foreach ($array_favorite_product as $key => $value) {
                     $data_product[$key] = [
