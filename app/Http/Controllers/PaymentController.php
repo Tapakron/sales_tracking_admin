@@ -59,22 +59,6 @@ class PaymentController extends Controller
             return JsonResult::errors($result['data'], $result['message']);
         }
         //!------------------------------อัพโหลดรูปภาพ----------------------------------------------
-        // foreach ($request->file('img_slip') as $file) {
-        // $image = $request->file($type);
-        // if ($image) {
-        //     // $id = $user->id;
-        //     list($imagePathStorage, $imagePathDB) = self::path_image($user->sys_customer_code, $location);
-        //     // Delete existing image
-        //     File::delete($imagePathStorage . $id);
-
-        //     // Move the new image and update profile_img field
-        //     $new_img_name = $id . '.' . $image->getClientOriginalExtension();
-        //     $image->move($imagePathStorage, $new_img_name);
-        //     $body[$type] = $imagePathDB . $new_img_name;
-        //
-        // }
-        // }
-        // dd($body);
         if ($request->hasFile('img_slip')) {
             $num = 1;
             foreach ($body['img_slip'] as $key => $value) {
@@ -113,16 +97,6 @@ class PaymentController extends Controller
                 }
             }
         }
-        // $receipt = GlobalFunc::uploadImg($request, $user, $payment_id, 'img_receipt', "receipt"); //! request จากหน้าบ้าน,ข้อมูล user, id ไปใส่ชื่อไฟล์ , ตัวแปร , ชื่อไฟล์จะเก็บรูป
-        // if ($receipt == null) {
-        //     $body['img_receipt'] = null;
-        // } else {
-        //     if ($receipt != null) {
-        //         $body['img_receipt'] = array_key_exists('img_receipt', $receipt) ? $receipt['img_receipt'] : NULL;
-        //     } else {
-        //         unset($body["img_receipt"]);
-        //     }
-        // }
         $result = PaymentService::create($body);
         if (!$result['success']) {
             return JsonResult::errors(null, $result['message']);
