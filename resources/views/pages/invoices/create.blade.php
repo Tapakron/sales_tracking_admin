@@ -65,7 +65,7 @@
                                             <th class="min-w-150px">รายการชำระ</th>
                                             <th class="min-w-150px">วันหมดอายุ</th>
                                             <th class="min-w-100px">จำนวน/user</th>
-                                            <th class="min-w-150px">ราคาต่อหน่วย</th>
+                                            <th class="min-w-150px">ราคา</th>
                                             <th class="min-w-100px text-end">รวม</th>
                                             <th class="min-w-50px text-end">Action</th>
                                         </tr>

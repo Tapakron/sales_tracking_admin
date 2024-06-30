@@ -73,48 +73,49 @@
                 {{-- <div class="pagination">
                     {{ $pageDetails['list_news2']->links() }}
                 </div> --}}
-
-                <ul class="pagination">
-                    
-                    @if ($pageDetails['list_news2']->onFirstPage())
-                        <li class="page-item previous disabled">
-                            <span class="page-link">
-                                <i class="previous"></i>
-                            </span>
-                        </li>
-                    @else
-                        <li class="page-item previous">
-                            <a href="{{ $pageDetails['list_news2']->previousPageUrl() }}" class="page-link">
-                                <i class="previous"></i>
-                            </a>
-                        </li>
-                    @endif
-                    
-                    @php
-                        $currentPage = $pageDetails['list_news2']->currentPage();
-                    @endphp
-                    @foreach ($pageDetails['list_news2']->toArray()['links'] as $item)
-                        @if ($item['label'] != "&laquo; Previous" && $item['label'] != "Next &raquo;" )
-                            <li class="page-item  {{ $currentPage == $item['label'] ? 'active' : '' }}">
-                                <a href="{{ $item['url'] }}" class="page-link">{{ $item['label'] }}</a>
+                @if (Count($pageDetails['list_news2']) > 0)
+                    <ul class="pagination">
+                        @if ($pageDetails['list_news2']->onFirstPage())
+                            <li class="page-item previous disabled">
+                                <span class="page-link">
+                                    <i class="previous"></i>
+                                </span>
+                            </li>
+                        @else
+                            <li class="page-item previous">
+                                <a href="{{ $pageDetails['list_news2']->previousPageUrl() }}" class="page-link">
+                                    <i class="previous"></i>
+                                </a>
                             </li>
                         @endif
-                    @endforeach
 
-                    @if ($pageDetails['list_news2']->hasMorePages())
-                        <li class="page-item next">
-                            <a href="{{ $pageDetails['list_news2']->nextPageUrl() }}" class="page-link">
-                                <i class="next"></i>
-                            </a>
-                        </li>
-                    @else
-                        <li class="page-item next disabled">
-                            <span class="page-link">
-                                <i class="next"></i>
-                            </span>
-                        </li>
-                    @endif
-                </ul>
+                        @php
+                            $currentPage = $pageDetails['list_news2']->currentPage();
+                        @endphp
+                        @foreach ($pageDetails['list_news2']->toArray()['links'] as $item)
+                            @if ($item['label'] != '&laquo; Previous' && $item['label'] != 'Next &raquo;')
+                                <li class="page-item  {{ $currentPage == $item['label'] ? 'active' : '' }}">
+                                    <a href="{{ $item['url'] }}" class="page-link">{{ $item['label'] }}</a>
+                                </li>
+                            @endif
+                        @endforeach
+
+                        @if ($pageDetails['list_news2']->hasMorePages())
+                            <li class="page-item next">
+                                <a href="{{ $pageDetails['list_news2']->nextPageUrl() }}" class="page-link">
+                                    <i class="next"></i>
+                                </a>
+                            </li>
+                        @else
+                            <li class="page-item next disabled">
+                                <span class="page-link">
+                                    <i class="next"></i>
+                                </span>
+                            </li>
+                        @endif
+                    </ul>
+                @else
+                @endif
             </div>
         </div>
     </div>

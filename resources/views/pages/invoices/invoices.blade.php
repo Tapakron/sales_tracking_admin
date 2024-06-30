@@ -178,17 +178,14 @@
                                 </thead>
                                 <tbody class="fs-6 fw-semibold text-gray-600">
                                     @if (Count($pageDetails['customer_succeed']) > 0)
-                                        {{-- @php
-                                        dd($pageDetails['customer_succeed']);
-                                    @endphp --}}
-                                        @foreach ($pageDetails['customer_succeed'] as $item)
+                                        @foreach ($pageDetails['customer_succeed'] as $itemSucceed)
                                             <tr>
                                                 <td>
-                                                    <a href="{{ url('/projects') }}" class="text-gray-600 text-hover-primary mb-1">{{ $item['customer_name'] }}</a>
+                                                    <a href="{{ url('/projects') }}" class="text-gray-600 text-hover-primary mb-1">{{ $itemSucceed['customer_name'] }}</a>
                                                 </td>
-                                                <td>{{ $item['seller_name'] }}</td>
+                                                <td>{{ $itemSucceed['seller_name'] }}</td>
                                                 <td>
-                                                    @foreach ($item['products_buy'] as $productsItem)
+                                                    @foreach ($itemSucceed['products_buy'] as $productsItem)
                                                         @switch($productsItem["product_id"])
                                                             @case(1)
                                                                 <div class="badge badge-light-primary fw-semibold me-1">{{ $productsItem['product_name'] }}</div>
@@ -211,11 +208,11 @@
                                                         @endswitch
                                                     @endforeach
                                                 </td>
-                                                <td>฿{{ $item['sum_total'] }}</td>
+                                                <td>฿{{ $itemSucceed['sum_total'] }}</td>
 
-                                                <td>{{ $item['payment_at'] }}</td>
+                                                <td>{{ $itemSucceed['payment_at'] }}</td>
                                                 <td>
-                                                    <a href="{{ url('/invoices/view/image/slip/'.$item['payment_id']) }}" target="_blank" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
+                                                    <a href="{{ url('/invoices/view/image/slip/'.$itemSucceed['payment_id']) }}" target="_blank" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
                                                         <i class="ki-duotone ki-some-files fs-2 ms-0">
                                                             <span class="path1"></span>
                                                             <span class="path2"></span>
@@ -225,7 +222,7 @@
                                                 </td>
                                                 <td>
                                                     @if ($item['img_receipt'] != null)
-                                                        <a href="{{ url('/invoices/view/image/receipt/'.$item['payment_id']) }}" target="_blank" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
+                                                        <a href="{{ url('/invoices/view/image/receipt/'.$itemSucceed['payment_id']) }}" target="_blank" class="btn btn-icon btn-light-primary w-30px h-30px ms-auto">
                                                             <i class="ki-duotone ki-some-files fs-2 ms-0">
                                                                 <span class="path1"></span>
                                                                 <span class="path2"></span>
@@ -235,7 +232,7 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="#" class="" data-btn-toggle="fetchInvoices" data-payment-id="{{ $item['payment_id'] }}">รายละเอียด</a>
+                                                    <a href="#" class="" data-btn-toggle="fetchInvoices" data-payment-id="{{ $itemSucceed['payment_id'] }}">รายละเอียด</a>
                                                 </td>
                                             </tr>
                                         @endforeach
