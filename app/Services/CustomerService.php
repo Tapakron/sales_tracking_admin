@@ -228,13 +228,6 @@ class CustomerService
             $arrayData['customer_tel_show'] = GlobalFunc::formatPhoneNum($arrayData['customer_tel']);
             $rsSale = SysUsers::fetchById($arrayData['sales_in_charge']);
             $arrayData['sale_name'] = $rsSale->name;
-            // $province = ProvinceModel::fetchById($arrayData['province_id']);
-            // $amphure = AmphureModel::fetchById($arrayData['amphure_id']);
-            // $tambol = TambolModel::fetchById($arrayData['tambol_id']);
-            // $arrayData['province_name'] = $province != null ? $province->name_th : '';
-            // $arrayData['amphure_name'] = $amphure != null ? $amphure->name_th : '';
-            // $arrayData['tambol_name'] = $tambol != null ? $tambol->name_th : '';
-            // $arrayData['address_text'] = $address_text;
             $arrayData['products'] = [];
             $products = FavoriteProductModel::fetchById($arrayData['customer_id']);
             if (count($products) > 0) {
