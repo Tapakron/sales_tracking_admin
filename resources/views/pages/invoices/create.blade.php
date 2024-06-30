@@ -76,9 +76,9 @@
                                             <td>
                                                 <select class="form-select" data-kt-element="item-name" name="product_id[]">
                                                     <option value="">โปรดระบุ</option>
-                                                    @if (Count($pageDetails['product']) > 0)                                                        
+                                                    @if (Count($pageDetails['product']) > 0)
                                                         @foreach ($pageDetails['product'] as $item)
-                                                            <option value="{{ $item["product_id"] }}">{{ $item["product_name_th"] }}</option>
+                                                            <option value="{{ $item['product_id'] }}">{{ $item['product_name_th'] }}</option>
                                                         @endforeach
                                                     @endif
                                                 </select>
