@@ -267,11 +267,11 @@ class CustomerService
             ];
             $data = CustomerModel::fetchStatus($filters);
             $arraysArray = array_map('get_object_vars', $data); //! แปลง object ใน array ให้เป็น array อีกที
-            // dd($arraysArray);
             if (count($arraysArray) > 0) {
                 foreach ($arraysArray as $key_customer => $customer) {
                     if ($status == '2') {
                         $rsPayment = PaymentModel::fetchByCusId($customer['customer_id']);
+                        // dd($rsPayment);
                         $arrayCus[$key_customer]['payment_id'] = $rsPayment->payment_id;
                         $arrayCus[$key_customer]['payment_at'] = GlobalFunc::formatDate($rsPayment->payment_at);
                         $arrayCus[$key_customer]['sum_total'] = number_format($rsPayment->sum_total);
@@ -327,21 +327,7 @@ class CustomerService
                     // dd($arrayCus);
                 }
             } else {
-                $arrayCus[0]['customer_id'] = '2D23015D-638B-4EC5-81F8-11CE172DFBDA';
-                $arrayCus[0]['customer_img'] = '/assets/images/CN000011/customer/2D23015D-638B-4EC5-81F8-11CE172DFBDA.jpg';
-                $arrayCus[0]['customer_name'] = 'Sutasinee Phalahan';
-                $arrayCus[0]['customer_tel'] = '0806522912';
-                $arrayCus[0]['begin_date'] = '10/05/2024';
-                $arrayCus[0]['last_contact_date'] = '15/05/2024';
-                $arrayCus[0]['product_name'] = 'บุุคคล';
-                $arrayCus[0]['amount'] = '1200';
-                $arrayCus[0]['is_payment'] = '1';
-                $arrayCus[0]['payment_at'] = '09/05/2024';
-                $arrayCus[0]['slip_img'] = '/assets/images/CN000011/customer/2D23015D-638B-4EC5-81F8-11CE172DFBDA.jpg';
-                $arrayCus[0]['receipt_img'] = '/assets/images/CN000011/customer/2D23015D-638B-4EC5-81F8-11CE172DFBDA.jpg';
-                $arrayCus[0]['products'][0]['product_id'] = '6';
-                $arrayCus[0]['products'][0]['product_name'] = 'บุคคล Basic';
-                $arrayCus[0]['products'][0]['product_short_name'] = 'บุคคล s';
+                $arrayCus = [];
             }
             return $arrayCus;
         } catch (\Throwable $th) {
