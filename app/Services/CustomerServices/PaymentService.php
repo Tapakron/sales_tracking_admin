@@ -134,12 +134,12 @@ class PaymentService
                 $arrayData['products_buy'][$key]['product_id'] = $value->product_id;
                 $arrayData['products_buy'][$key]['product_name'] = $rsProduct->product_name_th;
                 $arrayData['products_buy'][$key]['number_users'] = $value->number_users;
-                $arrayData['products_buy'][$key]['amount_unit'] = $value->amount_unit;
+                $arrayData['products_buy'][$key]['amount_unit'] = number_format($value->amount_unit);
                 $arrayData['products_buy'][$key]['total'] = number_format($value->total, 2);
                 $expiration_at = DateTime::createFromFormat('Y-m-d', $value->expiration_at);
                 $format_expiration_at = $expiration_at->format('d/m/Y');
-                $arrayData['products_buy'][$key]['expiration_at'] = $value->expiration_at;
-                $arrayData['products_buy'][$key]['format_expiration_at'] = $format_expiration_at;
+                // $arrayData['products_buy'][$key]['expiration_at'] = $value->expiration_at;
+                $arrayData['products_buy'][$key]['expiration_at'] = $format_expiration_at;
             }
             // dd($arrayData);
             return $arrayData;
