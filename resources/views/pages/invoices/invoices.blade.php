@@ -286,7 +286,7 @@
                                         <th class="text-center">รายการชำระ</th>
                                         <th class="text-center">วันหมดอายุ</th>
                                         <th class="text-center">จำนวน/USER</th>
-                                        <th class="text-center">ราคาต่อหน่วย</th>
+                                        <th class="text-center">ราคา</th>
                                         <th class="text-center">รวม</th>
                                     </tr>
                                 </thead>
